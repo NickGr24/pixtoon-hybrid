@@ -1,0 +1,16 @@
+{
+  "name": "pixtoon-hybrid-production",
+  "version": "1.0.0",
+  "description": "Раздел Hybrid Production для pixtoon.com — лендинг и страницы кейсов, EN + RO. Сборка отдаёт плоский HTML/CSS/JS для заведения в MODX.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "node build-css.mjs && eleventy",
+    "dev": "node build-css.mjs && eleventy --serve --port=8080",
+    "css": "node build-css.mjs"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

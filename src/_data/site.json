@@ -1,0 +1,39 @@
+{
+  "_comment": "Данные шапки и футера сняты с живого pixtoon.com — телефон, почта, соцсети и формулировки повторяют существующий сайт дословно, как требует ТЗ (разделы 3 и 13).",
+
+  "name": "Pixtoon",
+  "baseUrl": "https://pixtoon.com",
+  "hybridPath": "hybrid-production",
+
+  "contacts": {
+    "phone": "+ (373) 78 555 333",
+    "phoneHref": "tel:+37378555333",
+    "email": "hello@pixtoon.com",
+    "city": "Chișinău, Moldova"
+  },
+
+  "social": [
+    { "name": "TikTok", "mod": "tik", "url": "https://www.tiktok.com/@pixtoon.com" },
+    { "name": "Behance", "mod": "be", "url": "https://www.behance.net/denissimonov" },
+    { "name": "LinkedIn", "mod": "in", "url": "https://www.linkedin.com/company/pixtoon-studio" },
+    { "name": "Facebook", "mod": "fb", "url": "https://www.facebook.com/Pixtoonstudio" },
+    { "name": "Instagram", "mod": "inst", "url": "https://www.instagram.com/pixtoonstudio/" }
+  ],
+
+  "footer": {
+    "en": {
+      "description": "We're a progressive animation and VFX studio; we create commercials and cartoons.",
+      "followText": "We create cool content<br />Follow us",
+      "callUs": "Call us",
+      "writeUs": "Write to us",
+      "copyright": "© Copyright 2026, All Rights Reserved"
+    },
+    "ro": {
+      "description": "Suntem un studio progresiv de animație și VFX; creăm comerciale și desene animate.",
+      "followText": "Creăm conținut cool<br />Urmărește-ne",
+      "callUs": "Sună-ne",
+      "writeUs": "Scrie-ne",
+      "copyright": "© Copyright 2026, Toate drepturile rezervate"
+    }
+  }
+}

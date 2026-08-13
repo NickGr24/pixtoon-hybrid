@@ -1,0 +1,303 @@
+/* ==========================================================================
+   База и общие компоненты раздела Hybrid.
+   Все селекторы — один класс .hyb-*, без вложенных переопределений отступов:
+   вертикальный ритм задаёт только .hyb-section, поэтому секции не могут
+   «съесть» паддинги друг друга.
+   ========================================================================== */
+
+.hyb-scope {
+  font-family: var(--hyb-font-body);
+  font-size: var(--hyb-t-body);
+  line-height: var(--hyb-lh-body);
+  color: var(--hyb-ink);
+  background: var(--hyb-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hyb-scope *,
+.hyb-scope *::before,
+.hyb-scope *::after {
+  box-sizing: border-box;
+}
+
+/*
+  Сброс завёрнут в :where() — у этого правила нулевая специфичность, поэтому
+  любой компонентный класс его перебивает.
+
+  Без :where() селектор вроде `.hyb-scope a` весит (0,1,1) и выигрывает у
+  одноклассового `.hyb-btn--primary` (0,1,0). На практике это давало три
+  видимых дефекта разом: постеры не заполняли контейнеры (height: auto бил
+  height: 100%), подписи слипались (margin: 0 бил margin компонента), а текст
+  жёлтой кнопки на тёмном блоке становился белым по белому — color: inherit
+  выигрывал у цвета кнопки. Одна причина, три симптома.
+*/
+:where(.hyb-scope) p,
+:where(.hyb-scope) h1,
+:where(.hyb-scope) h2,
+:where(.hyb-scope) h3,
+:where(.hyb-scope) ul,
+:where(.hyb-scope) ol,
+:where(.hyb-scope) figure {
+  margin: 0;
+}
+
+:where(.hyb-scope) ul,
+:where(.hyb-scope) ol {
+  padding: 0;
+  list-style: none;
+}
+
+:where(.hyb-scope) img,
+:where(.hyb-scope) video {
+  display: block;
+  max-width: 100%;
+}
+
+:where(.hyb-scope) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Фокус видим всегда — на жёлтом CTA чёрный контур, на тёмном фоне светлый */
+.hyb-scope a:focus-visible,
+.hyb-scope button:focus-visible {
+  outline: 3px solid var(--hyb-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.hyb-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: #231f29;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+.hyb-skip:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* --- Раскладка --------------------------------------------------------- */
+
+.hyb-wrap {
+  width: 100%;
+  max-width: var(--hyb-page-max);
+  margin-inline: auto;
+  padding-inline: var(--hyb-gutter);
+}
+
+.hyb-section {
+  padding-block: var(--hyb-section-y);
+  background: var(--hyb-bg);
+}
+
+/* Чередование фонов — приём base44: белый / лавандовый через секцию */
+.hyb-section--alt {
+  background: var(--hyb-bg-alt);
+}
+
+.hyb-section--tight {
+  padding-block: calc(var(--hyb-section-y) * 0.6);
+}
+
+/* --- Типографика ------------------------------------------------------- */
+
+/* 12px — мелкий текст, поэтому затемнённый вариант акцента */
+.hyb-eyebrow {
+  display: inline-block;
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hyb-accent-text);
+  margin-bottom: var(--hyb-s-3);
+}
+
+/* Эйброу-таблетка — только там, где нужен якорь на пустом фоне */
+.hyb-eyebrow--pill {
+  padding: 0.5rem 1rem;
+  border-radius: var(--hyb-r-pill);
+  background: var(--hyb-accent-wash);
+  color: var(--hyb-gold-text);
+  margin-bottom: var(--hyb-s-4);
+}
+
+.hyb-title {
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h2);
+  line-height: var(--hyb-lh-tight);
+  letter-spacing: -0.015em;
+  color: var(--hyb-ink);
+  text-wrap: balance;
+}
+
+.hyb-title--hero {
+  font-size: var(--hyb-t-hero);
+}
+
+.hyb-title__plain,
+.hyb-title__outline {
+  display: inline;
+}
+
+/*
+  Подпись Hybrid-линии: одно слово в заголовке рисуется контуром.
+  Приём применяется один раз на секцию — иначе перестаёт быть акцентом
+  (ровно это случилось в аутпуте base44, где outline стоял в шести заголовках
+  подряд). Шорткод title в eleventy.config.js принимает только одно поле
+  outline, поэтому продублировать его в одной секции нельзя технически.
+*/
+/* Толщина обводки растёт вместе с кеглем: на 40px мобильном 1.5px читается,
+   на 72px десктопном тот же контур выглядит недорисованным. */
+.hyb-title__outline {
+  color: transparent;
+  -webkit-text-stroke: clamp(1.5px, 0.035em, 2.5px) var(--hyb-accent);
+  paint-order: stroke fill;
+}
+
+/* Firefox до 128 и любой браузер без text-stroke: обычный мов текст */
+@supports not (-webkit-text-stroke: 1px currentColor) {
+  .hyb-title__outline {
+    color: var(--hyb-accent);
+    -webkit-text-stroke: 0;
+  }
+}
+
+.hyb-lead {
+  font-size: var(--hyb-t-lead);
+  color: var(--hyb-ink-muted);
+  max-width: 56ch;
+  margin-top: var(--hyb-s-3);
+}
+
+.hyb-h3 {
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-h3);
+  line-height: var(--hyb-lh-snug);
+  color: var(--hyb-ink);
+}
+
+/* Шапка секции: эйброу + заголовок + лид */
+.hyb-head {
+  max-width: 62ch;
+  margin-bottom: var(--hyb-s-6);
+}
+
+/* --- Кнопки ------------------------------------------------------------ */
+
+.hyb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 1rem 1.75rem;
+  border: 2px solid transparent;
+  border-radius: var(--hyb-r-pill);
+  font-family: var(--hyb-font-body);
+  font-size: var(--hyb-t-body);
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform var(--hyb-dur) var(--hyb-ease),
+    background-color var(--hyb-dur) var(--hyb-ease),
+    box-shadow var(--hyb-dur) var(--hyb-ease);
+}
+
+.hyb-btn:hover {
+  transform: translateY(-2px);
+}
+
+.hyb-btn:active {
+  transform: translateY(0);
+}
+
+/* Главная кнопка сайта. Жёлтый — единственный элемент, по которому новый
+   раздел мгновенно читается как Pixtoon. */
+.hyb-btn--primary {
+  background: var(--hyb-cta);
+  color: var(--hyb-cta-ink);
+}
+.hyb-btn--primary:hover {
+  background: var(--hyb-cta-hover);
+  box-shadow: var(--hyb-shadow-card);
+}
+
+.hyb-btn--ghost {
+  background: var(--hyb-bg);
+  color: var(--hyb-ink);
+  border-color: var(--hyb-line);
+}
+.hyb-btn--ghost:hover {
+  border-color: var(--hyb-accent);
+  color: var(--hyb-accent);
+}
+
+.hyb-btn__arrow {
+  transition: transform var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-btn:hover .hyb-btn__arrow {
+  transform: translate(2px, -2px);
+}
+
+.hyb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hyb-s-2);
+  margin-top: var(--hyb-s-5);
+}
+
+/* --- Текстовая ссылка со стрелкой --------------------------------------- */
+
+.hyb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 600;
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink);
+}
+.hyb-link:hover {
+  color: var(--hyb-accent-text);
+}
+.hyb-link svg {
+  transition: transform var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* --- Появление при скролле ---------------------------------------------- */
+
+/* Прятать блоки можно только когда JS точно есть — иначе при отключённом или
+   упавшем скрипте половина страницы останется невидимой навсегда.
+   Класс .hyb-js ставится на <html> синхронно, до первой отрисовки. */
+.hyb-js .hyb-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+/* Специфичность намеренно совпадает с правилом выше и не полагается на
+   порядок объявления: .hyb-js в обоих селекторах. */
+.hyb-js .hyb-reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--hyb-dur-slow) var(--hyb-ease-out),
+    transform var(--hyb-dur-slow) var(--hyb-ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hyb-js .hyb-reveal,
+  .hyb-js .hyb-reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hyb-btn:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,106 @@
+---
+layout: layouts/base.njk
+isHybridSection: true
+pagination:
+  data: casePages
+  size: 1
+  alias: t
+permalink: "{{ t.dir }}{{ site.hybridPath }}/{{ t.slug }}/index.html"
+eleventyComputed:
+  pageTitle: "{{ t.content.title }} — {{ t.meta.title }}"
+  pageDescription: "{{ t.content.excerpt }}"
+  ogImage: "{{ t.case.media.poster }}"
+  altUrl: "{{ t.otherLocale.dir }}{{ site.hybridPath }}/{{ t.slug }}/"
+---
+
+{% set p = t %}
+{% set c = t.content %}
+{% set cs = t.caseStudy %}
+
+{#
+  Структура Challenge → Solution → Production → Result задана вторым ТЗ
+  (Pixtoon AI Video Production.pdf, раздел 2). Порядок не декоративный:
+  это то, в каком порядке клиент задаёт вопросы о чужой работе.
+#}
+
+<article class="hyb-cs">
+  <header class="hyb-cs__hero">
+    <div class="hyb-wrap">
+      <a class="hyb-link hyb-cs__back" href="{{ (site.hybridPath + '/') | localeUrl(t) }}">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        {{ cs.backToHybrid }}
+      </a>
+
+      <p class="hyb-cs__tags">{{ p.case.order }} — {{ c.tags }}</p>
+      <h1 class="hyb-title hyb-title--hero">{{ c.title }}</h1>
+      <p class="hyb-lead">{{ c.excerpt }}</p>
+    </div>
+
+    <div class="hyb-wrap">
+      <figure class="hyb-cs__media">
+        <img src="{{ p.case.media.poster }}" alt="{{ c.title }}" fetchpriority="high" />
+        <video
+          class="hyb-cs__video"
+          data-src="{{ p.case.media.video | url }}"
+          poster="{{ p.case.media.poster }}"
+          controls
+          playsinline
+          preload="none"
+        ></video>
+        <button class="hyb-cs__play" type="button" data-hyb-play aria-label="{{ cs.resultLead }}">
+          <svg width="22" height="22" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7-4.5z"/></svg>
+        </button>
+      </figure>
+    </div>
+  </header>
+
+  <section class="hyb-section">
+    <div class="hyb-wrap">
+      <div class="hyb-cs__blocks">
+        {% set blocks = [
+          { key: cs.challenge, lead: cs.challengeLead, text: c.challenge },
+          { key: cs.solution,  lead: cs.solutionLead,  text: c.solution },
+          { key: cs.production, lead: cs.productionLead, text: c.production },
+          { key: cs.result,    lead: cs.resultLead,    text: c.result }
+        ] %}
+
+        {% for b in blocks %}
+        <section class="hyb-cs__block hyb-reveal">
+          <div class="hyb-cs__block-head">
+            <h2 class="hyb-cs__block-title">{{ b.key }}</h2>
+            <p class="hyb-cs__block-lead">{{ b.lead }}</p>
+          </div>
+          <p class="hyb-cs__block-text">{{ b.text }}</p>
+        </section>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# Следующий кейс — путь дальше вместо тупика в конце страницы #}
+  <section class="hyb-section hyb-section--alt hyb-section--tight">
+    <div class="hyb-wrap">
+      <a class="hyb-cs__next" href="{{ (site.hybridPath + '/' + p.next.slug + '/') | localeUrl(t) }}">
+        <span class="hyb-eyebrow">{{ cs.nextCase }}</span>
+        <span class="hyb-cs__next-title">
+          {{ p.next.title }}
+          <svg width="16" height="16" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section class="hyb-section hyb-final">
+    <div class="hyb-wrap">
+      <div class="hyb-head hyb-reveal">
+        {% title cs.ctaTitle %}
+      </div>
+      <div class="hyb-actions hyb-reveal">
+        <a href="mailto:{{ site.contacts.email }}" class="hyb-btn hyb-btn--primary">
+          {{ cs.cta }}
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</article>

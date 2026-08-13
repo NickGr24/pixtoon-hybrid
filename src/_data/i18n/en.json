@@ -1,0 +1,230 @@
+{
+  "_comment": "Тексты лендинга, EN. Взяты из ТЗ (Pixtoon_Hybrid_Production_Base44_Task_FINAL.docx). Заголовки разбиты на {a, outline, b}: outline-слово рисуется контуром — приём Hybrid-линии. Одно outline-слово на секцию, не больше.",
+
+  "locale": "en",
+  "lang": "en",
+  "dir": "/",
+  "otherLocale": { "code": "ro", "label": "Română", "dir": "/ro/" },
+
+  "nav": {
+    "about": "About us",
+    "work": "Our work",
+    "hybrid": "Hybrid Production",
+    "blog": "Blog",
+    "contact": "Contact us",
+    "language": "English"
+  },
+
+  "meta": {
+    "title": "AI Hybrid Video Production — Pixtoon",
+    "description": "Commercial video production in as little as 3 days, from €1,000 for 20 sec. AI, animation and filmmaking in one pipeline, directed by humans. Pixtoon studio, Chișinău."
+  },
+
+  "hero": {
+    "eyebrow": "AI hybrid video production",
+    "title": { "a": "Big ideas.", "outline": "Faster", "b": "production." },
+    "lead": "AI + animation + filmmaking, directed by humans.",
+    "highlight": "Commercial video production in as little as 3 days. Starting from €1,000 for 20 sec.",
+    "ctaPrimary": "Start a project",
+    "ctaSecondary": "How it works",
+    "showreel": "Hybrid showreel"
+  },
+
+  "work": {
+    "eyebrow": "Selected hybrid work",
+    "title": { "a": "We sell the", "outline": "result", "b": ", not the tool." },
+    "viewCase": "View case study",
+    "moreEyebrow": "More hybrid work",
+    "moreTitle": "Recent hybrid productions.",
+    "prev": "Previous projects",
+    "next": "Next projects"
+  },
+
+  "process": {
+    "eyebrow": "How hybrid production works",
+    "title": { "a": "AI is part of the pipeline.", "outline": "Not", "b": "the director." },
+    "lead": "We combine traditional creative production with the latest AI tools to produce high-quality commercial content faster and more efficiently.",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Brief",
+        "text": "We learn about the brand, product, objective and audience."
+      },
+      {
+        "n": "02",
+        "title": "Concept",
+        "text": "Pixtoon develops the creative idea, script and visual direction."
+      },
+      {
+        "n": "03",
+        "title": "AI production",
+        "text": "AI is used where it makes production faster or opens creative possibilities: characters, environments, product visuals, shots and visual development."
+      },
+      {
+        "n": "04",
+        "title": "Animation & post",
+        "text": "Our team handles animation, compositing, editing, voice, music, sound design and final polish."
+      },
+      {
+        "n": "05",
+        "title": "Delivery",
+        "text": "Final commercial video delivered for social media, digital ads, YouTube, TV and DOOH."
+      }
+    ]
+  },
+
+  "why": {
+    "eyebrow": "Why hybrid?",
+    "title": { "a": "Bigger ideas.", "outline": "Smaller", "b": "productions." },
+    "items": [
+      {
+        "kicker": "3 days",
+        "title": "Production can be completed dramatically faster than traditional production."
+      },
+      {
+        "kicker": "From €1,000",
+        "title": "Starting price for a 20 sec hybrid video."
+      },
+      {
+        "kicker": "No traditional shoot required",
+        "title": "Many concepts can be produced without locations, actors, physical sets or large crews."
+      },
+      {
+        "kicker": "Unlimited creative worlds",
+        "title": "Create characters, environments and situations that would be expensive or impossible to shoot traditionally."
+      }
+    ],
+    "hybridCard": {
+      "kicker": "Hybrid, not AI-only",
+      "text": "We combine whatever the idea actually needs.",
+      "techniques": [
+        "AI",
+        "2D animation",
+        "3D animation",
+        "Motion graphics",
+        "Live action",
+        "VFX",
+        "Post-production"
+      ]
+    }
+  },
+
+  "included": {
+    "eyebrow": "What's included",
+    "title": { "a": "Everything you need.", "outline": "One", "b": "production team." },
+    "lead": "From first brief to final master — no middlemen, no handoffs, no surprises.",
+    "items": [
+      "Concept / creative idea",
+      "Script",
+      "Storyboard",
+      "Visual direction",
+      "Character & environment development",
+      "AI generation",
+      "2D / 3D animation where required",
+      "Voice-over — 1 voice",
+      "Music",
+      "Sound design",
+      "Editing",
+      "Compositing",
+      "Final mastering",
+      "Final delivery"
+    ]
+  },
+
+  "monthly": {
+    "eyebrow": "Need content every month?",
+    "title": { "a": "Your AI content production team.", "outline": "Every", "b": "month." },
+    "lead": "Turn one campaign, mascot, product or brand universe into a continuous stream of video content. Instead of starting from zero each time, we build a visual system for the brand and continue producing new stories, situations and formats every month.",
+    "perMonth": "/ month",
+    "packages": [
+      {
+        "label": "Monthly package 01",
+        "title": "2 AI / 3D hybrid videos per month",
+        "price": "€1,500",
+        "idealFor": "Ideal for brand mascots, product content, character-based content, social media campaigns and recurring branded stories.",
+        "items": [
+          "Monthly creative concepts",
+          "2 videos",
+          "Script",
+          "Visual development",
+          "AI production",
+          "Animation",
+          "Editing",
+          "Voice-over where required",
+          "Music & sound design",
+          "Final delivery"
+        ]
+      },
+      {
+        "label": "Monthly package 02",
+        "title": "4 hybrid / filmed videos per month",
+        "price": "€2,000",
+        "idealFor": "Ideal for regular social content, products & services, campaigns using real people, Reels / TikTok / Shorts, filming + AI + motion graphics.",
+        "items": [
+          "Monthly content concepts",
+          "4 videos",
+          "Filming",
+          "Editing",
+          "AI elements where useful",
+          "Motion graphics",
+          "Sound design",
+          "Final social-media formats"
+        ]
+      }
+    ],
+    "custom": {
+      "label": "Custom monthly production",
+      "title": "For brands that need larger content volume or a custom production system.",
+      "items": [
+        "AI video",
+        "3D characters",
+        "2D animation",
+        "Live action",
+        "Motion graphics",
+        "Product visualization",
+        "VFX",
+        "Social media content"
+      ],
+      "cta": "Build my monthly plan"
+    },
+    "closing": {
+      "title": { "a": "Build the world once.", "outline": "Keep", "b": "telling new stories." },
+      "text": "We create the visual system once and use it to produce new branded content month after month. The advantage is continuity, not simply more videos for less money.",
+      "text2": "Once Pixtoon develops the brand's visual world, characters, visual style, tone and recurring formats, new content can be produced faster while maintaining a consistent brand universe."
+    }
+  },
+
+  "pricing": {
+    "eyebrow": "Price",
+    "title": { "a": "A commercial in days,", "outline": "not", "b": "weeks." },
+    "stats": [
+      { "value": "From €1,000", "label": "per 20 sec commercial" },
+      { "value": "From 3 days", "label": "production time" }
+    ],
+    "note": "Final price and production time depend on concept complexity, duration and required techniques.",
+    "cta": "Tell us about your project"
+  },
+
+  "finalCta": {
+    "eyebrow": "Let's make something",
+    "title": { "a": "Something people actually", "outline": "want", "b": "to watch." },
+    "lead": "Tell us what you want to promote. We'll recommend the smartest way to produce it.",
+    "ctaPrimary": "Start a project",
+    "ctaSecondary": "Book a free discovery call"
+  },
+
+  "caseStudy": {
+    "backToHybrid": "All hybrid work",
+    "challenge": "Challenge",
+    "challengeLead": "What we had to solve.",
+    "solution": "Solution",
+    "solutionLead": "How we combined filming, AI and post-production.",
+    "production": "Production",
+    "productionLead": "How the project was made.",
+    "result": "Result",
+    "resultLead": "The finished film.",
+    "nextCase": "Next case study",
+    "ctaTitle": { "a": "Want something like this?", "outline": "Let's", "b": "talk." },
+    "cta": "Start a project"
+  }
+}

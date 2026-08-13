@@ -1,0 +1,140 @@
+{
+  "_comment": "Один источник правды для всех кейсов. Лендинг и 4 страницы кейсов читают отсюда, поэтому правка текста делается в одном месте, а не в 8 файлах (4 проекта x 2 языка). Поля challenge/solution/production написаны по фактам из ТЗ (техника, бренд) без выдуманных метрик — блок подлежит вычитке клиентом, см. docs/CONTENT-REVIEW.md",
+
+  "featured": [
+    {
+      "slug": "drive-gas",
+      "order": "01",
+      "brand": "Drive Gas",
+      "media": {
+        "poster": "/assets/img/cases/drive-gas-poster.jpg",
+        "video": "/assets/img/cases/drive-gas-preview.mp4",
+        "ratio": "16/10"
+      },
+      "en": {
+        "title": "Drive Gas",
+        "tags": "AI hybrid / 3D character / Product / Environment",
+        "excerpt": "A branded 3D world and character-driven commercial created through a hybrid AI + animation pipeline.",
+        "challenge": "Give a fuel retailer a loyalty campaign that reads as a story rather than a discount banner — and put a recognisable face on the brand.",
+        "solution": "We built a branded 3D world and a host character to carry it. AI handled environment and product visuals; the character performance and brand geometry stayed hand-directed.",
+        "production": "Concept and script in-house, character design and 3D development, AI-assisted environments and product shots, animation, compositing, sound design and final master.",
+        "result": "A campaign world that can be re-entered for the next promo instead of being rebuilt from zero."
+      },
+      "ro": {
+        "title": "Drive Gas",
+        "tags": "Hibrid AI / Personaj 3D / Produs / Mediu",
+        "excerpt": "O lume 3D branduită și un comercial condus de personaje, creat printr-un pipeline hibrid AI + animație.",
+        "challenge": "Să transformăm o campanie de loialitate într-o poveste, nu într-un banner cu reduceri — și să dăm brandului un chip memorabil.",
+        "solution": "Am construit o lume 3D branduită și un personaj-gazdă care o duce mai departe. AI-ul a lucrat mediile și vizualele de produs; jocul personajului și geometria brandului au rămas regizate manual.",
+        "production": "Concept și scenariu in-house, design de personaj și dezvoltare 3D, medii și cadre de produs asistate de AI, animație, compoziție, sound design și master final.",
+        "result": "O lume de campanie în care se poate reveni pentru următoarea promoție, în loc să fie reconstruită de la zero."
+      }
+    },
+    {
+      "slug": "coccolino",
+      "order": "02",
+      "brand": "Coccolino",
+      "media": {
+        "poster": "/assets/img/cases/coccolino-poster.jpg",
+        "video": "/assets/img/cases/coccolino-preview.mp4",
+        "ratio": "16/10"
+      },
+      "en": {
+        "title": "Coccolino",
+        "tags": "AI character / Product commercial",
+        "excerpt": "AI-assisted character and product advertising built around the existing Coccolino brand universe.",
+        "challenge": "Work inside a brand universe that already exists, with a mascot audiences know — nothing could look reinterpreted or off-model.",
+        "solution": "AI generation was constrained to the established look: the bear, the palette and the product stayed on-model, while AI opened up settings that would have needed a full shoot.",
+        "production": "Creative concept, visual development against brand guidelines, AI image and video generation, animation and compositing, editing, music and sound design.",
+        "result": "Product advertising that sits inside the existing brand world rather than beside it."
+      },
+      "ro": {
+        "title": "Coccolino",
+        "tags": "Personaj AI / Comercial de produs",
+        "excerpt": "Personaj și publicitate de produs asistate de AI, construite în universul de brand Coccolino deja existent.",
+        "challenge": "Să lucrăm într-un univers de brand care există deja, cu o mascotă pe care publicul o cunoaște — nimic nu avea voie să pară reinterpretat.",
+        "solution": "Generarea AI a fost ținută strict în stilul stabilit: ursulețul, paleta și produsul au rămas fidele brandului, iar AI-ul a deschis decoruri care ar fi cerut o filmare completă.",
+        "production": "Concept creativ, dezvoltare vizuală după ghidul de brand, generare AI de imagine și video, animație și compoziție, montaj, muzică și sound design.",
+        "result": "Publicitate de produs care stă în interiorul universului de brand, nu alături de el."
+      }
+    },
+    {
+      "slug": "medpark-doctor-buba",
+      "order": "03",
+      "brand": "Medpark",
+      "media": {
+        "poster": "/assets/img/cases/medpark-poster.jpg",
+        "video": "/assets/img/cases/medpark-preview.mp4",
+        "ratio": "16/10"
+      },
+      "en": {
+        "title": "Medpark — Doctor Buba",
+        "tags": "AI animated series / Brand characters",
+        "excerpt": "A branded animated content universe created around Medpark's characters.",
+        "challenge": "Make a private clinic approachable for children and parents — a subject where tone matters more than production value.",
+        "solution": "A cast of brand characters and a repeatable series format. Once the world was designed, each new episode starts from an existing set, not from a blank page.",
+        "production": "Character and world design, series format, script per episode, AI-assisted production, 2D and 3D animation, voice, music and sound design.",
+        "result": "A content universe that keeps producing episodes instead of a single finished spot."
+      },
+      "ro": {
+        "title": "Medpark — Doctor Buba",
+        "tags": "Serie animată AI / Personaje de brand",
+        "excerpt": "Un univers de conținut animat, construit în jurul personajelor Medpark.",
+        "challenge": "Să facem o clinică privată prietenoasă pentru copii și părinți — un subiect unde tonul contează mai mult decât bugetul de producție.",
+        "solution": "O distribuție de personaje de brand și un format de serie repetabil. Odată ce lumea a fost desenată, fiecare episod nou pornește dintr-un decor existent, nu de la pagina albă.",
+        "production": "Design de personaje și de lume, format de serie, scenariu per episod, producție asistată de AI, animație 2D și 3D, voce, muzică și sound design.",
+        "result": "Un univers de conținut care continuă să producă episoade, în loc de un singur spot finalizat."
+      }
+    },
+    {
+      "slug": "efes",
+      "order": "04",
+      "brand": "Efes",
+      "media": {
+        "poster": "/assets/img/cases/efes-poster.jpg",
+        "video": "/assets/img/cases/efes-preview.mp4",
+        "ratio": "16/10"
+      },
+      "en": {
+        "title": "Efes",
+        "tags": "AI product commercial",
+        "excerpt": "A product commercial built with AI generation, where the hero product had to stay exact.",
+        "challenge": "Product advertising leaves no room for approximation: the bottle, the label and the pour have to be right, frame by frame.",
+        "solution": "AI carried the world around the product while the product itself stayed under direct control — the split that makes hybrid production work on packaged goods.",
+        "production": "Concept, visual direction, AI generation, product visualisation, compositing, editing, music and sound design.",
+        "result": "Commercial-grade product footage without a studio shoot."
+      },
+      "ro": {
+        "title": "Efes",
+        "tags": "Comercial de produs AI",
+        "excerpt": "Un comercial de produs realizat cu generare AI, în care produsul principal trebuia să rămână exact.",
+        "challenge": "Publicitatea de produs nu lasă loc de aproximări: sticla, eticheta și turnarea trebuie să fie corecte, cadru cu cadru.",
+        "solution": "AI-ul a dus lumea din jurul produsului, în timp ce produsul a rămas sub control direct — exact separarea care face producția hibridă să funcționeze pe bunuri ambalate.",
+        "production": "Concept, direcție vizuală, generare AI, vizualizare de produs, compoziție, montaj, muzică și sound design.",
+        "result": "Imagini de produs la nivel de comercial, fără filmare în studio."
+      }
+    }
+  ],
+
+  "_more_comment": "Карусель More Hybrid Work (ТЗ раздел 6). Без отдельных страниц — только превью.",
+  "more": [
+    {
+      "slug": "bere-chisinau",
+      "media": {
+        "poster": "/assets/img/cases/bere-chisinau-poster.jpg",
+        "video": "/assets/img/cases/bere-chisinau-preview.mp4"
+      },
+      "en": { "title": "Bere Chișinău", "tags": "AI product commercial" },
+      "ro": { "title": "Bere Chișinău", "tags": "Comercial de produs AI" }
+    },
+    {
+      "slug": "medpark-diaspora",
+      "media": {
+        "poster": "/assets/img/cases/medpark-diaspora-poster.jpg",
+        "video": "/assets/img/cases/medpark-diaspora-preview.mp4"
+      },
+      "en": { "title": "Medpark Diaspora", "tags": "AI + 2D hybrid commercial" },
+      "ro": { "title": "Medpark Diaspora", "tags": "Comercial hibrid AI + 2D" }
+    }
+  ]
+}

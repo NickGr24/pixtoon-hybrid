@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="{{ t.lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{{ pageTitle or t.meta.title }}</title>
+  <meta name="description" content="{{ pageDescription or t.meta.description }}" />
+
+  {# Демо-сборка: работы клиента ещё не опубликованы, в поиск попадать не должны #}
+  {% if isDemo %}<meta name="robots" content="noindex, nofollow, noimageindex" />{% endif %}
+  <link rel="canonical" href="{{ site.baseUrl }}{{ page.url }}" />
+  <link rel="alternate" hreflang="{{ t.lang }}" href="{{ site.baseUrl }}{{ page.url }}" />
+  {% if altUrl %}<link rel="alternate" hreflang="{{ t.otherLocale.code }}" href="{{ site.baseUrl }}{{ altUrl }}" />{% endif %}
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ pageTitle or t.meta.title }}" />
+  <meta property="og:description" content="{{ pageDescription or t.meta.description }}" />
+  {% if ogImage %}<meta property="og:image" content="{{ site.baseUrl }}{{ ogImage }}" />{% endif %}
+
+  <link type="image/png" rel="shortcut icon" href="/assets/img/favicon.png" />
+
+  {#
+    Poppins уже загружен основной темой Pixtoon — при интеграции в MODX эта
+    строка не нужна, останется только Baloo 2. Preconnect стоит выше ссылки на
+    шрифты намеренно: иначе браузер откроет соединение только после парсинга CSS.
+  #}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap&subset=latin,latin-ext"
+    rel="stylesheet"
+  />
+
+  {# Только для автономного просмотра. В MODX шапку и футер оденет тема сайта. #}
+  <link rel="stylesheet" href="/assets/css/theme-shell.css" />
+
+  {# Стили раздела. Единственный файл, который переезжает в прод. #}
+  <link rel="stylesheet" href="/assets/css/hybrid.css" />
+</head>
+
+<body class="hyb-page">
+  <a class="hyb-skip" href="#main">{{ "Skip to content" if t.lang == "en" else "Sari la conținut" }}</a>
+
+  {% include "partials/header.njk" %}
+
+  {# Весь раздел живёт под .hyb-scope: токены и стили не выходят за эти границы. #}
+  <main id="main" class="hyb-scope">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <script src="/assets/js/hybrid.js" defer></script>
+</body>
+</html>

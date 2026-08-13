@@ -1,0 +1,230 @@
+{
+  "_comment": "Тексты лендинга, RO. Формулировки взяты из аутпута base44, который клиент уже видел и принял. Разделы, которых base44 не сделал (месячные пакеты, карусель), переведены с EN — помечены в docs/CONTENT-REVIEW.md как требующие вычитки носителем. Диакритика: ș U+0219 и ț U+021B (запятая снизу), не турецкие седили.",
+
+  "locale": "ro",
+  "lang": "ro",
+  "dir": "/ro/",
+  "otherLocale": { "code": "en", "label": "English", "dir": "/" },
+
+  "nav": {
+    "about": "Despre noi",
+    "work": "Portofoliu",
+    "hybrid": "Producție hibridă",
+    "blog": "Blog",
+    "contact": "Contacte",
+    "language": "Română"
+  },
+
+  "meta": {
+    "title": "Producție video hibridă AI — Pixtoon",
+    "description": "Video comercial în doar 3 zile, începând de la €1.000 pentru 20 sec. AI, animație și filmmaking într-un singur pipeline, regizate de oameni. Studioul Pixtoon, Chișinău."
+  },
+
+  "hero": {
+    "eyebrow": "Producție video hibridă AI",
+    "title": { "a": "Idei mari.", "outline": "Producție", "b": "mai rapidă." },
+    "lead": "AI + animație + filmmaking, regizat de oameni.",
+    "highlight": "Video comercial în doar 3 zile. Începând de la €1.000 pentru 20 sec.",
+    "ctaPrimary": "Pornește un proiect",
+    "ctaSecondary": "Cum funcționează",
+    "showreel": "Showreel hibrid"
+  },
+
+  "work": {
+    "eyebrow": "Lucrări hibride selectate",
+    "title": { "a": "Vindem", "outline": "rezultatul", "b": ", nu toolul." },
+    "viewCase": "Vezi case study",
+    "moreEyebrow": "Mai multe lucrări hibride",
+    "moreTitle": "Producții hibride recente.",
+    "prev": "Proiectele precedente",
+    "next": "Proiectele următoare"
+  },
+
+  "process": {
+    "eyebrow": "Cum funcționează producția hibridă",
+    "title": { "a": "AI face parte din pipeline.", "outline": "Nu e regizorul.", "b": "" },
+    "lead": "Combinăm producția creativă tradițională cu cele mai noi tooluri AI pentru a produce conținut comercial de înaltă calitate mai rapid și mai eficient.",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Brief",
+        "text": "Învățăm despre brand, produs, obiectiv și audiență."
+      },
+      {
+        "n": "02",
+        "title": "Concept",
+        "text": "Pixtoon dezvoltă ideea creativă, scriptul și direcția vizuală."
+      },
+      {
+        "n": "03",
+        "title": "Producție AI",
+        "text": "AI-ul accelerează personaje, medii, vizuale de produs și cadre — acolo unde deschide posibilități creative."
+      },
+      {
+        "n": "04",
+        "title": "Animație & Post",
+        "text": "Echipa noastră se ocupă de animație, compoziție, editare, voce, muzică, sound design și finisare finală."
+      },
+      {
+        "n": "05",
+        "title": "Livrare",
+        "text": "Video final livrat pentru social media, digital ads, YouTube, TV și DOOH."
+      }
+    ]
+  },
+
+  "why": {
+    "eyebrow": "De ce hibrid?",
+    "title": { "a": "Idei mai mari.", "outline": "Producții", "b": "mai mici." },
+    "items": [
+      {
+        "kicker": "3 zile",
+        "title": "Producția poate fi finalizată dramatic mai repede decât o producție tradițională."
+      },
+      {
+        "kicker": "De la €1.000",
+        "title": "Preț de pornire pentru un video hibrid de 20 de secunde."
+      },
+      {
+        "kicker": "Fără filmare tradițională",
+        "title": "Multe concepte pot fi produse fără locații, actori, decoruri fizice sau echipe mari."
+      },
+      {
+        "kicker": "Lumi creative nelimitate",
+        "title": "Creăm personaje, medii și situații care ar fi scumpe sau imposibil de filmat tradițional."
+      }
+    ],
+    "hybridCard": {
+      "kicker": "Hibrid, nu doar AI",
+      "text": "Combinăm orice are nevoie ideea de fapt.",
+      "techniques": [
+        "AI",
+        "Animație 2D",
+        "Animație 3D",
+        "Motion Graphics",
+        "Live Action",
+        "VFX",
+        "Post-producție"
+      ]
+    }
+  },
+
+  "included": {
+    "eyebrow": "Ce este inclus",
+    "title": { "a": "Tot ce ai nevoie.", "outline": "O echipă", "b": "de producție." },
+    "lead": "De la primul brief la master final — fără intermediari, fără predări, fără surprize.",
+    "items": [
+      "Concept / idee creativă",
+      "Script",
+      "Storyboard",
+      "Direcție vizuală",
+      "Dezvoltare personaje & medii",
+      "Generare AI",
+      "Animație 2D / 3D unde e nevoie",
+      "Voice-over (1 voce)",
+      "Muzică",
+      "Sound design",
+      "Editare",
+      "Compoziție",
+      "Masterizare finală",
+      "Livrare finală"
+    ]
+  },
+
+  "monthly": {
+    "eyebrow": "Ai nevoie de conținut în fiecare lună?",
+    "title": { "a": "Echipa ta de producție AI.", "outline": "În fiecare", "b": "lună." },
+    "lead": "Transformă o campanie, o mascotă, un produs sau un univers de brand într-un flux continuu de conținut video. În loc să pornim de la zero de fiecare dată, construim un sistem vizual pentru brand și continuăm să producem povești, situații și formate noi în fiecare lună.",
+    "perMonth": "/ lună",
+    "packages": [
+      {
+        "label": "Pachet lunar 01",
+        "title": "2 video-uri hibride AI / 3D pe lună",
+        "price": "€1.500",
+        "idealFor": "Ideal pentru mascote de brand, conținut de produs, conținut bazat pe personaje, campanii social media și povești de brand recurente.",
+        "items": [
+          "Concepte creative lunare",
+          "2 video-uri",
+          "Script",
+          "Dezvoltare vizuală",
+          "Producție AI",
+          "Animație",
+          "Editare",
+          "Voice-over unde e nevoie",
+          "Muzică & sound design",
+          "Livrare finală"
+        ]
+      },
+      {
+        "label": "Pachet lunar 02",
+        "title": "4 video-uri hibride / filmate pe lună",
+        "price": "€2.000",
+        "idealFor": "Ideal pentru conținut social regulat, produse și servicii, campanii cu oameni reali, Reels / TikTok / Shorts, filmare + AI + motion graphics.",
+        "items": [
+          "Concepte de conținut lunare",
+          "4 video-uri",
+          "Filmare",
+          "Editare",
+          "Elemente AI unde sunt utile",
+          "Motion graphics",
+          "Sound design",
+          "Formate finale pentru social media"
+        ]
+      }
+    ],
+    "custom": {
+      "label": "Producție lunară personalizată",
+      "title": "Pentru brandurile care au nevoie de volum mai mare de conținut sau de un sistem de producție propriu.",
+      "items": [
+        "Video AI",
+        "Personaje 3D",
+        "Animație 2D",
+        "Live Action",
+        "Motion Graphics",
+        "Vizualizare de produs",
+        "VFX",
+        "Conținut social media"
+      ],
+      "cta": "Construiește-mi planul lunar"
+    },
+    "closing": {
+      "title": { "a": "Construim lumea o dată.", "outline": "Spunem", "b": "povești noi la nesfârșit." },
+      "text": "Creăm sistemul vizual o singură dată și îl folosim pentru a produce conținut nou lună de lună. Avantajul este continuitatea, nu pur și simplu mai multe video-uri pentru mai puțini bani.",
+      "text2": "Odată ce Pixtoon dezvoltă lumea vizuală a brandului, personajele, stilul vizual, tonul și formatele recurente, conținutul nou poate fi produs mai rapid, păstrând un univers de brand consecvent."
+    }
+  },
+
+  "pricing": {
+    "eyebrow": "Preț",
+    "title": { "a": "Un comercial în zile,", "outline": "nu", "b": "în săptămâni." },
+    "stats": [
+      { "value": "De la €1K", "label": "per comercial de 20 sec" },
+      { "value": "3 zile", "label": "timp de producție" }
+    ],
+    "note": "Prețul final și timeline-ul depind de complexitatea conceptului, durată și tehnicile necesare.",
+    "cta": "Spune-ne despre proiectul tău"
+  },
+
+  "finalCta": {
+    "eyebrow": "Hai să facem ceva",
+    "title": { "a": "Pe care oamenii chiar", "outline": "vor", "b": "să-l urmărească." },
+    "lead": "Spune-ne ce vrei să promovezi. Îți recomandăm cea mai deșteaptă metodă de a produce.",
+    "ctaPrimary": "Pornește un proiect",
+    "ctaSecondary": "Programează un apel gratuit"
+  },
+
+  "caseStudy": {
+    "backToHybrid": "Toate lucrările hibride",
+    "challenge": "Provocarea",
+    "challengeLead": "Ce trebuia să realizăm.",
+    "solution": "Soluția",
+    "solutionLead": "Cum am combinat filmarea, AI-ul și post-producția.",
+    "production": "Producția",
+    "productionLead": "Cum a fost realizat proiectul.",
+    "result": "Rezultatul",
+    "resultLead": "Filmul final.",
+    "nextCase": "Următorul case study",
+    "ctaTitle": { "a": "Vrei ceva similar?", "outline": "Hai", "b": "să vorbim." },
+    "cta": "Pornește un proiect"
+  }
+}

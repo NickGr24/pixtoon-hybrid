@@ -1,0 +1,69 @@
+{#
+  Шапка воспроизводит структуру и классы живого pixtoon.com (header-nav__*),
+  чтобы при заведении в MODX её можно было целиком заменить существующим
+  чанком без правки разметки страницы. Единственное отличие от оригинала —
+  добавленный пункт «Hybrid Production» с состоянием is-current.
+#}
+<header class="header">
+  <div class="inner">
+    <nav class="header-nav">
+      <a href="{{ t.dir }}" class="header-nav__logo-mobile" aria-label="Pixtoon">
+        <object type="image/svg+xml" data="/assets/img/logo-mobile.svg"></object>
+      </a>
+
+      <button
+        class="header-nav__burger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="hyb-nav"
+        aria-label="{{ 'Menu' if t.lang == 'en' else 'Meniu' }}"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="header-nav__items" id="hyb-nav">
+        <li class="header-nav__item">
+          <a href="{{ t.dir }}" class="header-nav__logo" aria-label="Pixtoon">
+            <object type="image/svg+xml" data="/assets/img/logo.svg"></object>
+          </a>
+        </li>
+        <li class="header-nav__item">
+          <a href="{{ 'about-us' | localeUrl(t) }}.html" class="header-nav__link">{{ t.nav.about }}</a>
+        </li>
+        <li class="header-nav__item">
+          <a href="{{ 'our-work/' | localeUrl(t) }}" class="header-nav__link">{{ t.nav.work }}</a>
+        </li>
+
+        {# Новый пункт раздела. aria-current — для скринридеров, не только подсветка. #}
+        <li class="header-nav__item">
+          <a
+            href="{{ site.hybridPath + '/' | localeUrl(t) }}"
+            class="header-nav__link header-nav__link--hybrid{% if isHybridSection %} is-current{% endif %}"
+            {% if isHybridSection %}aria-current="page"{% endif %}
+          >{{ t.nav.hybrid }}</a>
+        </li>
+
+        <li class="header-nav__item">
+          <a href="{{ 'blog/' | localeUrl(t) }}" class="header-nav__link">{{ t.nav.blog }}</a>
+        </li>
+        <li class="header-nav__item">
+          <a href="{{ 'contacts' | localeUrl(t) }}.html" class="header-nav__link">{{ t.nav.contact }}</a>
+        </li>
+
+        {#
+          Переключатель ведёт на ту же страницу в другой локали — altUrl задан
+          в front matter каждой страницы. Без него со страницы кейса
+          посетитель попадал бы на общий лендинг и терял контекст.
+        #}
+        <li class="header-nav__item header-nav__item--lang">
+          <a
+            href="{{ altUrl if altUrl else t.otherLocale.dir + site.hybridPath + '/' }}"
+            class="header-nav__link"
+            lang="{{ t.otherLocale.code }}"
+            hreflang="{{ t.otherLocale.code }}"
+          >{{ t.otherLocale.label }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
