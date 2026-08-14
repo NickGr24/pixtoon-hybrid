@@ -15,6 +15,14 @@
     "language": "English"
   },
 
+  "_navPaths_comment": "Реальные адреса страниц с pixtoon.com. У локалей они РАЗНЫЕ: RO использует despre-noi.html и lucrări/, а не переводы английских путей. Проверено запросами к живому сайту.",
+  "navPaths": {
+    "about": "about-us.html",
+    "work": "our-work/",
+    "blog": "blog/",
+    "contact": "contacts.html"
+  },
+
   "meta": {
     "title": "AI Hybrid Video Production — Pixtoon",
     "description": "Commercial video production in as little as 3 days, from €1,000 for 20 sec. AI, animation and filmmaking in one pipeline, directed by humans. Pixtoon studio, Chișinău."

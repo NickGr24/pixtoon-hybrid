@@ -8,11 +8,19 @@
 
   "nav": {
     "about": "Despre noi",
-    "work": "Portofoliu",
+    "work": "Lucrări",
     "hybrid": "Producție hibridă",
     "blog": "Blog",
-    "contact": "Contacte",
+    "contact": "Contact",
     "language": "Română"
+  },
+
+  "_navPaths_comment": "Реальные адреса румынской версии pixtoon.com. Это НЕ переводы английских путей: /ro/about-us.html и /ro/our-work/ на живом сайте отдают 404. Диакритика в lucrări/ — как на сайте, браузер кодирует её сам.",
+  "navPaths": {
+    "about": "despre-noi.html",
+    "work": "lucrări/",
+    "blog": "blog/",
+    "contact": "contacts.html"
   },
 
   "meta": {

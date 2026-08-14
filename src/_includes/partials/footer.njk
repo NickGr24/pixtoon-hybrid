@@ -5,12 +5,13 @@
   интеграции блок заменяется существующим чанком один в один.
 #}
 {% set f = site.footer[t.locale] %}
+{% set homeUrl = "/" if isDemo else t.dir %}
 
 <footer class="footer inner">
   <div class="footer__wrap">
     <div class="footer__top">
       <div class="footer__top-left">
-        <a href="{{ t.dir }}" class="footer__logo" aria-label="Pixtoon">
+        <a href="{{ homeUrl }}" class="footer__logo" aria-label="Pixtoon">
           <object type="image/svg+xml" data="/assets/img/logo.svg"></object>
         </a>
         <div class="footer__description">{{ f.description }}</div>
@@ -20,19 +21,19 @@
         <nav class="footer__nav">
           <ul class="footer__items">
             <li class="footer__item">
-              <a href="{{ 'about-us' | localeUrl(t) }}.html" class="footer__link">{{ t.nav.about }}</a>
+              <a href="{{ externalBase }}{{ t.navPaths.about | localeUrl(t) }}" class="footer__link">{{ t.nav.about }}</a>
             </li>
             <li class="footer__item">
-              <a href="{{ 'our-work/' | localeUrl(t) }}" class="footer__link">{{ t.nav.work }}</a>
+              <a href="{{ externalBase }}{{ t.navPaths.work | localeUrl(t) }}" class="footer__link">{{ t.nav.work }}</a>
             </li>
             <li class="footer__item">
-              <a href="{{ site.hybridPath + '/' | localeUrl(t) }}" class="footer__link">{{ t.nav.hybrid }}</a>
+              <a href="{{ (site.hybridPath + '/') | localeUrl(t) }}" class="footer__link">{{ t.nav.hybrid }}</a>
             </li>
             <li class="footer__item">
-              <a href="{{ 'blog/' | localeUrl(t) }}" class="footer__link">{{ t.nav.blog }}</a>
+              <a href="{{ externalBase }}{{ t.navPaths.blog | localeUrl(t) }}" class="footer__link">{{ t.nav.blog }}</a>
             </li>
             <li class="footer__item">
-              <a href="{{ 'contacts' | localeUrl(t) }}.html" class="footer__link">{{ t.nav.contact }}</a>
+              <a href="{{ externalBase }}{{ t.navPaths.contact | localeUrl(t) }}" class="footer__link">{{ t.nav.contact }}</a>
             </li>
           </ul>
         </nav>

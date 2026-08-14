@@ -30,6 +30,16 @@ export default function (eleventyConfig) {
     флаг выключен и noindex не попадает в HTML.
   */
   eleventyConfig.addGlobalData("isDemo", PATH_PREFIX !== "/");
+
+  /*
+    В демо-сборке существует только раздел Hybrid Production, поэтому остальные
+    пункты навигации ведут на живой pixtoon.com — иначе это четыре ссылки в 404.
+    В боевой сборке база пустая и ссылки остаются относительными.
+  */
+  eleventyConfig.addGlobalData(
+    "externalBase",
+    PATH_PREFIX !== "/" ? "https://pixtoon.com" : ""
+  );
   // CSS не копируется как есть — его склеивает build-css.mjs в один файл.
   // Иначе в dist уехали бы и модули, и собранный файл.
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });

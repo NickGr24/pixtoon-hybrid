@@ -43,6 +43,35 @@
 <body class="hyb-page">
   <a class="hyb-skip" href="#main">{{ "Skip to content" if t.lang == "en" else "Sari la conținut" }}</a>
 
+  {#
+    Плашка только для демо-сборки: в ней существует один раздел, остальные
+    пункты меню уводят на живой pixtoon.com. Стили инлайн — в прод-CSS этому
+    блоку делать нечего.
+  #}
+  {% if isDemo %}
+  <style>
+    .hyb-demobar {
+      padding: 0.625rem 1rem;
+      background: #231f29;
+      color: #fff;
+      font-family: Poppins, system-ui, sans-serif;
+      font-size: 0.8125rem;
+      text-align: center;
+    }
+    .hyb-demobar b { color: #fff028; font-weight: 600; }
+    .hyb-demobar a { color: #b9a4c9; }
+  </style>
+  <div class="hyb-demobar">
+    {% if t.lang == "en" %}
+      <b>Demo build</b> — only the Hybrid Production section is built here.
+      Other menu items open the live <a href="https://pixtoon.com/">pixtoon.com</a>.
+    {% else %}
+      <b>Versiune demo</b> — aici este construită doar secțiunea Producție hibridă.
+      Celelalte linkuri duc la <a href="https://pixtoon.com/ro/">pixtoon.com</a>.
+    {% endif %}
+  </div>
+  {% endif %}
+
   {% include "partials/header.njk" %}
 
   {# Весь раздел живёт под .hyb-scope: токены и стили не выходят за эти границы. #}
