@@ -48,6 +48,36 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
   eleventyConfig.addWatchTarget("src/assets/");
 
+  /*
+    Односимвольное слово не имеет права остаться в конце строки — замечание
+    клиента: «litera O nu poate fi așa în aer». Оно связывается со следующим
+    словом неразрывным пробелом.
+
+    Почему только односимвольные. В румынском полно двухбуквенных слов (ce,
+    ai, de, la, pe, cu), и связывание их превратило бы «Tot ce ai nevoie» в
+    одну неразрывную цепочку из четырнадцати символов, которая на 390px
+    вылезает за экран. Лекарство оказалось бы хуже болезни.
+
+    text-wrap: balance на .hyb-title эту задачу не решает и решать не может:
+    он выравнивает длины строк, а одинокая буква в конце строки его цели не
+    противоречит.
+  */
+  // Escape, а не литерал: невидимый U+00A0 в исходнике редактор способен
+  // молча заменить обычным пробелом, и дефект вернётся, не оставив следа в дифе.
+  const NBSP = "\u00A0";
+  const bindOrphans = (text) => {
+    const words = String(text).split(/\s+/).filter(Boolean);
+    return words.reduce((acc, word, i) =>
+      i === 0
+        ? word
+        : acc + (/^\p{L}$/u.test(words[i - 1]) ? NBSP : " ") + word
+    , "");
+  };
+
+  /** Последнее слово куска — одинокая буква? Тогда и склейка кусков неразрывна. */
+  const endsWithSingleLetter = (text) =>
+    /(^|\s)\p{L}$/u.test(String(text).trim());
+
   /**
    * Заголовок с outline-словом — подпись Hybrid-линии.
    * Данные хранят {a, outline, b}, разметка собирается здесь, чтобы приём
@@ -57,17 +87,30 @@ export default function (eleventyConfig) {
     if (!t) return "";
 
     const parts = [];
-    if (t.a) parts.push(`<span class="hyb-title__plain">${t.a}</span>`);
+    if (t.a)
+      parts.push({
+        html: `<span class="hyb-title__plain">${bindOrphans(t.a)}</span>`,
+        raw: t.a,
+      });
     if (t.outline)
-      parts.push(`<span class="hyb-title__outline">${t.outline}</span>`);
-    if (t.b) parts.push(`<span class="hyb-title__plain">${t.b}</span>`);
+      parts.push({
+        html: `<span class="hyb-title__outline">${bindOrphans(t.outline)}</span>`,
+        raw: t.outline,
+      });
+    if (t.b)
+      parts.push({
+        html: `<span class="hyb-title__plain">${bindOrphans(t.b)}</span>`,
+        raw: t.b,
+      });
 
-    // Куски склеиваются пробелом, кроме случая, когда следующий начинается со
-    // знака препинания: иначе «rezultatul , nu toolul» вместо «rezultatul, nu».
+    // Куски склеиваются пробелом, кроме двух случаев: следующий начинается со
+    // знака препинания (иначе «rezultatul , nu toolul»), либо предыдущий
+    // кончается одинокой буквой — тогда неразрывным.
     const html = parts.reduce((acc, part, i) => {
-      if (i === 0) return part;
-      const startsWithPunctuation = /^<span[^>]*>[,.;:!?]/.test(part);
-      return acc + (startsWithPunctuation ? "" : " ") + part;
+      if (i === 0) return part.html;
+      if (/^<span[^>]*>[,.;:!?]/.test(part.html)) return acc + part.html;
+      const glue = endsWithSingleLetter(parts[i - 1].raw) ? NBSP : " ";
+      return acc + glue + part.html;
     }, "");
 
     return `<${tag} class="hyb-title ${cls}">${html}</${tag}>`;

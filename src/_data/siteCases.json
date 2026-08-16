@@ -1,0 +1,74 @@
+{
+  "_comment": "Кейсы главной и страницы «Лучшие работы». Это не то же самое, что cases.json: там кейсы раздела Hybrid Production со своими страницами, здесь — витрина студии без отдельных страниц. Форма кадра чередуется: нечётные в круге, чётные в скруглённом прямоугольнике; сторона тоже чередуется. Так в макете.",
+
+  "items": [
+    {
+      "slug": "sebo",
+      "media": "/assets/img/home/sebo.jpg",
+      "shape": "circle",
+      "en": {
+        "tag": "3D character",
+        "kicker": "3D character · Commercial",
+        "title": "Sebo",
+        "excerpt": "A friendly 3D character campaign that gave a home-appliance brand a face people actually remembered."
+      },
+      "ro": {
+        "tag": "Personaj 3D",
+        "kicker": "Personaj 3D · Comercial",
+        "title": "Sebo",
+        "excerpt": "O campanie cu un personaj 3D prietenos, care a dat unui brand de electrocasnice o față pe care oamenii chiar au ținut-o minte."
+      }
+    },
+    {
+      "slug": "microinvest",
+      "media": "/assets/img/home/microinvest-mascot.jpg",
+      "shape": "rect",
+      "en": {
+        "tag": "Mascot",
+        "kicker": "Mascot · Banking",
+        "title": "Microinvest",
+        "excerpt": "An original mascot turning financial services into approachable stories — across TV, social, and in-branch."
+      },
+      "ro": {
+        "tag": "Mascotă",
+        "kicker": "Mascotă · Banking",
+        "title": "Microinvest",
+        "excerpt": "O mascotă originală care transformă serviciile financiare în povești accesibile — la TV, în social și în agenții."
+      }
+    },
+    {
+      "slug": "samsung",
+      "media": "/assets/img/home/samsung.jpg",
+      "shape": "circle",
+      "en": {
+        "tag": "VFX",
+        "kicker": "VFX · Product launch",
+        "title": "Samsung Kyiv / Chișinău",
+        "excerpt": "An integrated launch film blending live-action with particle VFX — premium tech, cinematic finish."
+      },
+      "ro": {
+        "tag": "VFX",
+        "kicker": "VFX · Lansare de produs",
+        "title": "Samsung Kyiv / Chișinău",
+        "excerpt": "Un film de lansare integrat, care combină filmarea cu VFX pe particule — tehnologie premium, finisaj cinematografic."
+      }
+    },
+    {
+      "slug": "unicef",
+      "media": "/assets/img/home/unicef.jpg",
+      "shape": "rect",
+      "en": {
+        "tag": "Educational",
+        "kicker": "Educational · Social",
+        "title": "UNICEF",
+        "excerpt": "A tender 3D animated series for children — hopeful, warm, and crafted to travel across languages."
+      },
+      "ro": {
+        "tag": "Educațional",
+        "kicker": "Educațional · Social",
+        "title": "UNICEF",
+        "excerpt": "O serie animată 3D pentru copii — caldă, plină de speranță și făcută să treacă dincolo de limbă."
+      }
+    }
+  ]
+}

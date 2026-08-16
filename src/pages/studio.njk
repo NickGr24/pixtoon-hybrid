@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: i18n
+  size: 1
+  alias: t
+  resolve: values
+permalink: "{{ t.dir }}studio/index.html"
+eleventyComputed:
+  pageTitle: "{{ t.pages.studio.title }}"
+  pageDescription: "{{ t.pages.studio.description }}"
+  altUrl: "{{ t.otherLocale.dir }}studio/"
+---
+
+<section class="hyb-pagehead">
+  <div class="hyb-wrap">
+    <div class="hyb-head hyb-head--mid">
+      <span class="hyb-eyebrow">{{ t.studioStats.pageEyebrow }}</span>
+      {% title t.studioStats.title, "h1" %}
+      <p class="hyb-lead">{{ t.studioStats.pageLead }}</p>
+    </div>
+  </div>
+</section>
+
+{% set showHead = false %}
+{% include "partials/sections/studio-stats.njk" %}
+{% include "partials/sections/lets-talk.njk" %}

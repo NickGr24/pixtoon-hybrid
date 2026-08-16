@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: i18n
+  size: 1
+  alias: t
+  resolve: values
+permalink: "{{ t.dir }}work/index.html"
+eleventyComputed:
+  pageTitle: "{{ t.pages.work.title }}"
+  pageDescription: "{{ t.pages.work.description }}"
+  altUrl: "{{ t.otherLocale.dir }}work/"
+---
+
+{#
+  Заголовок страницы стоит один раз. В макете base44 он дублируется в шапке
+  секции ниже — тот же текст двумя заголовками подряд. Дубль убран по просьбе
+  клиента, поэтому секция подключается без своей шапки.
+#}
+<section class="hyb-pagehead">
+  <div class="hyb-wrap">
+    <div class="hyb-head hyb-head--mid">
+      <span class="hyb-eyebrow">{{ t.siteWork.eyebrow }}</span>
+      {% title t.siteWork.title, "h1" %}
+      <p class="hyb-lead">{{ t.siteWork.pageLead }}</p>
+    </div>
+  </div>
+</section>
+
+{% set showHead = false %}
+{% include "partials/sections/selected-work.njk" %}
+{% include "partials/sections/lets-talk.njk" %}

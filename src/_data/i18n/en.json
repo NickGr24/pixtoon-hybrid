@@ -1,126 +1,94 @@
 {
-  "_comment": "Тексты лендинга, EN. Взяты из ТЗ (Pixtoon_Hybrid_Production_Base44_Task_FINAL.docx). Заголовки разбиты на {a, outline, b}: outline-слово рисуется контуром — приём Hybrid-линии. Одно outline-слово на секцию, не больше.",
-
+  "_comment": "Тексты лендинга Hybrid Production, английская версия. В макете base44 эта страница существует только по-румынски — перевод наш, нужна вычитка носителем. См. docs/CONTENT-REVIEW.md.",
   "locale": "en",
   "lang": "en",
   "dir": "/",
-  "otherLocale": { "code": "ro", "label": "Română", "dir": "/ro/" },
-
-  "nav": {
-    "about": "About us",
-    "work": "Our work",
-    "hybrid": "Hybrid Production",
-    "blog": "Blog",
-    "contact": "Contact us",
-    "language": "English"
+  "otherLocale": {
+    "code": "ro",
+    "label": "Română",
+    "dir": "/ro/"
   },
-
+  "nav": {
+    "home": "Home",
+    "work": "Work",
+    "capabilities": "Capabilities",
+    "hybrid": "Hybrid Production",
+    "studio": "Studio"
+  },
   "_navPaths_comment": "Реальные адреса страниц с pixtoon.com. У локалей они РАЗНЫЕ: RO использует despre-noi.html и lucrări/, а не переводы английских путей. Проверено запросами к живому сайту.",
   "navPaths": {
-    "about": "about-us.html",
-    "work": "our-work/",
-    "blog": "blog/",
-    "contact": "contacts.html"
+    "home": "",
+    "work": "work/",
+    "capabilities": "capabilities/",
+    "studio": "studio/"
   },
-
   "meta": {
     "title": "AI Hybrid Video Production — Pixtoon",
     "description": "Commercial video production in as little as 3 days, from €1,000 for 20 sec. AI, animation and filmmaking in one pipeline, directed by humans. Pixtoon studio, Chișinău."
   },
-
   "hero": {
     "eyebrow": "AI hybrid video production",
-    "title": { "a": "Big ideas.", "outline": "Faster", "b": "production." },
-    "lead": "AI + animation + filmmaking, directed by humans.",
-    "highlight": "Commercial video production in as little as 3 days. Starting from €1,000 for 20 sec.",
+    "title": {
+      "a": "Big ideas.",
+      "outline": "Faster",
+      "b": "production."
+    },
+    "lead": "AI + animation + filmmaking, directed by people.",
+    "highlight": "A commercial in just 3 days. From €1,000 for 20 seconds.",
     "ctaPrimary": "Start a project",
     "ctaSecondary": "How it works",
     "showreel": "Hybrid showreel"
   },
-
   "work": {
     "eyebrow": "Selected hybrid work",
-    "title": { "a": "We sell the", "outline": "result", "b": ", not the tool." },
-    "viewCase": "View case study",
-    "moreEyebrow": "More hybrid work",
-    "moreTitle": "Recent hybrid productions.",
-    "prev": "Previous projects",
-    "next": "Next projects"
+    "title": {
+      "a": "We sell the result,",
+      "outline": "not the tool."
+    },
+    "viewCase": "View case study"
   },
-
   "process": {
     "eyebrow": "How hybrid production works",
-    "title": { "a": "AI is part of the pipeline.", "outline": "Not", "b": "the director." },
-    "lead": "We combine traditional creative production with the latest AI tools to produce high-quality commercial content faster and more efficiently.",
+    "title": {
+      "a": "AI is part of the pipeline.",
+      "outline": "Not the director."
+    },
+    "lead": "We combine traditional creative production with the newest AI tools to produce high-quality commercial content faster and more efficiently.",
     "steps": [
       {
         "n": "01",
         "title": "Brief",
-        "text": "We learn about the brand, product, objective and audience."
+        "text": "We learn the brand, the product, the objective and the audience."
       },
       {
         "n": "02",
         "title": "Concept",
-        "text": "Pixtoon develops the creative idea, script and visual direction."
+        "text": "Pixtoon develops the creative idea, the script and the visual direction."
       },
       {
         "n": "03",
         "title": "AI production",
-        "text": "AI is used where it makes production faster or opens creative possibilities: characters, environments, product visuals, shots and visual development."
+        "text": "AI accelerates characters, environments, product visuals and frames — wherever it opens up creative possibilities."
       },
       {
         "n": "04",
         "title": "Animation & post",
-        "text": "Our team handles animation, compositing, editing, voice, music, sound design and final polish."
+        "text": "Our team handles animation, compositing, editing, voice, music, sound design and final finishing."
       },
       {
         "n": "05",
         "title": "Delivery",
-        "text": "Final commercial video delivered for social media, digital ads, YouTube, TV and DOOH."
+        "text": "Final video delivered for social, digital ads, YouTube, TV and DOOH."
       }
     ]
   },
-
-  "why": {
-    "eyebrow": "Why hybrid?",
-    "title": { "a": "Bigger ideas.", "outline": "Smaller", "b": "productions." },
-    "items": [
-      {
-        "kicker": "3 days",
-        "title": "Production can be completed dramatically faster than traditional production."
-      },
-      {
-        "kicker": "From €1,000",
-        "title": "Starting price for a 20 sec hybrid video."
-      },
-      {
-        "kicker": "No traditional shoot required",
-        "title": "Many concepts can be produced without locations, actors, physical sets or large crews."
-      },
-      {
-        "kicker": "Unlimited creative worlds",
-        "title": "Create characters, environments and situations that would be expensive or impossible to shoot traditionally."
-      }
-    ],
-    "hybridCard": {
-      "kicker": "Hybrid, not AI-only",
-      "text": "We combine whatever the idea actually needs.",
-      "techniques": [
-        "AI",
-        "2D animation",
-        "3D animation",
-        "Motion graphics",
-        "Live action",
-        "VFX",
-        "Post-production"
-      ]
-    }
-  },
-
   "included": {
-    "eyebrow": "What's included",
-    "title": { "a": "Everything you need.", "outline": "One", "b": "production team." },
-    "lead": "From first brief to final master — no middlemen, no handoffs, no surprises.",
+    "eyebrow": "What is included",
+    "title": {
+      "a": "Everything you need.",
+      "outline": "One production team."
+    },
+    "lead": "From the first brief to the final master — no middlemen, no handoffs, no surprises.",
     "items": [
       "Concept / creative idea",
       "Script",
@@ -128,8 +96,8 @@
       "Visual direction",
       "Character & environment development",
       "AI generation",
-      "2D / 3D animation where required",
-      "Voice-over — 1 voice",
+      "2D / 3D animation where needed",
+      "Voice-over (1 voice)",
       "Music",
       "Sound design",
       "Editing",
@@ -138,18 +106,31 @@
       "Final delivery"
     ]
   },
-
   "monthly": {
-    "eyebrow": "Need content every month?",
-    "title": { "a": "Your AI content production team.", "outline": "Every", "b": "month." },
-    "lead": "Turn one campaign, mascot, product or brand universe into a continuous stream of video content. Instead of starting from zero each time, we build a visual system for the brand and continue producing new stories, situations and formats every month.",
+    "eyebrow": "Monthly hybrid content",
+    "title": {
+      "a": "Need content every single month?"
+    },
+    "subtitle": "Your AI content production team. Every month.",
+    "lead": "Turn a campaign, a mascot, a product or a brand universe into a continuous stream of video. Instead of starting a new production from scratch every time, we build a visual system for the brand and keep producing new stories, situations and formats month after month.",
     "perMonth": "/ month",
+    "idealLabel": "Ideal for",
+    "includesLabel": "Includes",
+    "cta": "Start the monthly plan",
     "packages": [
       {
         "label": "Monthly package 01",
-        "title": "2 AI / 3D hybrid videos per month",
+        "title": "2 hybrid AI / 3D videos per month",
+        "mediaSrc": "/assets/img/cases/coccolino.jpg",
         "price": "€1,500",
-        "idealFor": "Ideal for brand mascots, product content, character-based content, social media campaigns and recurring branded stories.",
+        "mediaLabel": "Coccolino — character content",
+        "idealFor": [
+          "Brand mascots",
+          "Product content",
+          "Character-driven content",
+          "Social media campaigns",
+          "Recurring brand stories"
+        ],
         "items": [
           "Monthly creative concepts",
           "2 videos",
@@ -158,69 +139,91 @@
           "AI production",
           "Animation",
           "Editing",
-          "Voice-over where required",
+          "Voice-over where needed",
           "Music & sound design",
           "Final delivery"
         ]
       },
       {
         "label": "Monthly package 02",
-        "title": "4 hybrid / filmed videos per month",
+        "title": "3 hybrid / animated videos per month",
+        "mediaSrc": "/assets/img/cases/doctor-buba-youtube.jpg",
         "price": "€2,000",
-        "idealFor": "Ideal for regular social content, products & services, campaigns using real people, Reels / TikTok / Shorts, filming + AI + motion graphics.",
+        "mediaLabel": "Medpark — animation + AI",
+        "idealFor": [
+          "Regular social content",
+          "Products & services",
+          "Campaigns with animated characters",
+          "Reels / TikTok / Shorts",
+          "Animation + AI + motion graphics"
+        ],
         "items": [
           "Monthly content concepts",
-          "4 videos",
-          "Filming",
+          "3 videos",
+          "Animation",
           "Editing",
           "AI elements where useful",
           "Motion graphics",
           "Sound design",
-          "Final social-media formats"
+          "Final formats for social media"
         ]
       }
     ],
     "custom": {
       "label": "Custom monthly production",
-      "title": "For brands that need larger content volume or a custom production system.",
+      "title": "For brands that need a higher volume of content or a production system of their own.",
+      "itemsLabel": "Possible combinations",
       "items": [
         "AI video",
         "3D characters",
         "2D animation",
         "Live action",
         "Motion graphics",
-        "Product visualization",
+        "Product visualisation",
         "VFX",
         "Social media content"
       ],
       "cta": "Build my monthly plan"
     },
     "closing": {
-      "title": { "a": "Build the world once.", "outline": "Keep", "b": "telling new stories." },
-      "text": "We create the visual system once and use it to produce new branded content month after month. The advantage is continuity, not simply more videos for less money.",
-      "text2": "Once Pixtoon develops the brand's visual world, characters, visual style, tone and recurring formats, new content can be produced faster while maintaining a consistent brand universe."
+      "eyebrow": "Continuity is the advantage",
+      "title": {
+        "a": "Build the world once.",
+        "outline": "Keep telling new stories."
+      },
+      "text": "The advantage of monthly production is not simply “more videos for less money”. It is continuity.",
+      "text2": "Once Pixtoon has developed the brand’s visual world — the characters or mascot, the visual style, the tone and the recurring formats — we can keep producing new content far faster and hold a consistent brand universe, month after month."
     }
   },
-
   "pricing": {
     "eyebrow": "Price",
-    "title": { "a": "A commercial in days,", "outline": "not", "b": "weeks." },
+    "title": {
+      "a": "A commercial in days,",
+      "outline": "not weeks."
+    },
     "stats": [
-      { "value": "From €1,000", "label": "per 20 sec commercial" },
-      { "value": "From 3 days", "label": "production time" }
+      {
+        "value": "FROM €1K",
+        "label": "per 20-second commercial"
+      },
+      {
+        "value": "3 DAYS",
+        "label": "production time"
+      }
     ],
-    "note": "Final price and production time depend on concept complexity, duration and required techniques.",
+    "note": "The final price and timeline depend on the complexity of the concept, the duration and the techniques required.",
     "cta": "Tell us about your project"
   },
-
   "finalCta": {
-    "eyebrow": "Let's make something",
-    "title": { "a": "Something people actually", "outline": "want", "b": "to watch." },
-    "lead": "Tell us what you want to promote. We'll recommend the smartest way to produce it.",
+    "eyebrow": "Let’s make something",
+    "title": {
+      "a": "That people actually",
+      "outline": "want to watch."
+    },
+    "lead": "Tell us what you want to promote. We’ll recommend the smartest way to produce it.",
     "ctaPrimary": "Start a project",
-    "ctaSecondary": "Book a free discovery call"
+    "ctaSecondary": "Book a free call"
   },
-
   "caseStudy": {
     "backToHybrid": "All hybrid work",
     "challenge": "Challenge",
@@ -232,7 +235,269 @@
     "result": "Result",
     "resultLead": "The finished film.",
     "nextCase": "Next case study",
-    "ctaTitle": { "a": "Want something like this?", "outline": "Let's", "b": "talk." },
+    "ctaTitle": {
+      "a": "Want something like this?",
+      "outline": "Let's",
+      "b": "talk."
+    },
     "cta": "Start a project"
+  },
+  "microinvest": {
+    "eyebrow": "Case study — Microinvest",
+    "title": {
+      "a": "The Microinvest family.",
+      "outline": "Built classically. Animated with AI."
+    },
+    "lead": "The Microinvest family characters were created the classic 3D way — fully modelled and rigged, ready for traditional animation. Now we animate them with AI tools, producing far more content, far faster, with the characters’ identity kept intact.",
+    "heroLabel": "Rigged 3D characters + AI animation",
+    "heroCaption": "A brand universe, alive",
+    "sideLabels": [
+      "Branding",
+      "App UI"
+    ],
+    "portraits": [
+      "Mother",
+      "Daughter",
+      "Father",
+      "Mother — kitchen"
+    ],
+    "features": [
+      {
+        "title": "Characters built classically",
+        "text": "The Microinvest family — modelled and rigged in 3D the traditional way, with full animation controllers."
+      },
+      {
+        "title": "Animation accelerated with AI",
+        "text": "We now animate these characters with AI tools — much faster, much more content, without losing their identity."
+      },
+      {
+        "title": "Content volume",
+        "text": "Reels, social spots, brand scenes — a character universe we can keep extending."
+      }
+    ],
+    "why": {
+      "eyebrow": "Why it works",
+      "title": {
+        "a": "Classic rig + AI animation =",
+        "outline": "real scalability"
+      },
+      "text": "Characters built the classic way — with a full rig, expressions and controllers — have an identity and a consistency that AI alone cannot reproduce.",
+      "text2": "Combining that base with AI animation, we produce new scenes, reactions, movements and stories at a pace traditional animation alone could not reach.",
+      "cta": "See how we can do this for your brand"
+    }
+  },
+  "stats": {
+    "eyebrow": "Why hybrid?",
+    "title": {
+      "a": "The numbers speak."
+    },
+    "items": [
+      {
+        "value": "3 DAYS",
+        "label": "Production time",
+        "text": "From brief to final video, significantly faster than traditional production."
+      },
+      {
+        "value": "FROM €1K",
+        "label": "Starting price",
+        "text": "For a 20-second hybrid commercial. Scalable to any format."
+      },
+      {
+        "value": "NO SHOOT",
+        "label": "Required",
+        "text": "Build worlds, characters and situations without locations, actors or crews."
+      },
+      {
+        "value": "∞ WORLDS",
+        "label": "Creative range",
+        "text": "AI + 2D + 3D + VFX + motion graphics + live action — whatever the idea needs."
+      }
+    ],
+    "techniques": {
+      "kicker": "Hybrid, not just AI.",
+      "items": [
+        "AI",
+        "2D animation",
+        "3D animation",
+        "Motion graphics",
+        "Live action",
+        "VFX",
+        "Post-production"
+      ],
+      "text": "We combine whatever the idea actually needs."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "PixToon — Animation & VFX Studio · Chișinău",
+      "description": "Animation and VFX studio turning brands into characters, worlds and campaigns people remember. Chișinău, since 2006."
+    },
+    "work": {
+      "title": "Work — PixToon",
+      "description": "Selected case studies: characters, campaigns and VFX for brands across CEE."
+    },
+    "capabilities": {
+      "title": "Capabilities — PixToon",
+      "description": "Five ways we turn ideas into moving things, and the seven-step path that gets it made."
+    },
+    "studio": {
+      "title": "Studio — PixToon",
+      "description": "Sixteen years, one in-house team, based in Chișinău — animating for brands across CEE and beyond."
+    }
+  },
+  "home": {
+    "eyebrow": "Animation & VFX studio · Chișinău, since 2006",
+    "title": {
+      "a": "We turn brands into",
+      "outline": "characters",
+      "b": ", worlds, and campaigns people remember."
+    },
+    "lead": "Sixteen years of crafting animation, VFX, and stories that move brands — from Chișinău to screens across CEE and beyond.",
+    "ctaPrimary": "Start a project",
+    "ctaSecondary": "See selected work",
+    "badgeA": "2D",
+    "badgeB": "VFX + Live"
+  },
+  "trusted": {
+    "label": "Trusted by brands across CEE & beyond",
+    "brands": [
+      "Samsung",
+      "Porsche",
+      "MAIB",
+      "UNICEF",
+      "Decathlon",
+      "Microinvest",
+      "Credit7"
+    ]
+  },
+  "capabilities": {
+    "eyebrow": "What we do",
+    "title": {
+      "a": "Five ways we turn",
+      "outline": "ideas",
+      "b": "into moving things."
+    },
+    "pageEyebrow": "Capabilities",
+    "pageLead": "From character IP to end-to-end creative production — and the seven-step path that gets it made.",
+    "items": [
+      {
+        "n": "01",
+        "title": "Character Creation & IP Development",
+        "text": "Original mascots and characters with personality — built to live across campaigns, screens, and seasons."
+      },
+      {
+        "n": "02",
+        "title": "Commercial Animation & Product Storytelling",
+        "text": "We make products feel inevitable. 2D, 3D, and motion design that sell without shouting."
+      },
+      {
+        "n": "03",
+        "title": "Social & Educational Storytelling",
+        "text": "Bite-sized stories that travel. Educational series, explainers, and social-first content with heart."
+      },
+      {
+        "n": "04",
+        "title": "VFX & Integrated Video Production",
+        "text": "Live-action meets invisible VFX. Compositing, cleanup, and effects grounded in real footage."
+      },
+      {
+        "n": "05",
+        "title": "End-to-End Creative Production",
+        "text": "From first sketch to final master. Strategy, production, and launch — one team, one room."
+      }
+    ]
+  },
+  "siteProcess": {
+    "eyebrow": "How we work",
+    "title": {
+      "a": "From first sketch to",
+      "outline": "final master."
+    },
+    "lead": "Seven steps, one in-house team. No handoffs lost in translation.",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Strategy",
+        "text": "Goals, audience, the why before the what."
+      },
+      {
+        "n": "02",
+        "title": "Concept & Script",
+        "text": "The story spine and the big idea."
+      },
+      {
+        "n": "03",
+        "title": "Storyboard & Design",
+        "text": "Frames, style frames, look & feel."
+      },
+      {
+        "n": "04",
+        "title": "Production",
+        "text": "Assets built, rigged, and ready to move."
+      },
+      {
+        "n": "05",
+        "title": "Animation / Filming / VFX",
+        "text": "Where it all comes alive."
+      },
+      {
+        "n": "06",
+        "title": "Sound / Voice / Music",
+        "text": "The layer you feel before you hear."
+      },
+      {
+        "n": "07",
+        "title": "Adapt & Launch",
+        "text": "Cuts, formats, platforms, go-time."
+      }
+    ]
+  },
+  "studioStats": {
+    "eyebrow": "Why PixToon",
+    "title": {
+      "a": "A studio built like a",
+      "outline": "small universe."
+    },
+    "pageEyebrow": "Studio",
+    "pageLead": "Sixteen years, one in-house team, based in Chișinău — animating for brands across CEE and beyond.",
+    "items": [
+      {
+        "value": "16+",
+        "label": "Years animating",
+        "text": "Since 2006, Chișinău"
+      },
+      {
+        "value": "2D + 3D",
+        "label": "Full spectrum",
+        "text": "From frame to render"
+      },
+      {
+        "value": "1",
+        "label": "In-house team",
+        "text": "No silos, no handoffs"
+      },
+      {
+        "value": "CEE",
+        "label": "Regional reach",
+        "text": "Clients across the region"
+      }
+    ]
+  },
+  "siteWork": {
+    "eyebrow": "Selected work",
+    "title": {
+      "a": "A few worlds we've",
+      "outline": "built."
+    },
+    "pageLead": "Four hero case studies — characters, campaigns, and VFX for brands across the region.",
+    "viewCase": "View case"
+  },
+  "letsTalk": {
+    "eyebrow": "Let's talk",
+    "title": {
+      "a": "Let's build something",
+      "outline": "original."
+    },
+    "ctaPrimary": "Start a project"
   }
 }

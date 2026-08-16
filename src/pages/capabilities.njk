@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: i18n
+  size: 1
+  alias: t
+  resolve: values
+permalink: "{{ t.dir }}capabilities/index.html"
+eleventyComputed:
+  pageTitle: "{{ t.pages.capabilities.title }}"
+  pageDescription: "{{ t.pages.capabilities.description }}"
+  altUrl: "{{ t.otherLocale.dir }}capabilities/"
+---
+
+<section class="hyb-pagehead">
+  <div class="hyb-wrap">
+    <div class="hyb-head hyb-head--wide">
+      <span class="hyb-eyebrow">{{ t.capabilities.pageEyebrow }}</span>
+      {% title t.capabilities.title, "h1" %}
+      <p class="hyb-lead">{{ t.capabilities.pageLead }}</p>
+    </div>
+  </div>
+</section>
+
+{% set showHead = false %}
+{% include "partials/sections/capabilities.njk" %}
+{% set showHead = true %}
+{% include "partials/sections/process.njk" %}
+{% include "partials/sections/lets-talk.njk" %}

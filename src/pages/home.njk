@@ -1,0 +1,79 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: i18n
+  size: 1
+  alias: t
+  resolve: values
+permalink: "{{ t.dir }}index.html"
+eleventyComputed:
+  pageTitle: "{{ t.pages.home.title }}"
+  pageDescription: "{{ t.pages.home.description }}"
+  altUrl: "{{ t.otherLocale.dir }}"
+---
+
+{# ============================ ГЕРОЙ ============================== #}
+<section class="hyb-hero hyb-hero--home">
+  <div class="hyb-wrap">
+    <div class="hyb-hero__grid">
+      <div class="hyb-hero__text">
+        <span class="hyb-eyebrow hyb-eyebrow--pill">{{ t.home.eyebrow }}</span>
+        {% title t.home.title, "h1", "hyb-title--hero" %}
+        <p class="hyb-lead">{{ t.home.lead }}</p>
+
+        <div class="hyb-actions">
+          <a href="mailto:{{ site.contacts.email }}" class="hyb-btn hyb-btn--primary">
+            {{ t.home.ctaPrimary }}
+            <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="#work" class="hyb-btn hyb-btn--ghost">
+            <span class="hyb-play hyb-play--inline" aria-hidden="true">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>
+            </span>
+            {{ t.home.ctaSecondary }}
+          </a>
+        </div>
+      </div>
+
+      {#
+        Круглая маска для кадра — приём макета. Он работает только на кадрах,
+        где смысл в центре: у персонажа он там и есть. Для кадров с текстом
+        круг непригоден, поэтому в разделе Hybrid его нет.
+      #}
+      <div class="hyb-hero__orbit">
+        <figure class="hyb-orb hyb-orb--photo">
+          <img src="/assets/img/home/hero-character.jpg" alt="" loading="eager" fetchpriority="high" />
+        </figure>
+        <span class="hyb-orb hyb-orb--accent">{{ t.home.badgeA }}</span>
+        <span class="hyb-orb hyb-orb--gold">{{ t.home.badgeB }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ======================= ЛЕНТА БРЕНДОВ =========================== #}
+{#
+  Список задублирован в разметке: бегущая строка на CSS-анимации требует двух
+  одинаковых наборов, иначе на стыке цикла появляется пустота. Второй набор
+  скрыт от скринридеров — иначе они прочитают все бренды дважды.
+#}
+<section class="hyb-trusted">
+  <div class="hyb-wrap">
+    <p class="hyb-trusted__label">{{ t.trusted.label }}</p>
+  </div>
+  <div class="hyb-marquee" data-hyb-marquee>
+    <ul class="hyb-marquee__row">
+      {% for b in t.trusted.brands %}<li>{{ b }}</li>{% endfor %}
+    </ul>
+    <ul class="hyb-marquee__row" aria-hidden="true">
+      {% for b in t.trusted.brands %}<li>{{ b }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% set showHead = true %}
+{% include "partials/sections/capabilities.njk" %}
+{% include "partials/sections/selected-work.njk" %}
+{% include "partials/sections/process.njk" %}
+{% include "partials/sections/studio-stats.njk" %}
+{% include "partials/sections/lets-talk.njk" %}

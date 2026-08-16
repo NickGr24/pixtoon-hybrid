@@ -1,0 +1,16 @@
+{# Финальный призыв — общий для главной и /studio #}
+<section class="hyb-section hyb-section--alt hyb-final" id="contact">
+  <div class="hyb-wrap">
+    <div class="hyb-head hyb-reveal">
+      <span class="hyb-eyebrow">{{ t.letsTalk.eyebrow }}</span>
+      {% title t.letsTalk.title %}
+    </div>
+    <div class="hyb-actions hyb-reveal">
+      <a href="mailto:{{ site.contacts.email }}" class="hyb-btn hyb-btn--primary">
+        {{ t.letsTalk.ctaPrimary }}
+        <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+      </a>
+      <a href="mailto:{{ site.contacts.email }}" class="hyb-link hyb-link--plain">{{ site.contacts.email }}</a>
+    </div>
+  </div>
+</section>

@@ -22,25 +22,33 @@
   <link type="image/png" rel="shortcut icon" href="/assets/img/favicon.png" />
 
   {#
-    Poppins уже загружен основной темой Pixtoon — при интеграции в MODX эта
-    строка не нужна, останется только Baloo 2. Preconnect стоит выше ссылки на
-    шрифты намеренно: иначе браузер откроет соединение только после парсинга CSS.
+    Baloo 2 + Quicksand — оба шрифта макета. Poppins убран: макет набран
+    Quicksand, и подмена вскрылась только на живой странице — в мелком кегле
+    эти два шрифта по скриншоту неразличимы.
+
+    latin-ext обязателен: без него ș, ț, ă, î подставятся из системного
+    шрифта и румынский текст поедет по начертанию.
+
+    Preconnect стоит выше ссылки намеренно: иначе браузер откроет соединение
+    только после парсинга CSS.
   #}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap&subset=latin,latin-ext"
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@400;500;600;700&display=swap&subset=latin,latin-ext"
     rel="stylesheet"
   />
 
-  {# Только для автономного просмотра. В MODX шапку и футер оденет тема сайта. #}
-  <link rel="stylesheet" href="/assets/css/theme-shell.css" />
-
-  {# Стили раздела. Единственный файл, который переезжает в прод. #}
+  {# Единственный файл стилей: оболочка и секции собраны вместе. #}
   <link rel="stylesheet" href="/assets/css/hybrid.css" />
 </head>
 
-<body class="hyb-page">
+{#
+  hyb-scope переехал с <main> на <body>: шапка и футер теперь тоже наши и
+  должны видеть токены. Пока раздел встраивался в чужую тему, обратное было
+  верно — область намеренно не выходила за пределы контента.
+#}
+<body class="hyb-page hyb-scope">
   <a class="hyb-skip" href="#main">{{ "Skip to content" if t.lang == "en" else "Sari la conținut" }}</a>
 
   {#
@@ -52,13 +60,13 @@
   <style>
     .hyb-demobar {
       padding: 0.625rem 1rem;
-      background: #231f29;
+      background: #231e29;
       color: #fff;
-      font-family: Poppins, system-ui, sans-serif;
+      font-family: Quicksand, system-ui, sans-serif;
       font-size: 0.8125rem;
       text-align: center;
     }
-    .hyb-demobar b { color: #fff028; font-weight: 600; }
+    .hyb-demobar b { color: #b99655; font-weight: 700; }
     .hyb-demobar a { color: #b9a4c9; }
   </style>
   <div class="hyb-demobar">
@@ -74,8 +82,7 @@
 
   {% include "partials/header.njk" %}
 
-  {# Весь раздел живёт под .hyb-scope: токены и стили не выходят за эти границы. #}
-  <main id="main" class="hyb-scope">
+  <main id="main">
     {{ content | safe }}
   </main>
 

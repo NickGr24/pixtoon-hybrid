@@ -1,56 +1,58 @@
 {
-  "_comment": "Тексты лендинга, RO. Формулировки взяты из аутпута base44, который клиент уже видел и принял. Разделы, которых base44 не сделал (месячные пакеты, карусель), переведены с EN — помечены в docs/CONTENT-REVIEW.md как требующие вычитки носителем. Диакритика: ș U+0219 и ț U+021B (запятая снизу), не турецкие седили.",
-
+  "_comment": "Тексты лендинга Hybrid Production. Сняты с живого макета base44 через CDP. Две орфографические ошибки макета исправлены: «FĂRA FILMARE» → «FĂRĂ FILMARE», «mascoata» → «mascota».",
   "locale": "ro",
   "lang": "ro",
   "dir": "/ro/",
-  "otherLocale": { "code": "en", "label": "English", "dir": "/" },
-
-  "nav": {
-    "about": "Despre noi",
-    "work": "Lucrări",
-    "hybrid": "Producție hibridă",
-    "blog": "Blog",
-    "contact": "Contact",
-    "language": "Română"
+  "otherLocale": {
+    "code": "en",
+    "label": "English",
+    "dir": "/"
   },
-
+  "nav": {
+    "home": "Acasă",
+    "work": "Lucrări",
+    "capabilities": "Capabilități",
+    "hybrid": "Producție hibridă",
+    "studio": "Studio"
+  },
   "_navPaths_comment": "Реальные адреса румынской версии pixtoon.com. Это НЕ переводы английских путей: /ro/about-us.html и /ro/our-work/ на живом сайте отдают 404. Диакритика в lucrări/ — как на сайте, браузер кодирует её сам.",
   "navPaths": {
-    "about": "despre-noi.html",
-    "work": "lucrări/",
-    "blog": "blog/",
-    "contact": "contacts.html"
+    "home": "",
+    "work": "work/",
+    "capabilities": "capabilities/",
+    "studio": "studio/"
   },
-
   "meta": {
     "title": "Producție video hibridă AI — Pixtoon",
     "description": "Video comercial în doar 3 zile, începând de la €1.000 pentru 20 sec. AI, animație și filmmaking într-un singur pipeline, regizate de oameni. Studioul Pixtoon, Chișinău."
   },
-
   "hero": {
     "eyebrow": "Producție video hibridă AI",
-    "title": { "a": "Idei mari.", "outline": "Producție", "b": "mai rapidă." },
+    "title": {
+      "a": "Idei mari.",
+      "outline": "Producție",
+      "b": "mai rapidă."
+    },
     "lead": "AI + animație + filmmaking, regizat de oameni.",
     "highlight": "Video comercial în doar 3 zile. Începând de la €1.000 pentru 20 sec.",
     "ctaPrimary": "Pornește un proiect",
     "ctaSecondary": "Cum funcționează",
     "showreel": "Showreel hibrid"
   },
-
   "work": {
     "eyebrow": "Lucrări hibride selectate",
-    "title": { "a": "Vindem", "outline": "rezultatul", "b": ", nu toolul." },
-    "viewCase": "Vezi case study",
-    "moreEyebrow": "Mai multe lucrări hibride",
-    "moreTitle": "Producții hibride recente.",
-    "prev": "Proiectele precedente",
-    "next": "Proiectele următoare"
+    "title": {
+      "a": "Vindem rezultatul,",
+      "outline": "nu toolul."
+    },
+    "viewCase": "Vezi case study"
   },
-
   "process": {
     "eyebrow": "Cum funcționează producția hibridă",
-    "title": { "a": "AI face parte din pipeline.", "outline": "Nu e regizorul.", "b": "" },
+    "title": {
+      "a": "AI face parte din pipeline.",
+      "outline": "Nu e regizorul."
+    },
     "lead": "Combinăm producția creativă tradițională cu cele mai noi tooluri AI pentru a produce conținut comercial de înaltă calitate mai rapid și mai eficient.",
     "steps": [
       {
@@ -76,50 +78,16 @@
       {
         "n": "05",
         "title": "Livrare",
-        "text": "Video final livrat pentru social media, digital ads, YouTube, TV și DOOH."
+        "text": "Video final livrat pentru Social, Digital Ads, YouTube, TV și DOOH."
       }
     ]
   },
-
-  "why": {
-    "eyebrow": "De ce hibrid?",
-    "title": { "a": "Idei mai mari.", "outline": "Producții", "b": "mai mici." },
-    "items": [
-      {
-        "kicker": "3 zile",
-        "title": "Producția poate fi finalizată dramatic mai repede decât o producție tradițională."
-      },
-      {
-        "kicker": "De la €1.000",
-        "title": "Preț de pornire pentru un video hibrid de 20 de secunde."
-      },
-      {
-        "kicker": "Fără filmare tradițională",
-        "title": "Multe concepte pot fi produse fără locații, actori, decoruri fizice sau echipe mari."
-      },
-      {
-        "kicker": "Lumi creative nelimitate",
-        "title": "Creăm personaje, medii și situații care ar fi scumpe sau imposibil de filmat tradițional."
-      }
-    ],
-    "hybridCard": {
-      "kicker": "Hibrid, nu doar AI",
-      "text": "Combinăm orice are nevoie ideea de fapt.",
-      "techniques": [
-        "AI",
-        "Animație 2D",
-        "Animație 3D",
-        "Motion Graphics",
-        "Live Action",
-        "VFX",
-        "Post-producție"
-      ]
-    }
-  },
-
   "included": {
     "eyebrow": "Ce este inclus",
-    "title": { "a": "Tot ce ai nevoie.", "outline": "O echipă", "b": "de producție." },
+    "title": {
+      "a": "Tot ce ai nevoie.",
+      "outline": "O echipă de producție."
+    },
     "lead": "De la primul brief la master final — fără intermediari, fără predări, fără surprize.",
     "items": [
       "Concept / idee creativă",
@@ -138,21 +106,34 @@
       "Livrare finală"
     ]
   },
-
   "monthly": {
-    "eyebrow": "Ai nevoie de conținut în fiecare lună?",
-    "title": { "a": "Echipa ta de producție AI.", "outline": "În fiecare", "b": "lună." },
-    "lead": "Transformă o campanie, o mascotă, un produs sau un univers de brand într-un flux continuu de conținut video. În loc să pornim de la zero de fiecare dată, construim un sistem vizual pentru brand și continuăm să producem povești, situații și formate noi în fiecare lună.",
+    "eyebrow": "Conținut hibrid lunar",
+    "title": {
+      "a": "Ai nevoie de conținut în fiecare lună?"
+    },
+    "subtitle": "Echipa ta de producție de conținut AI. În fiecare lună.",
+    "lead": "Transformă o campanie, mascotă, produs sau univers de brand într-un flux continuu de conținut video. În loc să începi o producție nouă de la zero de fiecare dată, construim un sistem vizual pentru brand și continuăm să producem povești, situații și formate noi în fiecare lună.",
     "perMonth": "/ lună",
+    "idealLabel": "Ideal pentru",
+    "includesLabel": "Include",
+    "cta": "Pornește planul lunar",
     "packages": [
       {
         "label": "Pachet lunar 01",
-        "title": "2 video-uri hibride AI / 3D pe lună",
+        "title": "2 videoclipuri hibride AI / 3D pe lună",
+        "mediaSrc": "/assets/img/cases/coccolino.jpg",
         "price": "€1.500",
-        "idealFor": "Ideal pentru mascote de brand, conținut de produs, conținut bazat pe personaje, campanii social media și povești de brand recurente.",
+        "mediaLabel": "Coccolino — conținut cu personaj",
+        "idealFor": [
+          "Mascote de brand",
+          "Conținut de produs",
+          "Conținut bazat pe personaje",
+          "Campanii social media",
+          "Povești de brand recurente"
+        ],
         "items": [
           "Concepte creative lunare",
-          "2 video-uri",
+          "2 videoclipuri",
           "Script",
           "Dezvoltare vizuală",
           "Producție AI",
@@ -165,15 +146,23 @@
       },
       {
         "label": "Pachet lunar 02",
-        "title": "4 video-uri hibride / filmate pe lună",
+        "title": "3 videoclipuri hibride / animație pe lună",
+        "mediaSrc": "/assets/img/cases/doctor-buba-youtube.jpg",
         "price": "€2.000",
-        "idealFor": "Ideal pentru conținut social regulat, produse și servicii, campanii cu oameni reali, Reels / TikTok / Shorts, filmare + AI + motion graphics.",
+        "mediaLabel": "Medpark — animație + AI",
+        "idealFor": [
+          "Conținut social regulat",
+          "Produse & servicii",
+          "Campanii cu personaje animate",
+          "Reels / TikTok / Shorts",
+          "Animație + AI + motion graphics"
+        ],
         "items": [
           "Concepte de conținut lunare",
-          "4 video-uri",
-          "Filmare",
+          "3 videoclipuri",
+          "Animație",
           "Editare",
-          "Elemente AI unde sunt utile",
+          "Elemente AI unde e util",
           "Motion graphics",
           "Sound design",
           "Formate finale pentru social media"
@@ -182,7 +171,8 @@
     ],
     "custom": {
       "label": "Producție lunară personalizată",
-      "title": "Pentru brandurile care au nevoie de volum mai mare de conținut sau de un sistem de producție propriu.",
+      "title": "Pentru branduri care au nevoie de un volum mai mare de conținut sau un sistem de producție personalizat.",
+      "itemsLabel": "Combinații posibile",
       "items": [
         "Video AI",
         "Personaje 3D",
@@ -191,36 +181,49 @@
         "Motion Graphics",
         "Vizualizare de produs",
         "VFX",
-        "Conținut social media"
+        "Conținut Social Media"
       ],
       "cta": "Construiește-mi planul lunar"
     },
     "closing": {
-      "title": { "a": "Construim lumea o dată.", "outline": "Spunem", "b": "povești noi la nesfârșit." },
-      "text": "Creăm sistemul vizual o singură dată și îl folosim pentru a produce conținut nou lună de lună. Avantajul este continuitatea, nu pur și simplu mai multe video-uri pentru mai puțini bani.",
-      "text2": "Odată ce Pixtoon dezvoltă lumea vizuală a brandului, personajele, stilul vizual, tonul și formatele recurente, conținutul nou poate fi produs mai rapid, păstrând un univers de brand consecvent."
+      "eyebrow": "Avantajul este continuitatea",
+      "title": {
+        "a": "Construiește lumea o dată.",
+        "outline": "Spune mereu povești noi."
+      },
+      "text": "Avantajul producției lunare nu este pur și simplu „mai multe videoclipuri pentru mai puțini bani”. Este continuitate.",
+      "text2": "Odată ce Pixtoon dezvoltă lumea vizuală a brandului, personajele / mascota, stilul vizual, tonul și formatele recurente, putem continua să producem conținut nou mult mai rapid și să menținem un univers de brand consistent — lună de lună."
     }
   },
-
   "pricing": {
     "eyebrow": "Preț",
-    "title": { "a": "Un comercial în zile,", "outline": "nu", "b": "în săptămâni." },
+    "title": {
+      "a": "Un comercial în zile,",
+      "outline": "nu în săptămâni."
+    },
     "stats": [
-      { "value": "De la €1K", "label": "per comercial de 20 sec" },
-      { "value": "3 zile", "label": "timp de producție" }
+      {
+        "value": "DE LA €1K",
+        "label": "per comercial de 20 sec"
+      },
+      {
+        "value": "3 ZILE",
+        "label": "timp de producție"
+      }
     ],
     "note": "Prețul final și timeline-ul depind de complexitatea conceptului, durată și tehnicile necesare.",
     "cta": "Spune-ne despre proiectul tău"
   },
-
   "finalCta": {
     "eyebrow": "Hai să facem ceva",
-    "title": { "a": "Pe care oamenii chiar", "outline": "vor", "b": "să-l urmărească." },
+    "title": {
+      "a": "Pe care oamenii chiar",
+      "outline": "vor să-l urmărească."
+    },
     "lead": "Spune-ne ce vrei să promovezi. Îți recomandăm cea mai deșteaptă metodă de a produce.",
     "ctaPrimary": "Pornește un proiect",
     "ctaSecondary": "Programează un apel gratuit"
   },
-
   "caseStudy": {
     "backToHybrid": "Toate lucrările hibride",
     "challenge": "Provocarea",
@@ -232,7 +235,269 @@
     "result": "Rezultatul",
     "resultLead": "Filmul final.",
     "nextCase": "Următorul case study",
-    "ctaTitle": { "a": "Vrei ceva similar?", "outline": "Hai", "b": "să vorbim." },
+    "ctaTitle": {
+      "a": "Vrei ceva similar?",
+      "outline": "Hai",
+      "b": "să vorbim."
+    },
     "cta": "Pornește un proiect"
+  },
+  "microinvest": {
+    "eyebrow": "Case study — Microinvest",
+    "title": {
+      "a": "Familia Microinvest.",
+      "outline": "Construită clasic. Animată cu AI."
+    },
+    "lead": "Personajele Familiei Microinvest au fost create în metoda clasică 3D — modelate și rigate complet, gata de animație tradițională. Acum le animăm cu ajutorul instrumentelor AI, producând mult mai mult conținut, mult mai rapid, păstrând identitatea personajelor intactă.",
+    "heroLabel": "Personaje 3D rigate + Animație AI",
+    "heroCaption": "Un univers de brand, viu",
+    "sideLabels": [
+      "Branding",
+      "App UI"
+    ],
+    "portraits": [
+      "Mama",
+      "Fiica",
+      "Tatăl",
+      "Mama — bucătărie"
+    ],
+    "features": [
+      {
+        "title": "Personaje construite clasic",
+        "text": "Familia Microinvest — modelată și rigată 3D în metoda tradițională, cu controllere complete de animație."
+      },
+      {
+        "title": "Animație accelerată cu AI",
+        "text": "Acum animăm aceste personaje cu instrumente AI — mult mai rapid, mult mai mult conținut, fără a pierde identitatea."
+      },
+      {
+        "title": "Volum de conținut",
+        "text": "Reel-uri, spoturi sociale, scene de brand — un univers de personaj pe care îl putem extinde continuu."
+      }
+    ],
+    "why": {
+      "eyebrow": "De ce funcționează",
+      "title": {
+        "a": "Rig clasic + Animație AI =",
+        "outline": "scalabilitate reală"
+      },
+      "text": "Personajele construite clasic — cu rig complet, expresii și controllere — au o identitate și o consistență pe care AI-ul singur nu o poate reproduce.",
+      "text2": "Combinând această bază cu animație AI, producem scene noi, reacții, mișcări și povești într-un ritm care nu ar fi posibil prin animație tradițională singură.",
+      "cta": "Vezi cum putem face asta pentru brandul tău"
+    }
+  },
+  "stats": {
+    "eyebrow": "De ce hibrid?",
+    "title": {
+      "a": "Cifrele vorbesc."
+    },
+    "items": [
+      {
+        "value": "3 ZILE",
+        "label": "Timp de producție",
+        "text": "De la brief la video final, semnificativ mai rapid decât producția tradițională."
+      },
+      {
+        "value": "DE LA €1K",
+        "label": "Preț de start",
+        "text": "Pentru un comercial hibrid de 20 sec. Scalabil la orice format."
+      },
+      {
+        "value": "FĂRĂ FILMARE",
+        "label": "Necesar",
+        "text": "Creezi lumi, personaje și situații fără locații, actori sau echipe."
+      },
+      {
+        "value": "∞ LUMI",
+        "label": "Gama creativă",
+        "text": "AI + 2D + 3D + VFX + Motion Graphics + Live Action — orice are nevoie ideea."
+      }
+    ],
+    "techniques": {
+      "kicker": "Hibrid, nu doar AI.",
+      "items": [
+        "AI",
+        "Animație 2D",
+        "Animație 3D",
+        "Motion Graphics",
+        "Live Action",
+        "VFX",
+        "Post-producție"
+      ],
+      "text": "Combinăm orice are nevoie ideea de fapt."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "PixToon — Studio de animație și VFX · Chișinău",
+      "description": "Studio de animație și VFX care transformă brandurile în personaje, lumi și campanii pe care oamenii le țin minte. Chișinău, din 2006."
+    },
+    "work": {
+      "title": "Lucrări — PixToon",
+      "description": "Case study-uri selectate: personaje, campanii și VFX pentru branduri din regiune."
+    },
+    "capabilities": {
+      "title": "Capabilități — PixToon",
+      "description": "Cinci moduri în care transformăm ideile în imagine care se mișcă, și drumul în șapte pași care le face."
+    },
+    "studio": {
+      "title": "Studio — PixToon",
+      "description": "Șaisprezece ani, o singură echipă in-house, din Chișinău — animație pentru branduri din CEE și nu numai."
+    }
+  },
+  "home": {
+    "eyebrow": "Studio de animație și VFX · Chișinău, din 2006",
+    "title": {
+      "a": "Transformăm brandurile în",
+      "outline": "personaje",
+      "b": ", lumi și campanii pe care oamenii le țin minte."
+    },
+    "lead": "Șaisprezece ani de animație, VFX și povești care mișcă brandurile — din Chișinău pe ecrane din CEE și nu numai.",
+    "ctaPrimary": "Pornește un proiect",
+    "ctaSecondary": "Vezi lucrările selectate",
+    "badgeA": "2D",
+    "badgeB": "VFX + Live"
+  },
+  "trusted": {
+    "label": "Branduri care au lucrat cu noi, din CEE și nu numai",
+    "brands": [
+      "Samsung",
+      "Porsche",
+      "MAIB",
+      "UNICEF",
+      "Decathlon",
+      "Microinvest",
+      "Credit7"
+    ]
+  },
+  "capabilities": {
+    "eyebrow": "Ce facem",
+    "title": {
+      "a": "Cinci moduri în care transformăm",
+      "outline": "ideile",
+      "b": "în imagine care se mișcă."
+    },
+    "pageEyebrow": "Capabilități",
+    "pageLead": "De la IP de personaj la producție creativă completă — și drumul în șapte pași care le face.",
+    "items": [
+      {
+        "n": "01",
+        "title": "Creare de personaje & dezvoltare IP",
+        "text": "Mascote și personaje originale cu personalitate — construite să trăiască prin campanii, ecrane și sezoane."
+      },
+      {
+        "n": "02",
+        "title": "Animație comercială & povești de produs",
+        "text": "Facem produsele să pară inevitabile. 2D, 3D și motion design care vând fără să strige."
+      },
+      {
+        "n": "03",
+        "title": "Povești sociale & educaționale",
+        "text": "Povești scurte care circulă. Serii educaționale, explainere și conținut social-first cu suflet."
+      },
+      {
+        "n": "04",
+        "title": "VFX & producție video integrată",
+        "text": "Filmarea întâlnește VFX-ul invizibil. Compoziție, cleanup și efecte așezate pe imagine reală."
+      },
+      {
+        "n": "05",
+        "title": "Producție creativă completă",
+        "text": "De la prima schiță la master final. Strategie, producție și lansare — o echipă, o cameră."
+      }
+    ]
+  },
+  "siteProcess": {
+    "eyebrow": "Cum lucrăm",
+    "title": {
+      "a": "De la prima schiță la",
+      "outline": "master final."
+    },
+    "lead": "Șapte pași, o singură echipă in-house. Fără predări pierdute pe drum.",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Strategie",
+        "text": "Obiective, audiență, de ce înainte de ce anume."
+      },
+      {
+        "n": "02",
+        "title": "Concept & script",
+        "text": "Coloana poveștii și ideea mare."
+      },
+      {
+        "n": "03",
+        "title": "Storyboard & design",
+        "text": "Cadre, style frames, look & feel."
+      },
+      {
+        "n": "04",
+        "title": "Producție",
+        "text": "Asseturi construite, rigate și gata de mișcare."
+      },
+      {
+        "n": "05",
+        "title": "Animație / filmare / VFX",
+        "text": "Acolo unde totul prinde viață."
+      },
+      {
+        "n": "06",
+        "title": "Sunet / voce / muzică",
+        "text": "Stratul pe care îl simți înainte să îl auzi."
+      },
+      {
+        "n": "07",
+        "title": "Adaptare & lansare",
+        "text": "Montaje, formate, platforme, ora zero."
+      }
+    ]
+  },
+  "studioStats": {
+    "eyebrow": "De ce PixToon",
+    "title": {
+      "a": "Un studio construit ca un",
+      "outline": "mic univers."
+    },
+    "pageEyebrow": "Studio",
+    "pageLead": "Șaisprezece ani, o singură echipă in-house, din Chișinău — animație pentru branduri din CEE și nu numai.",
+    "items": [
+      {
+        "value": "16+",
+        "label": "Ani de animație",
+        "text": "Din 2006, Chișinău"
+      },
+      {
+        "value": "2D + 3D",
+        "label": "Spectru complet",
+        "text": "De la cadru la render"
+      },
+      {
+        "value": "1",
+        "label": "Echipă in-house",
+        "text": "Fără silozuri, fără predări"
+      },
+      {
+        "value": "CEE",
+        "label": "Acoperire regională",
+        "text": "Clienți din toată regiunea"
+      }
+    ]
+  },
+  "siteWork": {
+    "eyebrow": "Lucrări selectate",
+    "title": {
+      "a": "Câteva lumi pe care",
+      "outline": "le-am construit."
+    },
+    "pageLead": "Patru case study-uri de referință — personaje, campanii și VFX pentru branduri din regiune.",
+    "viewCase": "Vezi case study"
+  },
+  "letsTalk": {
+    "eyebrow": "Hai să vorbim",
+    "title": {
+      "a": "Hai să construim ceva",
+      "outline": "original."
+    },
+    "ctaPrimary": "Pornește un proiect"
   }
 }

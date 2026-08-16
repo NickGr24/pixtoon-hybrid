@@ -1,77 +1,71 @@
 {#
-  Шапка воспроизводит структуру и классы живого pixtoon.com (header-nav__*),
-  чтобы при заведении в MODX её можно было целиком заменить существующим
-  чанком без правки разметки страницы. Единственное отличие от оригинала —
-  добавленный пункт «Hybrid Production» с состоянием is-current.
+  Шапка по макету base44: белая, зафиксирована сверху, граница снизу 0.5px.
+  Внутренняя обёртка 1280 с полями 32 — контент 1216, как во всех секциях.
+
+  Пункты меню реальные, а не из макета. В макете стоят Work / Capabilities /
+  Hybrid Production / Studio, но страниц Capabilities и Studio на pixtoon.com
+  не существует — ссылки ушли бы в 404. Переносится оформление, состав берётся
+  из i18n.
+
+  Прежняя версия воспроизводила разметку живого сайта (классы header-nav__*),
+  чтобы её можно было заменить чанком MODX дословно. Это больше не верно:
+  дизайн другой, и шапку придётся заводить заново. Отмечено в README.
 #}
-<header class="header">
-  <div class="inner">
-    <nav class="header-nav">
-      {#
-        Логотип: в демо ведёт на титульную страницу сборки (для /ro/ отдельного
-        индекса нет), в боевой сборке — на главную своей локали.
-      #}
-      {% set homeUrl = "/" if isDemo else t.dir %}
-      <a href="{{ homeUrl }}" class="header-nav__logo-mobile" aria-label="Pixtoon">
-        <object type="image/svg+xml" data="/assets/img/logo-mobile.svg"></object>
-      </a>
+<header class="hyb-header" data-hyb-header>
+  <div class="hyb-header__inner">
+    {% set homeUrl = "/" if isDemo else t.dir %}
+    <a href="{{ homeUrl }}" class="hyb-header__logo" aria-label="Pixtoon">
+      <object type="image/svg+xml" data="/assets/img/logo.svg" tabindex="-1" aria-hidden="true"></object>
+    </a>
 
-      <button
-        class="header-nav__burger"
-        type="button"
-        aria-expanded="false"
-        aria-controls="hyb-nav"
-        aria-label="{{ 'Menu' if t.lang == 'en' else 'Meniu' }}"
-      >
-        <span></span><span></span><span></span>
-      </button>
+    <button
+      class="hyb-burger"
+      type="button"
+      aria-expanded="false"
+      aria-controls="hyb-nav"
+      aria-label="{{ 'Menu' if t.lang == 'en' else 'Meniu' }}"
+      data-hyb-burger
+    >
+      <span></span><span></span><span></span>
+    </button>
 
-      <ul class="header-nav__items" id="hyb-nav">
-        <li class="header-nav__item">
-          <a href="{{ homeUrl }}" class="header-nav__logo" aria-label="Pixtoon">
-            <object type="image/svg+xml" data="/assets/img/logo.svg"></object>
-          </a>
-        </li>
-        <li class="header-nav__item">
-          <a href="{{ externalBase }}{{ t.navPaths.about | localeUrl(t) }}" class="header-nav__link">{{ t.nav.about }}</a>
-        </li>
-        <li class="header-nav__item">
-          <a href="{{ externalBase }}{{ t.navPaths.work | localeUrl(t) }}" class="header-nav__link">{{ t.nav.work }}</a>
-        </li>
-
-        {# Новый пункт раздела. aria-current — для скринридеров, не только подсветка. #}
-        <li class="header-nav__item">
+    <nav class="hyb-nav" id="hyb-nav">
+      <ul class="hyb-nav__items">
+        <li><a href="{{ t.navPaths.work | localeUrl(t) }}" class="hyb-nav__link{% if page.url == (t.navPaths.work | localeUrl(t)) %} is-current{% endif %}">{{ t.nav.work }}</a></li>
+        <li><a href="{{ t.navPaths.capabilities | localeUrl(t) }}" class="hyb-nav__link{% if page.url == (t.navPaths.capabilities | localeUrl(t)) %} is-current{% endif %}">{{ t.nav.capabilities }}</a></li>
+        <li>
+          {#
+            Скобки обязательны: в Nunjucks фильтр связывается сильнее «+», и без
+            них выражение читается как hybridPath + ('/' | localeUrl), что на RO
+            давало «hybrid-production/ro/» вместо «/ro/hybrid-production/».
+          #}
           <a
-            {# Скобки обязательны: в Nunjucks фильтр связывается сильнее «+»,
-               и без них выражение читается как hybridPath + ('/' | localeUrl),
-               что на RO давало «hybrid-production/ro/» вместо «/ro/hybrid-production/». #}
             href="{{ (site.hybridPath + '/') | localeUrl(t) }}"
-            class="header-nav__link header-nav__link--hybrid{% if isHybridSection %} is-current{% endif %}"
+            class="hyb-nav__link{% if isHybridSection %} is-current{% endif %}"
             {% if isHybridSection %}aria-current="page"{% endif %}
           >{{ t.nav.hybrid }}</a>
         </li>
+        <li><a href="{{ t.navPaths.studio | localeUrl(t) }}" class="hyb-nav__link{% if page.url == (t.navPaths.studio | localeUrl(t)) %} is-current{% endif %}">{{ t.nav.studio }}</a></li>
+      </ul>
 
-        <li class="header-nav__item">
-          <a href="{{ externalBase }}{{ t.navPaths.blog | localeUrl(t) }}" class="header-nav__link">{{ t.nav.blog }}</a>
-        </li>
-        <li class="header-nav__item">
-          <a href="{{ externalBase }}{{ t.navPaths.contact | localeUrl(t) }}" class="header-nav__link">{{ t.nav.contact }}</a>
-        </li>
-
+      <div class="hyb-header__actions">
         {#
           Переключатель ведёт на ту же страницу в другой локали — altUrl задан
-          в front matter каждой страницы. Без него со страницы кейса
-          посетитель попадал бы на общий лендинг и терял контекст.
+          в front matter каждой страницы. Без него со страницы кейса посетитель
+          попадал бы на общий лендинг и терял контекст.
         #}
-        <li class="header-nav__item header-nav__item--lang">
-          <a
-            href="{{ altUrl if altUrl else t.otherLocale.dir + site.hybridPath + '/' }}"
-            class="header-nav__link"
-            lang="{{ t.otherLocale.code }}"
-            hreflang="{{ t.otherLocale.code }}"
-          >{{ t.otherLocale.label }}</a>
-        </li>
-      </ul>
+        <a
+          href="{{ altUrl if altUrl else t.otherLocale.dir + site.hybridPath + '/' }}"
+          class="hyb-nav__link hyb-nav__link--lang"
+          lang="{{ t.otherLocale.code }}"
+          hreflang="{{ t.otherLocale.code }}"
+        >{{ t.otherLocale.label }}</a>
+
+        <a href="{{ (site.hybridPath + '/') | localeUrl(t) }}#start" class="hyb-btn hyb-btn--nav">
+          {{ t.hero.ctaPrimary }}
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
     </nav>
   </div>
 </header>

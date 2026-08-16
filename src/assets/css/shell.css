@@ -1,0 +1,282 @@
+/* ==========================================================================
+   Оболочка: шапка и футер.
+
+   Раньше эти стили лежали в theme-shell.css и при интеграции удалялись —
+   на проде оболочку одевала существующая тема Pixtoon. После смены дизайна
+   это перестало быть верным: шапка и футер теперь наши, поэтому их стили
+   едут в прод вместе с остальными.
+
+   Геометрия снята с макета base44 при вьюпорте 1440.
+   ========================================================================== */
+
+body.hyb-page {
+  margin: 0;
+  /* Шапка зафиксирована, поэтому контент отодвигается на её высоту */
+  padding-top: 80px;
+}
+
+/* --- Шапка --------------------------------------------------------------- */
+
+.hyb-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: 80px;
+  background: var(--hyb-bg);
+  /* В макете граница именно 0.5px: на обычном экране это волосяная линия,
+     на Retina — ровно один физический пиксель. */
+  border-bottom: 0.5px solid var(--hyb-line);
+}
+
+.hyb-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--hyb-s-2);
+  height: 100%;
+  max-width: var(--hyb-page-max);
+  margin-inline: auto;
+  padding-inline: var(--hyb-gutter);
+}
+
+.hyb-header__logo {
+  flex-shrink: 0;
+  width: 127px;
+  height: 40px;
+}
+.hyb-header__logo object,
+.hyb-footer__logo object {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hyb-nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--hyb-s-2);
+}
+
+/* Пункты по центру, действия справа: auto-поля съедают остаток строки
+   симметрично, поэтому меню центрируется относительно контейнера, а не
+   относительно свободного места после логотипа. */
+.hyb-nav__items {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-inline: auto;
+}
+
+.hyb-nav__link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  /* 12px, а не --hyb-r-sm: при высоте пункта 39px радиус 16 читается как
+     полная пилюля, а в макете у обводки видны углы. */
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--hyb-ink-muted);
+  transition: color var(--hyb-dur) var(--hyb-ease),
+    border-color var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-nav__link:hover {
+  color: var(--hyb-ink);
+}
+
+/* Текущий раздел — обводка, а не подчёркивание */
+.hyb-nav__link.is-current {
+  color: var(--hyb-ink);
+  border-color: var(--hyb-line-active);
+}
+
+.hyb-nav__link--lang {
+  padding-inline: 0.75rem;
+}
+
+.hyb-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* --- Бургер -------------------------------------------------------------- */
+
+.hyb-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hyb-burger span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--hyb-ink);
+  transition: transform var(--hyb-dur) var(--hyb-ease),
+    opacity var(--hyb-dur) var(--hyb-ease);
+}
+
+@media (max-width: 64rem) {
+  .hyb-burger {
+    display: flex;
+  }
+
+  .hyb-nav {
+    position: absolute;
+    inset: 80px 0 auto 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--hyb-s-3);
+    padding: var(--hyb-s-3) var(--hyb-gutter) var(--hyb-s-4);
+    background: var(--hyb-bg);
+    border-bottom: 1px solid var(--hyb-line);
+  }
+  .hyb-nav.is-open {
+    display: flex;
+  }
+
+  .hyb-nav__items {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+  }
+  .hyb-nav__link {
+    padding-inline: 0;
+    font-size: 1.0625rem;
+  }
+  .hyb-nav__link.is-current {
+    border-color: transparent;
+    color: var(--hyb-accent-text);
+  }
+
+  .hyb-header__actions {
+    justify-content: space-between;
+  }
+
+  /* Три полоски складываются в крест */
+  .hyb-burger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hyb-burger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .hyb-burger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* --- Футер --------------------------------------------------------------- */
+
+.hyb-footer {
+  border-top: 1px solid var(--hyb-line);
+  background: var(--hyb-bg);
+}
+
+.hyb-footer__inner {
+  max-width: var(--hyb-page-max);
+  margin-inline: auto;
+  padding: var(--hyb-s-6) var(--hyb-gutter) var(--hyb-s-4);
+}
+
+.hyb-footer__grid {
+  display: grid;
+  gap: var(--hyb-s-5);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 56rem) {
+  .hyb-footer__grid {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--hyb-s-6);
+  }
+}
+
+.hyb-footer__logo {
+  display: block;
+  width: 127px;
+  height: 40px;
+  margin-bottom: var(--hyb-s-3);
+}
+
+.hyb-footer__about {
+  max-width: 42ch;
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-body);
+}
+
+.hyb-footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--hyb-s-3);
+}
+
+/* Двухбуквенные метки вместо иконок: набор соцсетей клиента меняется,
+   а подключать иконочный шрифт ради пяти ссылок дороже, чем он стоит. */
+.hyb-footer__soc {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--hyb-accent-wash);
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 700;
+  color: var(--hyb-accent-text);
+  transition: background-color var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-footer__soc:hover {
+  background: color-mix(in srgb, var(--hyb-accent) 22%, transparent);
+}
+
+.hyb-footer__label {
+  margin-bottom: var(--hyb-s-3);
+}
+
+.hyb-footer__links {
+  display: grid;
+  gap: 0.625rem;
+  font-size: var(--hyb-t-small);
+}
+.hyb-footer__links a {
+  color: var(--hyb-ink-muted);
+  transition: color var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-footer__links a:hover {
+  color: var(--hyb-ink);
+}
+
+.hyb-footer__contact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--hyb-ink-muted);
+}
+.hyb-footer__contact svg {
+  flex-shrink: 0;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--hyb-s-2);
+  margin-top: var(--hyb-s-5);
+  padding-top: var(--hyb-s-3);
+  border-top: 1px solid var(--hyb-line);
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
+}

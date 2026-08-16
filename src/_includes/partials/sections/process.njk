@@ -1,0 +1,22 @@
+{# «Семь шагов» — секция главной, переиспользуемая на /capabilities #}
+<section class="hyb-section" id="process">
+  <div class="hyb-wrap">
+    {% if showHead %}
+    <div class="hyb-head hyb-head--mid hyb-reveal">
+      <span class="hyb-eyebrow">{{ t.siteProcess.eyebrow }}</span>
+      {% title t.siteProcess.title %}
+      <p class="hyb-lead">{{ t.siteProcess.lead }}</p>
+    </div>
+    {% endif %}
+
+    <ol class="hyb-steps hyb-steps--seven">
+      {% for s in t.siteProcess.steps %}
+      <li class="hyb-step hyb-reveal">
+        <span class="hyb-step__n" aria-hidden="true">{{ s.n }}</span>
+        <h3 class="hyb-step__title">{{ s.title }}</h3>
+        <p class="hyb-step__text">{{ s.text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>

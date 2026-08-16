@@ -1,15 +1,16 @@
 {
-  "_comment": "Один источник правды для всех кейсов. Лендинг и 4 страницы кейсов читают отсюда, поэтому правка текста делается в одном месте, а не в 8 файлах (4 проекта x 2 языка). Поля challenge/solution/production написаны по фактам из ТЗ (техника, бренд) без выдуманных метрик — блок подлежит вычитке клиентом, см. docs/CONTENT-REVIEW.md",
-
+  "_comment": "Кейсы раздела. Состав и подписи сняты с макета base44: пять работ, Efes и Medpark Diaspora из дизайна убраны. Поле media.focal — точка интереса кадра для object-position; лежит рядом с постером, потому что это свойство изображения, а не позиции в сетке.",
   "featured": [
     {
       "slug": "drive-gas",
       "order": "01",
       "brand": "Drive Gas",
       "media": {
-        "poster": "/assets/img/cases/drive-gas-poster.jpg",
+        "poster": "/assets/img/cases/drive-gas.jpg",
         "video": "/assets/img/cases/drive-gas-preview.mp4",
-        "ratio": "16/10"
+        "ratio": "16/10",
+        "focal": "50% 50%",
+        "hasVideo": false
       },
       "en": {
         "title": "Drive Gas",
@@ -35,9 +36,11 @@
       "order": "02",
       "brand": "Coccolino",
       "media": {
-        "poster": "/assets/img/cases/coccolino-poster.jpg",
+        "poster": "/assets/img/cases/coccolino.jpg",
         "video": "/assets/img/cases/coccolino-preview.mp4",
-        "ratio": "16/10"
+        "ratio": "16/9",
+        "focal": "38% 50%",
+        "hasVideo": false
       },
       "en": {
         "title": "Coccolino",
@@ -63,9 +66,11 @@
       "order": "03",
       "brand": "Medpark",
       "media": {
-        "poster": "/assets/img/cases/medpark-poster.jpg",
-        "video": "/assets/img/cases/medpark-preview.mp4",
-        "ratio": "16/10"
+        "poster": "/assets/img/cases/medpark-doctor-buba.jpg",
+        "video": "/assets/img/cases/medpark-doctor-buba-preview.mp4",
+        "ratio": "16/9",
+        "focal": "50% 40%",
+        "hasVideo": false
       },
       "en": {
         "title": "Medpark — Doctor Buba",
@@ -78,7 +83,7 @@
       },
       "ro": {
         "title": "Medpark — Doctor Buba",
-        "tags": "Serie animată AI / Personaje de brand",
+        "tags": "Seria animată AI / Personaje de brand",
         "excerpt": "Un univers de conținut animat, construit în jurul personajelor Medpark.",
         "challenge": "Să facem o clinică privată prietenoasă pentru copii și părinți — un subiect unde tonul contează mai mult decât bugetul de producție.",
         "solution": "O distribuție de personaje de brand și un format de serie repetabil. Odată ce lumea a fost desenată, fiecare episod nou pornește dintr-un decor existent, nu de la pagina albă.",
@@ -87,54 +92,64 @@
       }
     },
     {
-      "slug": "efes",
+      "slug": "microinvest-family",
       "order": "04",
-      "brand": "Efes",
+      "brand": "Microinvest",
       "media": {
-        "poster": "/assets/img/cases/efes-poster.jpg",
-        "video": "/assets/img/cases/efes-preview.mp4",
-        "ratio": "16/10"
+        "poster": "/assets/img/cases/microinvest-family.jpg",
+        "video": "/assets/img/cases/microinvest-family-preview.mp4",
+        "ratio": "16/10",
+        "focal": "50% 45%",
+        "hasVideo": false
       },
       "en": {
-        "title": "Efes",
-        "tags": "AI product commercial",
-        "excerpt": "A product commercial built with AI generation, where the hero product had to stay exact.",
-        "challenge": "Product advertising leaves no room for approximation: the bottle, the label and the pour have to be right, frame by frame.",
-        "solution": "AI carried the world around the product while the product itself stayed under direct control — the split that makes hybrid production work on packaged goods.",
-        "production": "Concept, visual direction, AI generation, product visualisation, compositing, editing, music and sound design.",
-        "result": "Commercial-grade product footage without a studio shoot."
+        "title": "Familia Microinvest",
+        "tags": "Rigged 3D characters / AI animation",
+        "excerpt": "A family of characters built the classic way — fully modelled and rigged — and now animated with AI tools.",
+        "challenge": "Give a financial brand a cast of characters that stays recognisable across years of campaigns, not a one-off commercial.",
+        "solution": "The Microinvest family was modelled and rigged in classic 3D, with full animation controllers. That base is now driven by AI animation, so new scenes cost a fraction of a traditional shoot.",
+        "production": "Classic 3D modelling and rigging in-house, AI-assisted animation, compositing, sound and final master.",
+        "result": "A brand universe that can be extended continuously — reels, social spots and brand scenes — without rebuilding the characters each time."
       },
       "ro": {
-        "title": "Efes",
-        "tags": "Comercial de produs AI",
-        "excerpt": "Un comercial de produs realizat cu generare AI, în care produsul principal trebuia să rămână exact.",
-        "challenge": "Publicitatea de produs nu lasă loc de aproximări: sticla, eticheta și turnarea trebuie să fie corecte, cadru cu cadru.",
-        "solution": "AI-ul a dus lumea din jurul produsului, în timp ce produsul a rămas sub control direct — exact separarea care face producția hibridă să funcționeze pe bunuri ambalate.",
-        "production": "Concept, direcție vizuală, generare AI, vizualizare de produs, compoziție, montaj, muzică și sound design.",
-        "result": "Imagini de produs la nivel de comercial, fără filmare în studio."
+        "title": "Familia Microinvest",
+        "tags": "Personaje 3D rigate / Animație AI",
+        "excerpt": "O familie de personaje construită în metoda clasică — modelată și rigată complet — și animată acum cu instrumente AI.",
+        "challenge": "Un brand financiar avea nevoie de personaje care rămân recognoscibile de-a lungul anilor de campanii, nu de un singur comercial.",
+        "solution": "Familia Microinvest a fost modelată și rigată în 3D clasic, cu controllere complete de animație. Această bază este acum animată cu instrumente AI, astfel încât scenele noi costă o fracțiune dintr-o filmare tradițională.",
+        "production": "Modelare și rigging 3D clasic in-house, animație asistată de AI, compoziție, sound design și master final.",
+        "result": "Un univers de brand care poate fi extins continuu — reel-uri, spoturi sociale și scene de brand — fără a reconstrui personajele de fiecare dată."
       }
-    }
-  ],
-
-  "_more_comment": "Карусель More Hybrid Work (ТЗ раздел 6). Без отдельных страниц — только превью.",
-  "more": [
-    {
-      "slug": "bere-chisinau",
-      "media": {
-        "poster": "/assets/img/cases/bere-chisinau-poster.jpg",
-        "video": "/assets/img/cases/bere-chisinau-preview.mp4"
-      },
-      "en": { "title": "Bere Chișinău", "tags": "AI product commercial" },
-      "ro": { "title": "Bere Chișinău", "tags": "Comercial de produs AI" }
     },
     {
-      "slug": "medpark-diaspora",
+      "slug": "bere-chisinau",
+      "order": "05",
+      "brand": "Bere Chișinău",
       "media": {
-        "poster": "/assets/img/cases/medpark-diaspora-poster.jpg",
-        "video": "/assets/img/cases/medpark-diaspora-preview.mp4"
+        "poster": "/assets/img/cases/bere-chisinau.jpg",
+        "video": "/assets/img/cases/bere-chisinau-preview.mp4",
+        "ratio": "16/10",
+        "focal": "50% 40%",
+        "hasVideo": false
       },
-      "en": { "title": "Medpark Diaspora", "tags": "AI + 2D hybrid commercial" },
-      "ro": { "title": "Medpark Diaspora", "tags": "Comercial hibrid AI + 2D" }
+      "en": {
+        "title": "Berea Chișinău",
+        "tags": "AI product / Brand commercial",
+        "excerpt": "A product commercial built around the bottle itself — mood, light and texture generated rather than filmed.",
+        "challenge": "Show the product with the atmosphere of a studio shoot, without a studio shoot.",
+        "solution": "Product visuals and environment were generated through the hybrid AI pipeline, then graded and finished by hand to keep the brand’s light and colour intact.",
+        "production": "Concept, visual direction, AI generation, compositing, grading and final master.",
+        "result": "Material ready for social and digital placements, produced on a schedule a traditional product shoot could not match."
+      },
+      "ro": {
+        "title": "Berea Chișinău",
+        "tags": "Produs AI / Comercial de brand",
+        "excerpt": "Un comercial de produs construit în jurul sticlei — atmosferă, lumină și textură generate, nu filmate.",
+        "challenge": "Să arătăm produsul cu atmosfera unei filmări de studio, fără o filmare de studio.",
+        "solution": "Vizualele de produs și mediul au fost generate prin pipeline-ul hibrid AI, apoi gradate și finisate manual pentru a păstra lumina și culoarea brandului.",
+        "production": "Concept, direcție vizuală, generare AI, compoziție, gradare și master final.",
+        "result": "Material pregătit pentru plasări social și digital, produs într-un termen pe care o filmare de produs tradițională nu îl putea atinge."
+      }
     }
   ]
 }

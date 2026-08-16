@@ -13,8 +13,7 @@ eleventyComputed:
   altUrl: "{{ t.otherLocale.dir }}{{ site.hybridPath }}/"
 ---
 
-{% set featured = cases.featured %}
-{% set heroCases = [featured[0], featured[1], featured[2], cases.more[0]] %}
+{% set cs = cases.featured %}
 
 {# ============================ 1. HERO ============================ #}
 <section class="hyb-hero">
@@ -35,68 +34,93 @@ eleventyComputed:
         </div>
       </div>
 
-      {# Мозаика из реальных кадров вместо «AI-картинки» — ТЗ раздел 4 #}
+      {#
+        Коллаж из пяти кадров. Ячейки разного размера, но внешний габарит —
+        ровный прямоугольник: позиции заданы явно в 12-колоночной сетке, а не
+        набираются потоком. Прежняя вёрстка на `columns: 2` балансировала
+        высоту сама и давала рваный низ — замечание клиента про размещение.
+      #}
+      {#
+        Порядок в коллаже свой, отличный от порядка кейсов в секции работ:
+        ячейки имеют фиксированные пропорции, и кадр должен попасть в ячейку
+        своей ориентации. Портретная бутылка Berea идёт в ячейку 3/4, широкая
+        кухня Microinvest — в полосу 16/5. Если брать порядок из данных, эти
+        двое меняются местами и оба кадра теряют смысл при обрезке.
+      #}
       <div class="hyb-hero__visual">
-        <div class="hyb-mosaic">
-          {% for c in heroCases %}
+        <div class="hyb-collage">
+          {% set collageSlugs = ["drive-gas", "coccolino", "medpark-doctor-buba", "bere-chisinau", "microinvest-family"] %}
+          {% for slug in collageSlugs %}
+          {% set pos = loop.index %}
+          {% for c in cs %}{% if c.slug == slug %}
           {% set cl = c | loc(t.locale) %}
-          <figure class="hyb-mosaic__item">
+          <figure class="hyb-collage__item hyb-collage__item--{{ pos }}">
             <img
-              class="hyb-mosaic__media"
+              class="hyb-collage__media"
               src="{{ c.media.poster }}"
               alt="{{ cl.title }} — {{ cl.tags }}"
-              loading="{{ 'eager' if loop.first else 'lazy' }}"
-              {% if loop.first %}fetchpriority="high"{% endif %}
+              style="object-position: {{ c.media.focal }}"
+              loading="{{ 'eager' if pos == 1 else 'lazy' }}"
+              {% if pos == 1 %}fetchpriority="high"{% endif %}
             />
-            <figcaption class="hyb-mosaic__label">{{ cl.title }}</figcaption>
+            <figcaption class="hyb-tag hyb-tag--gold">{{ cl.title }}</figcaption>
           </figure>
+          {% endif %}{% endfor %}
           {% endfor %}
-        </div>
 
-        <button class="hyb-showreel" type="button" data-hyb-showreel>
-          <span class="hyb-showreel__icon" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>
-          </span>
-          {{ t.hero.showreel }}
-        </button>
+          <button class="hyb-showreel" type="button" data-hyb-showreel>
+            <span class="hyb-showreel__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>
+            </span>
+            {{ t.hero.showreel }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 {# ==================== 2. SELECTED HYBRID WORK ==================== #}
-<section class="hyb-section hyb-section--alt" id="work">
+<section class="hyb-section" id="work">
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
       <span class="hyb-eyebrow">{{ t.work.eyebrow }}</span>
       {% title t.work.title %}
     </div>
 
-    <div class="hyb-work__grid">
-      {# Три главных кейса: большой слева + два справа стопкой (ТЗ раздел 5) #}
-      {% for c in featured.slice(0, 3) %}
+    {#
+      Бенто: крупный кейс на две колонки, рядом высокий, снизу три ровных.
+      Позиции заданы классами --1..--5, поэтому перестановка данных не может
+      случайно сломать раскладку.
+    #}
+    <div class="hyb-work">
+      {% for c in cs %}
       {% set cl = c | loc(t.locale) %}
       <a
-        class="hyb-case hyb-reveal"
+        class="hyb-case hyb-case--{{ loop.index }} hyb-reveal"
         href="{{ (site.hybridPath + '/' + c.slug + '/') | localeUrl(t) }}"
         data-hyb-hover-video
       >
         <div class="hyb-case__frame">
-          <img class="hyb-case__media" src="{{ c.media.poster }}" alt="" loading="lazy" />
+          <img
+            class="hyb-case__media"
+            src="{{ c.media.poster }}"
+            alt=""
+            style="object-position: {{ c.media.focal }}"
+            loading="lazy"
+          />
+          {% if c.media.hasVideo %}
           <video
             class="hyb-case__video"
             data-src="{{ c.media.video | url }}"
-            muted
-            loop
-            playsinline
-            preload="none"
-            aria-hidden="true"
+            muted loop playsinline preload="none" aria-hidden="true"
           ></video>
+          {% endif %}
         </div>
         <div class="hyb-case__body">
-          <p class="hyb-case__tags">{{ c.order }} — {{ cl.tags }}</p>
+          <span class="hyb-tag hyb-tag--glass">{{ cl.tags }}</span>
           <h3 class="hyb-case__title">{{ cl.title }}</h3>
-          <p class="hyb-case__excerpt">{{ cl.excerpt }}</p>
+          {% if loop.first %}<p class="hyb-case__excerpt">{{ cl.excerpt }}</p>{% endif %}
           <span class="hyb-case__cta">
             {{ t.work.viewCase }}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -108,48 +132,176 @@ eleventyComputed:
   </div>
 </section>
 
-{# ==================== 3. MORE HYBRID WORK ======================== #}
-<section class="hyb-section hyb-section--tight">
+{# ==================== 3. MONTHLY / ABONAMENTE ==================== #}
+<section class="hyb-section hyb-section--alt hyb-section--roomy" id="monthly">
   <div class="hyb-wrap">
-    <div class="hyb-more__head">
-      <div>
-        <span class="hyb-eyebrow">{{ t.work.moreEyebrow }}</span>
-        <h2 class="hyb-h3">{{ t.work.moreTitle }}</h2>
+    <div class="hyb-head hyb-head--wide hyb-reveal">
+      <span class="hyb-eyebrow">{{ t.monthly.eyebrow }}</span>
+      {% title t.monthly.title %}
+      <p class="hyb-subtitle">{{ t.monthly.subtitle }}</p>
+      <p class="hyb-lead">{{ t.monthly.lead }}</p>
+    </div>
+
+    <div class="hyb-packages">
+      {% for p in t.monthly.packages %}
+      <article class="hyb-package hyb-reveal">
+        <div class="hyb-package__head">
+          <p class="hyb-eyebrow hyb-eyebrow--gold hyb-package__label">{{ p.label }}</p>
+          <p class="hyb-package__price">
+            {{ p.price }}<span class="hyb-package__per">{{ t.monthly.perMonth }}</span>
+          </p>
+        </div>
+        <h3 class="hyb-package__title">{{ p.title }}</h3>
+
+        {#
+          Кадр подписан именем кейса и его ролью. Раньше он подставлялся
+          формулой featured[index+1] — связи с содержанием пакета не было
+          вообще, и Coccolino оказывался в пакете «2 video AI/3D» без причин.
+        #}
+        <div class="hyb-package__media" data-hyb-hover-video>
+          <img class="hyb-case__media" src="{{ p.mediaSrc }}" alt="{{ p.mediaLabel }}" loading="lazy" />
+          <span class="hyb-tag hyb-tag--gold hyb-package__tag">
+            <span aria-hidden="true">✦</span> {{ p.mediaLabel }}
+          </span>
+          <span class="hyb-play" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>
+          </span>
+        </div>
+
+        <div class="hyb-package__cols">
+          <div>
+            <span class="hyb-label">{{ t.monthly.idealLabel }}</span>
+            <ul class="hyb-checks">
+              {% for i in p.idealFor %}<li class="hyb-checks__item">{{ i }}</li>{% endfor %}
+            </ul>
+          </div>
+          <div>
+            <span class="hyb-label">{{ t.monthly.includesLabel }}</span>
+            <ul class="hyb-checks">
+              {% for i in p.items %}<li class="hyb-checks__item">{{ i }}</li>{% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <a href="#start" class="hyb-btn hyb-btn--dark">
+          {{ t.monthly.cta }}
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+
+    {# Кастомный пакет: тёмная карточка, расколотая пополам кадром #}
+    <div class="hyb-custom hyb-invert hyb-reveal">
+      <div class="hyb-custom__media">
+        <img src="/assets/img/cases/drive-gas.jpg" alt="" loading="lazy" />
       </div>
-      <div class="hyb-more__nav">
-        <button class="hyb-more__btn" type="button" data-hyb-scroll="-1" aria-label="{{ t.work.prev }}">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="hyb-more__btn" type="button" data-hyb-scroll="1" aria-label="{{ t.work.next }}">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+      <div class="hyb-custom__body">
+        <p class="hyb-eyebrow hyb-eyebrow--gold">{{ t.monthly.custom.label }}</p>
+        <h3 class="hyb-custom__title">{{ t.monthly.custom.title }}</h3>
+        <span class="hyb-label hyb-custom__kicker">{{ t.monthly.custom.itemsLabel }}</span>
+        <ul class="hyb-chips">
+          {% for i in t.monthly.custom.items %}<li class="hyb-chip">{{ i }}</li>{% endfor %}
+        </ul>
+        <a href="#start" class="hyb-btn hyb-btn--primary hyb-btn--sm">
+          {{ t.monthly.custom.cta }}
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
 
-    <div class="hyb-more__track" data-hyb-track tabindex="0">
-      {% for c in [featured[3], cases.more[0], cases.more[1]] %}
-      {% set cl = c | loc(t.locale) %}
-      <div class="hyb-more__item">
-        <div class="hyb-case" data-hyb-hover-video>
-          <div class="hyb-case__frame" style="aspect-ratio:16/10">
-            <img class="hyb-case__media" src="{{ c.media.poster }}" alt="" loading="lazy" />
-            <video class="hyb-case__video" data-src="{{ c.media.video | url }}" muted loop playsinline preload="none" aria-hidden="true"></video>
-          </div>
-          <div class="hyb-case__body">
-            <p class="hyb-case__tags">{{ cl.tags }}</p>
-            <h3 class="hyb-case__title">{{ cl.title }}</h3>
-          </div>
-        </div>
+    <div class="hyb-closing hyb-reveal">
+      <div>
+        <span class="hyb-eyebrow">{{ t.monthly.closing.eyebrow }}</span>
+        {% title t.monthly.closing.title, "h3" %}
       </div>
-      {% endfor %}
+      <div>
+        <p class="hyb-closing__text">{{ t.monthly.closing.text }}</p>
+        <p class="hyb-closing__text">{{ t.monthly.closing.text2 }}</p>
+      </div>
     </div>
   </div>
 </section>
 
-{# ================ 4. HOW HYBRID PRODUCTION WORKS ================= #}
-<section class="hyb-section hyb-section--alt" id="how-it-works">
+{# =================== 4. CASE STUDY — MICROINVEST ================= #}
+<section class="hyb-section" id="microinvest">
   <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
+    <div class="hyb-head hyb-head--wide hyb-reveal">
+      <span class="hyb-eyebrow">{{ t.microinvest.eyebrow }}</span>
+      {% title t.microinvest.title %}
+      <p class="hyb-lead">{{ t.microinvest.lead }}</p>
+    </div>
+
+    <div class="hyb-mi__top hyb-reveal">
+      <figure class="hyb-mi__hero">
+        <img src="/assets/img/cases/microinvest-family.jpg" alt="{{ t.microinvest.heroCaption }}" loading="lazy" />
+        <figcaption>
+          <span class="hyb-tag hyb-tag--gold"><span aria-hidden="true">✦</span> {{ t.microinvest.heroLabel }}</span>
+          <span class="hyb-mi__caption">{{ t.microinvest.heroCaption }}</span>
+        </figcaption>
+      </figure>
+      <div class="hyb-mi__side">
+        <figure class="hyb-mi__tile">
+          <img src="/assets/img/microinvest/branding.jpg" alt="{{ t.microinvest.sideLabels[0] }}" loading="lazy" />
+          <figcaption class="hyb-tag hyb-tag--light">{{ t.microinvest.sideLabels[0] }}</figcaption>
+        </figure>
+        <figure class="hyb-mi__tile">
+          <img src="/assets/img/microinvest/app-ui.jpg" alt="{{ t.microinvest.sideLabels[1] }}" loading="lazy" />
+          <figcaption class="hyb-tag hyb-tag--light">{{ t.microinvest.sideLabels[1] }}</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    {#
+      Подписи лежат прямо на кадре без затемняющего градиента — как в макете.
+      Работает потому, что все четыре портрета подобраны с тёмным низом;
+      страховкой служит тень глифа, а не заливка поверх изображения.
+    #}
+    <div class="hyb-mi__portraits hyb-reveal">
+      {% set files = ["mama", "fiica", "tatal", "mama-bucatarie"] %}
+      {% for name in t.microinvest.portraits %}
+      <figure class="hyb-mi__portrait">
+        <img src="/assets/img/microinvest/{{ files[loop.index0] }}.jpg" alt="{{ name }}" loading="lazy" />
+        <figcaption>{{ name }}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+
+    <div class="hyb-mi__features hyb-reveal">
+      {% for f in t.microinvest.features %}
+      <div class="hyb-feature">
+        <span class="hyb-feature__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="6" r="3" /><path d="M2 17c0-2.8 2.2-5 5-5s5 2.2 5 5" /><path d="M14 4.5a3 3 0 0 1 0 5.8M16 13.5c1.4.9 2.3 2.4 2.3 4" />
+          </svg>
+        </span>
+        <h3 class="hyb-feature__title">{{ f.title }}</h3>
+        <p class="hyb-feature__text">{{ f.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="hyb-mi__why hyb-reveal">
+      <div>
+        <span class="hyb-eyebrow">{{ t.microinvest.why.eyebrow }}</span>
+        {% title t.microinvest.why.title, "h3" %}
+      </div>
+      <div>
+        <p class="hyb-closing__text">{{ t.microinvest.why.text }}</p>
+        <p class="hyb-closing__text">{{ t.microinvest.why.text2 }}</p>
+        <a href="#start" class="hyb-link hyb-link--accent">
+          {{ t.microinvest.why.cta }}
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ================ 5. HOW HYBRID PRODUCTION WORKS ================= #}
+<section class="hyb-section" id="how-it-works">
+  <div class="hyb-wrap">
+    <div class="hyb-head hyb-head--mid hyb-reveal">
       <span class="hyb-eyebrow">{{ t.process.eyebrow }}</span>
       {% title t.process.title %}
       <p class="hyb-lead">{{ t.process.lead }}</p>
@@ -167,37 +319,36 @@ eleventyComputed:
   </div>
 </section>
 
-{# ======================== 5. WHY HYBRID? ========================= #}
-<section class="hyb-section">
+{# ======================= 6. CIFRELE VORBESC ====================== #}
+<section class="hyb-section hyb-section--alt">
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">{{ t.why.eyebrow }}</span>
-      {% title t.why.title %}
+      <span class="hyb-eyebrow">{{ t.stats.eyebrow }}</span>
+      {% title t.stats.title %}
     </div>
 
-    <div class="hyb-why">
-      {% for item in t.why.items %}
+    <div class="hyb-stats">
+      {% for s in t.stats.items %}
       <div class="hyb-stat hyb-reveal">
-        <p class="hyb-stat__kicker">{{ item.kicker }}</p>
-        <p class="hyb-stat__text">{{ item.title }}</p>
+        <p class="hyb-stat__value">{{ s.value }}</p>
+        <p class="hyb-stat__label">{{ s.label }}</p>
+        <p class="hyb-stat__text">{{ s.text }}</p>
       </div>
       {% endfor %}
     </div>
 
     <div class="hyb-techniques hyb-reveal">
-      <h3 class="hyb-techniques__kicker">{{ t.why.hybridCard.kicker }}</h3>
+      <h3 class="hyb-techniques__kicker">{{ t.stats.techniques.kicker }}</h3>
       <ul class="hyb-chips">
-        {% for tech in t.why.hybridCard.techniques %}
-        <li class="hyb-chip">{{ tech }}</li>
-        {% endfor %}
+        {% for tech in t.stats.techniques.items %}<li class="hyb-chip">{{ tech }}</li>{% endfor %}
       </ul>
-      <p class="hyb-techniques__text">{{ t.why.hybridCard.text }}</p>
+      <p class="hyb-techniques__text">{{ t.stats.techniques.text }}</p>
     </div>
   </div>
 </section>
 
-{# ======================= 6. WHAT'S INCLUDED ====================== #}
-<section class="hyb-section hyb-section--alt">
+{# ======================== 7. WHAT'S INCLUDED ===================== #}
+<section class="hyb-section">
   <div class="hyb-wrap">
     <div class="hyb-included">
       <div class="hyb-reveal">
@@ -215,74 +366,11 @@ eleventyComputed:
   </div>
 </section>
 
-{# ==================== 7. MONTHLY PRODUCTION ====================== #}
-<section class="hyb-section" id="monthly">
-  <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">{{ t.monthly.eyebrow }}</span>
-      {% title t.monthly.title %}
-      <p class="hyb-lead">{{ t.monthly.lead }}</p>
-    </div>
-
-    <div class="hyb-packages">
-      {% for p in t.monthly.packages %}
-      {% set example = featured[loop.index0 + 1] %}
-      <article class="hyb-package hyb-reveal">
-        {# ТЗ: «Show a relevant Pixtoon example/video directly inside this package» #}
-        <div class="hyb-package__media" data-hyb-hover-video>
-          <img class="hyb-case__media" src="{{ example.media.poster }}" alt="" loading="lazy" />
-          <video class="hyb-case__video" data-src="{{ example.media.video | url }}" muted loop playsinline preload="none" aria-hidden="true"></video>
-        </div>
-        <div class="hyb-package__body">
-          <p class="hyb-package__label">{{ p.label }}</p>
-          <h3 class="hyb-package__title">{{ p.title }}</h3>
-          <p class="hyb-package__price">
-            {{ p.price }}<span class="hyb-package__per">{{ t.monthly.perMonth }}</span>
-          </p>
-          <p class="hyb-package__ideal">{{ p.idealFor }}</p>
-          <ul class="hyb-package__items">
-            {% for i in p.items %}
-            <li class="hyb-package__item">{{ i }}</li>
-            {% endfor %}
-          </ul>
-        </div>
-      </article>
-      {% endfor %}
-    </div>
-
-    <div class="hyb-custom hyb-reveal">
-      <div class="hyb-custom__grid">
-        <div>
-          <p class="hyb-package__label">{{ t.monthly.custom.label }}</p>
-          <h3 class="hyb-package__title">{{ t.monthly.custom.title }}</h3>
-          <ul class="hyb-chips" style="margin-top:1.25rem">
-            {% for i in t.monthly.custom.items %}
-            <li class="hyb-chip">{{ i }}</li>
-            {% endfor %}
-          </ul>
-        </div>
-        <a href="#start" class="hyb-btn hyb-btn--primary">
-          {{ t.monthly.custom.cta }}
-          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="hyb-closing hyb-reveal">
-      <div>{% title t.monthly.closing.title, "h3" %}</div>
-      <div>
-        <p class="hyb-closing__text hyb-lead">{{ t.monthly.closing.text }}</p>
-        <p class="hyb-closing__text hyb-lead">{{ t.monthly.closing.text2 }}</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-{# ======================== 8. PRICING ============================= #}
+{# ========================== 8. PRICING =========================== #}
 <section class="hyb-section hyb-section--alt">
   <div class="hyb-wrap">
-    <div class="hyb-price hyb-invert hyb-reveal">
-      <span class="hyb-eyebrow hyb-price__eyebrow">{{ t.pricing.eyebrow }}</span>
+    <div class="hyb-price hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--gold">{{ t.pricing.eyebrow }}</span>
       {% title t.pricing.title %}
 
       <div class="hyb-price__stats">
@@ -307,7 +395,7 @@ eleventyComputed:
   </div>
 </section>
 
-{# ======================= 9. FINAL CTA ============================ #}
+{# ========================= 9. FINAL CTA ========================== #}
 <section class="hyb-section hyb-final" id="start">
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
@@ -320,7 +408,7 @@ eleventyComputed:
         {{ t.finalCta.ctaPrimary }}
         <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
       </a>
-      <a href="{{ site.contacts.phoneHref }}" class="hyb-btn hyb-btn--ghost">{{ t.finalCta.ctaSecondary }}</a>
+      <a href="mailto:{{ site.contacts.email }}" class="hyb-btn hyb-btn--ghost">{{ t.finalCta.ctaSecondary }}</a>
     </div>
   </div>
 </section>

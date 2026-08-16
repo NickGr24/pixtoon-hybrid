@@ -1,0 +1,28 @@
+{#
+  «Пять способов» — секция главной, переиспользуемая на /capabilities.
+
+  showHead выключается там, где над секцией уже стоит заголовок страницы:
+  в макете base44 подстраницы дублируют свой H1 в H2 секции, и на трёх
+  страницах подряд один и тот же заголовок идёт дважды. Клиент попросил
+  дубль убрать.
+#}
+<section class="hyb-section hyb-section--alt" id="capabilities">
+  <div class="hyb-wrap">
+    {% if showHead %}
+    <div class="hyb-head hyb-head--wide hyb-reveal">
+      <span class="hyb-eyebrow">{{ t.capabilities.eyebrow }}</span>
+      {% title t.capabilities.title %}
+    </div>
+    {% endif %}
+
+    <div class="hyb-cards">
+      {% for c in t.capabilities.items %}
+      <article class="hyb-card hyb-reveal">
+        <span class="hyb-card__n" aria-hidden="true">{{ c.n }}</span>
+        <h3 class="hyb-card__title">{{ c.title }}</h3>
+        <p class="hyb-card__text">{{ c.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

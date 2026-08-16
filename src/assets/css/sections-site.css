@@ -1,0 +1,276 @@
+/* ==========================================================================
+   Секции главной и подстраниц: /, /work, /capabilities, /studio.
+
+   Раздел Hybrid Production живёт в sections-landing.css. Разделение по
+   страницам, а не по компонентам, потому что общего между ними мало: у
+   Hybrid своя бенто-сетка кадров, у главной — витрина с чередованием.
+   ========================================================================== */
+
+/* --- Шапка подстраницы --------------------------------------------------- */
+
+/* 176px сверху / 64px снизу — измерено на подстраницах макета */
+.hyb-pagehead {
+  padding-block: clamp(3rem, 1rem + 11.1vw, 11rem) clamp(2rem, 1rem + 3vw, 4rem);
+}
+.hyb-pagehead .hyb-head {
+  margin-bottom: 0;
+}
+
+/* --- Герой главной ------------------------------------------------------- */
+
+.hyb-hero--home {
+  padding-block: clamp(3rem, 1rem + 10vw, 10rem) clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+/*
+  Круги героя. Крупный кадр в круглой маске работает потому, что смысл кадра
+  в его центре — это портрет персонажа. Для кадров с текстом круг непригоден,
+  поэтому в разделе Hybrid этого приёма нет ни разу.
+*/
+.hyb-hero__orbit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 22rem;
+}
+
+.hyb-orb {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.hyb-orb--photo {
+  width: min(326px, 74%);
+  aspect-ratio: 1;
+  margin: 0;
+  overflow: hidden;
+  justify-self: end;
+  align-self: end;
+  background: var(--hyb-accent-wash);
+}
+.hyb-orb--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hyb-orb--accent,
+.hyb-orb--gold {
+  position: absolute;
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  color: var(--hyb-on-dark);
+  line-height: 1.1;
+  /* Кружки декоративные и перекрывают кадр: белый текст на них проверен
+     отдельно — 4.55:1 на сиреневом и 5.89:1 тёмным на золотом. */
+  box-shadow: 0 8px 24px rgba(35, 30, 41, 0.14);
+}
+
+.hyb-orb--accent {
+  top: 4%;
+  right: 6%;
+  width: 6.5rem;
+  aspect-ratio: 1;
+  background: var(--hyb-nav-cta);
+  font-size: var(--hyb-t-h4);
+}
+
+.hyb-orb--gold {
+  left: 4%;
+  bottom: 24%;
+  width: 7.5rem;
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  background: var(--hyb-cta);
+  color: var(--hyb-cta-ink);
+  font-size: var(--hyb-t-card);
+}
+
+/* --- Лента брендов ------------------------------------------------------- */
+
+.hyb-trusted {
+  padding-block: clamp(2.5rem, 1.5rem + 2.5vw, 4rem);
+  border-block: 1px solid var(--hyb-line);
+  overflow: hidden;
+}
+
+.hyb-trusted__label {
+  text-align: center;
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hyb-ink-muted);
+}
+
+.hyb-marquee {
+  display: flex;
+  width: max-content;
+  margin-top: var(--hyb-s-4);
+}
+
+.hyb-marquee__row {
+  display: flex;
+  align-items: center;
+  gap: clamp(2rem, 1rem + 3vw, 4rem);
+  padding-inline: clamp(1rem, 0.5rem + 1.5vw, 2rem);
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 0.9rem + 1.4vw, 1.875rem);
+  color: var(--hyb-ink-muted);
+  white-space: nowrap;
+  /* Два одинаковых набора едут как один: сдвиг ровно на половину ширины
+     возвращает ленту в исходное положение, поэтому стык незаметен. */
+  animation: hyb-marquee 38s linear infinite;
+}
+
+@keyframes hyb-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hyb-marquee__row {
+    animation: none;
+  }
+  .hyb-marquee {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hyb-marquee__row:nth-child(2) {
+    display: none;
+  }
+}
+
+/* --- Карточки «что мы делаем» -------------------------------------------- */
+
+.hyb-cards {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+.hyb-card {
+  position: relative;
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-bg);
+}
+
+.hyb-card__n {
+  position: absolute;
+  top: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  right: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-faint);
+}
+
+.hyb-card__title {
+  margin-bottom: 0.75rem;
+  padding-right: 2.5rem;
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-h4);
+  line-height: var(--hyb-lh-snug);
+}
+
+.hyb-card__text {
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-body);
+}
+
+/* --- Витрина работ ------------------------------------------------------- */
+
+.hyb-showcase {
+  display: grid;
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+.hyb-show {
+  display: grid;
+  gap: var(--hyb-s-4);
+  align-items: center;
+}
+
+@media (min-width: 56rem) {
+  .hyb-show {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--hyb-s-6);
+  }
+  /* Сторона чередуется порядком в сетке, а не отдельными классами: так
+     добавление пятого кейса не требует новой пары правил. */
+  .hyb-show--right .hyb-show__media {
+    order: 2;
+  }
+}
+
+/*
+  Обрезается изображение, а не контейнер. Если повесить overflow:hidden на
+  саму фигуру, круглая маска срежет золотую метку — в макете она лежит
+  снаружи круга, у левого верхнего угла колонки.
+*/
+.hyb-show__media {
+  position: relative;
+  margin: 0;
+  display: grid;
+}
+
+.hyb-show__media img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.hyb-show__media--circle img {
+  width: min(448px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  justify-self: center;
+}
+
+.hyb-show__media--rect img {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--hyb-r-card);
+}
+
+.hyb-show__kicker {
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--hyb-ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-show__title {
+  margin-block: var(--hyb-s-2) var(--hyb-s-3);
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h3-lg);
+  line-height: var(--hyb-lh-tight);
+}
+
+.hyb-show__text {
+  max-width: 46ch;
+  margin-bottom: var(--hyb-s-3);
+  font-size: var(--hyb-t-lead);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-relaxed);
+}
+
+/* --- Прочее -------------------------------------------------------------- */
+
+/* Семь шагов не помещаются в ряд на десктопе — четыре и три */
+.hyb-steps--seven {
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.hyb-link--plain {
+  font-weight: 600;
+  color: var(--hyb-ink);
+}

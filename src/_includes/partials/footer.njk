@@ -1,80 +1,61 @@
 {#
-  Футер — копия существующего футера pixtoon.com (ТЗ раздел 13: «Reuse the
-  existing Pixtoon footer. Do not create a different footer»). Классы, порядок
-  блоков, телефон, почта и соцсети совпадают с живым сайтом, поэтому при
-  интеграции блок заменяется существующим чанком один в один.
+  Футер по макету base44: три колонки плюс нижняя полоса.
+
+  Макет показывает только почту, а телефон и соцсети с живого pixtoon.com не
+  выводит вовсе. Терять реальные данные из-за неполноты макета нельзя, поэтому
+  они живут внутри той же трёхколоночной раскладки: соцсети под описанием,
+  телефон рядом с почтой. Отмечено в списке отступлений.
 #}
 {% set f = site.footer[t.locale] %}
-{% set homeUrl = "/" if isDemo else t.dir %}
-
-<footer class="footer inner">
-  <div class="footer__wrap">
-    <div class="footer__top">
-      <div class="footer__top-left">
-        <a href="{{ homeUrl }}" class="footer__logo" aria-label="Pixtoon">
-          <object type="image/svg+xml" data="/assets/img/logo.svg"></object>
+<footer class="hyb-footer">
+  <div class="hyb-footer__inner">
+    <div class="hyb-footer__grid">
+      <div class="hyb-footer__brand">
+        <a href="{{ t.dir }}" class="hyb-footer__logo" aria-label="Pixtoon">
+          <object type="image/svg+xml" data="/assets/img/logo.svg" tabindex="-1" aria-hidden="true"></object>
         </a>
-        <div class="footer__description">{{ f.description }}</div>
-      </div>
-
-      <div class="footer__top-center">
-        <nav class="footer__nav">
-          <ul class="footer__items">
-            <li class="footer__item">
-              <a href="{{ externalBase }}{{ t.navPaths.about | localeUrl(t) }}" class="footer__link">{{ t.nav.about }}</a>
-            </li>
-            <li class="footer__item">
-              <a href="{{ externalBase }}{{ t.navPaths.work | localeUrl(t) }}" class="footer__link">{{ t.nav.work }}</a>
-            </li>
-            <li class="footer__item">
-              <a href="{{ (site.hybridPath + '/') | localeUrl(t) }}" class="footer__link">{{ t.nav.hybrid }}</a>
-            </li>
-            <li class="footer__item">
-              <a href="{{ externalBase }}{{ t.navPaths.blog | localeUrl(t) }}" class="footer__link">{{ t.nav.blog }}</a>
-            </li>
-            <li class="footer__item">
-              <a href="{{ externalBase }}{{ t.navPaths.contact | localeUrl(t) }}" class="footer__link">{{ t.nav.contact }}</a>
-            </li>
-          </ul>
-        </nav>
-
-        <div class="footer__follow">
-          <div class="footer__follow-text">{{ f.followText | safe }}</div>
-          <ul class="footer__follow-items">
-            {% for s in site.social %}
-            <li class="footer__follow-item">
-              <a
-                href="{{ s.url }}"
-                target="_blank"
-                rel="noopener"
-                class="footer__follow-link footer__follow-link--{{ s.mod }}"
-                aria-label="{{ s.name }}"
-              ></a>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer__top-right">
-        <ul class="footer__contacts">
-          <li class="footer__contacts-item">
-            {{ f.callUs }}
-            <a href="{{ site.contacts.phoneHref }}" class="footer__contacts-phone">{{ site.contacts.phone }}</a>
+        <p class="hyb-footer__about">{{ f.description }}</p>
+        <ul class="hyb-footer__social">
+          {% for s in site.social %}
+          <li>
+            <a href="{{ s.url }}" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="{{ s.name }}">{{ s.short }}</a>
           </li>
-          <li class="footer__contacts-item">
-            {{ f.writeUs }}
-            <a href="mailto:{{ site.contacts.email }}" class="footer__contacts-email">{{ site.contacts.email }}</a>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div>
+        <span class="hyb-label hyb-footer__label">{{ f.navLabel }}</span>
+        <ul class="hyb-footer__links">
+          <li><a href="{{ t.navPaths.work | localeUrl(t) }}">{{ t.nav.work }}</a></li>
+          <li><a href="{{ t.navPaths.capabilities | localeUrl(t) }}">{{ t.nav.capabilities }}</a></li>
+          <li><a href="{{ (site.hybridPath + '/') | localeUrl(t) }}">{{ t.nav.hybrid }}</a></li>
+          <li><a href="{{ t.navPaths.studio | localeUrl(t) }}">{{ t.nav.studio }}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="hyb-label hyb-footer__label">{{ f.studioLabel }}</span>
+        <ul class="hyb-footer__links">
+          <li class="hyb-footer__contact">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 6.7c0 3.5-5 8.3-5 8.3S3 10.2 3 6.7a5 5 0 0 1 10 0Z"/><circle cx="8" cy="6.6" r="1.8"/></svg>
+            {{ site.contacts.city }}
+          </li>
+          <li class="hyb-footer__contact">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3.5" width="12" height="9" rx="1.5"/><path d="m2.5 4.5 5.5 4 5.5-4"/></svg>
+            <a href="mailto:{{ site.contacts.email }}">{{ site.contacts.email }}</a>
+          </li>
+          <li class="hyb-footer__contact">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4.2c0-.7.6-1.2 1.2-1.2h1.9c.5 0 1 .4 1.1.9l.5 2c.1.4 0 .9-.4 1.1l-1 .7a8.4 8.4 0 0 0 3.9 3.9l.7-1c.3-.3.7-.5 1.1-.4l2 .5c.5.1.9.6.9 1.1v1.9c0 .7-.6 1.2-1.2 1.2A11 11 0 0 1 3 4.2Z"/></svg>
+            <a href="{{ site.contacts.phoneHref }}">{{ site.contacts.phone }}</a>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="footer__bottom">
-      <div class="footer__bottom-left">
-        <div class="footer__copyright">{{ f.copyright }}</div>
-      </div>
-      <div class="footer__bottom-right"></div>
+    <div class="hyb-footer__bottom">
+      <p>{{ f.copyright }}</p>
+      <p>{{ f.tagline }}</p>
     </div>
   </div>
 </footer>

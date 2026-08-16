@@ -1,0 +1,21 @@
+{# «Мини-вселенная» — секция главной, переиспользуемая на /studio #}
+<section class="hyb-section hyb-section--alt" id="studio">
+  <div class="hyb-wrap">
+    {% if showHead %}
+    <div class="hyb-head hyb-head--mid hyb-reveal">
+      <span class="hyb-eyebrow">{{ t.studioStats.eyebrow }}</span>
+      {% title t.studioStats.title %}
+    </div>
+    {% endif %}
+
+    <div class="hyb-stats hyb-stats--four">
+      {% for s in t.studioStats.items %}
+      <div class="hyb-stat hyb-reveal">
+        <p class="hyb-stat__value hyb-stat__value--accent">{{ s.value }}</p>
+        <p class="hyb-stat__label">{{ s.label }}</p>
+        <p class="hyb-stat__text">{{ s.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

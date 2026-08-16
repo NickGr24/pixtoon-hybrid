@@ -1,6 +1,9 @@
 /**
  * Сборка CSS: модули из src/assets/css склеиваются в один dist/assets/css/hybrid.css.
  *
+ * Оболочка (shell.css) едет вместе со всем остальным: после смены дизайна
+ * шапка и футер стали нашими, а не темы сайта.
+ *
  * Никакого препроцессора — только конкатенация в заданном порядке. Причина:
  * файл едет в чужой проект на MODX, и разработчик Pixtoon должен уметь
  * открыть его и прочитать, а не искать сорсмапы. Модули существуют для нас,
@@ -8,7 +11,7 @@
  *
  * Порядок значим: токены объявляются раньше, чем к ним обращаются.
  */
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 
 const SRC = "src/assets/css";
 const OUT = "dist/assets/css";
@@ -16,6 +19,8 @@ const OUT = "dist/assets/css";
 const modules = [
   "tokens.css",
   "base.css",
+  "shell.css",
+  "sections-site.css",
   "sections-landing.css",
   "sections-case.css",
 ];
@@ -33,9 +38,5 @@ const css = modules
 
 writeFileSync(`${OUT}/hybrid.css`, header + css);
 
-// Оболочка для автономного просмотра — отдельным файлом, чтобы её было
-// легко не подключать на проде.
-copyFileSync(`${SRC}/theme-shell.css`, `${OUT}/theme-shell.css`);
-
 const kb = (Buffer.byteLength(header + css) / 1024).toFixed(1);
-console.log(`CSS собран: ${OUT}/hybrid.css (${kb} КБ) + theme-shell.css`);
+console.log(`CSS собран: ${OUT}/hybrid.css (${kb} КБ)`);

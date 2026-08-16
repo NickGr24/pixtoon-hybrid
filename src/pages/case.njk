@@ -39,6 +39,13 @@ eleventyComputed:
     <div class="hyb-wrap">
       <figure class="hyb-cs__media">
         <img src="{{ p.case.media.poster }}" alt="{{ c.title }}" fetchpriority="high" />
+        {#
+          Кнопка воспроизведения появляется только когда файл действительно
+          лежит на диске. Флаг hasVideo считается при сборке по факту наличия
+          файла: кнопка, которая ничего не запускает, хуже её отсутствия, а
+          браузер к тому же тянул несуществующий mp4 и получал 404.
+        #}
+        {% if p.case.media.hasVideo %}
         <video
           class="hyb-cs__video"
           data-src="{{ p.case.media.video | url }}"
@@ -50,6 +57,7 @@ eleventyComputed:
         <button class="hyb-cs__play" type="button" data-hyb-play aria-label="{{ cs.resultLead }}">
           <svg width="22" height="22" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7-4.5z"/></svg>
         </button>
+        {% endif %}
       </figure>
     </div>
   </header>

@@ -1,0 +1,36 @@
+{#
+  Витрина работ студии. Кадры чередуются формой и стороной: нечётные — круг
+  слева, чётные — скруглённый прямоугольник справа. Оба параметра идут из
+  данных (shape) и из позиции, а не из отдельных классов на каждый кейс.
+#}
+<section class="hyb-section" id="work">
+  <div class="hyb-wrap">
+    {% if showHead %}
+    <div class="hyb-head hyb-reveal">
+      <span class="hyb-eyebrow">{{ t.siteWork.eyebrow }}</span>
+      {% title t.siteWork.title %}
+    </div>
+    {% endif %}
+
+    <div class="hyb-showcase">
+      {% for c in siteCases.items %}
+      {% set cl = c | loc(t.locale) %}
+      <article class="hyb-show hyb-show--{{ 'left' if loop.index is odd else 'right' }} hyb-reveal">
+        <figure class="hyb-show__media hyb-show__media--{{ c.shape }}">
+          <img src="{{ c.media }}" alt="{{ cl.title }} — {{ cl.kicker }}" loading="lazy" />
+          <figcaption class="hyb-tag hyb-tag--gold">{{ cl.tag }}</figcaption>
+        </figure>
+        <div class="hyb-show__body">
+          <p class="hyb-show__kicker">{{ cl.kicker }}</p>
+          <h3 class="hyb-show__title">{{ cl.title }}</h3>
+          <p class="hyb-show__text">{{ cl.excerpt }}</p>
+          <a href="{{ (site.hybridPath + '/') | localeUrl(t) }}#start" class="hyb-link">
+            {{ t.siteWork.viewCase }}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
