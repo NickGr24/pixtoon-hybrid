@@ -52,9 +52,9 @@
   <a class="hyb-skip" href="#main">{{ "Skip to content" if t.lang == "en" else "Sari la conținut" }}</a>
 
   {#
-    Плашка только для демо-сборки: в ней существует один раздел, остальные
-    пункты меню уводят на живой pixtoon.com. Стили инлайн — в прод-CSS этому
-    блоку делать нечего.
+    Плашка только для демо-сборки: предупреждает, что на постерах ещё не
+    опубликованные работы клиента, поэтому сборка закрыта от индексации.
+    Стили инлайн — в прод-CSS этому блоку делать нечего.
   #}
   {% if isDemo %}
   <style>
@@ -71,11 +71,13 @@
   </style>
   <div class="hyb-demobar">
     {% if t.lang == "en" %}
-      <b>Demo build</b> — only the Hybrid Production section is built here.
-      Other menu items open the live <a href="https://pixtoon.com/">pixtoon.com</a>.
+      <b>Demo build</b> — a preview of the new site. Posters show client work
+      that is not published yet, so this build is closed to search engines.
+      Live site: <a href="https://pixtoon.com/">pixtoon.com</a>.
     {% else %}
-      <b>Versiune demo</b> — aici este construită doar secțiunea Producție hibridă.
-      Celelalte linkuri duc la <a href="https://pixtoon.com/ro/">pixtoon.com</a>.
+      <b>Versiune demo</b> — o previzualizare a noului site. Posterele conțin
+      lucrări nepublicate încă, de aceea versiunea este închisă motoarelor de căutare.
+      Site-ul live: <a href="https://pixtoon.com/ro/">pixtoon.com</a>.
     {% endif %}
   </div>
   {% endif %}
