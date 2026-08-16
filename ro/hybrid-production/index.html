@@ -24,16 +24,14 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap&subset=latin,latin-ext" rel="stylesheet">
-
-  
-  <link rel="stylesheet" href="/pixtoon-hybrid/assets/css/theme-shell.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@400;500;600;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
 
   
   <link rel="stylesheet" href="/pixtoon-hybrid/assets/css/hybrid.css">
 </head>
 
-<body class="hyb-page">
+
+<body class="hyb-page hyb-scope">
   <a class="hyb-skip" href="#main">Sari la conținut</a>
 
   
@@ -41,76 +39,63 @@
   <style>
     .hyb-demobar {
       padding: 0.625rem 1rem;
-      background: #231f29;
+      background: #231e29;
       color: #fff;
-      font-family: Poppins, system-ui, sans-serif;
+      font-family: Quicksand, system-ui, sans-serif;
       font-size: 0.8125rem;
       text-align: center;
     }
-    .hyb-demobar b { color: #fff028; font-weight: 600; }
+    .hyb-demobar b { color: #b99655; font-weight: 700; }
     .hyb-demobar a { color: #b9a4c9; }
   </style>
   <div class="hyb-demobar">
     
-      <b>Versiune demo</b> — aici este construită doar secțiunea Producție hibridă.
-      Celelalte linkuri duc la <a href="https://pixtoon.com/ro/">pixtoon.com</a>.
+      <b>Versiune demo</b> — o previzualizare a noului site. Posterele conțin
+      lucrări nepublicate încă, de aceea versiunea este închisă motoarelor de căutare.
+      Site-ul live: <a href="https://pixtoon.com/ro/">pixtoon.com</a>.
     
   </div>
   
 
   
-<header class="header">
-  <div class="inner">
-    <nav class="header-nav">
-      
-      
-      <a href="/pixtoon-hybrid/" class="header-nav__logo-mobile" aria-label="Pixtoon">
-        <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo-mobile.svg"></object>
-      </a>
+<header class="hyb-header" data-hyb-header="">
+  <div class="hyb-header__inner">
+    
+    <a href="/pixtoon-hybrid/" class="hyb-header__logo" aria-label="Pixtoon">
+      <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo.svg" tabindex="-1" aria-hidden="true"></object>
+    </a>
 
-      <button class="header-nav__burger" type="button" aria-expanded="false" aria-controls="hyb-nav" aria-label="Meniu">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="hyb-burger" type="button" aria-expanded="false" aria-controls="hyb-nav" aria-label="Meniu" data-hyb-burger="">
+      <span></span><span></span><span></span>
+    </button>
 
-      <ul class="header-nav__items" id="hyb-nav">
-        <li class="header-nav__item">
-          <a href="/pixtoon-hybrid/" class="header-nav__logo" aria-label="Pixtoon">
-            <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo.svg"></object>
-          </a>
+    <nav class="hyb-nav" id="hyb-nav">
+      <ul class="hyb-nav__items">
+        <li><a href="/pixtoon-hybrid/ro/work/" class="hyb-nav__link">Lucrări</a></li>
+        <li><a href="/pixtoon-hybrid/ro/capabilities/" class="hyb-nav__link">Capabilități</a></li>
+        <li>
+          
+          <a href="/pixtoon-hybrid/ro/hybrid-production/" class="hyb-nav__link is-current" aria-current="page">Producție hibridă</a>
         </li>
-        <li class="header-nav__item">
-          <a href="https://pixtoon.com/ro/despre-noi.html" class="header-nav__link">Despre noi</a>
-        </li>
-        <li class="header-nav__item">
-          <a href="https://pixtoon.com/ro/lucrări/" class="header-nav__link">Lucrări</a>
-        </li>
-
-        
-        <li class="header-nav__item">
-          <a href="/pixtoon-hybrid/ro/hybrid-production/" class="header-nav__link header-nav__link--hybrid is-current" aria-current="page">Producție hibridă</a>
-        </li>
-
-        <li class="header-nav__item">
-          <a href="https://pixtoon.com/ro/blog/" class="header-nav__link">Blog</a>
-        </li>
-        <li class="header-nav__item">
-          <a href="https://pixtoon.com/ro/contacts.html" class="header-nav__link">Contact</a>
-        </li>
-
-        
-        <li class="header-nav__item header-nav__item--lang">
-          <a href="/pixtoon-hybrid/hybrid-production/" class="header-nav__link" lang="en" hreflang="en">English</a>
-        </li>
+        <li><a href="/pixtoon-hybrid/ro/studio/" class="hyb-nav__link">Studio</a></li>
       </ul>
+
+      <div class="hyb-header__actions">
+        
+        <a href="/pixtoon-hybrid/hybrid-production/" class="hyb-nav__link hyb-nav__link--lang" lang="en" hreflang="en">English</a>
+
+        <a href="/pixtoon-hybrid/ro/hybrid-production/#start" class="hyb-btn hyb-btn--nav">
+          Pornește un proiect
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
     </nav>
   </div>
 </header>
 
 
-  
-  <main id="main" class="hyb-scope">
+  <main id="main">
     
-
 
 
 
@@ -133,65 +118,88 @@
       </div>
 
       
+      
       <div class="hyb-hero__visual">
-        <div class="hyb-mosaic">
+        <div class="hyb-collage">
           
           
-          <figure class="hyb-mosaic__item">
-            <img class="hyb-mosaic__media" src="/pixtoon-hybrid/assets/img/cases/drive-gas-poster.jpg" alt="Drive Gas — Hibrid AI / Personaj 3D / Produs / Mediu" loading="eager" fetchpriority="high">
-            <figcaption class="hyb-mosaic__label">Drive Gas</figcaption>
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--1">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/drive-gas.jpg" alt="Drive Gas — Hibrid AI / Personaj 3D / Produs / Mediu" style="object-position: 50% 50%" loading="eager" fetchpriority="high">
+            <figcaption class="hyb-tag hyb-tag--gold">Drive Gas</figcaption>
           </figure>
           
           
-          <figure class="hyb-mosaic__item">
-            <img class="hyb-mosaic__media" src="/pixtoon-hybrid/assets/img/cases/coccolino-poster.jpg" alt="Coccolino — Personaj AI / Comercial de produs" loading="lazy">
-            <figcaption class="hyb-mosaic__label">Coccolino</figcaption>
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--2">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/coccolino.jpg" alt="Coccolino — Personaj AI / Comercial de produs" style="object-position: 38% 50%" loading="lazy">
+            <figcaption class="hyb-tag hyb-tag--gold">Coccolino</figcaption>
           </figure>
           
           
-          <figure class="hyb-mosaic__item">
-            <img class="hyb-mosaic__media" src="/pixtoon-hybrid/assets/img/cases/medpark-poster.jpg" alt="Medpark — Doctor Buba — Serie animată AI / Personaje de brand" loading="lazy">
-            <figcaption class="hyb-mosaic__label">Medpark — Doctor Buba</figcaption>
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--3">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/medpark-doctor-buba.jpg" alt="Medpark — Doctor Buba — Seria animată AI / Personaje de brand" style="object-position: 50% 40%" loading="lazy">
+            <figcaption class="hyb-tag hyb-tag--gold">Medpark — Doctor Buba</figcaption>
           </figure>
           
           
-          <figure class="hyb-mosaic__item">
-            <img class="hyb-mosaic__media" src="/pixtoon-hybrid/assets/img/cases/bere-chisinau-poster.jpg" alt="Bere Chișinău — Comercial de produs AI" loading="lazy">
-            <figcaption class="hyb-mosaic__label">Bere Chișinău</figcaption>
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--4">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/bere-chisinau.jpg" alt="Berea Chișinău — Produs AI / Comercial de brand" style="object-position: 50% 40%" loading="lazy">
+            <figcaption class="hyb-tag hyb-tag--gold">Berea Chișinău</figcaption>
           </figure>
           
-        </div>
+          
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--5">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/microinvest-family.jpg" alt="Familia Microinvest — Personaje 3D rigate / Animație AI" style="object-position: 50% 45%" loading="lazy">
+            <figcaption class="hyb-tag hyb-tag--gold">Familia Microinvest</figcaption>
+          </figure>
+          
+          
 
-        <button class="hyb-showreel" type="button" data-hyb-showreel="">
-          <span class="hyb-showreel__icon" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"></path></svg>
-          </span>
-          Showreel hibrid
-        </button>
+          <button class="hyb-showreel" type="button" data-hyb-showreel="">
+            <span class="hyb-showreel__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"></path></svg>
+            </span>
+            Showreel hibrid
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 
-<section class="hyb-section hyb-section--alt" id="work">
+<section class="hyb-section" id="work">
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
       <span class="hyb-eyebrow">Lucrări hibride selectate</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Vindem</span> <span class="hyb-title__outline">rezultatul</span><span class="hyb-title__plain">, nu toolul.</span></h2>
+      <h2 class="hyb-title "><span class="hyb-title__plain">Vindem rezultatul,</span> <span class="hyb-title__outline">nu toolul.</span></h2>
     </div>
 
-    <div class="hyb-work__grid">
+    
+    <div class="hyb-work">
       
       
-      
-      <a class="hyb-case hyb-reveal" href="/pixtoon-hybrid/ro/hybrid-production/drive-gas/" data-hyb-hover-video="">
+      <a class="hyb-case hyb-case--1 hyb-reveal" href="/pixtoon-hybrid/ro/hybrid-production/drive-gas/" data-hyb-hover-video="">
         <div class="hyb-case__frame">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/drive-gas-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/drive-gas-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/drive-gas.jpg" alt="" style="object-position: 50% 50%" loading="lazy">
+          
         </div>
         <div class="hyb-case__body">
-          <p class="hyb-case__tags">01 — Hibrid AI / Personaj 3D / Produs / Mediu</p>
+          <span class="hyb-tag hyb-tag--glass">Hibrid AI / Personaj 3D / Produs / Mediu</span>
           <h3 class="hyb-case__title">Drive Gas</h3>
           <p class="hyb-case__excerpt">O lume 3D branduită și un comercial condus de personaje, creat printr-un pipeline hibrid AI + animație.</p>
           <span class="hyb-case__cta">
@@ -202,15 +210,15 @@
       </a>
       
       
-      <a class="hyb-case hyb-reveal" href="/pixtoon-hybrid/ro/hybrid-production/coccolino/" data-hyb-hover-video="">
+      <a class="hyb-case hyb-case--2 hyb-reveal" href="/pixtoon-hybrid/ro/hybrid-production/coccolino/" data-hyb-hover-video="">
         <div class="hyb-case__frame">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/coccolino-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/coccolino-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/coccolino.jpg" alt="" style="object-position: 38% 50%" loading="lazy">
+          
         </div>
         <div class="hyb-case__body">
-          <p class="hyb-case__tags">02 — Personaj AI / Comercial de produs</p>
+          <span class="hyb-tag hyb-tag--glass">Personaj AI / Comercial de produs</span>
           <h3 class="hyb-case__title">Coccolino</h3>
-          <p class="hyb-case__excerpt">Personaj și publicitate de produs asistate de AI, construite în universul de brand Coccolino deja existent.</p>
+          
           <span class="hyb-case__cta">
             Vezi case study
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -219,15 +227,49 @@
       </a>
       
       
-      <a class="hyb-case hyb-reveal" href="/pixtoon-hybrid/ro/hybrid-production/medpark-doctor-buba/" data-hyb-hover-video="">
+      <a class="hyb-case hyb-case--3 hyb-reveal" href="/pixtoon-hybrid/ro/hybrid-production/medpark-doctor-buba/" data-hyb-hover-video="">
         <div class="hyb-case__frame">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/medpark-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/medpark-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/medpark-doctor-buba.jpg" alt="" style="object-position: 50% 40%" loading="lazy">
+          
         </div>
         <div class="hyb-case__body">
-          <p class="hyb-case__tags">03 — Serie animată AI / Personaje de brand</p>
+          <span class="hyb-tag hyb-tag--glass">Seria animată AI / Personaje de brand</span>
           <h3 class="hyb-case__title">Medpark — Doctor Buba</h3>
-          <p class="hyb-case__excerpt">Un univers de conținut animat, construit în jurul personajelor Medpark.</p>
+          
+          <span class="hyb-case__cta">
+            Vezi case study
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+        </div>
+      </a>
+      
+      
+      <a class="hyb-case hyb-case--4 hyb-reveal" href="/pixtoon-hybrid/ro/hybrid-production/microinvest-family/" data-hyb-hover-video="">
+        <div class="hyb-case__frame">
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/microinvest-family.jpg" alt="" style="object-position: 50% 45%" loading="lazy">
+          
+        </div>
+        <div class="hyb-case__body">
+          <span class="hyb-tag hyb-tag--glass">Personaje 3D rigate / Animație AI</span>
+          <h3 class="hyb-case__title">Familia Microinvest</h3>
+          
+          <span class="hyb-case__cta">
+            Vezi case study
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+        </div>
+      </a>
+      
+      
+      <a class="hyb-case hyb-case--5 hyb-reveal" href="/pixtoon-hybrid/ro/hybrid-production/bere-chisinau/" data-hyb-hover-video="">
+        <div class="hyb-case__frame">
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/bere-chisinau.jpg" alt="" style="object-position: 50% 40%" loading="lazy">
+          
+        </div>
+        <div class="hyb-case__body">
+          <span class="hyb-tag hyb-tag--glass">Produs AI / Comercial de brand</span>
+          <h3 class="hyb-case__title">Berea Chișinău</h3>
+          
           <span class="hyb-case__cta">
             Vezi case study
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -240,77 +282,245 @@
 </section>
 
 
-<section class="hyb-section hyb-section--tight">
+<section class="hyb-section hyb-section--alt hyb-section--roomy" id="monthly">
   <div class="hyb-wrap">
-    <div class="hyb-more__head">
-      <div>
-        <span class="hyb-eyebrow">Mai multe lucrări hibride</span>
-        <h2 class="hyb-h3">Producții hibride recente.</h2>
+    <div class="hyb-head hyb-head--wide hyb-reveal">
+      <span class="hyb-eyebrow">Conținut hibrid lunar</span>
+      <h2 class="hyb-title "><span class="hyb-title__plain">Ai nevoie de conținut în fiecare lună?</span></h2>
+      <p class="hyb-subtitle">Echipa ta de producție de conținut AI. În fiecare lună.</p>
+      <p class="hyb-lead">Transformă o campanie, mascotă, produs sau univers de brand într-un flux continuu de conținut video. În loc să începi o producție nouă de la zero de fiecare dată, construim un sistem vizual pentru brand și continuăm să producem povești, situații și formate noi în fiecare lună.</p>
+    </div>
+
+    <div class="hyb-packages">
+      
+      <article class="hyb-package hyb-reveal">
+        <div class="hyb-package__head">
+          <p class="hyb-eyebrow hyb-eyebrow--gold hyb-package__label">Pachet lunar 01</p>
+          <p class="hyb-package__price">
+            €1.500<span class="hyb-package__per">/ lună</span>
+          </p>
+        </div>
+        <h3 class="hyb-package__title">2 videoclipuri hibride AI / 3D pe lună</h3>
+
+        
+        <div class="hyb-package__media" data-hyb-hover-video="">
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/coccolino.jpg" alt="Coccolino — conținut cu personaj" loading="lazy">
+          <span class="hyb-tag hyb-tag--gold hyb-package__tag">
+            <span aria-hidden="true">✦</span> Coccolino — conținut cu personaj
+          </span>
+          <span class="hyb-play" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"></path></svg>
+          </span>
+        </div>
+
+        <div class="hyb-package__cols">
+          <div>
+            <span class="hyb-label">Ideal pentru</span>
+            <ul class="hyb-checks">
+              <li class="hyb-checks__item">Mascote de brand</li><li class="hyb-checks__item">Conținut de produs</li><li class="hyb-checks__item">Conținut bazat pe personaje</li><li class="hyb-checks__item">Campanii social media</li><li class="hyb-checks__item">Povești de brand recurente</li>
+            </ul>
+          </div>
+          <div>
+            <span class="hyb-label">Include</span>
+            <ul class="hyb-checks">
+              <li class="hyb-checks__item">Concepte creative lunare</li><li class="hyb-checks__item">2 videoclipuri</li><li class="hyb-checks__item">Script</li><li class="hyb-checks__item">Dezvoltare vizuală</li><li class="hyb-checks__item">Producție AI</li><li class="hyb-checks__item">Animație</li><li class="hyb-checks__item">Editare</li><li class="hyb-checks__item">Voice-over unde e nevoie</li><li class="hyb-checks__item">Muzică &amp; sound design</li><li class="hyb-checks__item">Livrare finală</li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="#start" class="hyb-btn hyb-btn--dark">
+          Pornește planul lunar
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
+      
+      <article class="hyb-package hyb-reveal">
+        <div class="hyb-package__head">
+          <p class="hyb-eyebrow hyb-eyebrow--gold hyb-package__label">Pachet lunar 02</p>
+          <p class="hyb-package__price">
+            €2.000<span class="hyb-package__per">/ lună</span>
+          </p>
+        </div>
+        <h3 class="hyb-package__title">3 videoclipuri hibride / animație pe lună</h3>
+
+        
+        <div class="hyb-package__media" data-hyb-hover-video="">
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/doctor-buba-youtube.jpg" alt="Medpark — animație + AI" loading="lazy">
+          <span class="hyb-tag hyb-tag--gold hyb-package__tag">
+            <span aria-hidden="true">✦</span> Medpark — animație + AI
+          </span>
+          <span class="hyb-play" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"></path></svg>
+          </span>
+        </div>
+
+        <div class="hyb-package__cols">
+          <div>
+            <span class="hyb-label">Ideal pentru</span>
+            <ul class="hyb-checks">
+              <li class="hyb-checks__item">Conținut social regulat</li><li class="hyb-checks__item">Produse &amp; servicii</li><li class="hyb-checks__item">Campanii cu personaje animate</li><li class="hyb-checks__item">Reels / TikTok / Shorts</li><li class="hyb-checks__item">Animație + AI + motion graphics</li>
+            </ul>
+          </div>
+          <div>
+            <span class="hyb-label">Include</span>
+            <ul class="hyb-checks">
+              <li class="hyb-checks__item">Concepte de conținut lunare</li><li class="hyb-checks__item">3 videoclipuri</li><li class="hyb-checks__item">Animație</li><li class="hyb-checks__item">Editare</li><li class="hyb-checks__item">Elemente AI unde e util</li><li class="hyb-checks__item">Motion graphics</li><li class="hyb-checks__item">Sound design</li><li class="hyb-checks__item">Formate finale pentru social media</li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="#start" class="hyb-btn hyb-btn--dark">
+          Pornește planul lunar
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
+      
+    </div>
+
+    
+    <div class="hyb-custom hyb-invert hyb-reveal">
+      <div class="hyb-custom__media">
+        <img src="/pixtoon-hybrid/assets/img/cases/drive-gas.jpg" alt="" loading="lazy">
       </div>
-      <div class="hyb-more__nav">
-        <button class="hyb-more__btn" type="button" data-hyb-scroll="-1" aria-label="Proiectele precedente">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        </button>
-        <button class="hyb-more__btn" type="button" data-hyb-scroll="1" aria-label="Proiectele următoare">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        </button>
+      <div class="hyb-custom__body">
+        <p class="hyb-eyebrow hyb-eyebrow--gold">Producție lunară personalizată</p>
+        <h3 class="hyb-custom__title">Pentru branduri care au nevoie de un volum mai mare de conținut sau un sistem de producție personalizat.</h3>
+        <span class="hyb-label hyb-custom__kicker">Combinații posibile</span>
+        <ul class="hyb-chips">
+          <li class="hyb-chip">Video AI</li><li class="hyb-chip">Personaje 3D</li><li class="hyb-chip">Animație 2D</li><li class="hyb-chip">Live Action</li><li class="hyb-chip">Motion Graphics</li><li class="hyb-chip">Vizualizare de produs</li><li class="hyb-chip">VFX</li><li class="hyb-chip">Conținut Social Media</li>
+        </ul>
+        <a href="#start" class="hyb-btn hyb-btn--primary hyb-btn--sm">
+          Construiește-mi planul lunar
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
 
-    <div class="hyb-more__track" data-hyb-track="" tabindex="0">
-      
-      
-      <div class="hyb-more__item">
-        <div class="hyb-case" data-hyb-hover-video="">
-          <div class="hyb-case__frame" style="aspect-ratio:16/10">
-            <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/efes-poster.jpg" alt="" loading="lazy">
-            <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/efes-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-          </div>
-          <div class="hyb-case__body">
-            <p class="hyb-case__tags">Comercial de produs AI</p>
-            <h3 class="hyb-case__title">Efes</h3>
-          </div>
-        </div>
+    <div class="hyb-closing hyb-reveal">
+      <div>
+        <span class="hyb-eyebrow">Avantajul este continuitatea</span>
+        <h3 class="hyb-title "><span class="hyb-title__plain">Construiește lumea o dată.</span> <span class="hyb-title__outline">Spune mereu povești noi.</span></h3>
       </div>
-      
-      
-      <div class="hyb-more__item">
-        <div class="hyb-case" data-hyb-hover-video="">
-          <div class="hyb-case__frame" style="aspect-ratio:16/10">
-            <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/bere-chisinau-poster.jpg" alt="" loading="lazy">
-            <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/bere-chisinau-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-          </div>
-          <div class="hyb-case__body">
-            <p class="hyb-case__tags">Comercial de produs AI</p>
-            <h3 class="hyb-case__title">Bere Chișinău</h3>
-          </div>
-        </div>
+      <div>
+        <p class="hyb-closing__text">Avantajul producției lunare nu este pur și simplu „mai multe videoclipuri pentru mai puțini bani”. Este continuitate.</p>
+        <p class="hyb-closing__text">Odată ce Pixtoon dezvoltă lumea vizuală a brandului, personajele / mascota, stilul vizual, tonul și formatele recurente, putem continua să producem conținut nou mult mai rapid și să menținem un univers de brand consistent — lună de lună.</p>
       </div>
-      
-      
-      <div class="hyb-more__item">
-        <div class="hyb-case" data-hyb-hover-video="">
-          <div class="hyb-case__frame" style="aspect-ratio:16/10">
-            <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/medpark-diaspora-poster.jpg" alt="" loading="lazy">
-            <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/medpark-diaspora-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-          </div>
-          <div class="hyb-case__body">
-            <p class="hyb-case__tags">Comercial hibrid AI + 2D</p>
-            <h3 class="hyb-case__title">Medpark Diaspora</h3>
-          </div>
-        </div>
-      </div>
-      
     </div>
   </div>
 </section>
 
 
-<section class="hyb-section hyb-section--alt" id="how-it-works">
+<section class="hyb-section" id="microinvest">
   <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
+    <div class="hyb-head hyb-head--wide hyb-reveal">
+      <span class="hyb-eyebrow">Case study — Microinvest</span>
+      <h2 class="hyb-title "><span class="hyb-title__plain">Familia Microinvest.</span> <span class="hyb-title__outline">Construită clasic. Animată cu AI.</span></h2>
+      <p class="hyb-lead">Personajele Familiei Microinvest au fost create în metoda clasică 3D — modelate și rigate complet, gata de animație tradițională. Acum le animăm cu ajutorul instrumentelor AI, producând mult mai mult conținut, mult mai rapid, păstrând identitatea personajelor intactă.</p>
+    </div>
+
+    <div class="hyb-mi__top hyb-reveal">
+      <figure class="hyb-mi__hero">
+        <img src="/pixtoon-hybrid/assets/img/cases/microinvest-family.jpg" alt="Un univers de brand, viu" loading="lazy">
+        <figcaption>
+          <span class="hyb-tag hyb-tag--gold"><span aria-hidden="true">✦</span> Personaje 3D rigate + Animație AI</span>
+          <span class="hyb-mi__caption">Un univers de brand, viu</span>
+        </figcaption>
+      </figure>
+      <div class="hyb-mi__side">
+        <figure class="hyb-mi__tile">
+          <img src="/pixtoon-hybrid/assets/img/microinvest/branding.jpg" alt="Branding" loading="lazy">
+          <figcaption class="hyb-tag hyb-tag--light">Branding</figcaption>
+        </figure>
+        <figure class="hyb-mi__tile">
+          <img src="/pixtoon-hybrid/assets/img/microinvest/app-ui.jpg" alt="App UI" loading="lazy">
+          <figcaption class="hyb-tag hyb-tag--light">App UI</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    
+    <div class="hyb-mi__portraits hyb-reveal">
+      
+      
+      <figure class="hyb-mi__portrait">
+        <img src="/pixtoon-hybrid/assets/img/microinvest/mama.jpg" alt="Mama" loading="lazy">
+        <figcaption>Mama</figcaption>
+      </figure>
+      
+      <figure class="hyb-mi__portrait">
+        <img src="/pixtoon-hybrid/assets/img/microinvest/fiica.jpg" alt="Fiica" loading="lazy">
+        <figcaption>Fiica</figcaption>
+      </figure>
+      
+      <figure class="hyb-mi__portrait">
+        <img src="/pixtoon-hybrid/assets/img/microinvest/tatal.jpg" alt="Tatăl" loading="lazy">
+        <figcaption>Tatăl</figcaption>
+      </figure>
+      
+      <figure class="hyb-mi__portrait">
+        <img src="/pixtoon-hybrid/assets/img/microinvest/mama-bucatarie.jpg" alt="Mama — bucătărie" loading="lazy">
+        <figcaption>Mama — bucătărie</figcaption>
+      </figure>
+      
+    </div>
+
+    <div class="hyb-mi__features hyb-reveal">
+      
+      <div class="hyb-feature">
+        <span class="hyb-feature__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="6" r="3"></circle><path d="M2 17c0-2.8 2.2-5 5-5s5 2.2 5 5"></path><path d="M14 4.5a3 3 0 0 1 0 5.8M16 13.5c1.4.9 2.3 2.4 2.3 4"></path>
+          </svg>
+        </span>
+        <h3 class="hyb-feature__title">Personaje construite clasic</h3>
+        <p class="hyb-feature__text">Familia Microinvest — modelată și rigată 3D în metoda tradițională, cu controllere complete de animație.</p>
+      </div>
+      
+      <div class="hyb-feature">
+        <span class="hyb-feature__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="6" r="3"></circle><path d="M2 17c0-2.8 2.2-5 5-5s5 2.2 5 5"></path><path d="M14 4.5a3 3 0 0 1 0 5.8M16 13.5c1.4.9 2.3 2.4 2.3 4"></path>
+          </svg>
+        </span>
+        <h3 class="hyb-feature__title">Animație accelerată cu AI</h3>
+        <p class="hyb-feature__text">Acum animăm aceste personaje cu instrumente AI — mult mai rapid, mult mai mult conținut, fără a pierde identitatea.</p>
+      </div>
+      
+      <div class="hyb-feature">
+        <span class="hyb-feature__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="6" r="3"></circle><path d="M2 17c0-2.8 2.2-5 5-5s5 2.2 5 5"></path><path d="M14 4.5a3 3 0 0 1 0 5.8M16 13.5c1.4.9 2.3 2.4 2.3 4"></path>
+          </svg>
+        </span>
+        <h3 class="hyb-feature__title">Volum de conținut</h3>
+        <p class="hyb-feature__text">Reel-uri, spoturi sociale, scene de brand — un univers de personaj pe care îl putem extinde continuu.</p>
+      </div>
+      
+    </div>
+
+    <div class="hyb-mi__why hyb-reveal">
+      <div>
+        <span class="hyb-eyebrow">De ce funcționează</span>
+        <h3 class="hyb-title "><span class="hyb-title__plain">Rig clasic + Animație AI =</span> <span class="hyb-title__outline">scalabilitate reală</span></h3>
+      </div>
+      <div>
+        <p class="hyb-closing__text">Personajele construite clasic — cu rig complet, expresii și controllere — au o identitate și o consistență pe care AI-ul singur nu o poate reproduce.</p>
+        <p class="hyb-closing__text">Combinând această bază cu animație AI, producem scene noi, reacții, mișcări și povești într-un ritm care nu ar fi posibil prin animație tradițională singură.</p>
+        <a href="#start" class="hyb-link hyb-link--accent">
+          Vezi cum putem face asta pentru brandul tău
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hyb-section" id="how-it-works">
+  <div class="hyb-wrap">
+    <div class="hyb-head hyb-head--mid hyb-reveal">
       <span class="hyb-eyebrow">Cum funcționează producția hibridă</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">AI face parte din pipeline.</span> <span class="hyb-title__outline">Nu e regizorul.</span></h2>
+      <h2 class="hyb-title "><span class="hyb-title__plain">AI face parte din pipeline.</span> <span class="hyb-title__outline">Nu e regizorul.</span></h2>
       <p class="hyb-lead">Combinăm producția creativă tradițională cu cele mai noi tooluri AI pentru a produce conținut comercial de înaltă calitate mai rapid și mai eficient.</p>
     </div>
 
@@ -343,7 +553,7 @@
       <li class="hyb-step hyb-reveal">
         <span class="hyb-step__n" aria-hidden="true">05</span>
         <h3 class="hyb-step__title">Livrare</h3>
-        <p class="hyb-step__text">Video final livrat pentru social media, digital ads, YouTube, TV și DOOH.</p>
+        <p class="hyb-step__text">Video final livrat pentru Social, Digital Ads, YouTube, TV și DOOH.</p>
       </li>
       
     </ol>
@@ -351,55 +561,45 @@
 </section>
 
 
-<section class="hyb-section">
+<section class="hyb-section hyb-section--alt">
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
       <span class="hyb-eyebrow">De ce hibrid?</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Idei mai mari.</span> <span class="hyb-title__outline">Producții</span> <span class="hyb-title__plain">mai mici.</span></h2>
+      <h2 class="hyb-title "><span class="hyb-title__plain">Cifrele vorbesc.</span></h2>
     </div>
 
-    <div class="hyb-why">
+    <div class="hyb-stats">
       
       <div class="hyb-stat hyb-reveal">
-        <p class="hyb-stat__kicker">3 zile</p>
-        <p class="hyb-stat__text">Producția poate fi finalizată dramatic mai repede decât o producție tradițională.</p>
+        <p class="hyb-stat__value">3 ZILE</p>
+        <p class="hyb-stat__label">Timp de producție</p>
+        <p class="hyb-stat__text">De la brief la video final, semnificativ mai rapid decât producția tradițională.</p>
       </div>
       
       <div class="hyb-stat hyb-reveal">
-        <p class="hyb-stat__kicker">De la €1.000</p>
-        <p class="hyb-stat__text">Preț de pornire pentru un video hibrid de 20 de secunde.</p>
+        <p class="hyb-stat__value">DE LA €1K</p>
+        <p class="hyb-stat__label">Preț de start</p>
+        <p class="hyb-stat__text">Pentru un comercial hibrid de 20 sec. Scalabil la orice format.</p>
       </div>
       
       <div class="hyb-stat hyb-reveal">
-        <p class="hyb-stat__kicker">Fără filmare tradițională</p>
-        <p class="hyb-stat__text">Multe concepte pot fi produse fără locații, actori, decoruri fizice sau echipe mari.</p>
+        <p class="hyb-stat__value">FĂRĂ FILMARE</p>
+        <p class="hyb-stat__label">Necesar</p>
+        <p class="hyb-stat__text">Creezi lumi, personaje și situații fără locații, actori sau echipe.</p>
       </div>
       
       <div class="hyb-stat hyb-reveal">
-        <p class="hyb-stat__kicker">Lumi creative nelimitate</p>
-        <p class="hyb-stat__text">Creăm personaje, medii și situații care ar fi scumpe sau imposibil de filmat tradițional.</p>
+        <p class="hyb-stat__value">∞ LUMI</p>
+        <p class="hyb-stat__label">Gama creativă</p>
+        <p class="hyb-stat__text">AI + 2D + 3D + VFX + Motion Graphics + Live Action — orice are nevoie ideea.</p>
       </div>
       
     </div>
 
     <div class="hyb-techniques hyb-reveal">
-      <h3 class="hyb-techniques__kicker">Hibrid, nu doar AI</h3>
+      <h3 class="hyb-techniques__kicker">Hibrid, nu doar AI.</h3>
       <ul class="hyb-chips">
-        
-        <li class="hyb-chip">AI</li>
-        
-        <li class="hyb-chip">Animație 2D</li>
-        
-        <li class="hyb-chip">Animație 3D</li>
-        
-        <li class="hyb-chip">Motion Graphics</li>
-        
-        <li class="hyb-chip">Live Action</li>
-        
-        <li class="hyb-chip">VFX</li>
-        
-        <li class="hyb-chip">Post-producție</li>
-        
+        <li class="hyb-chip">AI</li><li class="hyb-chip">Animație 2D</li><li class="hyb-chip">Animație 3D</li><li class="hyb-chip">Motion Graphics</li><li class="hyb-chip">Live Action</li><li class="hyb-chip">VFX</li><li class="hyb-chip">Post-producție</li>
       </ul>
       <p class="hyb-techniques__text">Combinăm orice are nevoie ideea de fapt.</p>
     </div>
@@ -407,12 +607,12 @@
 </section>
 
 
-<section class="hyb-section hyb-section--alt">
+<section class="hyb-section">
   <div class="hyb-wrap">
     <div class="hyb-included">
       <div class="hyb-reveal">
         <span class="hyb-eyebrow">Ce este inclus</span>
-        <h2 class="hyb-title "><span class="hyb-title__plain">Tot ce ai nevoie.</span> <span class="hyb-title__outline">O echipă</span> <span class="hyb-title__plain">de producție.</span></h2>
+        <h2 class="hyb-title "><span class="hyb-title__plain">Tot ce ai nevoie.</span> <span class="hyb-title__outline">O echipă de producție.</span></h2>
         <p class="hyb-lead">De la primul brief la master final — fără intermediari, fără predări, fără surprize.</p>
       </div>
 
@@ -452,154 +652,23 @@
 </section>
 
 
-<section class="hyb-section" id="monthly">
-  <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">Ai nevoie de conținut în fiecare lună?</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Echipa ta de producție AI.</span> <span class="hyb-title__outline">În fiecare</span> <span class="hyb-title__plain">lună.</span></h2>
-      <p class="hyb-lead">Transformă o campanie, o mascotă, un produs sau un univers de brand într-un flux continuu de conținut video. În loc să pornim de la zero de fiecare dată, construim un sistem vizual pentru brand și continuăm să producem povești, situații și formate noi în fiecare lună.</p>
-    </div>
-
-    <div class="hyb-packages">
-      
-      
-      <article class="hyb-package hyb-reveal">
-        
-        <div class="hyb-package__media" data-hyb-hover-video="">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/coccolino-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/coccolino-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-        </div>
-        <div class="hyb-package__body">
-          <p class="hyb-package__label">Pachet lunar 01</p>
-          <h3 class="hyb-package__title">2 video-uri hibride AI / 3D pe lună</h3>
-          <p class="hyb-package__price">
-            €1.500<span class="hyb-package__per">/ lună</span>
-          </p>
-          <p class="hyb-package__ideal">Ideal pentru mascote de brand, conținut de produs, conținut bazat pe personaje, campanii social media și povești de brand recurente.</p>
-          <ul class="hyb-package__items">
-            
-            <li class="hyb-package__item">Concepte creative lunare</li>
-            
-            <li class="hyb-package__item">2 video-uri</li>
-            
-            <li class="hyb-package__item">Script</li>
-            
-            <li class="hyb-package__item">Dezvoltare vizuală</li>
-            
-            <li class="hyb-package__item">Producție AI</li>
-            
-            <li class="hyb-package__item">Animație</li>
-            
-            <li class="hyb-package__item">Editare</li>
-            
-            <li class="hyb-package__item">Voice-over unde e nevoie</li>
-            
-            <li class="hyb-package__item">Muzică &amp; sound design</li>
-            
-            <li class="hyb-package__item">Livrare finală</li>
-            
-          </ul>
-        </div>
-      </article>
-      
-      
-      <article class="hyb-package hyb-reveal">
-        
-        <div class="hyb-package__media" data-hyb-hover-video="">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/medpark-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/medpark-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-        </div>
-        <div class="hyb-package__body">
-          <p class="hyb-package__label">Pachet lunar 02</p>
-          <h3 class="hyb-package__title">4 video-uri hibride / filmate pe lună</h3>
-          <p class="hyb-package__price">
-            €2.000<span class="hyb-package__per">/ lună</span>
-          </p>
-          <p class="hyb-package__ideal">Ideal pentru conținut social regulat, produse și servicii, campanii cu oameni reali, Reels / TikTok / Shorts, filmare + AI + motion graphics.</p>
-          <ul class="hyb-package__items">
-            
-            <li class="hyb-package__item">Concepte de conținut lunare</li>
-            
-            <li class="hyb-package__item">4 video-uri</li>
-            
-            <li class="hyb-package__item">Filmare</li>
-            
-            <li class="hyb-package__item">Editare</li>
-            
-            <li class="hyb-package__item">Elemente AI unde sunt utile</li>
-            
-            <li class="hyb-package__item">Motion graphics</li>
-            
-            <li class="hyb-package__item">Sound design</li>
-            
-            <li class="hyb-package__item">Formate finale pentru social media</li>
-            
-          </ul>
-        </div>
-      </article>
-      
-    </div>
-
-    <div class="hyb-custom hyb-reveal">
-      <div class="hyb-custom__grid">
-        <div>
-          <p class="hyb-package__label">Producție lunară personalizată</p>
-          <h3 class="hyb-package__title">Pentru brandurile care au nevoie de volum mai mare de conținut sau de un sistem de producție propriu.</h3>
-          <ul class="hyb-chips" style="margin-top:1.25rem">
-            
-            <li class="hyb-chip">Video AI</li>
-            
-            <li class="hyb-chip">Personaje 3D</li>
-            
-            <li class="hyb-chip">Animație 2D</li>
-            
-            <li class="hyb-chip">Live Action</li>
-            
-            <li class="hyb-chip">Motion Graphics</li>
-            
-            <li class="hyb-chip">Vizualizare de produs</li>
-            
-            <li class="hyb-chip">VFX</li>
-            
-            <li class="hyb-chip">Conținut social media</li>
-            
-          </ul>
-        </div>
-        <a href="#start" class="hyb-btn hyb-btn--primary">
-          Construiește-mi planul lunar
-          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="hyb-closing hyb-reveal">
-      <div><h3 class="hyb-title "><span class="hyb-title__plain">Construim lumea o dată.</span> <span class="hyb-title__outline">Spunem</span> <span class="hyb-title__plain">povești noi la nesfârșit.</span></h3></div>
-      <div>
-        <p class="hyb-closing__text hyb-lead">Creăm sistemul vizual o singură dată și îl folosim pentru a produce conținut nou lună de lună. Avantajul este continuitatea, nu pur și simplu mai multe video-uri pentru mai puțini bani.</p>
-        <p class="hyb-closing__text hyb-lead">Odată ce Pixtoon dezvoltă lumea vizuală a brandului, personajele, stilul vizual, tonul și formatele recurente, conținutul nou poate fi produs mai rapid, păstrând un univers de brand consecvent.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section class="hyb-section hyb-section--alt">
   <div class="hyb-wrap">
-    <div class="hyb-price hyb-invert hyb-reveal">
-      <span class="hyb-eyebrow hyb-price__eyebrow">Preț</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Un comercial în zile,</span> <span class="hyb-title__outline">nu</span> <span class="hyb-title__plain">în săptămâni.</span></h2>
+    <div class="hyb-price hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--gold">Preț</span>
+      <h2 class="hyb-title "><span class="hyb-title__plain">Un comercial în zile,</span> <span class="hyb-title__outline">nu în săptămâni.</span></h2>
 
       <div class="hyb-price__stats">
         
         
         <div class="hyb-price__stat">
-          <p class="hyb-price__value">De la €1K</p>
+          <p class="hyb-price__value">DE LA €1K</p>
           <p class="hyb-price__label">per comercial de 20 sec</p>
         </div>
         
         <div class="hyb-price__divider" aria-hidden="true"></div>
         <div class="hyb-price__stat">
-          <p class="hyb-price__value">3 zile</p>
+          <p class="hyb-price__value">3 ZILE</p>
           <p class="hyb-price__label">timp de producție</p>
         </div>
         
@@ -622,7 +691,7 @@
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
       <span class="hyb-eyebrow">Hai să facem ceva</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Pe care oamenii chiar</span> <span class="hyb-title__outline">vor</span> <span class="hyb-title__plain">să-l urmărească.</span></h2>
+      <h2 class="hyb-title "><span class="hyb-title__plain">Pe care oamenii chiar</span> <span class="hyb-title__outline">vor să-l urmărească.</span></h2>
     </div>
     <p class="hyb-lead hyb-reveal">Spune-ne ce vrei să promovezi. Îți recomandăm cea mai deșteaptă metodă de a produce.</p>
     <div class="hyb-actions hyb-reveal">
@@ -630,7 +699,7 @@
         Pornește un proiect
         <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
       </a>
-      <a href="tel:+37378555333" class="hyb-btn hyb-btn--ghost">Programează un apel gratuit</a>
+      <a href="mailto:hello@pixtoon.com" class="hyb-btn hyb-btn--ghost">Programează un apel gratuit</a>
     </div>
   </div>
 </section>
@@ -639,86 +708,71 @@
 
   
 
-
-
-<footer class="footer inner">
-  <div class="footer__wrap">
-    <div class="footer__top">
-      <div class="footer__top-left">
-        <a href="/pixtoon-hybrid/" class="footer__logo" aria-label="Pixtoon">
-          <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo.svg"></object>
+<footer class="hyb-footer">
+  <div class="hyb-footer__inner">
+    <div class="hyb-footer__grid">
+      <div class="hyb-footer__brand">
+        <a href="/pixtoon-hybrid/ro/" class="hyb-footer__logo" aria-label="Pixtoon">
+          <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo.svg" tabindex="-1" aria-hidden="true"></object>
         </a>
-        <div class="footer__description">Suntem un studio progresiv de animație și VFX; creăm comerciale și desene animate.</div>
-      </div>
-
-      <div class="footer__top-center">
-        <nav class="footer__nav">
-          <ul class="footer__items">
-            <li class="footer__item">
-              <a href="https://pixtoon.com/ro/despre-noi.html" class="footer__link">Despre noi</a>
-            </li>
-            <li class="footer__item">
-              <a href="https://pixtoon.com/ro/lucrări/" class="footer__link">Lucrări</a>
-            </li>
-            <li class="footer__item">
-              <a href="/pixtoon-hybrid/ro/hybrid-production/" class="footer__link">Producție hibridă</a>
-            </li>
-            <li class="footer__item">
-              <a href="https://pixtoon.com/ro/blog/" class="footer__link">Blog</a>
-            </li>
-            <li class="footer__item">
-              <a href="https://pixtoon.com/ro/contacts.html" class="footer__link">Contact</a>
-            </li>
-          </ul>
-        </nav>
-
-        <div class="footer__follow">
-          <div class="footer__follow-text">Creăm conținut cool<br>Urmărește-ne</div>
-          <ul class="footer__follow-items">
-            
-            <li class="footer__follow-item">
-              <a href="https://www.tiktok.com/@pixtoon.com" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--tik" aria-label="TikTok"></a>
-            </li>
-            
-            <li class="footer__follow-item">
-              <a href="https://www.behance.net/denissimonov" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--be" aria-label="Behance"></a>
-            </li>
-            
-            <li class="footer__follow-item">
-              <a href="https://www.linkedin.com/company/pixtoon-studio" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--in" aria-label="LinkedIn"></a>
-            </li>
-            
-            <li class="footer__follow-item">
-              <a href="https://www.facebook.com/Pixtoonstudio" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--fb" aria-label="Facebook"></a>
-            </li>
-            
-            <li class="footer__follow-item">
-              <a href="https://www.instagram.com/pixtoonstudio/" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--inst" aria-label="Instagram"></a>
-            </li>
-            
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer__top-right">
-        <ul class="footer__contacts">
-          <li class="footer__contacts-item">
-            Sună-ne
-            <a href="tel:+37378555333" class="footer__contacts-phone">+ (373) 78 555 333</a>
+        <p class="hyb-footer__about">Suntem un studio progresiv de animație și VFX; creăm comerciale și desene animate.</p>
+        <ul class="hyb-footer__social">
+          
+          <li>
+            <a href="https://www.tiktok.com/@pixtoon.com" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="TikTok">TT</a>
           </li>
-          <li class="footer__contacts-item">
-            Scrie-ne
-            <a href="mailto:hello@pixtoon.com" class="footer__contacts-email">hello@pixtoon.com</a>
+          
+          <li>
+            <a href="https://www.behance.net/denissimonov" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="Behance">Be</a>
+          </li>
+          
+          <li>
+            <a href="https://www.linkedin.com/company/pixtoon-studio" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="LinkedIn">In</a>
+          </li>
+          
+          <li>
+            <a href="https://www.facebook.com/Pixtoonstudio" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="Facebook">Fb</a>
+          </li>
+          
+          <li>
+            <a href="https://www.instagram.com/pixtoonstudio/" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="Instagram">Ig</a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div>
+        <span class="hyb-label hyb-footer__label">Navigare</span>
+        <ul class="hyb-footer__links">
+          <li><a href="/pixtoon-hybrid/ro/work/">Lucrări</a></li>
+          <li><a href="/pixtoon-hybrid/ro/capabilities/">Capabilități</a></li>
+          <li><a href="/pixtoon-hybrid/ro/hybrid-production/">Producție hibridă</a></li>
+          <li><a href="/pixtoon-hybrid/ro/studio/">Studio</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="hyb-label hyb-footer__label">Studio</span>
+        <ul class="hyb-footer__links">
+          <li class="hyb-footer__contact">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 6.7c0 3.5-5 8.3-5 8.3S3 10.2 3 6.7a5 5 0 0 1 10 0Z"></path><circle cx="8" cy="6.6" r="1.8"></circle></svg>
+            Chișinău, Moldova
+          </li>
+          <li class="hyb-footer__contact">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3.5" width="12" height="9" rx="1.5"></rect><path d="m2.5 4.5 5.5 4 5.5-4"></path></svg>
+            <a href="mailto:hello@pixtoon.com">hello@pixtoon.com</a>
+          </li>
+          <li class="hyb-footer__contact">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4.2c0-.7.6-1.2 1.2-1.2h1.9c.5 0 1 .4 1.1.9l.5 2c.1.4 0 .9-.4 1.1l-1 .7a8.4 8.4 0 0 0 3.9 3.9l.7-1c.3-.3.7-.5 1.1-.4l2 .5c.5.1.9.6.9 1.1v1.9c0 .7-.6 1.2-1.2 1.2A11 11 0 0 1 3 4.2Z"></path></svg>
+            <a href="tel:+37378555333">+ (373) 78 555 333</a>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="footer__bottom">
-      <div class="footer__bottom-left">
-        <div class="footer__copyright">© Copyright 2026, Toate drepturile rezervate</div>
-      </div>
-      <div class="footer__bottom-right"></div>
+    <div class="hyb-footer__bottom">
+      <p>© Copyright 2026, Toate drepturile rezervate</p>
+      <p>Făcut cu mișcare în Chișinău.</p>
     </div>
   </div>
 </footer>

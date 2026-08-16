@@ -1,98 +1,143 @@
 /*! Pixtoon — Hybrid Production
  * Стили раздела. Всё под .hyb-scope: тема сайта не затрагивается.
- * Собрано из: tokens.css, base.css, sections-landing.css, sections-case.css
+ * Собрано из: tokens.css, base.css, shell.css, sections-site.css, sections-landing.css, sections-case.css
  */
 
 /* ===== tokens.css ===== */
 /* ==========================================================================
-   Pixtoon Hybrid Production — design tokens
+   Pixtoon — design tokens
    --------------------------------------------------------------------------
-   Всё живёт внутри .hyb-scope, чтобы не пересекаться со 140-КБ монолитом
-   основной темы (assets/css/main_update.min.css). Ни одного глобального
-   селектора: тема сайта остаётся нетронутой.
+   Значения не придуманы и не срисованы на глаз: они сняты с живого макета
+   base44 через CDP — вычисленные стили всех видимых элементов сгруппированы
+   по ролям. Поэтому здесь стоят ровно те числа, которые отдаёт браузер на
+   макете при вьюпорте 1440.
 
-   Формула айдентики (ТЗ, раздел 2): ~70% существующего Pixtoon + 30% Hybrid.
-   Жёлтый CTA и Poppins — от pixtoon.com. Мов, outline-слова и Baloo 2 —
-   новая линия Hybrid.
+   Всё живёт внутри .hyb-scope. Раньше класс висел на <main>, потому что
+   раздел встраивался в чужую тему; теперь наши и шапка, и футер, поэтому
+   область переехала на <body> — иначе оболочка осталась бы без токенов.
    ========================================================================== */
 
 .hyb-scope {
   /* --- Цвет ---------------------------------------------------------- */
 
-  /* Pixtoon: главная кнопка сайта. Узнаваемость важнее моды. */
-  --hyb-cta: #fff028;
-  --hyb-cta-ink: #231f29;
-  --hyb-cta-hover: #ffe600;
-
-  /* Hybrid: акцент нового раздела — outline-слова, крупные цифры, ховеры */
-  --hyb-accent: #8b6fa3;
+  /*
+    Сиреневый — главный акцент макета: заливка кнопок, обводка outline-слов,
+    цены, номера шагов.
+  */
+  --hyb-accent: #8f71a8;
   --hyb-accent-soft: #b9a4c9;
-  --hyb-accent-wash: #f4f1f6;
+  --hyb-accent-wash: #f5f1f8;
 
   /*
-    Тот же акцент, затемнённый для мелкого текста. Исходный #8b6fa3 даёт
-    4.29:1 на белом и 3.83:1 на лавандовом фоне — ниже нормы 4.5:1 для
-    текста меньше 18px, а эйброу набраны 12-м кеглем.
-    Этот вариант: 5.41:1 на белом, 4.84:1 на лаванде.
-    Крупные элементы (outline-заголовки, цифры пакетов) остаются на
-    --hyb-accent: там достаточно 3:1, и айдентика base44 не уезжает.
+    Тот же сиреневый, затемнённый для мелкого текста. Исходный даёт 3.68:1 на
+    лавандовом фоне при норме 4.5:1 для кегля меньше 18px, а эйброу набраны
+    12-м. Этот вариант: 5.04:1 на белом, 4.50:1 на лаванде.
+    Крупные элементы (outline-заголовки, цены, цифры) остаются на --hyb-accent:
+    там достаточно 3:1, и айдентика макета не уезжает.
   */
-  --hyb-accent-text: #7a5f92;
-
-  /* Оливково-золотой. Только микрометки: PREȚ, лейблы пакетов, буллеты.
-     В кнопках не используется — конфликтует с жёлтым CTA. */
-  --hyb-gold: #b69a54;
+  --hyb-accent-text: #83619e;
 
   /*
-    Золото для текста на светлом фоне. Исходное #b69a54 даёт там 2.42:1 —
-    вдвое ниже нормы, а метки набраны 12-м кеглем капсом с разрядкой, то есть
-    в самом трудном для чтения виде. Этот вариант: 4.69:1 на лаванде,
-    5.25:1 на белом.
-    Исходное золото остаётся на тёмном блоке (там 5.96:1) и на декоративных
-    буллетах, которые не несут текста.
+    Иерархия кнопок в макете — четыре роли, и главная из них золотая, а не
+    сиреневая. Сиреневый занят ровно одним элементом: CTA в шапке. По
+    скриншотам это прочесть было нельзя — в кадры попадали только шапка и
+    карточки пакетов.
+
+      золото  → главный призыв в контенте (герой, цена, кастомный пакет)
+      сиреневый → CTA в шапке
+      тёмная  → выбор пакета внутри карточки
+      призрак → вторичное действие, обводка 2px
+
+    Золото унаследовало роль прежнего жёлтого #fff028 с pixtoon.com.
   */
-  --hyb-gold-text: #816934;
+  --hyb-cta: #b99655;
+  --hyb-cta-ink: #231e29;
+  --hyb-cta-hover: #a8863f;
+
+  /* CTA шапки. Отличается от --hyb-accent на 6–8 единиц канала: белый текст
+     14px на исходном #8f71a8 даёт 4.12:1 при норме 4.5, здесь 4.55:1.
+     На глаз неотличимо, инструментально — разные классы соответствия. */
+  --hyb-nav-cta: #8969a3;
+  --hyb-nav-cta-ink: #ffffff;
+  --hyb-nav-cta-hover: #7a5c93;
+
+  /* Золото: метки на кадрах, эйброу пакетов, крупные цифры статистики */
+  --hyb-gold: #b99655;
+  --hyb-gold-ink: #231e29;
+
+  /* Золото для мелкого текста на светлом: исходное даёт 2.75:1 при норме 4.5.
+     Этот вариант — 5.08:1 на белом, 4.54:1 на лаванде. */
+  --hyb-gold-text: #866a37;
+
+  /*
+    Золото для крупных цифр («DE LA €1K», «3 ZILE»). Отдельный токен нужен
+    потому, что исходный цвет не проходит даже пониженный порог для крупного
+    текста: 2.49:1 на лавандовом фоне при норме 3:1. Сдвиг минимальный —
+    ровно до 3.00:1, чтобы цифры остались золотыми, а не коричневыми.
+  */
+  --hyb-gold-large: #aa8746;
 
   /* Поверхности */
   --hyb-bg: #ffffff;
-  --hyb-bg-alt: #f4f1f6;
-  --hyb-dark: #231f29;
+  --hyb-bg-alt: #f5f1f8;
+  /* Кремовая подложка пилюли-эйброу в герое — не лавандовая, как остальные */
+  --hyb-cream: #f4f0e7;
+  --hyb-dark: #231e29;
   --hyb-dark-soft: #2e2935;
 
   /* Текст */
-  --hyb-ink: #231f29;
-  --hyb-ink-muted: #54505c;
-  --hyb-ink-faint: #787383; /* 4.59:1 на белом — на #8b8794 было 3.51:1 */
+  --hyb-ink: #231e29;
+  --hyb-ink-muted: #56515d;
+  --hyb-ink-faint: #787383;
   --hyb-on-dark: #ffffff;
   --hyb-on-dark-muted: #b6b1bd;
 
-  --hyb-line: #e8e4ec;
+  --hyb-line: #e6e1ea;
+  --hyb-line-active: #c7b6d3; /* обводка активного пункта меню */
   --hyb-line-dark: #3c3644;
 
   /* --- Типографика ---------------------------------------------------- */
 
-  /* Baloo 2 — единственный новый шрифт на странице.
-     Poppins уже загружен темой сайта, поэтому в роли рабочего он бесплатен. */
-  --hyb-font-display: "Baloo 2", "Poppins", system-ui, sans-serif;
-  --hyb-font-body: "Poppins", system-ui, -apple-system, sans-serif;
+  /*
+    Два шрифта макета. Quicksand — не Poppins: в мелком кегле они похожи
+    настолько, что по скриншоту различить нельзя, и подмена вскрылась только
+    на живой странице. Poppins из проекта убран полностью.
+  */
+  --hyb-font-display: "Baloo 2", system-ui, sans-serif;
+  --hyb-font-body: "Quicksand", system-ui, -apple-system, sans-serif;
 
-  /* Шкала на clamp: min — мобильный, max — десктоп 1440 */
-  --hyb-t-hero: clamp(2.5rem, 1.2rem + 5.2vw, 4.5rem);      /* 40 → 72 */
-  --hyb-t-h2: clamp(1.875rem, 1.1rem + 3vw, 2.75rem);       /* 30 → 44 */
-  --hyb-t-h3: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);      /* 18 → 22 */
-  --hyb-t-lead: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);    /* 16 → 19 */
-  --hyb-t-body: 1rem;
-  --hyb-t-small: 0.875rem;
-  --hyb-t-eyebrow: 0.75rem;
+  /* Шкала: min — мобильный, max — ровно то, что отдаёт макет на 1440 */
+  --hyb-t-hero: clamp(2.5rem, 1.2rem + 5.2vw, 4.5rem); /* 40 → 72 */
+  --hyb-t-h2: clamp(1.875rem, 1.05rem + 3.3vw, 3rem); /* 30 → 48 */
+  --hyb-t-h3-lg: clamp(1.625rem, 1.2rem + 1.7vw, 2.25rem); /* 26 → 36 */
+  --hyb-t-h3: clamp(1.375rem, 1.1rem + 1.1vw, 1.875rem); /* 22 → 30 */
+  --hyb-t-h4: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); /* 20 → 24 */
+  --hyb-t-stat: clamp(2.25rem, 1.4rem + 3.4vw, 3.75rem); /* 36 → 60 */
+  --hyb-t-card: 1.125rem; /* 18 — заголовок карточки */
+  --hyb-t-lead: 1.125rem; /* 18 */
+  --hyb-t-body: 1rem; /* 16 */
+  --hyb-t-small: 0.875rem; /* 14 */
+  --hyb-t-eyebrow: 0.75rem; /* 12 */
+  --hyb-t-micro: 0.625rem; /* 10 — метки на кадрах в герое */
 
-  --hyb-lh-tight: 1.08;
-  --hyb-lh-snug: 1.25;
-  --hyb-lh-body: 1.65;
+  /* Интерлиньяж крупных заголовков в макете ровно 1.0 — не 1.08 и не 1.1.
+     Отсюда их плотный, «набранный» вид. */
+  --hyb-lh-display: 1;
+  --hyb-lh-tight: 1.12;
+  --hyb-lh-snug: 1.35;
+  --hyb-lh-body: 1.55;
+  --hyb-lh-relaxed: 1.625;
+
+  --hyb-ls-eyebrow: 0.18em; /* 2.16px при 12px */
+  --hyb-ls-label: 0.14em; /* 1.68px при 12px */
+  --hyb-ls-micro: 0.05em;
 
   /* --- Пространство ---------------------------------------------------- */
 
-  --hyb-page-max: 1240px;
-  --hyb-gutter: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+  /* 1280px — измерено на макете: обёртка секции ровно такой ширины при
+     вьюпорте 1440. Прежние 1240 были подобраны на глаз. */
+  --hyb-page-max: 1280px;
+  --hyb-gutter: clamp(1.25rem, 0.5rem + 3vw, 2rem);
 
   --hyb-s-1: 0.5rem;
   --hyb-s-2: 1rem;
@@ -102,22 +147,27 @@
   --hyb-s-6: 4rem;
   --hyb-s-7: 6rem;
 
-  /* Вертикальный ритм секции. Задаётся один раз здесь — секции его только
-     потребляют, поэтому паддинги между ними не могут разъехаться. */
-  --hyb-section-y: clamp(3.5rem, 2rem + 6vw, 7rem);
+  /* Вертикальный ритм: 80px на десктопе — базовое значение макета.
+     Секции с другим ритмом (абонементы 96, финал 112) переопределяют его
+     модификаторами, а не переопределением токена. */
+  --hyb-section-y: clamp(3rem, 2rem + 3.5vw, 5rem);
 
   /* --- Форма ----------------------------------------------------------- */
 
-  /* Крупные скругления — подпись Pixtoon: на сайте все превью squircle */
-  --hyb-r-card: 28px;
-  --hyb-r-media: 32px;
-  --hyb-r-pill: 999px;
-  --hyb-r-sm: 14px;
+  /* В макете ровно три радиуса: пилюля, 24 и 16. Значения 28 и 32 из прежней
+     версии не встречаются нигде. */
+  --hyb-r-card: 24px;
+  --hyb-r-media: 24px;
+  --hyb-r-pill: 9999px;
+  --hyb-r-sm: 16px;
 
-  --hyb-shadow-card: 0 2px 4px rgba(35, 31, 41, 0.04),
-    0 12px 32px rgba(35, 31, 41, 0.07);
-  --hyb-shadow-lift: 0 8px 16px rgba(35, 31, 41, 0.06),
-    0 24px 56px rgba(35, 31, 41, 0.12);
+  /*
+    Теней в макете нет: все box-shadow там прозрачные — это следы служебных
+    ring-утилит Tailwind. Глубина набирается границей 1px и разницей фонов.
+    Отсюда «воздушность», которой не даёт прежняя карточная тень.
+  */
+  --hyb-shadow-card: none;
+  --hyb-shadow-lift: 0 8px 24px rgba(35, 30, 41, 0.08);
 
   /* --- Движение --------------------------------------------------------- */
 
@@ -127,8 +177,9 @@
   --hyb-dur-slow: 560ms;
 }
 
-/* Тёмные острова (блок цены) переопределяют только поверхности и текст.
-   Компоненты внутри читают те же имена токенов и работают без правок. */
+/* Тёмные острова (блок цены, кастомный пакет) переопределяют только
+   поверхности и текст. Компоненты внутри читают те же имена и работают
+   без правок. */
 .hyb-scope .hyb-invert {
   --hyb-bg: var(--hyb-dark);
   --hyb-bg-alt: var(--hyb-dark-soft);
@@ -224,9 +275,9 @@
   top: 0;
   z-index: 100;
   padding: 0.75rem 1.25rem;
-  background: #231f29;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
+  background: var(--hyb-dark);
+  color: var(--hyb-on-dark);
+  font-family: var(--hyb-font-body);
 }
 .hyb-skip:focus {
   left: 1rem;
@@ -256,6 +307,11 @@
   padding-block: calc(var(--hyb-section-y) * 0.6);
 }
 
+/* Абонементы в макете дышат шире остальных: 96px против 80px */
+.hyb-section--roomy {
+  padding-block: clamp(3rem, 2rem + 4.5vw, 6rem);
+}
+
 /* --- Типографика ------------------------------------------------------- */
 
 /* 12px — мелкий текст, поэтому затемнённый вариант акцента */
@@ -263,26 +319,48 @@
   display: inline-block;
   font-size: var(--hyb-t-eyebrow);
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--hyb-ls-eyebrow);
   text-transform: uppercase;
   color: var(--hyb-accent-text);
   margin-bottom: var(--hyb-s-3);
 }
 
-/* Эйброу-таблетка — только там, где нужен якорь на пустом фоне */
+/* Золотой вариант — эйброу пакетов и кастомного блока. В макете он на шаг
+   плотнее сиреневого: 1.92px против 2.16px при том же кегле. */
+.hyb-eyebrow--gold {
+  color: var(--hyb-gold-text);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+/* Подпись колонки внутри карточки: IDEAL PENTRU / INCLUDE */
+.hyb-label {
+  display: block;
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 700;
+  letter-spacing: var(--hyb-ls-label);
+  text-transform: uppercase;
+  color: var(--hyb-ink-muted);
+}
+
+/* Эйброу-таблетка героя. Подложка кремовая, а не лавандовая — измерено на
+   макете. Золото макета даёт на ней 2.44:1 при кегле 12px, поэтому текст
+   идёт затемнённым вариантом: 4.47:1. */
 .hyb-eyebrow--pill {
   padding: 0.5rem 1rem;
   border-radius: var(--hyb-r-pill);
-  background: var(--hyb-accent-wash);
+  background: var(--hyb-cream);
   color: var(--hyb-gold-text);
   margin-bottom: var(--hyb-s-4);
 }
 
+/* Интерлиньяж крупных заголовков в макете ровно 1.0 — измерено, не подобрано:
+   48px/48px и 72px/72px. Прежние 1.08 давали заметно более рыхлый набор. */
 .hyb-title {
   font-family: var(--hyb-font-display);
   font-weight: 800;
   font-size: var(--hyb-t-h2);
-  line-height: var(--hyb-lh-tight);
+  line-height: var(--hyb-lh-display);
   letter-spacing: -0.015em;
   color: var(--hyb-ink);
   text-wrap: balance;
@@ -343,21 +421,28 @@
 
 /* --- Кнопки ------------------------------------------------------------ */
 
+/*
+  Геометрия снята с макета, а не подобрана: 16px/32px при кегле 16/700 даёт
+  высоту 56px у заливной кнопки и 60px у призрачной — разницу в 4px создаёт
+  обводка 2px сверху и снизу. В макете так и есть, поэтому border у заливных
+  вариантов остаётся прозрачным, а не убирается: иначе кнопки в одном ряду
+  разъедутся по высоте.
+*/
 .hyb-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.6em;
-  padding: 1rem 1.75rem;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
   border: 2px solid transparent;
   border-radius: var(--hyb-r-pill);
   font-family: var(--hyb-font-body);
   font-size: var(--hyb-t-body);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   cursor: pointer;
   transition: transform var(--hyb-dur) var(--hyb-ease),
     background-color var(--hyb-dur) var(--hyb-ease),
-    box-shadow var(--hyb-dur) var(--hyb-ease);
+    border-color var(--hyb-dur) var(--hyb-ease);
 }
 
 .hyb-btn:hover {
@@ -368,25 +453,56 @@
   transform: translateY(0);
 }
 
-/* Главная кнопка сайта. Жёлтый — единственный элемент, по которому новый
-   раздел мгновенно читается как Pixtoon. */
+/* Главный призыв в контенте: золото. Заняло роль прежнего жёлтого #fff028. */
 .hyb-btn--primary {
   background: var(--hyb-cta);
   color: var(--hyb-cta-ink);
 }
 .hyb-btn--primary:hover {
   background: var(--hyb-cta-hover);
-  box-shadow: var(--hyb-shadow-card);
 }
 
+/* Вторичное действие: только обводка */
 .hyb-btn--ghost {
-  background: var(--hyb-bg);
+  background: transparent;
   color: var(--hyb-ink);
   border-color: var(--hyb-line);
 }
 .hyb-btn--ghost:hover {
   border-color: var(--hyb-accent);
-  color: var(--hyb-accent);
+  color: var(--hyb-accent-text);
+}
+
+/* Выбор пакета — тёмная во всю ширину карточки */
+.hyb-btn--dark {
+  justify-content: center;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: var(--hyb-dark);
+  color: var(--hyb-on-dark);
+  font-size: var(--hyb-t-small);
+}
+.hyb-btn--dark:hover {
+  background: var(--hyb-dark-soft);
+}
+
+/* Компактный вариант — кастомный блок, где кнопка стоит на тёмном фоне */
+.hyb-btn--sm {
+  padding: 0.875rem 1.75rem;
+  font-size: var(--hyb-t-small);
+}
+
+/* CTA в шапке: единственное сиреневое место в макете */
+.hyb-btn--nav {
+  padding: 0.625rem 1.25rem;
+  gap: 0.375rem;
+  background: var(--hyb-nav-cta);
+  color: var(--hyb-nav-cta-ink);
+  font-size: var(--hyb-t-small);
+  font-weight: 600;
+}
+.hyb-btn--nav:hover {
+  background: var(--hyb-nav-cta-hover);
 }
 
 .hyb-btn__arrow {
@@ -401,6 +517,43 @@
   flex-wrap: wrap;
   gap: var(--hyb-s-2);
   margin-top: var(--hyb-s-5);
+}
+
+/* --- Кнопка воспроизведения --------------------------------------------- */
+
+/*
+  Компонент общий: он есть и на карточках пакетов, и в кнопке героя главной.
+  Живёт в base.css именно поэтому — когда варианты лежали в разных секционных
+  модулях, `position: static` у inline-варианта проигрывал `position: absolute`
+  базового просто по порядку склейки, и иконка улетала в середину секции.
+  Одинаковая специфичность делает порядок файлов частью поведения.
+*/
+.hyb-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--hyb-ink);
+  transition: transform var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-package__media:hover .hyb-play {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+
+.hyb-play--inline {
+  position: static;
+  transform: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--hyb-accent-wash);
+  color: var(--hyb-ink);
 }
 
 /* --- Текстовая ссылка со стрелкой --------------------------------------- */
@@ -422,6 +575,64 @@
 .hyb-link:hover svg {
   transform: translate(2px, -2px);
 }
+
+/* --- Плитка со статистикой ----------------------------------------------- */
+
+/*
+  Компонент общий: «Cifrele vorbesc» в Hybrid Production и «мини-вселенная» на
+  главной и /studio. Живёт в base.css именно поэтому.
+
+  Когда базовые правила лежали в sections-landing.css, а модификаторы в
+  sections-site.css, модификатор проигрывал просто по порядку склейки —
+  специфичность у них одинаковая. Тот же корень уже дал один дефект с иконкой
+  воспроизведения; вынос компонента убирает причину, а не симптом.
+*/
+.hyb-stats {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.hyb-stat {
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-bg);
+}
+
+/* Крупные цифры — на отдельном золотом токене: исходный цвет макета даёт
+   2.49:1 на лаванде при норме 3:1 даже для крупного текста. */
+.hyb-stat__value {
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-stat);
+  line-height: 1;
+  color: var(--hyb-gold-large);
+}
+
+.hyb-stat__label {
+  margin-top: var(--hyb-s-2);
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-card);
+}
+
+.hyb-stat__text {
+  margin-top: 0.5rem;
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-body);
+}
+
+.hyb-stats--four {
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+/* Цифры студии в макете сиреневые, а не золотые: 4.12:1 на белом — для
+   кегля 48px норма 3:1, проходит. */
+.hyb-stat__value--accent {
+  color: var(--hyb-accent);
+}
+
 
 /* --- Появление при скролле ---------------------------------------------- */
 
@@ -455,32 +666,602 @@
 }
 
 
-/* ===== sections-landing.css ===== */
+/* ===== shell.css ===== */
 /* ==========================================================================
-   Секции лендинга Hybrid Production
+   Оболочка: шапка и футер.
+
+   Раньше эти стили лежали в theme-shell.css и при интеграции удалялись —
+   на проде оболочку одевала существующая тема Pixtoon. После смены дизайна
+   это перестало быть верным: шапка и футер теперь наши, поэтому их стили
+   едут в прод вместе с остальными.
+
+   Геометрия снята с макета base44 при вьюпорте 1440.
    ========================================================================== */
 
-/* --- 1. Hero ------------------------------------------------------------ */
-
-/*
-  ТЗ раздел 4: «Do NOT place a generic AI image or robot beside the hero.
-  The beginning of the real case-study imagery should provide the visual
-  impact.» Поэтому справа не иллюстрация, а мозаика из реальных кадров —
-  портфолио начинается прямо в первом экране.
-*/
-.hyb-hero {
-  padding-block: clamp(2.5rem, 1rem + 5vw, 5rem) var(--hyb-section-y);
+body.hyb-page {
+  margin: 0;
+  /* Шапка зафиксирована, поэтому контент отодвигается на её высоту */
+  padding-top: 80px;
 }
 
+/* --- Шапка --------------------------------------------------------------- */
+
+.hyb-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: 80px;
+  background: var(--hyb-bg);
+  /* В макете граница именно 0.5px: на обычном экране это волосяная линия,
+     на Retina — ровно один физический пиксель. */
+  border-bottom: 0.5px solid var(--hyb-line);
+}
+
+.hyb-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--hyb-s-2);
+  height: 100%;
+  max-width: var(--hyb-page-max);
+  margin-inline: auto;
+  padding-inline: var(--hyb-gutter);
+}
+
+.hyb-header__logo {
+  flex-shrink: 0;
+  width: 127px;
+  height: 40px;
+}
+.hyb-header__logo object,
+.hyb-footer__logo object {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hyb-nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--hyb-s-2);
+}
+
+/* Пункты по центру, действия справа: auto-поля съедают остаток строки
+   симметрично, поэтому меню центрируется относительно контейнера, а не
+   относительно свободного места после логотипа. */
+.hyb-nav__items {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-inline: auto;
+}
+
+.hyb-nav__link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  /* 12px, а не --hyb-r-sm: при высоте пункта 39px радиус 16 читается как
+     полная пилюля, а в макете у обводки видны углы. */
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--hyb-ink-muted);
+  transition: color var(--hyb-dur) var(--hyb-ease),
+    border-color var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-nav__link:hover {
+  color: var(--hyb-ink);
+}
+
+/* Текущий раздел — обводка, а не подчёркивание */
+.hyb-nav__link.is-current {
+  color: var(--hyb-ink);
+  border-color: var(--hyb-line-active);
+}
+
+.hyb-nav__link--lang {
+  padding-inline: 0.75rem;
+}
+
+.hyb-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* --- Бургер -------------------------------------------------------------- */
+
+.hyb-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hyb-burger span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--hyb-ink);
+  transition: transform var(--hyb-dur) var(--hyb-ease),
+    opacity var(--hyb-dur) var(--hyb-ease);
+}
+
+@media (max-width: 64rem) {
+  .hyb-burger {
+    display: flex;
+  }
+
+  .hyb-nav {
+    position: absolute;
+    inset: 80px 0 auto 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--hyb-s-3);
+    padding: var(--hyb-s-3) var(--hyb-gutter) var(--hyb-s-4);
+    background: var(--hyb-bg);
+    border-bottom: 1px solid var(--hyb-line);
+  }
+  .hyb-nav.is-open {
+    display: flex;
+  }
+
+  .hyb-nav__items {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+  }
+  .hyb-nav__link {
+    padding-inline: 0;
+    font-size: 1.0625rem;
+  }
+  .hyb-nav__link.is-current {
+    border-color: transparent;
+    color: var(--hyb-accent-text);
+  }
+
+  .hyb-header__actions {
+    justify-content: space-between;
+  }
+
+  /* Три полоски складываются в крест */
+  .hyb-burger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hyb-burger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .hyb-burger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* --- Футер --------------------------------------------------------------- */
+
+.hyb-footer {
+  border-top: 1px solid var(--hyb-line);
+  background: var(--hyb-bg);
+}
+
+.hyb-footer__inner {
+  max-width: var(--hyb-page-max);
+  margin-inline: auto;
+  padding: var(--hyb-s-6) var(--hyb-gutter) var(--hyb-s-4);
+}
+
+.hyb-footer__grid {
+  display: grid;
+  gap: var(--hyb-s-5);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 56rem) {
+  .hyb-footer__grid {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--hyb-s-6);
+  }
+}
+
+.hyb-footer__logo {
+  display: block;
+  width: 127px;
+  height: 40px;
+  margin-bottom: var(--hyb-s-3);
+}
+
+.hyb-footer__about {
+  max-width: 42ch;
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-body);
+}
+
+.hyb-footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--hyb-s-3);
+}
+
+/* Двухбуквенные метки вместо иконок: набор соцсетей клиента меняется,
+   а подключать иконочный шрифт ради пяти ссылок дороже, чем он стоит. */
+.hyb-footer__soc {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--hyb-accent-wash);
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 700;
+  color: var(--hyb-accent-text);
+  transition: background-color var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-footer__soc:hover {
+  background: color-mix(in srgb, var(--hyb-accent) 22%, transparent);
+}
+
+.hyb-footer__label {
+  margin-bottom: var(--hyb-s-3);
+}
+
+.hyb-footer__links {
+  display: grid;
+  gap: 0.625rem;
+  font-size: var(--hyb-t-small);
+}
+.hyb-footer__links a {
+  color: var(--hyb-ink-muted);
+  transition: color var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-footer__links a:hover {
+  color: var(--hyb-ink);
+}
+
+.hyb-footer__contact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--hyb-ink-muted);
+}
+.hyb-footer__contact svg {
+  flex-shrink: 0;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--hyb-s-2);
+  margin-top: var(--hyb-s-5);
+  padding-top: var(--hyb-s-3);
+  border-top: 1px solid var(--hyb-line);
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
+}
+
+
+/* ===== sections-site.css ===== */
+/* ==========================================================================
+   Секции главной и подстраниц: /, /work, /capabilities, /studio.
+
+   Раздел Hybrid Production живёт в sections-landing.css. Разделение по
+   страницам, а не по компонентам, потому что общего между ними мало: у
+   Hybrid своя бенто-сетка кадров, у главной — витрина с чередованием.
+   ========================================================================== */
+
+/* --- Шапка подстраницы --------------------------------------------------- */
+
+/* 176px сверху / 64px снизу — измерено на подстраницах макета */
+.hyb-pagehead {
+  padding-block: clamp(3rem, 1rem + 11.1vw, 11rem) clamp(2rem, 1rem + 3vw, 4rem);
+}
+.hyb-pagehead .hyb-head {
+  margin-bottom: 0;
+}
+
+/* --- Герой главной ------------------------------------------------------- */
+
+.hyb-hero--home {
+  padding-block: clamp(3rem, 1rem + 10vw, 10rem) clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+/*
+  Круги героя. Крупный кадр в круглой маске работает потому, что смысл кадра
+  в его центре — это портрет персонажа. Для кадров с текстом круг непригоден,
+  поэтому в разделе Hybrid этого приёма нет ни разу.
+*/
+.hyb-hero__orbit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 22rem;
+}
+
+.hyb-orb {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.hyb-orb--photo {
+  width: min(326px, 74%);
+  aspect-ratio: 1;
+  margin: 0;
+  overflow: hidden;
+  justify-self: end;
+  align-self: end;
+  background: var(--hyb-accent-wash);
+}
+.hyb-orb--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hyb-orb--accent,
+.hyb-orb--gold {
+  position: absolute;
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  color: var(--hyb-on-dark);
+  line-height: 1.1;
+  /* Кружки декоративные и перекрывают кадр: белый текст на них проверен
+     отдельно — 4.55:1 на сиреневом и 5.89:1 тёмным на золотом. */
+  box-shadow: 0 8px 24px rgba(35, 30, 41, 0.14);
+}
+
+.hyb-orb--accent {
+  top: 4%;
+  right: 6%;
+  width: 6.5rem;
+  aspect-ratio: 1;
+  background: var(--hyb-nav-cta);
+  font-size: var(--hyb-t-h4);
+}
+
+.hyb-orb--gold {
+  left: 4%;
+  bottom: 24%;
+  width: 7.5rem;
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  background: var(--hyb-cta);
+  color: var(--hyb-cta-ink);
+  font-size: var(--hyb-t-card);
+}
+
+/* --- Лента брендов ------------------------------------------------------- */
+
+.hyb-trusted {
+  padding-block: clamp(2.5rem, 1.5rem + 2.5vw, 4rem);
+  border-block: 1px solid var(--hyb-line);
+  overflow: hidden;
+}
+
+.hyb-trusted__label {
+  text-align: center;
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hyb-ink-muted);
+}
+
+.hyb-marquee {
+  display: flex;
+  width: max-content;
+  margin-top: var(--hyb-s-4);
+}
+
+.hyb-marquee__row {
+  display: flex;
+  align-items: center;
+  gap: clamp(2rem, 1rem + 3vw, 4rem);
+  padding-inline: clamp(1rem, 0.5rem + 1.5vw, 2rem);
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 0.9rem + 1.4vw, 1.875rem);
+  color: var(--hyb-ink-muted);
+  white-space: nowrap;
+  /* Два одинаковых набора едут как один: сдвиг ровно на половину ширины
+     возвращает ленту в исходное положение, поэтому стык незаметен. */
+  animation: hyb-marquee 38s linear infinite;
+}
+
+@keyframes hyb-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hyb-marquee__row {
+    animation: none;
+  }
+  .hyb-marquee {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hyb-marquee__row:nth-child(2) {
+    display: none;
+  }
+}
+
+/* --- Карточки «что мы делаем» -------------------------------------------- */
+
+.hyb-cards {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+.hyb-card {
+  position: relative;
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-bg);
+}
+
+.hyb-card__n {
+  position: absolute;
+  top: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  right: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-faint);
+}
+
+.hyb-card__title {
+  margin-bottom: 0.75rem;
+  padding-right: 2.5rem;
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-h4);
+  line-height: var(--hyb-lh-snug);
+}
+
+.hyb-card__text {
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-body);
+}
+
+/* --- Витрина работ ------------------------------------------------------- */
+
+.hyb-showcase {
+  display: grid;
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+.hyb-show {
+  display: grid;
+  gap: var(--hyb-s-4);
+  align-items: center;
+}
+
+@media (min-width: 56rem) {
+  .hyb-show {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--hyb-s-6);
+  }
+  /* Сторона чередуется порядком в сетке, а не отдельными классами: так
+     добавление пятого кейса не требует новой пары правил. */
+  .hyb-show--right .hyb-show__media {
+    order: 2;
+  }
+}
+
+/*
+  Обрезается изображение, а не контейнер. Если повесить overflow:hidden на
+  саму фигуру, круглая маска срежет золотую метку — в макете она лежит
+  снаружи круга, у левого верхнего угла колонки.
+*/
+.hyb-show__media {
+  position: relative;
+  margin: 0;
+  display: grid;
+}
+
+.hyb-show__media img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.hyb-show__media--circle img {
+  width: min(448px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  justify-self: center;
+}
+
+.hyb-show__media--rect img {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--hyb-r-card);
+}
+
+.hyb-show__kicker {
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--hyb-ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-show__title {
+  margin-block: var(--hyb-s-2) var(--hyb-s-3);
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h3-lg);
+  line-height: var(--hyb-lh-tight);
+}
+
+.hyb-show__text {
+  max-width: 46ch;
+  margin-bottom: var(--hyb-s-3);
+  font-size: var(--hyb-t-lead);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-relaxed);
+}
+
+/* --- Прочее -------------------------------------------------------------- */
+
+/* Семь шагов не помещаются в ряд на десктопе — четыре и три */
+.hyb-steps--seven {
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.hyb-link--plain {
+  font-weight: 600;
+  color: var(--hyb-ink);
+}
+
+
+/* ===== sections-landing.css ===== */
+/* ==========================================================================
+   Секции лендинга Hybrid Production.
+
+   Геометрия снята измерением с живого макета base44 при вьюпорте 1440
+   (контейнер 1216). Комментарии называют исходные пиксели там, где число
+   иначе выглядит произвольным.
+   ========================================================================== */
+
+/* --- 1. Герой ------------------------------------------------------------ */
+
+/* 176px сверху / 56px снизу при 1440 — измерено на макете. Коэффициент vw
+   подобран так, чтобы верхнее значение попадало в 176 ровно на 1440, а не
+   упиралось в потолок clamp раньше. */
+.hyb-hero {
+  padding-block: clamp(3rem, 1rem + 11.1vw, 11rem) clamp(2rem, 1rem + 3vw, 3.5rem);
+}
+
+/*
+  Герой в макете — 12-колоночная сетка с зазором 32px: 12 × 72 + 11 × 32 =
+  1216, ровно ширина контейнера. Текст и коллаж занимают по шесть колонок,
+  то есть половины равные, а не 1.05 : 1, как казалось при измерении по краям.
+*/
 .hyb-hero__grid {
   display: grid;
-  gap: clamp(2rem, 1rem + 4vw, 4rem);
+  gap: 2rem;
   align-items: center;
 }
 
 @media (min-width: 62rem) {
   .hyb-hero__grid {
-    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -488,76 +1269,63 @@
   margin-top: var(--hyb-s-2);
   font-weight: 600;
   color: var(--hyb-ink);
-  font-size: var(--hyb-t-lead);
+  font-size: var(--hyb-t-body);
 }
 
 /*
-  Пропорции кадров разные намеренно: ровная сетка 2x2 читается как заглушка,
-  разная высота — как подборка кадров.
+  Коллаж. Ячейки разного размера, но внешний габарит — ровный прямоугольник:
+  каждая позиция задана явно в 12-колоночной сетке.
 
-  Укладка через columns, а не grid: колонки набираются плотно, поэтому разная
-  высота карточек не оставляет дыр и не требует отрицательных отступов
-  (они давали наложение соседних кадров друг на друга).
+  Прежняя вёрстка стояла на `columns: 2`. Колоночная модель льёт элементы
+  потоком и балансирует высоту сама, поэтому низ колонок не сходится
+  принципиально — расхождение доходило до 300px. Это и было замечание
+  клиента «amplasarea modulelor sau lucrărilor să fie corectă».
+
+  Пропорции ячеек — из макета: 4/3, 3/4, 4/3, 3/4, 16/5.
 */
-.hyb-mosaic {
-  columns: 2;
-  column-gap: clamp(0.75rem, 0.4rem + 1vw, 1.25rem);
+.hyb-collage {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  align-items: start;
 }
 
-.hyb-mosaic__item {
+.hyb-collage__item {
   position: relative;
   overflow: hidden;
-  break-inside: avoid;
   border-radius: var(--hyb-r-media);
   background: var(--hyb-accent-wash);
-  margin: 0 0 clamp(0.75rem, 0.4rem + 1vw, 1.25rem);
+  margin: 0;
 }
 
-.hyb-mosaic__item:nth-child(1) {
-  aspect-ratio: 16 / 11;
-}
-.hyb-mosaic__item:nth-child(2) {
-  aspect-ratio: 5 / 4;
-}
-.hyb-mosaic__item:nth-child(3) {
-  aspect-ratio: 4 / 5;
-}
-.hyb-mosaic__item:nth-child(4) {
-  aspect-ratio: 3 / 4;
-}
+.hyb-collage__item--1 { grid-column: 1 / 9;  aspect-ratio: 4 / 3; }
+.hyb-collage__item--2 { grid-column: 9 / 13; aspect-ratio: 3 / 4; }
+.hyb-collage__item--3 { grid-column: 1 / 7;  aspect-ratio: 4 / 3; }
+.hyb-collage__item--4 { grid-column: 7 / 13; aspect-ratio: 3 / 4; }
+.hyb-collage__item--5 { grid-column: 1 / 13; aspect-ratio: 16 / 5; }
 
-.hyb-mosaic__media {
+.hyb-collage__media {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Плавающая подпись проекта — приём с главной pixtoon.com */
-.hyb-mosaic__label {
-  position: absolute;
-  left: 0.75rem;
-  top: 0.75rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: var(--hyb-r-pill);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--hyb-ink);
-}
-
+/* Кнопка showreel прижата к нижнему левому углу коллажа и слегка выходит
+   за него — в макете так же. Раньше она висела по центру в пустоте. */
 .hyb-showreel {
+  position: absolute;
+  left: -0.875rem;
+  bottom: 1.5rem;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  margin-top: var(--hyb-s-3);
-  padding: 0.6rem 1.25rem 0.6rem 0.6rem;
+  padding: 0.5rem 1.25rem 0.5rem 0.5rem;
   border: 0;
   border-radius: var(--hyb-r-pill);
   background: var(--hyb-bg);
-  box-shadow: var(--hyb-shadow-card);
+  box-shadow: 0 4px 16px rgba(35, 30, 41, 0.14);
   font-family: var(--hyb-font-body);
   font-size: var(--hyb-t-small);
   font-weight: 600;
@@ -566,7 +1334,7 @@
   transition: box-shadow var(--hyb-dur) var(--hyb-ease);
 }
 .hyb-showreel:hover {
-  box-shadow: var(--hyb-shadow-lift);
+  box-shadow: 0 8px 24px rgba(35, 30, 41, 0.2);
 }
 
 .hyb-showreel__icon {
@@ -575,77 +1343,101 @@
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: var(--hyb-accent);
-  color: #fff;
+  background: var(--hyb-dark);
+  color: var(--hyb-on-dark);
 }
 
-/* --- 2. Selected hybrid work -------------------------------------------- */
+/* --- Метки на кадрах ----------------------------------------------------- */
+
+.hyb-tag {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3rem 0.625rem;
+  border-radius: var(--hyb-r-pill);
+  font-size: var(--hyb-t-micro);
+  font-weight: 700;
+  letter-spacing: var(--hyb-ls-micro);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hyb-tag--gold {
+  background: var(--hyb-gold);
+  color: var(--hyb-gold-ink);
+}
+
+.hyb-tag--light {
+  background: var(--hyb-bg);
+  color: var(--hyb-ink);
+}
+
+/* Полупрозрачная — на карточках работ, поверх кадра */
+.hyb-tag--glass {
+  position: static;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  color: var(--hyb-on-dark);
+  font-size: var(--hyb-t-eyebrow);
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.75rem;
+}
+
+/* --- 2. Selected work: бенто --------------------------------------------- */
 
 /*
-  ТЗ раздел 5: «One large featured project on the left (approx. 55–60% width),
-  two projects stacked on the right. Do not use three small equal cards.»
+  Три колонки по 392px с зазором 20 дают 1216 — ширину контейнера. Крупный
+  кейс занимает две колонки, поэтому его 804px получаются сами, без магических
+  чисел в разметке.
 */
-.hyb-work__grid {
+.hyb-work {
   display: grid;
-  gap: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
 }
 
-@media (min-width: 56rem) {
-  .hyb-work__grid {
-    grid-template-columns: 57fr 43fr;
+@media (min-width: 48rem) {
+  .hyb-work {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .hyb-work__grid > .hyb-case:first-child {
-    grid-row: span 2;
+  .hyb-case--1 {
+    grid-column: span 2;
+    aspect-ratio: 804 / 500;
   }
+  .hyb-case--2 { aspect-ratio: 392 / 500; }
+  .hyb-case--3,
+  .hyb-case--4,
+  .hyb-case--5 { aspect-ratio: 392 / 240; }
 }
 
 .hyb-case {
   position: relative;
   display: block;
   overflow: hidden;
-  border-radius: var(--hyb-r-media);
-  background: var(--hyb-dark);
-  isolation: isolate;
-}
-
-.hyb-case__media {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--hyb-dur-slow) var(--hyb-ease-out);
-}
-
-.hyb-case:hover .hyb-case__media {
-  transform: scale(1.03);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-accent-wash);
+  aspect-ratio: 16 / 10;
 }
 
 .hyb-case__frame {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-}
-
-.hyb-case:first-child .hyb-case__frame {
-  aspect-ratio: 4 / 3;
-}
-.hyb-case:not(:first-child) .hyb-case__frame {
-  aspect-ratio: 16 / 9;
-}
-
-@media (max-width: 55.99rem) {
-  .hyb-case .hyb-case__frame {
-    aspect-ratio: 16 / 10;
-  }
-}
-
-/* Видео поверх постера — появляется по ховеру, грузится только тогда */
-.hyb-case__video {
   position: absolute;
   inset: 0;
+}
+
+.hyb-case__media,
+.hyb-case__video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.hyb-case__video {
+  position: absolute;
+  inset: 0;
   opacity: 0;
   transition: opacity var(--hyb-dur) var(--hyb-ease);
 }
@@ -653,255 +1445,497 @@
   opacity: 1;
 }
 
-/* Градиент — не украшение: без него белый текст на светлых кадрах нечитаем */
+/*
+  Текст лежит прямо на кадре — затемняющего градиента в макете нет.
+  Читаемость держит тень глифа: она создаёт контраст на границе буквы, где
+  он и нужен, и на тёмном кадре визуально исчезает. Заливка постоянной силы
+  поверх изображения переменной яркости так не умеет — на тёмных кадрах она
+  избыточна (это и давало «e întunecat»), на светлых недостаточна.
+*/
 .hyb-case__body {
   position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  padding: clamp(1.25rem, 0.75rem + 1.5vw, 2rem);
-  background: linear-gradient(
-    to top,
-    rgba(21, 18, 25, 0.88) 0%,
-    rgba(21, 18, 25, 0.55) 45%,
-    rgba(21, 18, 25, 0) 100%
-  );
-  color: #fff;
-}
-
-.hyb-case__tags {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.82);
+  inset: auto 0 0 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
+  color: var(--hyb-on-dark);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 .hyb-case__title {
   font-family: var(--hyb-font-display);
   font-weight: 800;
-  font-size: clamp(1.375rem, 1rem + 1.4vw, 2rem);
-  line-height: 1.15;
-  margin-top: 0.35rem;
-  color: #fff;
+  font-size: var(--hyb-t-h4);
+  line-height: var(--hyb-lh-tight);
 }
+
+.hyb-case--1 .hyb-case__title { font-size: var(--hyb-t-h3-lg); }
+.hyb-case--2 .hyb-case__title { font-size: var(--hyb-t-h3); }
 
 .hyb-case__excerpt {
-  margin-top: 0.5rem;
   max-width: 46ch;
   font-size: var(--hyb-t-small);
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.86);
-}
-
-/* Превью справа мельче — длинное описание там не читается */
-.hyb-case:not(:first-child) .hyb-case__excerpt {
-  display: none;
 }
 
 .hyb-case__cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
-  margin-top: var(--hyb-s-2);
+  gap: 0.4em;
   font-size: var(--hyb-t-small);
-  font-weight: 600;
-  color: #fff;
+  font-weight: 700;
+}
+.hyb-case:hover .hyb-case__cta svg {
+  transform: translate(2px, -2px);
 }
 .hyb-case__cta svg {
   transition: transform var(--hyb-dur) var(--hyb-ease);
 }
-.hyb-case:hover .hyb-case__cta svg {
-  transform: translate(3px, -3px);
+
+/* --- 3. Абонементы ------------------------------------------------------- */
+
+/*
+  Ширина шапки секции задаётся в пикселях по макету, а не в ch. Единица ch —
+  ширина глифа «0» текущего шрифта; заголовки набраны Baloo 2 800, где буквы
+  заметно шире нуля, поэтому ch систематически завышает ёмкость строки.
+  Измерено на макете: абонементы и Microinvest — 768, процесс — 672,
+  «что входит» — 584.
+*/
+.hyb-head--wide { max-width: 768px; }
+.hyb-head--mid  { max-width: 672px; }
+.hyb-head--narrow { max-width: 584px; }
+
+.hyb-subtitle {
+  margin-top: var(--hyb-s-2);
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h4);
+  line-height: var(--hyb-lh-snug);
+  color: var(--hyb-accent);
 }
 
-/* --- 3. More hybrid work (карусель) -------------------------------------- */
+.hyb-packages {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 56rem) {
+  .hyb-packages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-.hyb-more__head {
+.hyb-package {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: var(--hyb-s-3);
-  align-items: end;
-  justify-content: space-between;
-  margin-bottom: var(--hyb-s-5);
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  border: 1px solid var(--hyb-line);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-bg);
 }
 
-.hyb-more__nav {
+/* Цена стоит в одной строке с меткой пакета, справа — как в макете */
+.hyb-package__head {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--hyb-s-2);
+}
+
+.hyb-package__label {
+  margin-bottom: 0;
+}
+
+.hyb-package__price {
+  flex-shrink: 0;
+  text-align: right;
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h3-lg);
+  line-height: 1;
+  color: var(--hyb-accent);
+}
+
+.hyb-package__per {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--hyb-font-body);
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 400;
+  color: var(--hyb-ink-muted);
+}
+
+.hyb-package__title {
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h3);
+  line-height: var(--hyb-lh-tight);
+}
+
+.hyb-package__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--hyb-r-sm);
+  aspect-ratio: 16 / 10;
+  background: var(--hyb-accent-wash);
+}
+
+.hyb-package__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hyb-package__tag {
+  font-size: var(--hyb-t-eyebrow);
+}
+
+.hyb-package__cols {
+  display: grid;
+  gap: var(--hyb-s-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Списки «Ideal pentru» и «Include» разной длины, поэтому кнопка прижимается
+   к низу карточки — иначе в паре карточек она встаёт на разной высоте. */
+.hyb-package > .hyb-btn {
+  margin-top: auto;
+}
+
+.hyb-checks {
+  margin-top: 0.75rem;
+  display: grid;
   gap: 0.5rem;
 }
 
-.hyb-more__btn {
+.hyb-checks__item {
+  position: relative;
+  padding-left: 1.75rem;
+  font-size: var(--hyb-t-small);
+  line-height: 1.375;
+}
+
+/* Галочка в кремовом кружке — вместо точки-буллета */
+.hyb-checks__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--hyb-gold) 22%, transparent);
+}
+.hyb-checks__item::after {
+  content: "";
+  position: absolute;
+  left: 0.34rem;
+  top: 0.42em;
+  width: 0.45rem;
+  height: 0.24rem;
+  border-left: 2px solid var(--hyb-gold-text);
+  border-bottom: 2px solid var(--hyb-gold-text);
+  transform: rotate(-45deg);
+}
+
+/* Кастомный пакет: тёмная карточка, расколотая кадром пополам */
+.hyb-custom {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 1.25rem;
+  overflow: hidden;
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-dark);
+  color: var(--hyb-on-dark);
+}
+@media (min-width: 56rem) {
+  .hyb-custom {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
+.hyb-custom__media img {
+  width: 100%;
+  height: 100%;
+  min-height: 14rem;
+  object-fit: cover;
+}
+
+.hyb-custom__body {
+  padding: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+}
+
+.hyb-custom__title {
+  margin-block: var(--hyb-s-1) var(--hyb-s-3);
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h3);
+  line-height: var(--hyb-lh-tight);
+  color: var(--hyb-on-dark);
+}
+
+.hyb-custom__kicker {
+  margin-bottom: 0.75rem;
+  color: var(--hyb-on-dark-muted);
+}
+
+.hyb-custom .hyb-chip {
+  border-color: rgba(255, 255, 255, 0.24);
+  color: var(--hyb-on-dark);
+}
+
+.hyb-custom .hyb-btn {
+  margin-top: var(--hyb-s-3);
+}
+
+/* Закрывающий блок: белая карточка на лавандовом фоне */
+.hyb-closing {
+  display: grid;
+  gap: var(--hyb-s-4);
+  margin-top: 1.25rem;
+  padding: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-bg);
+}
+@media (min-width: 56rem) {
+  .hyb-closing {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--hyb-s-5);
+  }
+}
+
+.hyb-closing__text {
+  color: var(--hyb-ink-muted);
+  font-size: var(--hyb-t-lead);
+  line-height: var(--hyb-lh-relaxed);
+}
+.hyb-closing__text + .hyb-closing__text {
+  margin-top: var(--hyb-s-3);
+}
+
+/* --- 4. Case study — Microinvest ----------------------------------------- */
+
+.hyb-mi__top {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 56rem) {
+  .hyb-mi__top {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.hyb-mi__hero {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--hyb-r-card);
+  aspect-ratio: 804 / 503;
+}
+.hyb-mi__hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Подпись на кадре — без градиента, как и на карточках работ */
+.hyb-mi__hero figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.hyb-mi__hero .hyb-tag {
+  position: static;
+}
+
+.hyb-mi__caption {
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h3);
+  line-height: var(--hyb-lh-tight);
+  color: var(--hyb-on-dark);
+}
+
+.hyb-mi__side {
+  display: grid;
+  gap: 1.25rem;
+  grid-auto-rows: 1fr;
+}
+
+.hyb-mi__tile {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--hyb-r-card);
+  aspect-ratio: 392 / 294;
+}
+.hyb-mi__tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hyb-mi__portraits {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 56rem) {
+  .hyb-mi__portraits {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.hyb-mi__portrait {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--hyb-r-sm);
+  aspect-ratio: 3 / 4;
+}
+.hyb-mi__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hyb-mi__portrait figcaption {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.875rem;
+  font-size: var(--hyb-t-small);
+  font-weight: 600;
+  color: var(--hyb-on-dark);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hyb-mi__features {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 56rem) {
+  .hyb-mi__features {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.hyb-feature {
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-accent-wash);
+}
+
+.hyb-feature__icon {
   display: grid;
   place-items: center;
   width: 2.75rem;
   height: 2.75rem;
-  border: 2px solid var(--hyb-line);
-  border-radius: 50%;
-  background: var(--hyb-bg);
-  color: var(--hyb-ink);
-  cursor: pointer;
-  transition: border-color var(--hyb-dur) var(--hyb-ease),
-    color var(--hyb-dur) var(--hyb-ease);
-}
-.hyb-more__btn:hover:not(:disabled) {
-  border-color: var(--hyb-accent);
-  color: var(--hyb-accent);
-}
-.hyb-more__btn:disabled {
-  opacity: 0.35;
-  cursor: default;
+  margin-bottom: var(--hyb-s-3);
+  border-radius: var(--hyb-r-sm);
+  background: color-mix(in srgb, var(--hyb-accent) 16%, transparent);
+  color: var(--hyb-accent-text);
 }
 
-/*
-  Скролл-снап вместо слайдер-библиотеки: нативно, работает без JS,
-  свайп на тач-устройствах бесплатный. Кнопки только доскроллят.
-*/
-.hyb-more__track {
+.hyb-feature__title {
+  margin-bottom: 0.5rem;
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-card);
+}
+
+.hyb-feature__text {
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-body);
+}
+
+.hyb-mi__why {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(min(19rem, 78vw), 1fr);
-  gap: clamp(0.75rem, 0.4rem + 1vw, 1.25rem);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  padding-bottom: 0.5rem;
+  gap: var(--hyb-s-4);
+  margin-top: 1.25rem;
+  padding: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-accent-wash);
 }
-.hyb-more__track::-webkit-scrollbar {
-  display: none;
-}
-
 @media (min-width: 56rem) {
-  .hyb-more__track {
-    grid-auto-columns: minmax(0, calc((100% - 2 * 1.25rem) / 3));
+  .hyb-mi__why {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--hyb-s-5);
   }
 }
 
-.hyb-more__item {
-  scroll-snap-align: start;
+.hyb-link--accent {
+  margin-top: var(--hyb-s-3);
+  color: var(--hyb-accent-text);
 }
 
-/* --- 4. How hybrid production works -------------------------------------- */
+/* --- 5. Процесс ---------------------------------------------------------- */
 
-/*
-  Нумерация 01–05 здесь оправдана: это реальная последовательность
-  производства, порядок несёт смысл. Соединительная линия показывает, что
-  шаги идут один из другого, а не лежат рядом.
-*/
 .hyb-steps {
   display: grid;
-  gap: var(--hyb-s-3);
-  counter-reset: step;
-}
-
-@media (min-width: 48rem) {
-  .hyb-steps {
-    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  }
-}
-
-.hyb-step {
-  position: relative;
-  padding: var(--hyb-s-4) var(--hyb-s-3);
-  border-radius: var(--hyb-r-card);
-  background: var(--hyb-bg);
-  border: 1px solid var(--hyb-line);
-}
-
-.hyb-section--alt .hyb-step {
-  background: var(--hyb-bg);
-  border-color: transparent;
+  gap: var(--hyb-s-4);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
 }
 
 .hyb-step__n {
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: var(--hyb-accent-wash);
-  color: var(--hyb-accent-text);
+  display: inline-block;
+  margin-bottom: var(--hyb-s-2);
   font-family: var(--hyb-font-display);
   font-weight: 700;
-  font-size: 0.875rem;
-  margin-bottom: var(--hyb-s-3);
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-accent-text);
 }
 
 .hyb-step__title {
+  margin-bottom: 0.5rem;
   font-family: var(--hyb-font-display);
   font-weight: 700;
-  font-size: 1.0625rem;
-  color: var(--hyb-ink);
-  margin-bottom: 0.5rem;
+  font-size: var(--hyb-t-card);
 }
 
 .hyb-step__text {
   font-size: var(--hyb-t-small);
-  line-height: 1.55;
   color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-body);
 }
 
-/* --- 5. Why hybrid? ------------------------------------------------------ */
+/* --- 6. Cifrele vorbesc -------------------------------------------------- */
 
-.hyb-why {
-  display: grid;
-  gap: var(--hyb-s-3);
-}
-
-@media (min-width: 48rem) {
-  .hyb-why {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 68rem) {
-  .hyb-why {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.hyb-stat {
-  padding: var(--hyb-s-4);
-  border-radius: var(--hyb-r-card);
-  background: var(--hyb-bg);
-  border: 1px solid var(--hyb-line);
-}
-
-.hyb-stat__kicker {
-  font-family: var(--hyb-font-display);
-  font-weight: 800;
-  font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
-  line-height: 1.15;
-  color: var(--hyb-accent);
-  margin-bottom: 0.75rem;
-}
-
-.hyb-stat__text {
-  font-size: var(--hyb-t-small);
-  line-height: 1.55;
-  color: var(--hyb-ink-muted);
-}
-
-/* Карточка «Hybrid, not AI-only» — на всю ширину под статистикой */
 .hyb-techniques {
-  margin-top: var(--hyb-s-3);
-  padding: var(--hyb-s-4);
-  border-radius: var(--hyb-r-card);
-  background: var(--hyb-bg);
+  margin-top: 1.25rem;
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
   border: 1px solid var(--hyb-line);
+  border-radius: var(--hyb-r-card);
 }
 
 .hyb-techniques__kicker {
   font-family: var(--hyb-font-display);
   font-weight: 700;
-  font-size: var(--hyb-t-h3);
-  color: var(--hyb-ink);
-  margin-bottom: var(--hyb-s-3);
+  font-size: var(--hyb-t-card);
+}
+
+.hyb-techniques__text {
+  margin-top: var(--hyb-s-3);
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
 }
 
 .hyb-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: var(--hyb-s-3);
+  margin-top: var(--hyb-s-3);
 }
 
 .hyb-chip {
@@ -909,304 +1943,117 @@
   border: 1px solid var(--hyb-line);
   border-radius: var(--hyb-r-pill);
   font-size: var(--hyb-t-small);
-  font-weight: 500;
-  color: var(--hyb-ink);
+  font-weight: 600;
 }
 
-.hyb-techniques__text {
-  font-size: var(--hyb-t-small);
-  color: var(--hyb-ink-muted);
-}
-
-/* --- 6. What's included --------------------------------------------------- */
+/* --- 7. Что входит ------------------------------------------------------- */
 
 .hyb-included {
   display: grid;
-  gap: clamp(2rem, 1rem + 3vw, 4rem);
+  gap: var(--hyb-s-5);
 }
-
 @media (min-width: 56rem) {
   .hyb-included {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
-    align-items: start;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: var(--hyb-s-6);
   }
 }
 
-/* ТЗ раздел 9: «Keep this visual and simple. Do not turn it into a technical
-   feature table.» — поэтому два столбца пунктов, без рамок и колонок-таблицы */
 .hyb-included__list {
   display: grid;
-  gap: 0.875rem 2rem;
-}
-
-@media (min-width: 30rem) {
-  .hyb-included__list {
-    grid-template-columns: 1fr 1fr;
-  }
+  gap: 0.75rem var(--hyb-s-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
 }
 
 .hyb-included__item {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
+  position: relative;
+  padding-left: 1.25rem;
   font-size: var(--hyb-t-small);
-  color: var(--hyb-ink);
 }
 
 .hyb-included__item::before {
   content: "";
-  flex: none;
-  width: 0.5rem;
-  height: 0.5rem;
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.4rem;
+  height: 0.4rem;
   border-radius: 50%;
   background: var(--hyb-gold);
 }
 
-/* --- 7. Monthly production ------------------------------------------------ */
+/* --- 8. Цена ------------------------------------------------------------- */
 
-.hyb-packages {
-  display: grid;
-  gap: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
-  margin-top: var(--hyb-s-6);
-}
-
-@media (min-width: 56rem) {
-  .hyb-packages {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/*
-  ТЗ раздел 10: «do NOT make this look like a SaaS pricing table. Use large
-  video previews... The video examples must be more prominent than feature
-  lists.» Поэтому превью занимает верх карточки, а список услуг — мелкий текст
-  внизу, а не главный герой блока.
-*/
-.hyb-package {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: var(--hyb-r-card);
-  background: var(--hyb-bg);
-  border: 1px solid var(--hyb-line);
-}
-
-.hyb-package__media {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: var(--hyb-accent-wash);
-}
-
-.hyb-package__media img,
-.hyb-package__media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hyb-package__body {
-  padding: clamp(1.25rem, 0.75rem + 1.5vw, 2rem);
-}
-
-.hyb-package__label {
-  font-size: var(--hyb-t-eyebrow);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--hyb-gold-text);
-}
-
-.hyb-package__title {
-  font-family: var(--hyb-font-display);
-  font-weight: 700;
-  font-size: var(--hyb-t-h3);
-  line-height: 1.25;
-  margin-top: 0.5rem;
-  color: var(--hyb-ink);
-}
-
-.hyb-package__price {
-  display: flex;
-  align-items: baseline;
-  gap: 0.4rem;
-  margin-top: var(--hyb-s-3);
-  font-family: var(--hyb-font-display);
-  font-weight: 800;
-  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
-  line-height: 1;
-  color: var(--hyb-accent);
-}
-
-.hyb-package__per {
-  font-family: var(--hyb-font-body);
-  font-size: var(--hyb-t-small);
-  font-weight: 500;
-  color: var(--hyb-ink-muted);
-}
-
-.hyb-package__ideal {
-  margin-top: var(--hyb-s-3);
-  font-size: var(--hyb-t-small);
-  line-height: 1.55;
-  color: var(--hyb-ink-muted);
-}
-
-.hyb-package__items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 0.75rem;
-  margin-top: var(--hyb-s-3);
-  padding-top: var(--hyb-s-3);
-  border-top: 1px solid var(--hyb-line);
-}
-
-.hyb-package__item {
-  font-size: 0.8125rem;
-  color: var(--hyb-ink-muted);
-}
-.hyb-package__item:not(:last-child)::after {
-  content: " ·";
-  color: var(--hyb-accent-soft);
-}
-
-.hyb-custom {
-  margin-top: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
-  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
-  border-radius: var(--hyb-r-card);
-  background: var(--hyb-accent-wash);
-}
-
-.hyb-section--alt .hyb-custom {
-  background: var(--hyb-bg);
-}
-
-.hyb-custom__grid {
-  display: grid;
-  gap: var(--hyb-s-4);
-  align-items: center;
-}
-
-@media (min-width: 56rem) {
-  .hyb-custom__grid {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-}
-
-/* Финальная мысль блока — почему подписка, а не пачка видео */
-.hyb-closing {
-  margin-top: var(--hyb-s-6);
-  padding-top: var(--hyb-s-6);
-  border-top: 1px solid var(--hyb-line);
-  display: grid;
-  gap: var(--hyb-s-4);
-}
-
-@media (min-width: 56rem) {
-  .hyb-closing {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(2rem, 1rem + 3vw, 4rem);
-  }
-}
-
-.hyb-closing__text + .hyb-closing__text {
-  margin-top: var(--hyb-s-3);
-}
-
-/* --- 8. Pricing (тёмный остров) -------------------------------------------- */
-
-/*
-  Единственный тёмный блок на странице. Он же — из аутпута base44, который
-  клиент принял. Токены переопределяются классом .hyb-invert, поэтому
-  компоненты внутри не знают, что попали на тёмное.
-*/
+/* 1088px — измерено на макете */
 .hyb-price {
-  padding: clamp(2.5rem, 1.5rem + 5vw, 5rem) clamp(1.5rem, 1rem + 3vw, 4rem);
-  border-radius: clamp(var(--hyb-r-card), 2vw, 40px);
-  background: var(--hyb-dark);
-  color: var(--hyb-on-dark);
   text-align: center;
-}
-
-.hyb-price .hyb-title {
-  color: var(--hyb-on-dark);
-}
-
-.hyb-price .hyb-title__outline {
-  -webkit-text-stroke-color: var(--hyb-gold);
-}
-
-@supports not (-webkit-text-stroke: 1px currentColor) {
-  .hyb-price .hyb-title__outline {
-    color: var(--hyb-gold);
-  }
-}
-
-.hyb-price__eyebrow {
-  color: var(--hyb-gold);
+  max-width: 1088px;
+  margin-inline: auto;
 }
 
 .hyb-price__stats {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+  justify-content: center;
+  gap: var(--hyb-s-5);
   margin-top: var(--hyb-s-5);
-}
-
-.hyb-price__stat {
-  text-align: center;
-}
-
-.hyb-price__value {
-  font-family: var(--hyb-font-display);
-  font-weight: 800;
-  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
-  line-height: 1;
-  color: var(--hyb-gold);
-  text-transform: uppercase;
-}
-
-.hyb-price__label {
-  margin-top: 0.5rem;
-  font-size: var(--hyb-t-small);
-  color: var(--hyb-on-dark-muted);
 }
 
 .hyb-price__divider {
   width: 1px;
   align-self: stretch;
-  min-height: 3rem;
-  background: var(--hyb-line-dark);
+  background: var(--hyb-line);
 }
 
-@media (max-width: 34rem) {
-  .hyb-price__divider {
-    display: none;
-  }
+.hyb-price__value {
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-stat);
+  line-height: 1;
+  color: var(--hyb-gold-large);
+}
+
+.hyb-price__label {
+  margin-top: 0.5rem;
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
 }
 
 .hyb-price__note {
-  max-width: 46ch;
+  max-width: 52ch;
   margin: var(--hyb-s-4) auto 0;
   font-size: var(--hyb-t-small);
-  color: var(--hyb-on-dark-muted);
+  color: var(--hyb-ink-muted);
 }
 
 .hyb-price .hyb-actions {
   justify-content: center;
 }
 
-/* --- 9. Final CTA ---------------------------------------------------------- */
+/* --- 9. Финальный CTA ---------------------------------------------------- */
 
 .hyb-final {
   text-align: center;
+  padding-block: clamp(3.5rem, 2rem + 5vw, 7rem); /* 112px в макете */
 }
 
+/*
+  Заголовок финального CTA в макете не ограничен вообще: он занимает всю
+  ширину контейнера и укладывается в две строки сам. Прежний max-width: 22ch
+  рвал румынский вариант на пять строк лесенкой — и любое другое узкое
+  ограничение воспроизвело бы ту же ошибку на более длинном языке.
+*/
 .hyb-final .hyb-head {
-  max-width: 22ch;
+  max-width: none;
   margin-inline: auto;
+}
+
+/* Финальный заголовок в макете набран кеглем героя (72px), а не секционным
+   (48px) — единственное место на странице, кроме первого экрана. */
+.hyb-final .hyb-title {
+  font-size: var(--hyb-t-hero);
 }
 
 .hyb-final .hyb-lead {

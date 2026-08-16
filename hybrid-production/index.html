@@ -24,16 +24,14 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap&subset=latin,latin-ext" rel="stylesheet">
-
-  
-  <link rel="stylesheet" href="/pixtoon-hybrid/assets/css/theme-shell.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@400;500;600;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
 
   
   <link rel="stylesheet" href="/pixtoon-hybrid/assets/css/hybrid.css">
 </head>
 
-<body class="hyb-page">
+
+<body class="hyb-page hyb-scope">
   <a class="hyb-skip" href="#main">Skip to content</a>
 
   
@@ -41,76 +39,63 @@
   <style>
     .hyb-demobar {
       padding: 0.625rem 1rem;
-      background: #231f29;
+      background: #231e29;
       color: #fff;
-      font-family: Poppins, system-ui, sans-serif;
+      font-family: Quicksand, system-ui, sans-serif;
       font-size: 0.8125rem;
       text-align: center;
     }
-    .hyb-demobar b { color: #fff028; font-weight: 600; }
+    .hyb-demobar b { color: #b99655; font-weight: 700; }
     .hyb-demobar a { color: #b9a4c9; }
   </style>
   <div class="hyb-demobar">
     
-      <b>Demo build</b> — only the Hybrid Production section is built here.
-      Other menu items open the live <a href="https://pixtoon.com/">pixtoon.com</a>.
+      <b>Demo build</b> — a preview of the new site. Posters show client work
+      that is not published yet, so this build is closed to search engines.
+      Live site: <a href="https://pixtoon.com/">pixtoon.com</a>.
     
   </div>
   
 
   
-<header class="header">
-  <div class="inner">
-    <nav class="header-nav">
-      
-      
-      <a href="/pixtoon-hybrid/" class="header-nav__logo-mobile" aria-label="Pixtoon">
-        <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo-mobile.svg"></object>
-      </a>
+<header class="hyb-header" data-hyb-header="">
+  <div class="hyb-header__inner">
+    
+    <a href="/pixtoon-hybrid/" class="hyb-header__logo" aria-label="Pixtoon">
+      <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo.svg" tabindex="-1" aria-hidden="true"></object>
+    </a>
 
-      <button class="header-nav__burger" type="button" aria-expanded="false" aria-controls="hyb-nav" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="hyb-burger" type="button" aria-expanded="false" aria-controls="hyb-nav" aria-label="Menu" data-hyb-burger="">
+      <span></span><span></span><span></span>
+    </button>
 
-      <ul class="header-nav__items" id="hyb-nav">
-        <li class="header-nav__item">
-          <a href="/pixtoon-hybrid/" class="header-nav__logo" aria-label="Pixtoon">
-            <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo.svg"></object>
-          </a>
+    <nav class="hyb-nav" id="hyb-nav">
+      <ul class="hyb-nav__items">
+        <li><a href="/pixtoon-hybrid/work/" class="hyb-nav__link">Work</a></li>
+        <li><a href="/pixtoon-hybrid/capabilities/" class="hyb-nav__link">Capabilities</a></li>
+        <li>
+          
+          <a href="/pixtoon-hybrid/hybrid-production/" class="hyb-nav__link is-current" aria-current="page">Hybrid Production</a>
         </li>
-        <li class="header-nav__item">
-          <a href="https://pixtoon.com/about-us.html" class="header-nav__link">About us</a>
-        </li>
-        <li class="header-nav__item">
-          <a href="https://pixtoon.com/our-work/" class="header-nav__link">Our work</a>
-        </li>
-
-        
-        <li class="header-nav__item">
-          <a href="/pixtoon-hybrid/hybrid-production/" class="header-nav__link header-nav__link--hybrid is-current" aria-current="page">Hybrid Production</a>
-        </li>
-
-        <li class="header-nav__item">
-          <a href="https://pixtoon.com/blog/" class="header-nav__link">Blog</a>
-        </li>
-        <li class="header-nav__item">
-          <a href="https://pixtoon.com/contacts.html" class="header-nav__link">Contact us</a>
-        </li>
-
-        
-        <li class="header-nav__item header-nav__item--lang">
-          <a href="/pixtoon-hybrid/ro/hybrid-production/" class="header-nav__link" lang="ro" hreflang="ro">Română</a>
-        </li>
+        <li><a href="/pixtoon-hybrid/studio/" class="hyb-nav__link">Studio</a></li>
       </ul>
+
+      <div class="hyb-header__actions">
+        
+        <a href="/pixtoon-hybrid/ro/hybrid-production/" class="hyb-nav__link hyb-nav__link--lang" lang="ro" hreflang="ro">Română</a>
+
+        <a href="/pixtoon-hybrid/hybrid-production/#start" class="hyb-btn hyb-btn--nav">
+          Start a project
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
     </nav>
   </div>
 </header>
 
 
-  
-  <main id="main" class="hyb-scope">
+  <main id="main">
     
-
 
 
 
@@ -120,8 +105,8 @@
       <div class="hyb-hero__text">
         <span class="hyb-eyebrow hyb-eyebrow--pill">AI hybrid video production</span>
         <h1 class="hyb-title hyb-title--hero"><span class="hyb-title__plain">Big ideas.</span> <span class="hyb-title__outline">Faster</span> <span class="hyb-title__plain">production.</span></h1>
-        <p class="hyb-lead">AI + animation + filmmaking, directed by humans.</p>
-        <p class="hyb-hero__highlight">Commercial video production in as little as 3 days. Starting from €1,000 for 20 sec.</p>
+        <p class="hyb-lead">AI + animation + filmmaking, directed by people.</p>
+        <p class="hyb-hero__highlight">A commercial in just 3 days. From €1,000 for 20 seconds.</p>
 
         <div class="hyb-actions">
           <a href="#start" class="hyb-btn hyb-btn--primary">
@@ -133,65 +118,88 @@
       </div>
 
       
+      
       <div class="hyb-hero__visual">
-        <div class="hyb-mosaic">
+        <div class="hyb-collage">
           
           
-          <figure class="hyb-mosaic__item">
-            <img class="hyb-mosaic__media" src="/pixtoon-hybrid/assets/img/cases/drive-gas-poster.jpg" alt="Drive Gas — AI hybrid / 3D character / Product / Environment" loading="eager" fetchpriority="high">
-            <figcaption class="hyb-mosaic__label">Drive Gas</figcaption>
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--1">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/drive-gas.jpg" alt="Drive Gas — AI hybrid / 3D character / Product / Environment" style="object-position: 50% 50%" loading="eager" fetchpriority="high">
+            <figcaption class="hyb-tag hyb-tag--gold">Drive Gas</figcaption>
           </figure>
           
           
-          <figure class="hyb-mosaic__item">
-            <img class="hyb-mosaic__media" src="/pixtoon-hybrid/assets/img/cases/coccolino-poster.jpg" alt="Coccolino — AI character / Product commercial" loading="lazy">
-            <figcaption class="hyb-mosaic__label">Coccolino</figcaption>
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--2">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/coccolino.jpg" alt="Coccolino — AI character / Product commercial" style="object-position: 38% 50%" loading="lazy">
+            <figcaption class="hyb-tag hyb-tag--gold">Coccolino</figcaption>
           </figure>
           
           
-          <figure class="hyb-mosaic__item">
-            <img class="hyb-mosaic__media" src="/pixtoon-hybrid/assets/img/cases/medpark-poster.jpg" alt="Medpark — Doctor Buba — AI animated series / Brand characters" loading="lazy">
-            <figcaption class="hyb-mosaic__label">Medpark — Doctor Buba</figcaption>
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--3">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/medpark-doctor-buba.jpg" alt="Medpark — Doctor Buba — AI animated series / Brand characters" style="object-position: 50% 40%" loading="lazy">
+            <figcaption class="hyb-tag hyb-tag--gold">Medpark — Doctor Buba</figcaption>
           </figure>
           
           
-          <figure class="hyb-mosaic__item">
-            <img class="hyb-mosaic__media" src="/pixtoon-hybrid/assets/img/cases/bere-chisinau-poster.jpg" alt="Bere Chișinău — AI product commercial" loading="lazy">
-            <figcaption class="hyb-mosaic__label">Bere Chișinău</figcaption>
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--4">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/bere-chisinau.jpg" alt="Berea Chișinău — AI product / Brand commercial" style="object-position: 50% 40%" loading="lazy">
+            <figcaption class="hyb-tag hyb-tag--gold">Berea Chișinău</figcaption>
           </figure>
           
-        </div>
+          
+          
+          
+          
+          <figure class="hyb-collage__item hyb-collage__item--5">
+            <img class="hyb-collage__media" src="/pixtoon-hybrid/assets/img/cases/microinvest-family.jpg" alt="Familia Microinvest — Rigged 3D characters / AI animation" style="object-position: 50% 45%" loading="lazy">
+            <figcaption class="hyb-tag hyb-tag--gold">Familia Microinvest</figcaption>
+          </figure>
+          
+          
 
-        <button class="hyb-showreel" type="button" data-hyb-showreel="">
-          <span class="hyb-showreel__icon" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"></path></svg>
-          </span>
-          Hybrid showreel
-        </button>
+          <button class="hyb-showreel" type="button" data-hyb-showreel="">
+            <span class="hyb-showreel__icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"></path></svg>
+            </span>
+            Hybrid showreel
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 
-<section class="hyb-section hyb-section--alt" id="work">
+<section class="hyb-section" id="work">
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
       <span class="hyb-eyebrow">Selected hybrid work</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">We sell the</span> <span class="hyb-title__outline">result</span><span class="hyb-title__plain">, not the tool.</span></h2>
+      <h2 class="hyb-title "><span class="hyb-title__plain">We sell the result,</span> <span class="hyb-title__outline">not the tool.</span></h2>
     </div>
 
-    <div class="hyb-work__grid">
+    
+    <div class="hyb-work">
       
       
-      
-      <a class="hyb-case hyb-reveal" href="/pixtoon-hybrid/hybrid-production/drive-gas/" data-hyb-hover-video="">
+      <a class="hyb-case hyb-case--1 hyb-reveal" href="/pixtoon-hybrid/hybrid-production/drive-gas/" data-hyb-hover-video="">
         <div class="hyb-case__frame">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/drive-gas-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/drive-gas-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/drive-gas.jpg" alt="" style="object-position: 50% 50%" loading="lazy">
+          
         </div>
         <div class="hyb-case__body">
-          <p class="hyb-case__tags">01 — AI hybrid / 3D character / Product / Environment</p>
+          <span class="hyb-tag hyb-tag--glass">AI hybrid / 3D character / Product / Environment</span>
           <h3 class="hyb-case__title">Drive Gas</h3>
           <p class="hyb-case__excerpt">A branded 3D world and character-driven commercial created through a hybrid AI + animation pipeline.</p>
           <span class="hyb-case__cta">
@@ -202,15 +210,15 @@
       </a>
       
       
-      <a class="hyb-case hyb-reveal" href="/pixtoon-hybrid/hybrid-production/coccolino/" data-hyb-hover-video="">
+      <a class="hyb-case hyb-case--2 hyb-reveal" href="/pixtoon-hybrid/hybrid-production/coccolino/" data-hyb-hover-video="">
         <div class="hyb-case__frame">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/coccolino-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/coccolino-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/coccolino.jpg" alt="" style="object-position: 38% 50%" loading="lazy">
+          
         </div>
         <div class="hyb-case__body">
-          <p class="hyb-case__tags">02 — AI character / Product commercial</p>
+          <span class="hyb-tag hyb-tag--glass">AI character / Product commercial</span>
           <h3 class="hyb-case__title">Coccolino</h3>
-          <p class="hyb-case__excerpt">AI-assisted character and product advertising built around the existing Coccolino brand universe.</p>
+          
           <span class="hyb-case__cta">
             View case study
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -219,15 +227,49 @@
       </a>
       
       
-      <a class="hyb-case hyb-reveal" href="/pixtoon-hybrid/hybrid-production/medpark-doctor-buba/" data-hyb-hover-video="">
+      <a class="hyb-case hyb-case--3 hyb-reveal" href="/pixtoon-hybrid/hybrid-production/medpark-doctor-buba/" data-hyb-hover-video="">
         <div class="hyb-case__frame">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/medpark-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/medpark-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/medpark-doctor-buba.jpg" alt="" style="object-position: 50% 40%" loading="lazy">
+          
         </div>
         <div class="hyb-case__body">
-          <p class="hyb-case__tags">03 — AI animated series / Brand characters</p>
+          <span class="hyb-tag hyb-tag--glass">AI animated series / Brand characters</span>
           <h3 class="hyb-case__title">Medpark — Doctor Buba</h3>
-          <p class="hyb-case__excerpt">A branded animated content universe created around Medpark&#39;s characters.</p>
+          
+          <span class="hyb-case__cta">
+            View case study
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+        </div>
+      </a>
+      
+      
+      <a class="hyb-case hyb-case--4 hyb-reveal" href="/pixtoon-hybrid/hybrid-production/microinvest-family/" data-hyb-hover-video="">
+        <div class="hyb-case__frame">
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/microinvest-family.jpg" alt="" style="object-position: 50% 45%" loading="lazy">
+          
+        </div>
+        <div class="hyb-case__body">
+          <span class="hyb-tag hyb-tag--glass">Rigged 3D characters / AI animation</span>
+          <h3 class="hyb-case__title">Familia Microinvest</h3>
+          
+          <span class="hyb-case__cta">
+            View case study
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+        </div>
+      </a>
+      
+      
+      <a class="hyb-case hyb-case--5 hyb-reveal" href="/pixtoon-hybrid/hybrid-production/bere-chisinau/" data-hyb-hover-video="">
+        <div class="hyb-case__frame">
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/bere-chisinau.jpg" alt="" style="object-position: 50% 40%" loading="lazy">
+          
+        </div>
+        <div class="hyb-case__body">
+          <span class="hyb-tag hyb-tag--glass">AI product / Brand commercial</span>
+          <h3 class="hyb-case__title">Berea Chișinău</h3>
+          
           <span class="hyb-case__cta">
             View case study
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -240,78 +282,246 @@
 </section>
 
 
-<section class="hyb-section hyb-section--tight">
+<section class="hyb-section hyb-section--alt hyb-section--roomy" id="monthly">
   <div class="hyb-wrap">
-    <div class="hyb-more__head">
-      <div>
-        <span class="hyb-eyebrow">More hybrid work</span>
-        <h2 class="hyb-h3">Recent hybrid productions.</h2>
+    <div class="hyb-head hyb-head--wide hyb-reveal">
+      <span class="hyb-eyebrow">Monthly hybrid content</span>
+      <h2 class="hyb-title "><span class="hyb-title__plain">Need content every single month?</span></h2>
+      <p class="hyb-subtitle">Your AI content production team. Every month.</p>
+      <p class="hyb-lead">Turn a campaign, a mascot, a product or a brand universe into a continuous stream of video. Instead of starting a new production from scratch every time, we build a visual system for the brand and keep producing new stories, situations and formats month after month.</p>
+    </div>
+
+    <div class="hyb-packages">
+      
+      <article class="hyb-package hyb-reveal">
+        <div class="hyb-package__head">
+          <p class="hyb-eyebrow hyb-eyebrow--gold hyb-package__label">Monthly package 01</p>
+          <p class="hyb-package__price">
+            €1,500<span class="hyb-package__per">/ month</span>
+          </p>
+        </div>
+        <h3 class="hyb-package__title">2 hybrid AI / 3D videos per month</h3>
+
+        
+        <div class="hyb-package__media" data-hyb-hover-video="">
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/coccolino.jpg" alt="Coccolino — character content" loading="lazy">
+          <span class="hyb-tag hyb-tag--gold hyb-package__tag">
+            <span aria-hidden="true">✦</span> Coccolino — character content
+          </span>
+          <span class="hyb-play" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"></path></svg>
+          </span>
+        </div>
+
+        <div class="hyb-package__cols">
+          <div>
+            <span class="hyb-label">Ideal for</span>
+            <ul class="hyb-checks">
+              <li class="hyb-checks__item">Brand mascots</li><li class="hyb-checks__item">Product content</li><li class="hyb-checks__item">Character-driven content</li><li class="hyb-checks__item">Social media campaigns</li><li class="hyb-checks__item">Recurring brand stories</li>
+            </ul>
+          </div>
+          <div>
+            <span class="hyb-label">Includes</span>
+            <ul class="hyb-checks">
+              <li class="hyb-checks__item">Monthly creative concepts</li><li class="hyb-checks__item">2 videos</li><li class="hyb-checks__item">Script</li><li class="hyb-checks__item">Visual development</li><li class="hyb-checks__item">AI production</li><li class="hyb-checks__item">Animation</li><li class="hyb-checks__item">Editing</li><li class="hyb-checks__item">Voice-over where needed</li><li class="hyb-checks__item">Music &amp; sound design</li><li class="hyb-checks__item">Final delivery</li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="#start" class="hyb-btn hyb-btn--dark">
+          Start the monthly plan
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
+      
+      <article class="hyb-package hyb-reveal">
+        <div class="hyb-package__head">
+          <p class="hyb-eyebrow hyb-eyebrow--gold hyb-package__label">Monthly package 02</p>
+          <p class="hyb-package__price">
+            €2,000<span class="hyb-package__per">/ month</span>
+          </p>
+        </div>
+        <h3 class="hyb-package__title">3 hybrid / animated videos per month</h3>
+
+        
+        <div class="hyb-package__media" data-hyb-hover-video="">
+          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/doctor-buba-youtube.jpg" alt="Medpark — animation + AI" loading="lazy">
+          <span class="hyb-tag hyb-tag--gold hyb-package__tag">
+            <span aria-hidden="true">✦</span> Medpark — animation + AI
+          </span>
+          <span class="hyb-play" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"></path></svg>
+          </span>
+        </div>
+
+        <div class="hyb-package__cols">
+          <div>
+            <span class="hyb-label">Ideal for</span>
+            <ul class="hyb-checks">
+              <li class="hyb-checks__item">Regular social content</li><li class="hyb-checks__item">Products &amp; services</li><li class="hyb-checks__item">Campaigns with animated characters</li><li class="hyb-checks__item">Reels / TikTok / Shorts</li><li class="hyb-checks__item">Animation + AI + motion graphics</li>
+            </ul>
+          </div>
+          <div>
+            <span class="hyb-label">Includes</span>
+            <ul class="hyb-checks">
+              <li class="hyb-checks__item">Monthly content concepts</li><li class="hyb-checks__item">3 videos</li><li class="hyb-checks__item">Animation</li><li class="hyb-checks__item">Editing</li><li class="hyb-checks__item">AI elements where useful</li><li class="hyb-checks__item">Motion graphics</li><li class="hyb-checks__item">Sound design</li><li class="hyb-checks__item">Final formats for social media</li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="#start" class="hyb-btn hyb-btn--dark">
+          Start the monthly plan
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </article>
+      
+    </div>
+
+    
+    <div class="hyb-custom hyb-invert hyb-reveal">
+      <div class="hyb-custom__media">
+        <img src="/pixtoon-hybrid/assets/img/cases/drive-gas.jpg" alt="" loading="lazy">
       </div>
-      <div class="hyb-more__nav">
-        <button class="hyb-more__btn" type="button" data-hyb-scroll="-1" aria-label="Previous projects">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        </button>
-        <button class="hyb-more__btn" type="button" data-hyb-scroll="1" aria-label="Next projects">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        </button>
+      <div class="hyb-custom__body">
+        <p class="hyb-eyebrow hyb-eyebrow--gold">Custom monthly production</p>
+        <h3 class="hyb-custom__title">For brands that need a higher volume of content or a production system of their own.</h3>
+        <span class="hyb-label hyb-custom__kicker">Possible combinations</span>
+        <ul class="hyb-chips">
+          <li class="hyb-chip">AI video</li><li class="hyb-chip">3D characters</li><li class="hyb-chip">2D animation</li><li class="hyb-chip">Live action</li><li class="hyb-chip">Motion graphics</li><li class="hyb-chip">Product visualisation</li><li class="hyb-chip">VFX</li><li class="hyb-chip">Social media content</li>
+        </ul>
+        <a href="#start" class="hyb-btn hyb-btn--primary hyb-btn--sm">
+          Build my monthly plan
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
 
-    <div class="hyb-more__track" data-hyb-track="" tabindex="0">
-      
-      
-      <div class="hyb-more__item">
-        <div class="hyb-case" data-hyb-hover-video="">
-          <div class="hyb-case__frame" style="aspect-ratio:16/10">
-            <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/efes-poster.jpg" alt="" loading="lazy">
-            <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/efes-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-          </div>
-          <div class="hyb-case__body">
-            <p class="hyb-case__tags">AI product commercial</p>
-            <h3 class="hyb-case__title">Efes</h3>
-          </div>
-        </div>
+    <div class="hyb-closing hyb-reveal">
+      <div>
+        <span class="hyb-eyebrow">Continuity is the advantage</span>
+        <h3 class="hyb-title "><span class="hyb-title__plain">Build the world once.</span> <span class="hyb-title__outline">Keep telling new stories.</span></h3>
       </div>
-      
-      
-      <div class="hyb-more__item">
-        <div class="hyb-case" data-hyb-hover-video="">
-          <div class="hyb-case__frame" style="aspect-ratio:16/10">
-            <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/bere-chisinau-poster.jpg" alt="" loading="lazy">
-            <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/bere-chisinau-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-          </div>
-          <div class="hyb-case__body">
-            <p class="hyb-case__tags">AI product commercial</p>
-            <h3 class="hyb-case__title">Bere Chișinău</h3>
-          </div>
-        </div>
+      <div>
+        <p class="hyb-closing__text">The advantage of monthly production is not simply “more videos for less money”. It is continuity.</p>
+        <p class="hyb-closing__text">Once Pixtoon has developed the brand’s visual world — the characters or mascot, the visual style, the tone and the recurring formats — we can keep producing new content far faster and hold a consistent brand universe, month after month.</p>
       </div>
-      
-      
-      <div class="hyb-more__item">
-        <div class="hyb-case" data-hyb-hover-video="">
-          <div class="hyb-case__frame" style="aspect-ratio:16/10">
-            <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/medpark-diaspora-poster.jpg" alt="" loading="lazy">
-            <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/medpark-diaspora-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-          </div>
-          <div class="hyb-case__body">
-            <p class="hyb-case__tags">AI + 2D hybrid commercial</p>
-            <h3 class="hyb-case__title">Medpark Diaspora</h3>
-          </div>
-        </div>
-      </div>
-      
     </div>
   </div>
 </section>
 
 
-<section class="hyb-section hyb-section--alt" id="how-it-works">
+<section class="hyb-section" id="microinvest">
   <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
+    <div class="hyb-head hyb-head--wide hyb-reveal">
+      <span class="hyb-eyebrow">Case study — Microinvest</span>
+      <h2 class="hyb-title "><span class="hyb-title__plain">The Microinvest family.</span> <span class="hyb-title__outline">Built classically. Animated with AI.</span></h2>
+      <p class="hyb-lead">The Microinvest family characters were created the classic 3D way — fully modelled and rigged, ready for traditional animation. Now we animate them with AI tools, producing far more content, far faster, with the characters’ identity kept intact.</p>
+    </div>
+
+    <div class="hyb-mi__top hyb-reveal">
+      <figure class="hyb-mi__hero">
+        <img src="/pixtoon-hybrid/assets/img/cases/microinvest-family.jpg" alt="A brand universe, alive" loading="lazy">
+        <figcaption>
+          <span class="hyb-tag hyb-tag--gold"><span aria-hidden="true">✦</span> Rigged 3D characters + AI animation</span>
+          <span class="hyb-mi__caption">A brand universe, alive</span>
+        </figcaption>
+      </figure>
+      <div class="hyb-mi__side">
+        <figure class="hyb-mi__tile">
+          <img src="/pixtoon-hybrid/assets/img/microinvest/branding.jpg" alt="Branding" loading="lazy">
+          <figcaption class="hyb-tag hyb-tag--light">Branding</figcaption>
+        </figure>
+        <figure class="hyb-mi__tile">
+          <img src="/pixtoon-hybrid/assets/img/microinvest/app-ui.jpg" alt="App UI" loading="lazy">
+          <figcaption class="hyb-tag hyb-tag--light">App UI</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    
+    <div class="hyb-mi__portraits hyb-reveal">
+      
+      
+      <figure class="hyb-mi__portrait">
+        <img src="/pixtoon-hybrid/assets/img/microinvest/mama.jpg" alt="Mother" loading="lazy">
+        <figcaption>Mother</figcaption>
+      </figure>
+      
+      <figure class="hyb-mi__portrait">
+        <img src="/pixtoon-hybrid/assets/img/microinvest/fiica.jpg" alt="Daughter" loading="lazy">
+        <figcaption>Daughter</figcaption>
+      </figure>
+      
+      <figure class="hyb-mi__portrait">
+        <img src="/pixtoon-hybrid/assets/img/microinvest/tatal.jpg" alt="Father" loading="lazy">
+        <figcaption>Father</figcaption>
+      </figure>
+      
+      <figure class="hyb-mi__portrait">
+        <img src="/pixtoon-hybrid/assets/img/microinvest/mama-bucatarie.jpg" alt="Mother — kitchen" loading="lazy">
+        <figcaption>Mother — kitchen</figcaption>
+      </figure>
+      
+    </div>
+
+    <div class="hyb-mi__features hyb-reveal">
+      
+      <div class="hyb-feature">
+        <span class="hyb-feature__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="6" r="3"></circle><path d="M2 17c0-2.8 2.2-5 5-5s5 2.2 5 5"></path><path d="M14 4.5a3 3 0 0 1 0 5.8M16 13.5c1.4.9 2.3 2.4 2.3 4"></path>
+          </svg>
+        </span>
+        <h3 class="hyb-feature__title">Characters built classically</h3>
+        <p class="hyb-feature__text">The Microinvest family — modelled and rigged in 3D the traditional way, with full animation controllers.</p>
+      </div>
+      
+      <div class="hyb-feature">
+        <span class="hyb-feature__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="6" r="3"></circle><path d="M2 17c0-2.8 2.2-5 5-5s5 2.2 5 5"></path><path d="M14 4.5a3 3 0 0 1 0 5.8M16 13.5c1.4.9 2.3 2.4 2.3 4"></path>
+          </svg>
+        </span>
+        <h3 class="hyb-feature__title">Animation accelerated with AI</h3>
+        <p class="hyb-feature__text">We now animate these characters with AI tools — much faster, much more content, without losing their identity.</p>
+      </div>
+      
+      <div class="hyb-feature">
+        <span class="hyb-feature__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="6" r="3"></circle><path d="M2 17c0-2.8 2.2-5 5-5s5 2.2 5 5"></path><path d="M14 4.5a3 3 0 0 1 0 5.8M16 13.5c1.4.9 2.3 2.4 2.3 4"></path>
+          </svg>
+        </span>
+        <h3 class="hyb-feature__title">Content volume</h3>
+        <p class="hyb-feature__text">Reels, social spots, brand scenes — a character universe we can keep extending.</p>
+      </div>
+      
+    </div>
+
+    <div class="hyb-mi__why hyb-reveal">
+      <div>
+        <span class="hyb-eyebrow">Why it works</span>
+        <h3 class="hyb-title "><span class="hyb-title__plain">Classic rig + AI animation =</span> <span class="hyb-title__outline">real scalability</span></h3>
+      </div>
+      <div>
+        <p class="hyb-closing__text">Characters built the classic way — with a full rig, expressions and controllers — have an identity and a consistency that AI alone cannot reproduce.</p>
+        <p class="hyb-closing__text">Combining that base with AI animation, we produce new scenes, reactions, movements and stories at a pace traditional animation alone could not reach.</p>
+        <a href="#start" class="hyb-link hyb-link--accent">
+          See how we can do this for your brand
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hyb-section" id="how-it-works">
+  <div class="hyb-wrap">
+    <div class="hyb-head hyb-head--mid hyb-reveal">
       <span class="hyb-eyebrow">How hybrid production works</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">AI is part of the pipeline.</span> <span class="hyb-title__outline">Not</span> <span class="hyb-title__plain">the director.</span></h2>
-      <p class="hyb-lead">We combine traditional creative production with the latest AI tools to produce high-quality commercial content faster and more efficiently.</p>
+      <h2 class="hyb-title "><span class="hyb-title__plain">AI is part of the pipeline.</span> <span class="hyb-title__outline">Not the director.</span></h2>
+      <p class="hyb-lead">We combine traditional creative production with the newest AI tools to produce high-quality commercial content faster and more efficiently.</p>
     </div>
 
     <ol class="hyb-steps">
@@ -319,31 +529,31 @@
       <li class="hyb-step hyb-reveal">
         <span class="hyb-step__n" aria-hidden="true">01</span>
         <h3 class="hyb-step__title">Brief</h3>
-        <p class="hyb-step__text">We learn about the brand, product, objective and audience.</p>
+        <p class="hyb-step__text">We learn the brand, the product, the objective and the audience.</p>
       </li>
       
       <li class="hyb-step hyb-reveal">
         <span class="hyb-step__n" aria-hidden="true">02</span>
         <h3 class="hyb-step__title">Concept</h3>
-        <p class="hyb-step__text">Pixtoon develops the creative idea, script and visual direction.</p>
+        <p class="hyb-step__text">Pixtoon develops the creative idea, the script and the visual direction.</p>
       </li>
       
       <li class="hyb-step hyb-reveal">
         <span class="hyb-step__n" aria-hidden="true">03</span>
         <h3 class="hyb-step__title">AI production</h3>
-        <p class="hyb-step__text">AI is used where it makes production faster or opens creative possibilities: characters, environments, product visuals, shots and visual development.</p>
+        <p class="hyb-step__text">AI accelerates characters, environments, product visuals and frames — wherever it opens up creative possibilities.</p>
       </li>
       
       <li class="hyb-step hyb-reveal">
         <span class="hyb-step__n" aria-hidden="true">04</span>
         <h3 class="hyb-step__title">Animation &amp; post</h3>
-        <p class="hyb-step__text">Our team handles animation, compositing, editing, voice, music, sound design and final polish.</p>
+        <p class="hyb-step__text">Our team handles animation, compositing, editing, voice, music, sound design and final finishing.</p>
       </li>
       
       <li class="hyb-step hyb-reveal">
         <span class="hyb-step__n" aria-hidden="true">05</span>
         <h3 class="hyb-step__title">Delivery</h3>
-        <p class="hyb-step__text">Final commercial video delivered for social media, digital ads, YouTube, TV and DOOH.</p>
+        <p class="hyb-step__text">Final video delivered for social, digital ads, YouTube, TV and DOOH.</p>
       </li>
       
     </ol>
@@ -351,55 +561,45 @@
 </section>
 
 
-<section class="hyb-section">
+<section class="hyb-section hyb-section--alt">
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
       <span class="hyb-eyebrow">Why hybrid?</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Bigger ideas.</span> <span class="hyb-title__outline">Smaller</span> <span class="hyb-title__plain">productions.</span></h2>
+      <h2 class="hyb-title "><span class="hyb-title__plain">The numbers speak.</span></h2>
     </div>
 
-    <div class="hyb-why">
+    <div class="hyb-stats">
       
       <div class="hyb-stat hyb-reveal">
-        <p class="hyb-stat__kicker">3 days</p>
-        <p class="hyb-stat__text">Production can be completed dramatically faster than traditional production.</p>
+        <p class="hyb-stat__value">3 DAYS</p>
+        <p class="hyb-stat__label">Production time</p>
+        <p class="hyb-stat__text">From brief to final video, significantly faster than traditional production.</p>
       </div>
       
       <div class="hyb-stat hyb-reveal">
-        <p class="hyb-stat__kicker">From €1,000</p>
-        <p class="hyb-stat__text">Starting price for a 20 sec hybrid video.</p>
+        <p class="hyb-stat__value">FROM €1K</p>
+        <p class="hyb-stat__label">Starting price</p>
+        <p class="hyb-stat__text">For a 20-second hybrid commercial. Scalable to any format.</p>
       </div>
       
       <div class="hyb-stat hyb-reveal">
-        <p class="hyb-stat__kicker">No traditional shoot required</p>
-        <p class="hyb-stat__text">Many concepts can be produced without locations, actors, physical sets or large crews.</p>
+        <p class="hyb-stat__value">NO SHOOT</p>
+        <p class="hyb-stat__label">Required</p>
+        <p class="hyb-stat__text">Build worlds, characters and situations without locations, actors or crews.</p>
       </div>
       
       <div class="hyb-stat hyb-reveal">
-        <p class="hyb-stat__kicker">Unlimited creative worlds</p>
-        <p class="hyb-stat__text">Create characters, environments and situations that would be expensive or impossible to shoot traditionally.</p>
+        <p class="hyb-stat__value">∞ WORLDS</p>
+        <p class="hyb-stat__label">Creative range</p>
+        <p class="hyb-stat__text">AI + 2D + 3D + VFX + motion graphics + live action — whatever the idea needs.</p>
       </div>
       
     </div>
 
     <div class="hyb-techniques hyb-reveal">
-      <h3 class="hyb-techniques__kicker">Hybrid, not AI-only</h3>
+      <h3 class="hyb-techniques__kicker">Hybrid, not just AI.</h3>
       <ul class="hyb-chips">
-        
-        <li class="hyb-chip">AI</li>
-        
-        <li class="hyb-chip">2D animation</li>
-        
-        <li class="hyb-chip">3D animation</li>
-        
-        <li class="hyb-chip">Motion graphics</li>
-        
-        <li class="hyb-chip">Live action</li>
-        
-        <li class="hyb-chip">VFX</li>
-        
-        <li class="hyb-chip">Post-production</li>
-        
+        <li class="hyb-chip">AI</li><li class="hyb-chip">2D animation</li><li class="hyb-chip">3D animation</li><li class="hyb-chip">Motion graphics</li><li class="hyb-chip">Live action</li><li class="hyb-chip">VFX</li><li class="hyb-chip">Post-production</li>
       </ul>
       <p class="hyb-techniques__text">We combine whatever the idea actually needs.</p>
     </div>
@@ -407,13 +607,13 @@
 </section>
 
 
-<section class="hyb-section hyb-section--alt">
+<section class="hyb-section">
   <div class="hyb-wrap">
     <div class="hyb-included">
       <div class="hyb-reveal">
-        <span class="hyb-eyebrow">What&#39;s included</span>
-        <h2 class="hyb-title "><span class="hyb-title__plain">Everything you need.</span> <span class="hyb-title__outline">One</span> <span class="hyb-title__plain">production team.</span></h2>
-        <p class="hyb-lead">From first brief to final master — no middlemen, no handoffs, no surprises.</p>
+        <span class="hyb-eyebrow">What is included</span>
+        <h2 class="hyb-title "><span class="hyb-title__plain">Everything you need.</span> <span class="hyb-title__outline">One production team.</span></h2>
+        <p class="hyb-lead">From the first brief to the final master — no middlemen, no handoffs, no surprises.</p>
       </div>
 
       <ul class="hyb-included__list hyb-reveal">
@@ -430,9 +630,9 @@
         
         <li class="hyb-included__item">AI generation</li>
         
-        <li class="hyb-included__item">2D / 3D animation where required</li>
+        <li class="hyb-included__item">2D / 3D animation where needed</li>
         
-        <li class="hyb-included__item">Voice-over — 1 voice</li>
+        <li class="hyb-included__item">Voice-over (1 voice)</li>
         
         <li class="hyb-included__item">Music</li>
         
@@ -452,160 +652,29 @@
 </section>
 
 
-<section class="hyb-section" id="monthly">
-  <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">Need content every month?</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Your AI content production team.</span> <span class="hyb-title__outline">Every</span> <span class="hyb-title__plain">month.</span></h2>
-      <p class="hyb-lead">Turn one campaign, mascot, product or brand universe into a continuous stream of video content. Instead of starting from zero each time, we build a visual system for the brand and continue producing new stories, situations and formats every month.</p>
-    </div>
-
-    <div class="hyb-packages">
-      
-      
-      <article class="hyb-package hyb-reveal">
-        
-        <div class="hyb-package__media" data-hyb-hover-video="">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/coccolino-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/coccolino-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-        </div>
-        <div class="hyb-package__body">
-          <p class="hyb-package__label">Monthly package 01</p>
-          <h3 class="hyb-package__title">2 AI / 3D hybrid videos per month</h3>
-          <p class="hyb-package__price">
-            €1,500<span class="hyb-package__per">/ month</span>
-          </p>
-          <p class="hyb-package__ideal">Ideal for brand mascots, product content, character-based content, social media campaigns and recurring branded stories.</p>
-          <ul class="hyb-package__items">
-            
-            <li class="hyb-package__item">Monthly creative concepts</li>
-            
-            <li class="hyb-package__item">2 videos</li>
-            
-            <li class="hyb-package__item">Script</li>
-            
-            <li class="hyb-package__item">Visual development</li>
-            
-            <li class="hyb-package__item">AI production</li>
-            
-            <li class="hyb-package__item">Animation</li>
-            
-            <li class="hyb-package__item">Editing</li>
-            
-            <li class="hyb-package__item">Voice-over where required</li>
-            
-            <li class="hyb-package__item">Music &amp; sound design</li>
-            
-            <li class="hyb-package__item">Final delivery</li>
-            
-          </ul>
-        </div>
-      </article>
-      
-      
-      <article class="hyb-package hyb-reveal">
-        
-        <div class="hyb-package__media" data-hyb-hover-video="">
-          <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/medpark-poster.jpg" alt="" loading="lazy">
-          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/medpark-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
-        </div>
-        <div class="hyb-package__body">
-          <p class="hyb-package__label">Monthly package 02</p>
-          <h3 class="hyb-package__title">4 hybrid / filmed videos per month</h3>
-          <p class="hyb-package__price">
-            €2,000<span class="hyb-package__per">/ month</span>
-          </p>
-          <p class="hyb-package__ideal">Ideal for regular social content, products &amp; services, campaigns using real people, Reels / TikTok / Shorts, filming + AI + motion graphics.</p>
-          <ul class="hyb-package__items">
-            
-            <li class="hyb-package__item">Monthly content concepts</li>
-            
-            <li class="hyb-package__item">4 videos</li>
-            
-            <li class="hyb-package__item">Filming</li>
-            
-            <li class="hyb-package__item">Editing</li>
-            
-            <li class="hyb-package__item">AI elements where useful</li>
-            
-            <li class="hyb-package__item">Motion graphics</li>
-            
-            <li class="hyb-package__item">Sound design</li>
-            
-            <li class="hyb-package__item">Final social-media formats</li>
-            
-          </ul>
-        </div>
-      </article>
-      
-    </div>
-
-    <div class="hyb-custom hyb-reveal">
-      <div class="hyb-custom__grid">
-        <div>
-          <p class="hyb-package__label">Custom monthly production</p>
-          <h3 class="hyb-package__title">For brands that need larger content volume or a custom production system.</h3>
-          <ul class="hyb-chips" style="margin-top:1.25rem">
-            
-            <li class="hyb-chip">AI video</li>
-            
-            <li class="hyb-chip">3D characters</li>
-            
-            <li class="hyb-chip">2D animation</li>
-            
-            <li class="hyb-chip">Live action</li>
-            
-            <li class="hyb-chip">Motion graphics</li>
-            
-            <li class="hyb-chip">Product visualization</li>
-            
-            <li class="hyb-chip">VFX</li>
-            
-            <li class="hyb-chip">Social media content</li>
-            
-          </ul>
-        </div>
-        <a href="#start" class="hyb-btn hyb-btn--primary">
-          Build my monthly plan
-          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="hyb-closing hyb-reveal">
-      <div><h3 class="hyb-title "><span class="hyb-title__plain">Build the world once.</span> <span class="hyb-title__outline">Keep</span> <span class="hyb-title__plain">telling new stories.</span></h3></div>
-      <div>
-        <p class="hyb-closing__text hyb-lead">We create the visual system once and use it to produce new branded content month after month. The advantage is continuity, not simply more videos for less money.</p>
-        <p class="hyb-closing__text hyb-lead">Once Pixtoon develops the brand&#39;s visual world, characters, visual style, tone and recurring formats, new content can be produced faster while maintaining a consistent brand universe.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section class="hyb-section hyb-section--alt">
   <div class="hyb-wrap">
-    <div class="hyb-price hyb-invert hyb-reveal">
-      <span class="hyb-eyebrow hyb-price__eyebrow">Price</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">A commercial in days,</span> <span class="hyb-title__outline">not</span> <span class="hyb-title__plain">weeks.</span></h2>
+    <div class="hyb-price hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--gold">Price</span>
+      <h2 class="hyb-title "><span class="hyb-title__plain">A commercial in days,</span> <span class="hyb-title__outline">not weeks.</span></h2>
 
       <div class="hyb-price__stats">
         
         
         <div class="hyb-price__stat">
-          <p class="hyb-price__value">From €1,000</p>
-          <p class="hyb-price__label">per 20 sec commercial</p>
+          <p class="hyb-price__value">FROM €1K</p>
+          <p class="hyb-price__label">per 20-second commercial</p>
         </div>
         
         <div class="hyb-price__divider" aria-hidden="true"></div>
         <div class="hyb-price__stat">
-          <p class="hyb-price__value">From 3 days</p>
+          <p class="hyb-price__value">3 DAYS</p>
           <p class="hyb-price__label">production time</p>
         </div>
         
       </div>
 
-      <p class="hyb-price__note">Final price and production time depend on concept complexity, duration and required techniques.</p>
+      <p class="hyb-price__note">The final price and timeline depend on the complexity of the concept, the duration and the techniques required.</p>
 
       <div class="hyb-actions">
         <a href="#start" class="hyb-btn hyb-btn--primary">
@@ -621,16 +690,16 @@
 <section class="hyb-section hyb-final" id="start">
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">Let&#39;s make something</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Something people actually</span> <span class="hyb-title__outline">want</span> <span class="hyb-title__plain">to watch.</span></h2>
+      <span class="hyb-eyebrow">Let’s make something</span>
+      <h2 class="hyb-title "><span class="hyb-title__plain">That people actually</span> <span class="hyb-title__outline">want to watch.</span></h2>
     </div>
-    <p class="hyb-lead hyb-reveal">Tell us what you want to promote. We&#39;ll recommend the smartest way to produce it.</p>
+    <p class="hyb-lead hyb-reveal">Tell us what you want to promote. We’ll recommend the smartest way to produce it.</p>
     <div class="hyb-actions hyb-reveal">
       <a href="mailto:hello@pixtoon.com" class="hyb-btn hyb-btn--primary">
         Start a project
         <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
       </a>
-      <a href="tel:+37378555333" class="hyb-btn hyb-btn--ghost">Book a free discovery call</a>
+      <a href="mailto:hello@pixtoon.com" class="hyb-btn hyb-btn--ghost">Book a free call</a>
     </div>
   </div>
 </section>
@@ -639,86 +708,71 @@
 
   
 
-
-
-<footer class="footer inner">
-  <div class="footer__wrap">
-    <div class="footer__top">
-      <div class="footer__top-left">
-        <a href="/pixtoon-hybrid/" class="footer__logo" aria-label="Pixtoon">
-          <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo.svg"></object>
+<footer class="hyb-footer">
+  <div class="hyb-footer__inner">
+    <div class="hyb-footer__grid">
+      <div class="hyb-footer__brand">
+        <a href="/pixtoon-hybrid/" class="hyb-footer__logo" aria-label="Pixtoon">
+          <object type="image/svg+xml" data="/pixtoon-hybrid/assets/img/logo.svg" tabindex="-1" aria-hidden="true"></object>
         </a>
-        <div class="footer__description">We&#39;re a progressive animation and VFX studio; we create commercials and cartoons.</div>
-      </div>
-
-      <div class="footer__top-center">
-        <nav class="footer__nav">
-          <ul class="footer__items">
-            <li class="footer__item">
-              <a href="https://pixtoon.com/about-us.html" class="footer__link">About us</a>
-            </li>
-            <li class="footer__item">
-              <a href="https://pixtoon.com/our-work/" class="footer__link">Our work</a>
-            </li>
-            <li class="footer__item">
-              <a href="/pixtoon-hybrid/hybrid-production/" class="footer__link">Hybrid Production</a>
-            </li>
-            <li class="footer__item">
-              <a href="https://pixtoon.com/blog/" class="footer__link">Blog</a>
-            </li>
-            <li class="footer__item">
-              <a href="https://pixtoon.com/contacts.html" class="footer__link">Contact us</a>
-            </li>
-          </ul>
-        </nav>
-
-        <div class="footer__follow">
-          <div class="footer__follow-text">We create cool content<br>Follow us</div>
-          <ul class="footer__follow-items">
-            
-            <li class="footer__follow-item">
-              <a href="https://www.tiktok.com/@pixtoon.com" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--tik" aria-label="TikTok"></a>
-            </li>
-            
-            <li class="footer__follow-item">
-              <a href="https://www.behance.net/denissimonov" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--be" aria-label="Behance"></a>
-            </li>
-            
-            <li class="footer__follow-item">
-              <a href="https://www.linkedin.com/company/pixtoon-studio" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--in" aria-label="LinkedIn"></a>
-            </li>
-            
-            <li class="footer__follow-item">
-              <a href="https://www.facebook.com/Pixtoonstudio" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--fb" aria-label="Facebook"></a>
-            </li>
-            
-            <li class="footer__follow-item">
-              <a href="https://www.instagram.com/pixtoonstudio/" target="_blank" rel="noopener" class="footer__follow-link footer__follow-link--inst" aria-label="Instagram"></a>
-            </li>
-            
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer__top-right">
-        <ul class="footer__contacts">
-          <li class="footer__contacts-item">
-            Call us
-            <a href="tel:+37378555333" class="footer__contacts-phone">+ (373) 78 555 333</a>
+        <p class="hyb-footer__about">We&#39;re a progressive animation and VFX studio; we create commercials and cartoons.</p>
+        <ul class="hyb-footer__social">
+          
+          <li>
+            <a href="https://www.tiktok.com/@pixtoon.com" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="TikTok">TT</a>
           </li>
-          <li class="footer__contacts-item">
-            Write to us
-            <a href="mailto:hello@pixtoon.com" class="footer__contacts-email">hello@pixtoon.com</a>
+          
+          <li>
+            <a href="https://www.behance.net/denissimonov" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="Behance">Be</a>
+          </li>
+          
+          <li>
+            <a href="https://www.linkedin.com/company/pixtoon-studio" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="LinkedIn">In</a>
+          </li>
+          
+          <li>
+            <a href="https://www.facebook.com/Pixtoonstudio" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="Facebook">Fb</a>
+          </li>
+          
+          <li>
+            <a href="https://www.instagram.com/pixtoonstudio/" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="Instagram">Ig</a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div>
+        <span class="hyb-label hyb-footer__label">Navigate</span>
+        <ul class="hyb-footer__links">
+          <li><a href="/pixtoon-hybrid/work/">Work</a></li>
+          <li><a href="/pixtoon-hybrid/capabilities/">Capabilities</a></li>
+          <li><a href="/pixtoon-hybrid/hybrid-production/">Hybrid Production</a></li>
+          <li><a href="/pixtoon-hybrid/studio/">Studio</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="hyb-label hyb-footer__label">Studio</span>
+        <ul class="hyb-footer__links">
+          <li class="hyb-footer__contact">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 6.7c0 3.5-5 8.3-5 8.3S3 10.2 3 6.7a5 5 0 0 1 10 0Z"></path><circle cx="8" cy="6.6" r="1.8"></circle></svg>
+            Chișinău, Moldova
+          </li>
+          <li class="hyb-footer__contact">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3.5" width="12" height="9" rx="1.5"></rect><path d="m2.5 4.5 5.5 4 5.5-4"></path></svg>
+            <a href="mailto:hello@pixtoon.com">hello@pixtoon.com</a>
+          </li>
+          <li class="hyb-footer__contact">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4.2c0-.7.6-1.2 1.2-1.2h1.9c.5 0 1 .4 1.1.9l.5 2c.1.4 0 .9-.4 1.1l-1 .7a8.4 8.4 0 0 0 3.9 3.9l.7-1c.3-.3.7-.5 1.1-.4l2 .5c.5.1.9.6.9 1.1v1.9c0 .7-.6 1.2-1.2 1.2A11 11 0 0 1 3 4.2Z"></path></svg>
+            <a href="tel:+37378555333">+ (373) 78 555 333</a>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="footer__bottom">
-      <div class="footer__bottom-left">
-        <div class="footer__copyright">© Copyright 2026, All Rights Reserved</div>
-      </div>
-      <div class="footer__bottom-right"></div>
+    <div class="hyb-footer__bottom">
+      <p>© Copyright 2026, All Rights Reserved</p>
+      <p>Made with motion in Chișinău.</p>
     </div>
   </div>
 </footer>

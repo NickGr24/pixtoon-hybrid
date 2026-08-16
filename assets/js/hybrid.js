@@ -154,7 +154,10 @@
   /* --- Мобильное меню ---------------------------------------------------- */
 
   function initBurger() {
-    var burger = document.querySelector(".header-nav__burger");
+    /* Селектор через data-атрибут, а не через класс оформления: класс шапки
+       уже менялся один раз при смене дизайна, и меню тогда молча перестало
+       открываться — ошибок в консоли такой промах не даёт. */
+    var burger = document.querySelector("[data-hyb-burger]");
     var nav = document.getElementById("hyb-nav");
     if (!burger || !nav) return;
 
