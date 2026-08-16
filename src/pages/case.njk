@@ -8,7 +8,7 @@ pagination:
 permalink: "{{ t.dir }}{{ site.hybridPath }}/{{ t.slug }}/index.html"
 eleventyComputed:
   pageTitle: "{{ t.content.title }} — {{ t.meta.title }}"
-  pageDescription: "{{ t.content.excerpt }}"
+  pageDescription: "{{ t.content.excerpt | safe }}"
   ogImage: "{{ t.case.media.poster }}"
   altUrl: "{{ t.otherLocale.dir }}{{ site.hybridPath }}/{{ t.slug }}/"
 ---

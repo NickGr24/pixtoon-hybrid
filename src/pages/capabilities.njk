@@ -7,8 +7,8 @@ pagination:
   resolve: values
 permalink: "{{ t.dir }}capabilities/index.html"
 eleventyComputed:
-  pageTitle: "{{ t.pages.capabilities.title }}"
-  pageDescription: "{{ t.pages.capabilities.description }}"
+  pageTitle: "{{ t.pages.capabilities.title | safe }}"
+  pageDescription: "{{ t.pages.capabilities.description | safe }}"
   altUrl: "{{ t.otherLocale.dir }}capabilities/"
 ---
 

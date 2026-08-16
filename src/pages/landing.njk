@@ -8,8 +8,8 @@ pagination:
   resolve: values
 permalink: "{{ t.dir }}{{ site.hybridPath }}/index.html"
 eleventyComputed:
-  pageTitle: "{{ t.meta.title }}"
-  pageDescription: "{{ t.meta.description }}"
+  pageTitle: "{{ t.meta.title | safe }}"
+  pageDescription: "{{ t.meta.description | safe }}"
   altUrl: "{{ t.otherLocale.dir }}{{ site.hybridPath }}/"
 ---
 
