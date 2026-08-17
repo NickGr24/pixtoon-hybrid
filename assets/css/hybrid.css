@@ -84,6 +84,13 @@
   --hyb-cream: #f4f0e7;
   --hyb-dark: #231e29;
   --hyb-dark-soft: #2e2935;
+  /* Матовое стекло прокрученной шапки. Собственный токен, а не производная
+     от --hyb-bg: тёмные острова переопределяют фон, а шапка светлая всегда. */
+  --hyb-glass: rgba(255, 255, 255, 0.85);
+
+  /* Высота нераскрытой шапки. Она лежит поверх контента, поэтому страницы,
+     чей верх не выверен по макету, отбивают это расстояние сами. */
+  --hyb-header-h: 80px;
 
   /* Текст */
   --hyb-ink: #231e29;
@@ -108,7 +115,15 @@
 
   /* Шкала: min — мобильный, max — ровно то, что отдаёт макет на 1440 */
   --hyb-t-hero: clamp(2.5rem, 1.2rem + 5.2vw, 4.5rem); /* 40 → 72 */
-  --hyb-t-h2: clamp(1.875rem, 1.05rem + 3.3vw, 3rem); /* 30 → 48 */
+  /*
+    Заголовков второго уровня в макете четыре калибра, а не один: витрина
+    работ набрана мельче основного, абонементы и цена — крупнее, финальный
+    призыв — вровень с героем. Замерено на 390 / 768 / 1440.
+  */
+  --hyb-t-h2-sm: clamp(1.875rem, 1.736rem + 0.571vw, 2.25rem); /* 30 → 36 */
+  --hyb-t-h2: clamp(1.875rem, 1.457rem + 1.714vw, 3rem); /* 30 → 48 */
+  --hyb-t-h2-lg: clamp(2.25rem, 1.693rem + 2.286vw, 3.75rem); /* 36 → 60 */
+  --hyb-t-h2-xl: clamp(2.25rem, 1.414rem + 3.429vw, 4.5rem); /* 36 → 72 */
   --hyb-t-h3-lg: clamp(1.625rem, 1.2rem + 1.7vw, 2.25rem); /* 26 → 36 */
   --hyb-t-h3: clamp(1.375rem, 1.1rem + 1.1vw, 1.875rem); /* 22 → 30 */
   --hyb-t-h4: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); /* 20 → 24 */
@@ -175,6 +190,9 @@
   --hyb-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --hyb-dur: 240ms;
   --hyb-dur-slow: 560ms;
+  /* Наезд кадра при наведении — в макете 700ms. Медленнее остальных
+     переходов намеренно: быстрый зум читается как рывок, а не как жизнь. */
+  --hyb-dur-zoom: 700ms;
 }
 
 /* Тёмные острова (блок цены, кастомный пакет) переопределяют только
@@ -196,6 +214,7 @@
   .hyb-scope {
     --hyb-dur: 1ms;
     --hyb-dur-slow: 1ms;
+    --hyb-dur-zoom: 1ms;
   }
 }
 
@@ -312,6 +331,20 @@
   padding-block: clamp(3rem, 2rem + 4.5vw, 6rem);
 }
 
+/*
+  Верхняя секция страницы. Отступ сверху включает высоту шапки: она лежит
+  поверх контента, а не над ним. Отсюда и нижняя граница clamp в 144px —
+  меньше нельзя, иначе на узком экране первая строка уезжает под шапку.
+
+  Измерено на макете: 144px при 390 и 176px при 1440, между ними линейно.
+  Снизу 56px. Базовое правило стоит здесь, а не в секционном модуле, чтобы
+  модификаторы из любого модуля гарантированно оказались после него.
+*/
+.hyb-hero,
+.hyb-pagehead {
+  padding-block: clamp(9rem, 8.26rem + 3.05vw, 11rem) clamp(2rem, 1rem + 3vw, 3.5rem);
+}
+
 /* --- Типографика ------------------------------------------------------- */
 
 /* 12px — мелкий текст, поэтому затемнённый вариант акцента */
@@ -363,11 +396,33 @@
   line-height: var(--hyb-lh-display);
   letter-spacing: -0.015em;
   color: var(--hyb-ink);
-  text-wrap: balance;
+  /*
+    pretty, а не balance. Balance выравнивает строки по длине и ради этого
+    рвёт заголовок, который целиком помещается в одну строку: «Vindem
+    rezultatul, nu toolul.» разъезжался на две, хотя в макете он в одну.
+    Переносы в этом разделе расставлены вручную (поле break), и балансировщик
+    с ними спорил. Pretty правит только висячее слово последней строки.
+  */
+  text-wrap: pretty;
 }
 
 .hyb-title--hero {
   font-size: var(--hyb-t-hero);
+}
+
+/* Витрина работ набрана мельче прочих секций, абонементы и цена — крупнее.
+   Так в макете: калибр заголовка отмеряет вес секции на странице. */
+.hyb-title--sm {
+  font-size: var(--hyb-t-h2-sm);
+}
+
+.hyb-title--lg {
+  font-size: var(--hyb-t-h2-lg);
+}
+
+/* Заголовок, набранный как h3, но собранный шорткодом title ради контура */
+.hyb-title--h3 {
+  font-size: var(--hyb-t-h3);
 }
 
 .hyb-title__plain,
@@ -597,6 +652,13 @@
   padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
   border-radius: var(--hyb-r-card);
   background: var(--hyb-bg);
+  transition: transform var(--hyb-dur-slow) var(--hyb-ease),
+    box-shadow var(--hyb-dur-slow) var(--hyb-ease);
+}
+/* Тот же подъём, что у карточек возможностей: в макете плитки реагируют */
+.hyb-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--hyb-shadow-lift);
 }
 
 /* Крупные цифры — на отдельном золотом токене: исходный цвет макета даёт
@@ -641,24 +703,45 @@
    Класс .hyb-js ставится на <html> синхронно, до первой отрисовки. */
 .hyb-js .hyb-reveal {
   opacity: 0;
-  transform: translateY(18px);
 }
 
-/* Специфичность намеренно совпадает с правилом выше и не полагается на
-   порядок объявления: .hyb-js в обоих селекторах. */
+/*
+  Появление сделано анимацией, а не переходом, и это не стилистический выбор.
+  Переход — одно свойство `transition` на элемент, и правило появления его
+  целиком перебивало: у карточки возможностей после появления оставались
+  переходы opacity и transform, а тень при наведении включалась рывком,
+  потому что box-shadow из списка выпадал. Анимация живёт в своём слое и
+  ничего у компонента не отнимает.
+
+  Заливка `backwards`, а не `both`: она нужна только на время задержки, до
+  старта. Останься она и после конца, зафиксированный анимацией
+  `transform: none` заблокировал бы подъём карточки при наведении — анимации
+  в каскаде сильнее обычных правил.
+*/
 .hyb-js .hyb-reveal.is-in {
   opacity: 1;
-  transform: none;
-  transition: opacity var(--hyb-dur-slow) var(--hyb-ease-out),
-    transform var(--hyb-dur-slow) var(--hyb-ease-out);
+  animation: hyb-rise var(--hyb-dur-slow) var(--hyb-ease-out)
+    var(--hyb-reveal-delay, 0ms) backwards;
+}
+
+/* 18px — ровно столько, чтобы движение читалось, но блок не «прилетал»:
+   сдвиг заметен на глаз и при этом меньше межстрочного расстояния лида. */
+@keyframes hyb-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hyb-js .hyb-reveal,
   .hyb-js .hyb-reveal.is-in {
     opacity: 1;
-    transform: none;
-    transition: none;
+    animation: none;
   }
   .hyb-btn:hover {
     transform: none;
@@ -680,28 +763,68 @@
 
 body.hyb-page {
   margin: 0;
-  /* Шапка зафиксирована, поэтому контент отодвигается на её высоту */
-  padding-top: 80px;
+}
+
+/* Якорные переходы не должны загонять цель под шапку. Число, а не токен:
+   токены объявлены на .hyb-scope, то есть на body, и до html не достают. */
+html {
+  scroll-padding-top: 96px;
 }
 
 /* --- Шапка --------------------------------------------------------------- */
 
+/*
+  Шапка лежит поверх первого экрана, а не над ним: сверху она прозрачная и
+  герой просвечивает насквозь. Место под неё заложено в верхний отступ первой
+  секции (176px в макете), поэтому у body отступа под шапку нет — иначе весь
+  первый экран уезжает вниз ровно на 80px.
+
+  При прокрутке шапка сжимается с 80 до 64 и превращается в матовое стекло.
+  Высота набирается padding'ом вокруг логотипа в 40px, а не свойством height:
+  так одно изменение padding'а анимирует и высоту, и положение содержимого.
+
+  Да, padding — layout-свойство, и его анимация обычно повод для придирки.
+  Здесь она осознанная: заменить её на transform нельзя, не разойдясь с
+  макетом — там сжимается сама полоса стекла, а не только её содержимое.
+  Переход случается дважды за проход страницы (вниз и обратно), а не на
+  каждый кадр прокрутки, и затрагивает четыре элемента. `contain: layout`
+  запирает пересчёт внутри шапки, чтобы он не выходил на страницу.
+*/
 .hyb-header {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
-  height: 80px;
-  background: var(--hyb-bg);
-  /* В макете граница именно 0.5px: на обычном экране это волосяная линия,
-     на Retina — ровно один физический пиксель. */
-  border-bottom: 0.5px solid var(--hyb-line);
+  contain: layout;
+  padding-block: 1.25rem;
+  background: transparent;
+  /* Линия снизу нарисована тенью, а не границей: граница резервирует место
+     всегда, и шапка становилась 80.5px вместо ровных 80. */
+  box-shadow: 0 0 0 0 transparent;
+  transition: padding-block var(--hyb-dur-slow) var(--hyb-ease),
+    background-color var(--hyb-dur-slow) var(--hyb-ease),
+    box-shadow var(--hyb-dur-slow) var(--hyb-ease);
+}
+
+.hyb-header.is-stuck {
+  padding-block: 0.75rem;
+  background: var(--hyb-glass);
+  backdrop-filter: blur(24px);
+  /* 0.5px: на обычном экране волосяная линия, на Retina — ровно один
+     физический пиксель. Так же в макете. */
+  box-shadow: 0 0.5px 0 0 var(--hyb-line);
+}
+
+/* Без backdrop-filter полупрозрачный фон даёт кашу из текста под ним */
+@supports not (backdrop-filter: blur(1px)) {
+  .hyb-header.is-stuck {
+    background: var(--hyb-bg);
+  }
 }
 
 .hyb-header__inner {
   display: flex;
   align-items: center;
   gap: var(--hyb-s-2);
-  height: 100%;
   max-width: var(--hyb-page-max);
   margin-inline: auto;
   padding-inline: var(--hyb-gutter);
@@ -744,6 +867,9 @@ body.hyb-page {
      полная пилюля, а в макете у обводки видны углы. */
   border-radius: 12px;
   font-size: 0.95rem;
+  /* Высоту шапки задаёт логотип в 40px. С наследованным межстрочным в 1.6
+     пункт меню вырастал до 42 и растягивал шапку до 83 вместо 80. */
+  line-height: 1.4;
   font-weight: 600;
   color: var(--hyb-ink-muted);
   transition: color var(--hyb-dur) var(--hyb-ease),
@@ -800,9 +926,11 @@ body.hyb-page {
     display: flex;
   }
 
+  /* Привязка к 100%, а не к 80px: шапка сжимается при прокрутке, и жёсткое
+     число оторвало бы выпадающее меню от её нижнего края */
   .hyb-nav {
     position: absolute;
-    inset: 80px 0 auto 0;
+    inset: 100% 0 auto 0;
     display: none;
     flex-direction: column;
     align-items: stretch;
@@ -962,9 +1090,10 @@ body.hyb-page {
 
 /* --- Шапка подстраницы --------------------------------------------------- */
 
-/* 176px сверху / 64px снизу — измерено на подстраницах макета */
+/* Отступ сверху общий с героем и задан в base.css; здесь только нижний,
+   он на подстраницах на 8px больше — 64 против 56. */
 .hyb-pagehead {
-  padding-block: clamp(3rem, 1rem + 11.1vw, 11rem) clamp(2rem, 1rem + 3vw, 4rem);
+  padding-bottom: clamp(2rem, 1rem + 3vw, 4rem);
 }
 .hyb-pagehead .hyb-head {
   margin-bottom: 0;
@@ -972,8 +1101,9 @@ body.hyb-page {
 
 /* --- Герой главной ------------------------------------------------------- */
 
+/* Главная начинается выше остальных: 128px при 390 и 160px при 1440 */
 .hyb-hero--home {
-  padding-block: clamp(3rem, 1rem + 10vw, 10rem) clamp(3rem, 2rem + 4vw, 6rem);
+  padding-block: clamp(8rem, 7.26rem + 3.05vw, 10rem) clamp(3rem, 2rem + 4vw, 6rem);
 }
 
 /*
@@ -1108,11 +1238,18 @@ body.hyb-page {
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
 }
 
+/* Подъём на 4px с мягкой тенью при наведении — приём макета, там 500ms */
 .hyb-card {
   position: relative;
   padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
   border-radius: var(--hyb-r-card);
   background: var(--hyb-bg);
+  transition: transform var(--hyb-dur-slow) var(--hyb-ease),
+    box-shadow var(--hyb-dur-slow) var(--hyb-ease);
+}
+.hyb-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--hyb-shadow-lift);
 }
 
 .hyb-card__n {
@@ -1166,9 +1303,9 @@ body.hyb-page {
 }
 
 /*
-  Обрезается изображение, а не контейнер. Если повесить overflow:hidden на
-  саму фигуру, круглая маска срежет золотую метку — в макете она лежит
-  снаружи круга, у левого верхнего угла колонки.
+  Форму держит обёртка .hyb-show__frame, а не сама фигура: маска на фигуре
+  срезала бы золотую метку — в макете она лежит снаружи круга, у левого
+  верхнего угла колонки.
 */
 .hyb-show__media {
   position: relative;
@@ -1176,19 +1313,34 @@ body.hyb-page {
   display: grid;
 }
 
-.hyb-show__media img {
-  width: 100%;
-  object-fit: cover;
+.hyb-show__frame {
+  display: block;
+  overflow: hidden;
 }
 
-.hyb-show__media--circle img {
+.hyb-show__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--hyb-dur-zoom) var(--hyb-ease);
+}
+
+/* Зум по наведению на сам кадр, а не на всю строку витрины: строка занимает
+   половину экрана, и наведение на текст рядом двигало бы картинку ни с того
+   ни с сего. В макете так же. */
+.hyb-show__frame:hover img {
+  transform: scale(1.05);
+}
+
+.hyb-show__media--circle .hyb-show__frame {
   width: min(448px, 100%);
   aspect-ratio: 1;
   border-radius: 50%;
   justify-self: center;
 }
 
-.hyb-show__media--rect img {
+.hyb-show__media--rect .hyb-show__frame {
   aspect-ratio: 4 / 3;
   border-radius: var(--hyb-r-card);
 }
@@ -1241,12 +1393,9 @@ body.hyb-page {
 
 /* --- 1. Герой ------------------------------------------------------------ */
 
-/* 176px сверху / 56px снизу при 1440 — измерено на макете. Коэффициент vw
-   подобран так, чтобы верхнее значение попадало в 176 ровно на 1440, а не
-   упиралось в потолок clamp раньше. */
-.hyb-hero {
-  padding-block: clamp(3rem, 1rem + 11.1vw, 11rem) clamp(2rem, 1rem + 3vw, 3.5rem);
-}
+/* Базовый .hyb-hero живёт в base.css: модификатор --home лежит в
+   sections-site.css, который подключается раньше этого файла, и базовое
+   правило отсюда молча перебивало бы его отступ. */
 
 /*
   Герой в макете — 12-колоночная сетка с зазором 32px: 12 × 72 + 11 × 32 =
@@ -1273,22 +1422,29 @@ body.hyb-page {
 }
 
 /*
-  Коллаж. Ячейки разного размера, но внешний габарит — ровный прямоугольник:
-  каждая позиция задана явно в 12-колоночной сетке.
+  Коллаж. Габарит ровный, потому что позиции заданы явно, а не набираются
+  потоком: прежняя вёрстка на `columns: 2` балансировала высоту сама и давала
+  рваный низ — замечание клиента «amplasarea modulelor să fie corectă».
 
-  Прежняя вёрстка стояла на `columns: 2`. Колоночная модель льёт элементы
-  потоком и балансирует высоту сама, поэтому низ колонок не сходится
-  принципиально — расхождение доходило до 300px. Это и было замечание
-  клиента «amplasarea modulelor sau lucrărilor să fie corectă».
-
-  Пропорции ячеек — из макета: 4/3, 3/4, 4/3, 3/4, 16/5.
+  Высоту держат ряды, а не пропорции ячеек: в макете `auto-rows-[160px]`.
+  Пропорция ячейки при этом плавает с шириной окна, и это осознанно — так
+  крупный кадр и три мелких всегда стыкуются в один прямоугольник 592×512,
+  что при фиксированных aspect-ratio достижимо лишь на одной ширине.
 */
 .hyb-collage {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 140px;
+  gap: 0.75rem;
+}
+
+@media (min-width: 40rem) {
+  .hyb-collage {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: 160px;
+    gap: 1rem;
+  }
 }
 
 .hyb-collage__item {
@@ -1299,24 +1455,39 @@ body.hyb-page {
   margin: 0;
 }
 
-.hyb-collage__item--1 { grid-column: 1 / 9;  aspect-ratio: 4 / 3; }
-.hyb-collage__item--2 { grid-column: 9 / 13; aspect-ratio: 3 / 4; }
-.hyb-collage__item--3 { grid-column: 1 / 7;  aspect-ratio: 4 / 3; }
-.hyb-collage__item--4 { grid-column: 7 / 13; aspect-ratio: 3 / 4; }
-.hyb-collage__item--5 { grid-column: 1 / 13; aspect-ratio: 16 / 5; }
+/* Узкий экран: два крупных кадра во всю ширину, пара мелких в один ряд */
+.hyb-collage__item--3,
+.hyb-collage__item--4 { grid-column: span 1; }
+.hyb-collage__item--1,
+.hyb-collage__item--2,
+.hyb-collage__item--5 { grid-column: span 2; }
+
+@media (min-width: 40rem) {
+  .hyb-collage__item--1 { grid-column: span 4; grid-row: span 2; }
+  .hyb-collage__item--2 { grid-column: span 2; grid-row: span 2; }
+  .hyb-collage__item--3,
+  .hyb-collage__item--4,
+  .hyb-collage__item--5 { grid-column: span 2; }
+}
 
 .hyb-collage__media {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--hyb-dur-zoom) var(--hyb-ease);
 }
 
-/* Кнопка showreel прижата к нижнему левому углу коллажа и слегка выходит
-   за него — в макете так же. Раньше она висела по центру в пустоте. */
+/* Кадр наезжает на 5% при наведении — приём макета */
+.hyb-collage__item:hover .hyb-collage__media {
+  transform: scale(1.05);
+}
+
+/* Кнопка showreel выходит за нижний левый угол коллажа на 16px по обеим осям
+   — в макете `-bottom-4 -left-4`. Раньше она висела по центру в пустоте. */
 .hyb-showreel {
   position: absolute;
-  left: -0.875rem;
-  bottom: 1.5rem;
+  left: -1rem;
+  bottom: -1rem;
   z-index: 2;
   display: inline-flex;
   align-items: center;
@@ -1400,6 +1571,24 @@ body.hyb-page {
   grid-template-columns: 1fr;
 }
 
+/*
+  Базовое правило стоит ДО модификаторов сознательно. Специфичность у
+  `.hyb-case` и `.hyb-case--2` одинаковая (0,1,0), поэтому спор решает
+  порядок в файле. Когда базовый блок лежал ниже, его `aspect-ratio: 16/10`
+  молча перебивал 392/500 у Coccolino: карточка становилась низкой, справа
+  от Drive Gas зияла дыра — ровно то, что клиент назвал «composiția
+  blocurilor». Крупная карточка дефект прятала: 804/500 = 1.608 против
+  16/10 = 1.6, разница в 3px.
+*/
+.hyb-case {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-accent-wash);
+  aspect-ratio: 16 / 10;
+}
+
 @media (min-width: 48rem) {
   .hyb-work {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1414,15 +1603,6 @@ body.hyb-page {
   .hyb-case--5 { aspect-ratio: 392 / 240; }
 }
 
-.hyb-case {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border-radius: var(--hyb-r-card);
-  background: var(--hyb-accent-wash);
-  aspect-ratio: 16 / 10;
-}
-
 .hyb-case__frame {
   position: absolute;
   inset: 0;
@@ -1433,6 +1613,17 @@ body.hyb-page {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.hyb-case__media {
+  transition: transform var(--hyb-dur-zoom) var(--hyb-ease);
+}
+.hyb-case:hover .hyb-case__media {
+  transform: scale(1.05);
+}
+/* Пока играет превью, зум снимается: два движения разом читаются как дрожь */
+.hyb-case.is-playing .hyb-case__media {
+  transform: none;
 }
 
 .hyb-case__video {
@@ -1672,7 +1863,9 @@ body.hyb-page {
   margin-block: var(--hyb-s-1) var(--hyb-s-3);
   font-family: var(--hyb-font-display);
   font-weight: 800;
-  font-size: var(--hyb-t-h3);
+  /* 36px в макете: карточка кастомного пакета несёт целое предложение,
+     и кегль у него на ступень крупнее заголовков обычных пакетов */
+  font-size: var(--hyb-t-h3-lg);
   line-height: var(--hyb-lh-tight);
   color: var(--hyb-on-dark);
 }
@@ -2050,10 +2243,10 @@ body.hyb-page {
   margin-inline: auto;
 }
 
-/* Финальный заголовок в макете набран кеглем героя (72px), а не секционным
-   (48px) — единственное место на странице, кроме первого экрана. */
+/* Финальный заголовок в макете дорастает до 72px — как герой, единственное
+   такое место на странице. На узком экране он мельче героя: 36 против 48. */
 .hyb-final .hyb-title {
-  font-size: var(--hyb-t-hero);
+  font-size: var(--hyb-t-h2-xl);
 }
 
 .hyb-final .hyb-lead {
@@ -2071,8 +2264,11 @@ body.hyb-page {
    Страница кейса: Challenge → Solution → Production → Result
    ========================================================================== */
 
+/* Страниц кейсов в макете нет, поэтому отступ не измерен, а собран: высота
+   шапки плюс собственный воздух блока. Шапка накрывает контент, и без
+   слагаемого ссылка «назад» оказалась бы под ней. */
 .hyb-cs__hero {
-  padding-top: clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding-top: calc(var(--hyb-header-h) + clamp(1.5rem, 1rem + 2vw, 3rem));
 }
 
 .hyb-cs__back {
