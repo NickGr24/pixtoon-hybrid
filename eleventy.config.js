@@ -179,6 +179,24 @@ export default function (eleventyConfig) {
     return attrs;
   });
 
+  /**
+   * Префикс для набора в imagesrcset. HtmlBasePlugin знает про href, src и
+   * srcset, но не про imagesrcset у <link rel="preload">, и на GitHub Pages
+   * предзагрузка уходила в корень домена вместо подпапки.
+   */
+  eleventyConfig.addFilter("srcsetUrl", function (value) {
+    if (!value) return "";
+    const base = PATH_PREFIX === "/" ? "" : PATH_PREFIX.replace(/\/$/, "");
+    return String(value)
+      .split(",")
+      .map((part) => {
+        const tokens = part.trim().split(/\s+/);
+        if (tokens[0].startsWith("/")) tokens[0] = base + tokens[0];
+        return tokens.join(" ");
+      })
+      .join(", ");
+  });
+
   /** Ссылка внутри текущей локали: /hybrid-production/ или /ro/hybrid-production/ */
   eleventyConfig.addFilter("localeUrl", function (path, t) {
     const base = t.dir === "/" ? "/" : t.dir;

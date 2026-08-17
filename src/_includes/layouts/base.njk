@@ -60,7 +60,7 @@
     rel="preload"
     as="image"
     href="{{ preloadImage | url }}"
-    {% if preloadSrcset %}imagesrcset="{{ preloadSrcset }}" imagesizes="{{ preloadSizes }}"{% endif %}
+    {% if preloadSrcset %}imagesrcset="{{ preloadSrcset | srcsetUrl }}" imagesizes="{{ preloadSizes }}"{% endif %}
     fetchpriority="high"
   />
   {% endif %}
