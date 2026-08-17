@@ -37,7 +37,18 @@
   
   
   <style>
+    /*
+      Плашка закреплена сверху и сдвигает под собой всё остальное: шапка
+      теперь лежит поверх первого экрана и с `top: 0` встала бы прямо на
+      плашку, перечеркнув логотип и меню.
+
+      Высоту меряет скрипт ниже, а не константа: на узком экране текст
+      переносится на три строки, и любое зашитое число там разъедется.
+    */
     .hyb-demobar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 60;
       padding: 0.625rem 1rem;
       background: #231e29;
       color: #fff;
@@ -47,6 +58,9 @@
     }
     .hyb-demobar b { color: #b99655; font-weight: 700; }
     .hyb-demobar a { color: #b9a4c9; }
+
+    body.hyb-page { padding-top: var(--hyb-demobar-h, 0px); }
+    .hyb-header { top: var(--hyb-demobar-h, 0px); }
   </style>
   <div class="hyb-demobar">
     
@@ -55,6 +69,19 @@
       Site-ul live: <a href="https://pixtoon.com/ro/">pixtoon.com</a>.
     
   </div>
+  <script>
+    (function () {
+      var bar = document.querySelector(".hyb-demobar");
+      var sync = function () {
+        document.documentElement.style.setProperty(
+          "--hyb-demobar-h",
+          bar.offsetHeight + "px"
+        );
+      };
+      sync();
+      window.addEventListener("resize", sync);
+    })();
+  </script>
   
 
   
@@ -99,9 +126,9 @@
 
 <section class="hyb-pagehead">
   <div class="hyb-wrap">
-    <div class="hyb-head hyb-head--mid">
-      <span class="hyb-eyebrow">Lucrări selectate</span>
-      <h1 class="hyb-title "><span class="hyb-title__plain">Câteva lumi pe care</span> <span class="hyb-title__outline">le-am construit.</span></h1>
+    <div class="hyb-head hyb-head--full">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">Lucrări selectate</span>
+      <h1 class="hyb-title hyb-title--page"><span class="hyb-title__plain">Câteva lumi pe care</span> <span class="hyb-title__outline">le-am construit.</span></h1>
       <p class="hyb-lead">Patru case study-uri de referință — personaje, campanii și VFX pentru branduri din regiune.</p>
     </div>
   </div>
@@ -109,7 +136,7 @@
 
 
 
-<section class="hyb-section" id="work">
+<section class="hyb-section hyb-section--site" id="work">
   <div class="hyb-wrap">
     
 
@@ -200,11 +227,11 @@
 </section>
 
 
-<section class="hyb-section hyb-section--alt hyb-final" id="contact">
+<section class="hyb-section hyb-section--site hyb-section--alt hyb-final" id="contact">
   <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">Hai să vorbim</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Hai să construim ceva</span> <span class="hyb-title__outline">original.</span></h2>
+    <div class="hyb-head hyb-head--full hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">Hai să vorbim</span>
+      <h2 class="hyb-title hyb-title--cta"><span class="hyb-title__plain">Hai să construim ceva</span> <span class="hyb-title__outline">original.</span></h2>
     </div>
     <div class="hyb-actions hyb-reveal">
       <a href="mailto:hello@pixtoon.com" class="hyb-btn hyb-btn--primary">

@@ -37,7 +37,18 @@
   
   
   <style>
+    /*
+      Плашка закреплена сверху и сдвигает под собой всё остальное: шапка
+      теперь лежит поверх первого экрана и с `top: 0` встала бы прямо на
+      плашку, перечеркнув логотип и меню.
+
+      Высоту меряет скрипт ниже, а не константа: на узком экране текст
+      переносится на три строки, и любое зашитое число там разъедется.
+    */
     .hyb-demobar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 60;
       padding: 0.625rem 1rem;
       background: #231e29;
       color: #fff;
@@ -47,6 +58,9 @@
     }
     .hyb-demobar b { color: #b99655; font-weight: 700; }
     .hyb-demobar a { color: #b9a4c9; }
+
+    body.hyb-page { padding-top: var(--hyb-demobar-h, 0px); }
+    .hyb-header { top: var(--hyb-demobar-h, 0px); }
   </style>
   <div class="hyb-demobar">
     
@@ -55,6 +69,19 @@
       Live site: <a href="https://pixtoon.com/">pixtoon.com</a>.
     
   </div>
+  <script>
+    (function () {
+      var bar = document.querySelector(".hyb-demobar");
+      var sync = function () {
+        document.documentElement.style.setProperty(
+          "--hyb-demobar-h",
+          bar.offsetHeight + "px"
+        );
+      };
+      sync();
+      window.addEventListener("resize", sync);
+    })();
+  </script>
   
 
   
@@ -102,7 +129,7 @@
     <div class="hyb-hero__grid">
       <div class="hyb-hero__text">
         <span class="hyb-eyebrow hyb-eyebrow--pill">Animation &amp; VFX studio · Chișinău, since 2006</span>
-        <h1 class="hyb-title hyb-title--hero"><span class="hyb-title__plain">We turn brands into</span> <span class="hyb-title__outline">characters</span><span class="hyb-title__plain">, worlds, and campaigns people remember.</span></h1>
+        <h1 class="hyb-title hyb-title--home"><span class="hyb-title__plain">We turn brands into</span> <span class="hyb-title__outline">characters</span><span class="hyb-title__plain">, worlds, and campaigns people remember.</span></h1>
         <p class="hyb-lead">Sixteen years of crafting animation, VFX, and stories that move brands — from Chișinău to screens across CEE and beyond.</p>
 
         <div class="hyb-actions">
@@ -149,43 +176,81 @@
 
 
 
-<section class="hyb-section hyb-section--alt" id="capabilities">
+<section class="hyb-section hyb-section--site hyb-section--alt" id="capabilities">
   <div class="hyb-wrap">
     
-    <div class="hyb-head hyb-head--wide hyb-reveal">
-      <span class="hyb-eyebrow">What we do</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Five ways we turn</span> <span class="hyb-title__outline">ideas</span> <span class="hyb-title__plain">into moving things.</span></h2>
+    <div class="hyb-head hyb-head--mid hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">What we do</span>
+      <h2 class="hyb-title hyb-title--site"><span class="hyb-title__plain">Five ways we turn</span> <span class="hyb-title__outline">ideas</span> <span class="hyb-title__plain">into moving things.</span></h2>
     </div>
     
+
+    
+
 
     <div class="hyb-cards">
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">01</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">01</span>
+        </div>
         <h3 class="hyb-card__title">Character Creation &amp; IP Development</h3>
         <p class="hyb-card__text">Original mascots and characters with personality — built to live across campaigns, screens, and seasons.</p>
       </article>
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">02</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">02</span>
+        </div>
         <h3 class="hyb-card__title">Commercial Animation &amp; Product Storytelling</h3>
         <p class="hyb-card__text">We make products feel inevitable. 2D, 3D, and motion design that sell without shouting.</p>
       </article>
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">03</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">03</span>
+        </div>
         <h3 class="hyb-card__title">Social &amp; Educational Storytelling</h3>
         <p class="hyb-card__text">Bite-sized stories that travel. Educational series, explainers, and social-first content with heart.</p>
       </article>
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">04</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">04</span>
+        </div>
         <h3 class="hyb-card__title">VFX &amp; Integrated Video Production</h3>
         <p class="hyb-card__text">Live-action meets invisible VFX. Compositing, cleanup, and effects grounded in real footage.</p>
       </article>
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">05</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">05</span>
+        </div>
         <h3 class="hyb-card__title">End-to-End Creative Production</h3>
         <p class="hyb-card__text">From first sketch to final master. Strategy, production, and launch — one team, one room.</p>
       </article>
@@ -195,12 +260,12 @@
 </section>
 
 
-<section class="hyb-section" id="work">
+<section class="hyb-section hyb-section--site" id="work">
   <div class="hyb-wrap">
     
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">Selected work</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">A few worlds we've</span> <span class="hyb-title__outline">built.</span></h2>
+    <div class="hyb-head hyb-head--mid hyb-showcase-head hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">Selected work</span>
+      <h2 class="hyb-title hyb-title--site"><span class="hyb-title__plain">A few worlds we've</span> <span class="hyb-title__outline">built.</span></h2>
     </div>
     
 
@@ -291,71 +356,74 @@
 </section>
 
 
-<section class="hyb-section" id="process">
+<section class="hyb-section hyb-section--site" id="process">
   <div class="hyb-wrap">
     
     <div class="hyb-head hyb-head--mid hyb-reveal">
-      <span class="hyb-eyebrow">How we work</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">From first sketch to</span> <span class="hyb-title__outline">final master.</span></h2>
+      <span class="hyb-eyebrow hyb-eyebrow--pill">How we work</span>
+      <h2 class="hyb-title hyb-title--gold hyb-title--site"><span class="hyb-title__plain">From first sketch to</span> <span class="hyb-title__outline">final master.</span></h2>
       <p class="hyb-lead">Seven steps, one in-house team. No handoffs lost in translation.</p>
     </div>
     
 
-    <ol class="hyb-steps hyb-steps--seven">
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">01</span>
-        <h3 class="hyb-step__title">Strategy</h3>
-        <p class="hyb-step__text">Goals, audience, the why before the what.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">02</span>
-        <h3 class="hyb-step__title">Concept &amp; Script</h3>
-        <p class="hyb-step__text">The story spine and the big idea.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">03</span>
-        <h3 class="hyb-step__title">Storyboard &amp; Design</h3>
-        <p class="hyb-step__text">Frames, style frames, look &amp; feel.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">04</span>
-        <h3 class="hyb-step__title">Production</h3>
-        <p class="hyb-step__text">Assets built, rigged, and ready to move.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">05</span>
-        <h3 class="hyb-step__title">Animation / Filming / VFX</h3>
-        <p class="hyb-step__text">Where it all comes alive.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">06</span>
-        <h3 class="hyb-step__title">Sound / Voice / Music</h3>
-        <p class="hyb-step__text">The layer you feel before you hear.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">07</span>
-        <h3 class="hyb-step__title">Adapt &amp; Launch</h3>
-        <p class="hyb-step__text">Cuts, formats, platforms, go-time.</p>
-      </li>
-      
-    </ol>
+    
+    <div class="hyb-track" tabindex="0" role="group" aria-label="How we work">
+      <ol class="hyb-steps hyb-steps--flow">
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">01</span>
+          <h3 class="hyb-step__title">Strategy</h3>
+          <p class="hyb-step__text">Goals, audience, the why before the what.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">02</span>
+          <h3 class="hyb-step__title">Concept &amp; Script</h3>
+          <p class="hyb-step__text">The story spine and the big idea.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">03</span>
+          <h3 class="hyb-step__title">Storyboard &amp; Design</h3>
+          <p class="hyb-step__text">Frames, style frames, look &amp; feel.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">04</span>
+          <h3 class="hyb-step__title">Production</h3>
+          <p class="hyb-step__text">Assets built, rigged, and ready to move.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">05</span>
+          <h3 class="hyb-step__title">Animation / Filming / VFX</h3>
+          <p class="hyb-step__text">Where it all comes alive.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">06</span>
+          <h3 class="hyb-step__title">Sound / Voice / Music</h3>
+          <p class="hyb-step__text">The layer you feel before you hear.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">07</span>
+          <h3 class="hyb-step__title">Adapt &amp; Launch</h3>
+          <p class="hyb-step__text">Cuts, formats, platforms, go-time.</p>
+        </li>
+        
+      </ol>
+    </div>
   </div>
 </section>
 
 
-<section class="hyb-section hyb-section--alt" id="studio">
+<section class="hyb-section hyb-section--site hyb-section--alt" id="studio">
   <div class="hyb-wrap">
     
     <div class="hyb-head hyb-head--mid hyb-reveal">
-      <span class="hyb-eyebrow">Why PixToon</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">A studio built like a</span> <span class="hyb-title__outline">small universe.</span></h2>
+      <span class="hyb-eyebrow hyb-eyebrow--pill">Why PixToon</span>
+      <h2 class="hyb-title hyb-title--site"><span class="hyb-title__plain">A studio built like a</span> <span class="hyb-title__outline">small universe.</span></h2>
     </div>
     
 
@@ -390,11 +458,11 @@
 </section>
 
 
-<section class="hyb-section hyb-section--alt hyb-final" id="contact">
+<section class="hyb-section hyb-section--site hyb-section--alt hyb-final" id="contact">
   <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">Let&#39;s talk</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Let's build something</span> <span class="hyb-title__outline">original.</span></h2>
+    <div class="hyb-head hyb-head--full hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">Let&#39;s talk</span>
+      <h2 class="hyb-title hyb-title--cta"><span class="hyb-title__plain">Let's build something</span> <span class="hyb-title__outline">original.</span></h2>
     </div>
     <div class="hyb-actions hyb-reveal">
       <a href="mailto:hello@pixtoon.com" class="hyb-btn hyb-btn--primary">

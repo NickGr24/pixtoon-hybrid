@@ -120,6 +120,16 @@
     работ набрана мельче основного, абонементы и цена — крупнее, финальный
     призыв — вровень с героем. Замерено на 390 / 768 / 1440.
   */
+  /*
+    Страницы сайта набраны по своей шкале, крупнее раздела Hybrid: секционный
+    заголовок стартует с 36, а не с 30, шапка страницы дорастает до 60,
+    финальный призыв — до 115. Замерено на 390 / 768 / 1440.
+  */
+  --hyb-t-h2-site: clamp(2.25rem, 0.7rem + 6.35vw, 3rem); /* 36 → 48 */
+  --hyb-t-h2-page: clamp(2.25rem, 0.7rem + 6.35vw, 3.75rem); /* 36 → 60 */
+  --hyb-t-h2-cta: clamp(3.4125rem, 2.006rem + 5.77vw, 7.2rem); /* 54.6 → 115.2 */
+  --hyb-t-hero-home: clamp(2.6rem, 1.857rem + 3.05vw, 4.6rem); /* 41.6 → 73.6 */
+
   --hyb-t-h2-sm: clamp(1.875rem, 1.736rem + 0.571vw, 2.25rem); /* 30 → 36 */
   --hyb-t-h2: clamp(1.875rem, 1.457rem + 1.714vw, 3rem); /* 30 → 48 */
   --hyb-t-h2-lg: clamp(2.25rem, 1.693rem + 2.286vw, 3.75rem); /* 36 → 60 */
@@ -127,7 +137,8 @@
   --hyb-t-h3-lg: clamp(1.625rem, 1.2rem + 1.7vw, 2.25rem); /* 26 → 36 */
   --hyb-t-h3: clamp(1.375rem, 1.1rem + 1.1vw, 1.875rem); /* 22 → 30 */
   --hyb-t-h4: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); /* 20 → 24 */
-  --hyb-t-stat: clamp(2.25rem, 1.4rem + 3.4vw, 3.75rem); /* 36 → 60 */
+  --hyb-t-stat: clamp(2.25rem, 1.4rem + 3.4vw, 3.75rem); /* 36 → 60, Hybrid */
+  --hyb-t-stat-site: clamp(2.25rem, 1.7rem + 2.29vw, 3rem); /* 36 → 48, сайт */
   --hyb-t-card: 1.125rem; /* 18 — заголовок карточки */
   --hyb-t-lead: 1.125rem; /* 18 */
   --hyb-t-body: 1rem; /* 16 */
@@ -169,8 +180,10 @@
 
   /* --- Форма ----------------------------------------------------------- */
 
-  /* В макете ровно три радиуса: пилюля, 24 и 16. Значения 28 и 32 из прежней
-     версии не встречаются нигде. */
+  /* Радиусы макета: пилюля, 32, 24 и 16. Крупный (rounded-[2rem]) стоит на
+     карточках возможностей и плитках студии — блоках без изображения, где
+     скругление отвечает за мягкость вместо кадра. */
+  --hyb-r-xl: 32px;
   --hyb-r-card: 24px;
   --hyb-r-media: 24px;
   --hyb-r-pill: 9999px;
@@ -351,6 +364,8 @@
 .hyb-eyebrow {
   display: inline-block;
   font-size: var(--hyb-t-eyebrow);
+  /* 1.35: с наследованным 1.55 пилюля вырастала до 31px против 28 в макете */
+  line-height: 1.35;
   font-weight: 600;
   letter-spacing: var(--hyb-ls-eyebrow);
   text-transform: uppercase;
@@ -380,11 +395,12 @@
    макете. Золото макета даёт на ней 2.44:1 при кегле 12px, поэтому текст
    идёт затемнённым вариантом: 4.47:1. */
 .hyb-eyebrow--pill {
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.875rem;
   border-radius: var(--hyb-r-pill);
   background: var(--hyb-cream);
   color: var(--hyb-gold-text);
-  margin-bottom: var(--hyb-s-4);
+  /* 24px до заголовка — измерено на секциях сайта */
+  margin-bottom: var(--hyb-s-3);
 }
 
 /* Интерлиньяж крупных заголовков в макете ровно 1.0 — измерено, не подобрано:
@@ -425,6 +441,35 @@
   font-size: var(--hyb-t-h3);
 }
 
+/*
+  Калибры страниц сайта. Раздел Hybrid Production набран по своей шкале и
+  этих классов не использует — в макете это два разных набора, а не один
+  с исключениями.
+*/
+.hyb-title--site {
+  font-size: var(--hyb-t-h2-site);
+}
+
+.hyb-title--page {
+  font-size: var(--hyb-t-h2-page);
+}
+
+/* Финал раздела Hybrid: вровень с героем страницы */
+.hyb-title--xl {
+  font-size: var(--hyb-t-h2-xl);
+}
+
+/* Финальный призыв — самый крупный набор на сайте, крупнее героя */
+.hyb-title--cta {
+  font-size: var(--hyb-t-h2-cta);
+  /* 0.95 — при кегле 115px строки в макете стоят плотнее единицы */
+  line-height: 0.95;
+}
+
+.hyb-title--home {
+  font-size: var(--hyb-t-hero-home);
+}
+
 .hyb-title__plain,
 .hyb-title__outline {
   display: inline;
@@ -443,6 +488,19 @@
   color: transparent;
   -webkit-text-stroke: clamp(1.5px, 0.035em, 2.5px) var(--hyb-accent);
   paint-order: stroke fill;
+}
+
+/* Золотой контур: в макете им набран ровно один заголовок — «От первого
+   наброска до финального мастера». Золото там уместно как метка результата,
+   а не как второй акцент: соседние секции остаются сиреневыми. */
+.hyb-title--gold .hyb-title__outline {
+  -webkit-text-stroke-color: var(--hyb-gold);
+}
+
+@supports not (-webkit-text-stroke: 1px currentColor) {
+  .hyb-title--gold .hyb-title__outline {
+    color: var(--hyb-gold-text);
+  }
 }
 
 /* Firefox до 128 и любой браузер без text-stroke: обычный мов текст */
@@ -487,13 +545,17 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem 2rem;
+  /* 14px, а не 16: рамка в 2px входит в высоту, и с 16 кнопка выходила 60px
+     вместо макетных 56. По горизонтали то же — 30 + 2 дают ровно 32. */
+  padding: 0.875rem 1.875rem;
   border: 2px solid transparent;
   border-radius: var(--hyb-r-pill);
   font-family: var(--hyb-font-body);
   font-size: var(--hyb-t-body);
   font-weight: 700;
-  line-height: 1;
+  /* 1.5, а не 1: высоту кнопки в макете задаёт именно межстрочный. С единицей
+     кнопка получалась 48px против 56 и рядом с макетной выглядела приплюснутой. */
+  line-height: 1.5;
   cursor: pointer;
   transition: transform var(--hyb-dur) var(--hyb-ease),
     background-color var(--hyb-dur) var(--hyb-ease),
@@ -570,8 +632,10 @@
 .hyb-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--hyb-s-2);
-  margin-top: var(--hyb-s-5);
+  /* 40px — измерено; --hyb-s-5 это 48, и кнопки уезжали ниже макета */
+  margin-top: 2.5rem;
 }
 
 /* --- Кнопка воспроизведения --------------------------------------------- */
@@ -650,6 +714,7 @@
 
 .hyb-stat {
   padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  border: 1px solid var(--hyb-line);
   border-radius: var(--hyb-r-card);
   background: var(--hyb-bg);
   transition: transform var(--hyb-dur-slow) var(--hyb-ease),
@@ -666,23 +731,28 @@
 .hyb-stat__value {
   font-family: var(--hyb-font-display);
   font-weight: 800;
-  font-size: var(--hyb-t-stat);
+  /* 36px — калибр плиток раздела Hybrid. Плитки студии на страницах сайта
+     крупнее, до 48; блок цены с «DE LA €1K» — 60, у него свои правила.
+     Раньше здесь стоял общий токен на 60, и цифры Hybrid были в полтора
+     раза крупнее макетных. */
+  font-size: var(--hyb-t-h3-lg);
   line-height: 1;
   color: var(--hyb-gold-large);
 }
 
 .hyb-stat__label {
-  margin-top: var(--hyb-s-2);
+  /* 12px и 4px ниже — измерено на макете; токены дают 16 и 8 */
+  margin-top: 0.75rem;
   font-family: var(--hyb-font-display);
   font-weight: 700;
   font-size: var(--hyb-t-card);
 }
 
 .hyb-stat__text {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   font-size: var(--hyb-t-small);
   color: var(--hyb-ink-muted);
-  line-height: var(--hyb-lh-body);
+  line-height: var(--hyb-lh-relaxed);
 }
 
 .hyb-stats--four {
@@ -695,6 +765,36 @@
   color: var(--hyb-accent);
 }
 
+
+/* --- Шаги процесса ------------------------------------------------------- */
+
+.hyb-steps {
+  display: grid;
+  gap: var(--hyb-s-4);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+
+.hyb-step__n {
+  display: inline-block;
+  margin-bottom: var(--hyb-s-2);
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-accent-text);
+}
+
+.hyb-step__title {
+  margin-bottom: 0.5rem;
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-card);
+}
+
+.hyb-step__text {
+  font-size: var(--hyb-t-small);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-body);
+}
 
 /* --- Появление при скролле ---------------------------------------------- */
 
@@ -1093,10 +1193,23 @@ html {
 /* Отступ сверху общий с героем и задан в base.css; здесь только нижний,
    он на подстраницах на 8px больше — 64 против 56. */
 .hyb-pagehead {
-  padding-bottom: clamp(2rem, 1rem + 3vw, 4rem);
+  /* Ровно 64px снизу: прежний clamp давал 59 и недобирал до макета */
+  padding-bottom: clamp(2rem, 0.8rem + 3.05vw, 4rem);
 }
 .hyb-pagehead .hyb-head {
   margin-bottom: 0;
+}
+
+/* Лид под заголовком страницы набран 20px — на два пункта крупнее обычного */
+.hyb-pagehead .hyb-lead {
+  font-size: 1.25rem;
+  max-width: 672px;
+}
+
+/* Заголовок страницы держит 896px: без ограничения он вытягивался в одну
+   строку на всю колонку и терял вид «шапки», который есть в макете. */
+.hyb-pagehead .hyb-title {
+  max-width: 896px;
 }
 
 /* --- Герой главной ------------------------------------------------------- */
@@ -1104,6 +1217,14 @@ html {
 /* Главная начинается выше остальных: 128px при 390 и 160px при 1440 */
 .hyb-hero--home {
   padding-block: clamp(8rem, 7.26rem + 3.05vw, 10rem) clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+/* Колонки героя главной не равны: в макете текст занимает 7 из 12 (696px при
+   1440), кадр — оставшиеся 5. У раздела Hybrid деление ровно пополам. */
+@media (min-width: 62rem) {
+  .hyb-hero--home .hyb-hero__grid {
+    grid-template-columns: 7fr 5fr;
+  }
 }
 
 /*
@@ -1175,7 +1296,8 @@ html {
 /* --- Лента брендов ------------------------------------------------------- */
 
 .hyb-trusted {
-  padding-block: clamp(2.5rem, 1.5rem + 2.5vw, 4rem);
+  /* 64px сверху и снизу — измерено на макете */
+  padding-block: clamp(2.5rem, 1.75rem + 1.9vw, 4rem);
   border-block: 1px solid var(--hyb-line);
   overflow: hidden;
 }
@@ -1230,19 +1352,70 @@ html {
   }
 }
 
+/* Плитки студии на страницах сайта крупнее, чем в разделе Hybrid: 48 против 36 */
+.hyb-stats--four .hyb-stat__value {
+  font-size: var(--hyb-t-stat-site);
+}
+
+/* И скругление у них крупнее: 32 против 24 в разделе Hybrid */
+.hyb-stats--four .hyb-stat {
+  border-radius: var(--hyb-r-xl);
+}
+
+/* --- Ритм страниц сайта --------------------------------------------------- */
+
+/*
+  Секции сайта дышат шире раздела Hybrid: 112px против 80 на десктопе и 64
+  против 48 на узком экране. Это не украшение — на страницах сайта секций
+  вдвое меньше, и тот же ритм делал бы их сплошной лентой.
+
+  Брейкпоинт, а не clamp: в макете стоит `py-16 sm:py-28`, то есть значение
+  переключается на 640px скачком. Clamp дал бы 81px там, где в макете уже 112.
+*/
+.hyb-section--site {
+  padding-block: 4rem;
+}
+
+@media (min-width: 40rem) {
+  .hyb-section--site {
+    padding-block: 7rem;
+  }
+}
+
+/* Витрина отбивает заголовок шире прочих секций: 80px против 64 */
+.hyb-showcase-head {
+  margin-bottom: 5rem;
+}
+
 /* --- Карточки «что мы делаем» -------------------------------------------- */
 
+/* Три колонки по 392px с зазором 20 — как в макете. auto-fit давал четыре
+   по 289 и ломал ритм: карточка возможностей несёт абзац текста, и на 289px
+   он рассыпается на семь строк вместо четырёх. */
 .hyb-cards {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 48rem) {
+  .hyb-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 62rem) {
+  .hyb-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* Подъём на 4px с мягкой тенью при наведении — приём макета, там 500ms */
 .hyb-card {
   position: relative;
   padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
-  border-radius: var(--hyb-r-card);
+  border: 1px solid var(--hyb-line);
+  border-radius: var(--hyb-r-xl);
   background: var(--hyb-bg);
   transition: transform var(--hyb-dur-slow) var(--hyb-ease),
     box-shadow var(--hyb-dur-slow) var(--hyb-ease);
@@ -1252,36 +1425,57 @@ html {
   box-shadow: var(--hyb-shadow-lift);
 }
 
+/* Иконка и номер стоят в одной строке над текстом, а не поверх карточки:
+   в макете под ними 40px воздуха, и именно он задаёт высоту карточки. */
+.hyb-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  /* 40px — измерено (mb-10). Токена ровно на 40 нет: --hyb-s-5 это 48,
+     --hyb-s-6 — 64, и с ними карточка вырастала на 24px против макета. */
+  margin-bottom: 2.5rem;
+}
+
+.hyb-card__icon {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--hyb-r-sm);
+  background: var(--hyb-accent-wash);
+  color: var(--hyb-accent-text);
+}
+
 .hyb-card__n {
-  position: absolute;
-  top: clamp(1.5rem, 1rem + 1.5vw, 2rem);
-  right: clamp(1.5rem, 1rem + 1.5vw, 2rem);
   font-family: var(--hyb-font-display);
   font-weight: 700;
-  font-size: var(--hyb-t-small);
-  color: var(--hyb-ink-faint);
+  font-size: var(--hyb-t-body);
+  color: var(--hyb-ink);
 }
 
 .hyb-card__title {
   margin-bottom: 0.75rem;
-  padding-right: 2.5rem;
   font-family: var(--hyb-font-display);
   font-weight: 700;
-  font-size: var(--hyb-t-h4);
+  /* 21.6px при 1440 — на два пункта мельче общего h4: в карточке заголовок
+     соседствует с иконкой и номером, и полный кегль их перевешивал */
+  font-size: 1.35rem;
   line-height: var(--hyb-lh-snug);
 }
 
 .hyb-card__text {
-  font-size: var(--hyb-t-small);
+  font-size: 0.97rem;
   color: var(--hyb-ink-muted);
-  line-height: var(--hyb-lh-body);
+  line-height: var(--hyb-lh-relaxed);
 }
 
 /* --- Витрина работ ------------------------------------------------------- */
 
+/* 112px между работами — измерено. Прежний clamp давал 96, и на четырёх
+   работах витрина недобирала 66px против макета. */
 .hyb-showcase {
   display: grid;
-  gap: clamp(3rem, 2rem + 4vw, 6rem);
+  gap: clamp(3rem, 1.6rem + 5.9vw, 7rem);
 }
 
 .hyb-show {
@@ -1372,8 +1566,69 @@ html {
 /* --- Прочее -------------------------------------------------------------- */
 
 /* Семь шагов не помещаются в ряд на десктопе — четыре и три */
-.hyb-steps--seven {
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+/*
+  Цепочка шагов. Геометрия снята с макета при 1440: шаг 272px, круг 64px,
+  соединитель 64×2 пунктиром, следующий круг через 344px от предыдущего.
+
+  Лента шире экрана и прокручивается вбок — так в макете (min-w-max при
+  ширине 2416px). Перенос на вторую строку разорвал бы цепочку, а она здесь
+  и есть содержание: показывает, что этапы идут подряд.
+*/
+/*
+  Лента выходит за контейнер на всю ширину окна: в макете первый круг стоит
+  на 40px от края экрана, а не от колонки в 1216. Обрез на самом краю читается
+  как «дальше есть ещё», обрез внутри колонки — как ошибка вёрстки.
+*/
+.hyb-track {
+  overflow-x: auto;
+  margin-inline: calc(50% - 50vw);
+  padding-bottom: var(--hyb-s-2);
+  scrollbar-width: thin;
+  scrollbar-color: var(--hyb-line-active) transparent;
+}
+
+/* Отступ живёт на самой ленте, а не на прокручиваемой обёртке: у контейнера
+   с overflow правый padding при прокрутке браузеры отбрасывают, и последний
+   шаг прилипал бы к краю. */
+.hyb-steps--flow {
+  display: flex;
+  gap: 72px;
+  min-width: max-content;
+  padding-inline: 40px;
+}
+
+.hyb-steps--flow .hyb-step {
+  position: relative;
+  flex: 0 0 272px;
+  width: 272px;
+}
+
+/* Пунктирная перемычка между кругами. Псевдоэлемент, а не узел разметки:
+   скринридеру она ничего не сообщает, а в потоке только мешала бы. */
+.hyb-steps--flow .hyb-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 31px;
+  left: 100%;
+  width: 64px;
+  border-top: 2px dashed color-mix(in srgb, var(--hyb-accent) 30%, transparent);
+}
+
+.hyb-steps--flow .hyb-step__n {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--hyb-s-3);
+  border: 2px dashed color-mix(in srgb, var(--hyb-accent) 40%, transparent);
+  border-radius: 50%;
+  background: var(--hyb-bg-alt);
+  font-size: 1.125rem;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-steps--flow .hyb-step__title {
+  font-size: 1.25rem;
 }
 
 .hyb-link--plain {
@@ -1392,6 +1647,12 @@ html {
    ========================================================================== */
 
 /* --- 1. Герой ------------------------------------------------------------ */
+
+/* Пилюля эйброу в герое на 2px шире по бокам, чем в секциях: 16 против 14 */
+.hyb-hero .hyb-eyebrow--pill {
+  padding-inline: 1rem;
+}
+
 
 /* Базовый .hyb-hero живёт в base.css: модификатор --home лежит в
    sections-site.css, который подключается раньше этого файла, и базовое
@@ -1685,6 +1946,25 @@ html {
   transition: transform var(--hyb-dur) var(--hyb-ease);
 }
 
+/*
+  Наезд кадра при наведении. В макете он висит на каждом содержательном
+  снимке: коллаж, сетка работ, медиа абонементов, кадры Microinvest и
+  портреты. Единственное исключение — кадр кастомного пакета, у него зума
+  нет; там кадр расколот пополам с тёмной карточкой и движение бы её резало.
+*/
+.hyb-package__media img,
+.hyb-mi__hero img,
+.hyb-mi__tile img,
+.hyb-mi__portrait img {
+  transition: transform var(--hyb-dur-zoom) var(--hyb-ease);
+}
+.hyb-package__media:hover img,
+.hyb-mi__hero:hover img,
+.hyb-mi__tile:hover img,
+.hyb-mi__portrait:hover img {
+  transform: scale(1.05);
+}
+
 /* --- 3. Абонементы ------------------------------------------------------- */
 
 /*
@@ -1696,6 +1976,8 @@ html {
 */
 .hyb-head--wide { max-width: 768px; }
 .hyb-head--mid  { max-width: 672px; }
+/* Шапка страницы и финальный призыв в макете не ограничены колонкой */
+.hyb-head--full { max-width: none; }
 .hyb-head--narrow { max-width: 584px; }
 
 .hyb-subtitle {
@@ -2075,35 +2357,12 @@ html {
 
 /* --- 5. Процесс ---------------------------------------------------------- */
 
-.hyb-steps {
-  display: grid;
-  gap: var(--hyb-s-4);
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-}
-
-.hyb-step__n {
-  display: inline-block;
-  margin-bottom: var(--hyb-s-2);
-  font-family: var(--hyb-font-display);
-  font-weight: 700;
-  font-size: var(--hyb-t-small);
-  color: var(--hyb-accent-text);
-}
-
-.hyb-step__title {
-  margin-bottom: 0.5rem;
-  font-family: var(--hyb-font-display);
-  font-weight: 700;
-  font-size: var(--hyb-t-card);
-}
-
-.hyb-step__text {
-  font-size: var(--hyb-t-small);
-  color: var(--hyb-ink-muted);
-  line-height: var(--hyb-lh-body);
-}
+/* Компонент шага переехал в base.css: модификатор --flow лежит в
+   sections-site.css, который подключается раньше этого файла, и база
+   отсюда молча перебивала бы его раскладку. */
 
 /* --- 6. Cifrele vorbesc -------------------------------------------------- */
+
 
 .hyb-techniques {
   margin-top: 1.25rem;
@@ -2227,9 +2486,20 @@ html {
 
 /* --- 9. Финальный CTA ---------------------------------------------------- */
 
+/*
+  Финальный призыв выровнен по левому краю, а не по центру: измерено на обеих
+  страницах макета — заголовок стоит на 112px от края, как весь остальной
+  контент. Центрирование было домыслено по скриншоту, где секция выглядела
+  симметричной из-за короткой строки.
+*/
 .hyb-final {
-  text-align: center;
-  padding-block: clamp(3.5rem, 2rem + 5vw, 7rem); /* 112px в макете */
+  padding-block: 4rem;
+}
+
+@media (min-width: 40rem) {
+  .hyb-final {
+    padding-block: 7rem; /* 112px в макете */
+  }
 }
 
 /*
@@ -2240,22 +2510,14 @@ html {
 */
 .hyb-final .hyb-head {
   max-width: none;
-  margin-inline: auto;
 }
 
-/* Финальный заголовок в макете дорастает до 72px — как герой, единственное
-   такое место на странице. На узком экране он мельче героя: 36 против 48. */
-.hyb-final .hyb-title {
-  font-size: var(--hyb-t-h2-xl);
-}
+/* Кегль финального заголовка задаётся классом на самом заголовке, а не через
+   потомка: у раздела Hybrid он 72px, у страниц сайта — 115px, и правило
+   `.hyb-final .hyb-title` перебивало бы оба своей специфичностью. */
 
 .hyb-final .hyb-lead {
-  margin-inline: auto;
   max-width: 48ch;
-}
-
-.hyb-final .hyb-actions {
-  justify-content: center;
 }
 
 

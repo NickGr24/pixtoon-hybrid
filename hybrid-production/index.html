@@ -37,7 +37,18 @@
   
   
   <style>
+    /*
+      Плашка закреплена сверху и сдвигает под собой всё остальное: шапка
+      теперь лежит поверх первого экрана и с `top: 0` встала бы прямо на
+      плашку, перечеркнув логотип и меню.
+
+      Высоту меряет скрипт ниже, а не константа: на узком экране текст
+      переносится на три строки, и любое зашитое число там разъедется.
+    */
     .hyb-demobar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 60;
       padding: 0.625rem 1rem;
       background: #231e29;
       color: #fff;
@@ -47,6 +58,9 @@
     }
     .hyb-demobar b { color: #b99655; font-weight: 700; }
     .hyb-demobar a { color: #b9a4c9; }
+
+    body.hyb-page { padding-top: var(--hyb-demobar-h, 0px); }
+    .hyb-header { top: var(--hyb-demobar-h, 0px); }
   </style>
   <div class="hyb-demobar">
     
@@ -55,6 +69,19 @@
       Live site: <a href="https://pixtoon.com/">pixtoon.com</a>.
     
   </div>
+  <script>
+    (function () {
+      var bar = document.querySelector(".hyb-demobar");
+      var sync = function () {
+        document.documentElement.style.setProperty(
+          "--hyb-demobar-h",
+          bar.offsetHeight + "px"
+        );
+      };
+      sync();
+      window.addEventListener("resize", sync);
+    })();
+  </script>
   
 
   
@@ -229,6 +256,8 @@
       <a class="hyb-case hyb-case--3 hyb-reveal" href="/pixtoon-hybrid/hybrid-production/medpark-doctor-buba/" data-hyb-hover-video="">
         <div class="hyb-case__frame">
           <img class="hyb-case__media" src="/pixtoon-hybrid/assets/img/cases/medpark-doctor-buba.jpg" alt="" style="object-position: 50% 50%" loading="lazy">
+          
+          <video class="hyb-case__video" data-src="/pixtoon-hybrid/assets/img/cases/medpark-doctor-buba-preview.mp4" muted="" loop="" playsinline="" preload="none" aria-hidden="true"></video>
           
         </div>
         <div class="hyb-case__body">
@@ -690,7 +719,7 @@
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
       <span class="hyb-eyebrow">Let’s make something</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">That people actually</span><br><span class="hyb-title__outline">want to watch.</span></h2>
+      <h2 class="hyb-title hyb-title--xl"><span class="hyb-title__plain">That people actually</span><br><span class="hyb-title__outline">want to watch.</span></h2>
     </div>
     <p class="hyb-lead hyb-reveal">Tell us what you want to promote. We’ll recommend the smartest way to produce it.</p>
     <div class="hyb-actions hyb-reveal">

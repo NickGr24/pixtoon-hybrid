@@ -37,7 +37,18 @@
   
   
   <style>
+    /*
+      Плашка закреплена сверху и сдвигает под собой всё остальное: шапка
+      теперь лежит поверх первого экрана и с `top: 0` встала бы прямо на
+      плашку, перечеркнув логотип и меню.
+
+      Высоту меряет скрипт ниже, а не константа: на узком экране текст
+      переносится на три строки, и любое зашитое число там разъедется.
+    */
     .hyb-demobar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 60;
       padding: 0.625rem 1rem;
       background: #231e29;
       color: #fff;
@@ -47,6 +58,9 @@
     }
     .hyb-demobar b { color: #b99655; font-weight: 700; }
     .hyb-demobar a { color: #b9a4c9; }
+
+    body.hyb-page { padding-top: var(--hyb-demobar-h, 0px); }
+    .hyb-header { top: var(--hyb-demobar-h, 0px); }
   </style>
   <div class="hyb-demobar">
     
@@ -55,6 +69,19 @@
       Site-ul live: <a href="https://pixtoon.com/ro/">pixtoon.com</a>.
     
   </div>
+  <script>
+    (function () {
+      var bar = document.querySelector(".hyb-demobar");
+      var sync = function () {
+        document.documentElement.style.setProperty(
+          "--hyb-demobar-h",
+          bar.offsetHeight + "px"
+        );
+      };
+      sync();
+      window.addEventListener("resize", sync);
+    })();
+  </script>
   
 
   
@@ -102,7 +129,7 @@
     <div class="hyb-hero__grid">
       <div class="hyb-hero__text">
         <span class="hyb-eyebrow hyb-eyebrow--pill">Studio de animație și VFX · Chișinău, din 2006</span>
-        <h1 class="hyb-title hyb-title--hero"><span class="hyb-title__plain">Transformăm brandurile în</span> <span class="hyb-title__outline">personaje</span><span class="hyb-title__plain">, lumi și campanii pe care oamenii le țin minte.</span></h1>
+        <h1 class="hyb-title hyb-title--home"><span class="hyb-title__plain">Transformăm brandurile în</span> <span class="hyb-title__outline">personaje</span><span class="hyb-title__plain">, lumi și campanii pe care oamenii le țin minte.</span></h1>
         <p class="hyb-lead">Șaisprezece ani de animație, VFX și povești care mișcă brandurile — din Chișinău pe ecrane din CEE și nu numai.</p>
 
         <div class="hyb-actions">
@@ -149,43 +176,81 @@
 
 
 
-<section class="hyb-section hyb-section--alt" id="capabilities">
+<section class="hyb-section hyb-section--site hyb-section--alt" id="capabilities">
   <div class="hyb-wrap">
     
-    <div class="hyb-head hyb-head--wide hyb-reveal">
-      <span class="hyb-eyebrow">Ce facem</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Cinci moduri în care transformăm</span> <span class="hyb-title__outline">ideile</span> <span class="hyb-title__plain">în imagine care se mișcă.</span></h2>
+    <div class="hyb-head hyb-head--mid hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">Ce facem</span>
+      <h2 class="hyb-title hyb-title--site"><span class="hyb-title__plain">Cinci moduri în care transformăm</span> <span class="hyb-title__outline">ideile</span> <span class="hyb-title__plain">în imagine care se mișcă.</span></h2>
     </div>
     
+
+    
+
 
     <div class="hyb-cards">
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">01</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">01</span>
+        </div>
         <h3 class="hyb-card__title">Creare de personaje &amp; dezvoltare IP</h3>
         <p class="hyb-card__text">Mascote și personaje originale cu personalitate — construite să trăiască prin campanii, ecrane și sezoane.</p>
       </article>
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">02</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">02</span>
+        </div>
         <h3 class="hyb-card__title">Animație comercială &amp; povești de produs</h3>
         <p class="hyb-card__text">Facem produsele să pară inevitabile. 2D, 3D și motion design care vând fără să strige.</p>
       </article>
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">03</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">03</span>
+        </div>
         <h3 class="hyb-card__title">Povești sociale &amp; educaționale</h3>
         <p class="hyb-card__text">Povești scurte care circulă. Serii educaționale, explainere și conținut social-first cu suflet.</p>
       </article>
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">04</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">04</span>
+        </div>
         <h3 class="hyb-card__title">VFX &amp; producție video integrată</h3>
         <p class="hyb-card__text">Filmarea întâlnește VFX-ul invizibil. Compoziție, cleanup și efecte așezate pe imagine reală.</p>
       </article>
       
       <article class="hyb-card hyb-reveal">
-        <span class="hyb-card__n" aria-hidden="true">05</span>
+        <div class="hyb-card__head">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              
+            </svg>
+          </span>
+          <span class="hyb-card__n" aria-hidden="true">05</span>
+        </div>
         <h3 class="hyb-card__title">Producție creativă completă</h3>
         <p class="hyb-card__text">De la prima schiță la master final. Strategie, producție și lansare — o echipă, o cameră.</p>
       </article>
@@ -195,12 +260,12 @@
 </section>
 
 
-<section class="hyb-section" id="work">
+<section class="hyb-section hyb-section--site" id="work">
   <div class="hyb-wrap">
     
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">Lucrări selectate</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Câteva lumi pe care</span> <span class="hyb-title__outline">le-am construit.</span></h2>
+    <div class="hyb-head hyb-head--mid hyb-showcase-head hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">Lucrări selectate</span>
+      <h2 class="hyb-title hyb-title--site"><span class="hyb-title__plain">Câteva lumi pe care</span> <span class="hyb-title__outline">le-am construit.</span></h2>
     </div>
     
 
@@ -291,71 +356,74 @@
 </section>
 
 
-<section class="hyb-section" id="process">
+<section class="hyb-section hyb-section--site" id="process">
   <div class="hyb-wrap">
     
     <div class="hyb-head hyb-head--mid hyb-reveal">
-      <span class="hyb-eyebrow">Cum lucrăm</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">De la prima schiță la</span> <span class="hyb-title__outline">master final.</span></h2>
+      <span class="hyb-eyebrow hyb-eyebrow--pill">Cum lucrăm</span>
+      <h2 class="hyb-title hyb-title--gold hyb-title--site"><span class="hyb-title__plain">De la prima schiță la</span> <span class="hyb-title__outline">master final.</span></h2>
       <p class="hyb-lead">Șapte pași, o singură echipă in-house. Fără predări pierdute pe drum.</p>
     </div>
     
 
-    <ol class="hyb-steps hyb-steps--seven">
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">01</span>
-        <h3 class="hyb-step__title">Strategie</h3>
-        <p class="hyb-step__text">Obiective, audiență, de ce înainte de ce anume.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">02</span>
-        <h3 class="hyb-step__title">Concept &amp; script</h3>
-        <p class="hyb-step__text">Coloana poveștii și ideea mare.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">03</span>
-        <h3 class="hyb-step__title">Storyboard &amp; design</h3>
-        <p class="hyb-step__text">Cadre, style frames, look &amp; feel.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">04</span>
-        <h3 class="hyb-step__title">Producție</h3>
-        <p class="hyb-step__text">Asseturi construite, rigate și gata de mișcare.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">05</span>
-        <h3 class="hyb-step__title">Animație / filmare / VFX</h3>
-        <p class="hyb-step__text">Acolo unde totul prinde viață.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">06</span>
-        <h3 class="hyb-step__title">Sunet / voce / muzică</h3>
-        <p class="hyb-step__text">Stratul pe care îl simți înainte să îl auzi.</p>
-      </li>
-      
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">07</span>
-        <h3 class="hyb-step__title">Adaptare &amp; lansare</h3>
-        <p class="hyb-step__text">Montaje, formate, platforme, ora zero.</p>
-      </li>
-      
-    </ol>
+    
+    <div class="hyb-track" tabindex="0" role="group" aria-label="Cum lucrăm">
+      <ol class="hyb-steps hyb-steps--flow">
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">01</span>
+          <h3 class="hyb-step__title">Strategie</h3>
+          <p class="hyb-step__text">Obiective, audiență, de ce înainte de ce anume.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">02</span>
+          <h3 class="hyb-step__title">Concept &amp; script</h3>
+          <p class="hyb-step__text">Coloana poveștii și ideea mare.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">03</span>
+          <h3 class="hyb-step__title">Storyboard &amp; design</h3>
+          <p class="hyb-step__text">Cadre, style frames, look &amp; feel.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">04</span>
+          <h3 class="hyb-step__title">Producție</h3>
+          <p class="hyb-step__text">Asseturi construite, rigate și gata de mișcare.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">05</span>
+          <h3 class="hyb-step__title">Animație / filmare / VFX</h3>
+          <p class="hyb-step__text">Acolo unde totul prinde viață.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">06</span>
+          <h3 class="hyb-step__title">Sunet / voce / muzică</h3>
+          <p class="hyb-step__text">Stratul pe care îl simți înainte să îl auzi.</p>
+        </li>
+        
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">07</span>
+          <h3 class="hyb-step__title">Adaptare &amp; lansare</h3>
+          <p class="hyb-step__text">Montaje, formate, platforme, ora zero.</p>
+        </li>
+        
+      </ol>
+    </div>
   </div>
 </section>
 
 
-<section class="hyb-section hyb-section--alt" id="studio">
+<section class="hyb-section hyb-section--site hyb-section--alt" id="studio">
   <div class="hyb-wrap">
     
     <div class="hyb-head hyb-head--mid hyb-reveal">
-      <span class="hyb-eyebrow">De ce PixToon</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Un studio construit ca un</span> <span class="hyb-title__outline">mic univers.</span></h2>
+      <span class="hyb-eyebrow hyb-eyebrow--pill">De ce PixToon</span>
+      <h2 class="hyb-title hyb-title--site"><span class="hyb-title__plain">Un studio construit ca un</span> <span class="hyb-title__outline">mic univers.</span></h2>
     </div>
     
 
@@ -390,11 +458,11 @@
 </section>
 
 
-<section class="hyb-section hyb-section--alt hyb-final" id="contact">
+<section class="hyb-section hyb-section--site hyb-section--alt hyb-final" id="contact">
   <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">Hai să vorbim</span>
-      <h2 class="hyb-title "><span class="hyb-title__plain">Hai să construim ceva</span> <span class="hyb-title__outline">original.</span></h2>
+    <div class="hyb-head hyb-head--full hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">Hai să vorbim</span>
+      <h2 class="hyb-title hyb-title--cta"><span class="hyb-title__plain">Hai să construim ceva</span> <span class="hyb-title__outline">original.</span></h2>
     </div>
     <div class="hyb-actions hyb-reveal">
       <a href="mailto:hello@pixtoon.com" class="hyb-btn hyb-btn--primary">
