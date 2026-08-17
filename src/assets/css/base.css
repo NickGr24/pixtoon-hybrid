@@ -481,24 +481,45 @@
    Класс .hyb-js ставится на <html> синхронно, до первой отрисовки. */
 .hyb-js .hyb-reveal {
   opacity: 0;
-  transform: translateY(18px);
 }
 
-/* Специфичность намеренно совпадает с правилом выше и не полагается на
-   порядок объявления: .hyb-js в обоих селекторах. */
+/*
+  Появление сделано анимацией, а не переходом, и это не стилистический выбор.
+  Переход — одно свойство `transition` на элемент, и правило появления его
+  целиком перебивало: у карточки возможностей после появления оставались
+  переходы opacity и transform, а тень при наведении включалась рывком,
+  потому что box-shadow из списка выпадал. Анимация живёт в своём слое и
+  ничего у компонента не отнимает.
+
+  Заливка `backwards`, а не `both`: она нужна только на время задержки, до
+  старта. Останься она и после конца, зафиксированный анимацией
+  `transform: none` заблокировал бы подъём карточки при наведении — анимации
+  в каскаде сильнее обычных правил.
+*/
 .hyb-js .hyb-reveal.is-in {
   opacity: 1;
-  transform: none;
-  transition: opacity var(--hyb-dur-slow) var(--hyb-ease-out),
-    transform var(--hyb-dur-slow) var(--hyb-ease-out);
+  animation: hyb-rise var(--hyb-dur-slow) var(--hyb-ease-out)
+    var(--hyb-reveal-delay, 0ms) backwards;
+}
+
+/* 18px — ровно столько, чтобы движение читалось, но блок не «прилетал»:
+   сдвиг заметен на глаз и при этом меньше межстрочного расстояния лида. */
+@keyframes hyb-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hyb-js .hyb-reveal,
   .hyb-js .hyb-reveal.is-in {
     opacity: 1;
-    transform: none;
-    transition: none;
+    animation: none;
   }
   .hyb-btn:hover {
     transform: none;

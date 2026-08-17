@@ -58,6 +58,13 @@
 
   /* --- Появление секций при скролле ------------------------------------- */
 
+  /* Шаг каскада и потолок ступеней. Пять карточек по 80мс — это 320мс от
+     первой до последней: заметно как волна, но не как ожидание. Потолок
+     нужен ряду из шести и более плиток, иначе хвост появляется тогда,
+     когда посетитель уже пролистал мимо. */
+  var STAGGER_MS = 80;
+  var STAGGER_MAX = 4;
+
   function initReveal() {
     var items = document.querySelectorAll(".hyb-reveal");
     if (!items.length) return;
@@ -71,9 +78,35 @@
 
     var io = new IntersectionObserver(
       function (entries) {
+        /*
+          Соседи, попавшие в кадр одним движением, появляются волной, а не
+          все разом. Индекс считается внутри пачки и по общему родителю:
+          так карточки одного ряда получают ступени 0-1-2, а заголовок
+          соседней секции, приехавший тем же кадром, начинает счёт заново.
+
+          Задержка передаётся переменной, а не свойством animation-delay:
+          инлайновое свойство перебило бы всю сокращённую запись анимации из
+          CSS. Считать её здесь приходится потому, что она зависит от момента
+          входа в кадр, а не от места элемента в разметке.
+        */
+        var seen = new Map();
+
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-in");
+
+          var el = entry.target;
+          var parent = el.parentNode;
+          var step = seen.get(parent) || 0;
+          seen.set(parent, step + 1);
+
+          if (step > 0) {
+            el.style.setProperty(
+              "--hyb-reveal-delay",
+              Math.min(step, STAGGER_MAX) * STAGGER_MS + "ms"
+            );
+          }
+
+          el.classList.add("is-in");
           io.unobserve(entry.target);
         });
       },
