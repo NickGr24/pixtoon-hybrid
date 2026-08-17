@@ -38,7 +38,7 @@ eleventyComputed:
 
     <div class="hyb-wrap">
       <figure class="hyb-cs__media">
-        <img src="{{ p.case.media.poster }}" alt="{{ c.title }}" fetchpriority="high" />
+        <img src="{{ p.case.media.poster }}" alt="{{ c.title }}" {{ p.case.media.poster | dims | safe }} fetchpriority="high" />
         {#
           Кнопка воспроизведения появляется только когда файл действительно
           лежит на диске. Флаг hasVideo считается при сборке по факту наличия

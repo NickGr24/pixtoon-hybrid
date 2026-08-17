@@ -15,7 +15,6 @@
     </div>
     {% endif %}
 
-    {% include "partials/icons-capabilities.njk" %}
     <div class="hyb-cards">
       {% for c in t.capabilities.items %}
       <article class="hyb-card hyb-reveal">
@@ -23,7 +22,7 @@
           <span class="hyb-card__icon" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              {{ capIcons[loop.index0] | safe }}
+              {{ icons.capabilities[loop.index0] | safe }}
             </svg>
           </span>
           <span class="hyb-card__n" aria-hidden="true">{{ c.n }}</span>

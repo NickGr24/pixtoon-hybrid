@@ -6,6 +6,9 @@ pagination:
   alias: t
   resolve: values
 permalink: "{{ t.dir }}index.html"
+preloadImage: /assets/img/home/hero-character.jpg
+preloadSrcset: "/assets/img/home/hero-character-480.jpg 480w, /assets/img/home/hero-character-640.jpg 640w, /assets/img/home/hero-character.jpg 800w"
+preloadSizes: "(min-width: 62rem) 326px, 74vw"
 eleventyComputed:
   pageTitle: "{{ t.pages.home.title | safe }}"
   pageDescription: "{{ t.pages.home.description | safe }}"
@@ -42,7 +45,15 @@ eleventyComputed:
       #}
       <div class="hyb-hero__orbit">
         <figure class="hyb-orb hyb-orb--photo">
-          <img src="/assets/img/home/hero-character.jpg" alt="" loading="eager" fetchpriority="high" />
+          <img
+            src="/assets/img/home/hero-character.jpg"
+            srcset="/assets/img/home/hero-character-480.jpg 480w, /assets/img/home/hero-character-640.jpg 640w, /assets/img/home/hero-character.jpg 800w"
+            sizes="(min-width: 62rem) 326px, 74vw"
+            alt=""
+            {{ "/assets/img/home/hero-character.jpg" | dims | safe }}
+            loading="eager"
+            fetchpriority="high"
+          />
         </figure>
         <span class="hyb-orb hyb-orb--accent">{{ t.home.badgeA }}</span>
         <span class="hyb-orb hyb-orb--gold">{{ t.home.badgeB }}</span>

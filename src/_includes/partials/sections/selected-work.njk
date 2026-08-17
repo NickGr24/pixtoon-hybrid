@@ -24,7 +24,14 @@
         #}
         <figure class="hyb-show__media hyb-show__media--{{ c.shape }}">
           <span class="hyb-show__frame">
-            <img src="{{ c.media }}" alt="{{ cl.title }} — {{ cl.kicker }}" loading="lazy" />
+            <img
+              src="{{ c.media }}"
+              srcset="{{ c.media | replace('.jpg', '-600.jpg') }} 600w, {{ c.media | replace('.jpg', '-900.jpg') }} 900w, {{ c.media }} 1200w"
+              sizes="(min-width: 56rem) 576px, 92vw"
+              alt="{{ cl.title }} — {{ cl.kicker }}"
+              {{ c.media | dims | safe }}
+              loading="lazy"
+            />
           </span>
           <figcaption class="hyb-tag hyb-tag--gold">{{ cl.tag }}</figcaption>
         </figure>

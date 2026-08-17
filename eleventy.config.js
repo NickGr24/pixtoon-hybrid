@@ -10,6 +10,7 @@
  */
 
 import { HtmlBasePlugin } from "@11ty/eleventy";
+import { readFileSync } from "node:fs";
 
 /*
   На GitHub Pages сайт живёт в подпапке /<repo>/, а все ссылки в шаблонах
@@ -112,6 +113,70 @@ export default function (eleventyConfig) {
     }, "");
 
     return `<${tag} class="hyb-title ${cls}">${html}</${tag}>`;
+  });
+
+  /*
+    Размеры картинки читаются из заголовка файла и подставляются в разметку
+    атрибутами width/height. Без них браузер не знает пропорций до загрузки и
+    сдвигает вёрстку, когда картинка приезжает, — Lighthouse считает это
+    отдельным дефектом даже при нулевом CLS.
+
+    Заголовок разбирается вручную, а не библиотекой: нужны два числа из
+    первых байт, и ради них тянуть sharp в зависимости прода незачем.
+    Результат кэшируется — одна и та же картинка встречается в двадцати
+    страницах, а файл меняется только между сборками.
+  */
+  const sizeCache = new Map();
+
+  function readImageSize(file) {
+    const buf = readFileSync(file);
+
+    /* PNG: ширина и высота лежат в IHDR, сразу после восьмибайтовой сигнатуры */
+    if (buf.length > 24 && buf.readUInt32BE(0) === 0x89504e47) {
+      return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
+    }
+
+    /* JPEG: идём по сегментам до маркера SOF, в нём размеры кадра. Маркеры
+       C4/C8/CC — это таблицы Хаффмана и арифметики, не кадр, их пропускаем. */
+    if (buf.length > 4 && buf[0] === 0xff && buf[1] === 0xd8) {
+      let off = 2;
+      while (off + 9 < buf.length) {
+        if (buf[off] !== 0xff) {
+          off += 1;
+          continue;
+        }
+        const marker = buf[off + 1];
+        if (marker === 0xd8 || marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) {
+          off += 2;
+          continue;
+        }
+        const len = buf.readUInt16BE(off + 2);
+        const isFrame =
+          marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker);
+        if (isFrame) return { h: buf.readUInt16BE(off + 5), w: buf.readUInt16BE(off + 7) };
+        off += 2 + len;
+      }
+    }
+
+    return null;
+  }
+
+  /** `{{ "/assets/img/x.jpg" | dims | safe }}` → `width="1600" height="900"` */
+  eleventyConfig.addFilter("dims", function (webPath) {
+    if (!webPath) return "";
+    if (sizeCache.has(webPath)) return sizeCache.get(webPath);
+
+    let attrs = "";
+    try {
+      const size = readImageSize("src" + String(webPath).replace(/^(?!\/)/, "/"));
+      if (size) attrs = `width="${size.w}" height="${size.h}"`;
+    } catch {
+      /* Файла нет — молча пропускаем: сборка не должна падать из-за атрибута,
+         а отсутствующая картинка и без того видна в проверке ссылок. */
+    }
+
+    sizeCache.set(webPath, attrs);
+    return attrs;
   });
 
   /** Ссылка внутри текущей локали: /hybrid-production/ или /ro/hybrid-production/ */

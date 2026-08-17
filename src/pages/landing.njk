@@ -7,6 +7,9 @@ pagination:
   alias: t
   resolve: values
 permalink: "{{ t.dir }}{{ site.hybridPath }}/index.html"
+preloadImage: /assets/img/cases/bere-chisinau.jpg
+preloadSrcset: "/assets/img/cases/bere-chisinau-400.jpg 400w, /assets/img/cases/bere-chisinau-800.jpg 800w"
+preloadSizes: "(min-width: 40rem) 390px, 350px"
 eleventyComputed:
   pageTitle: "{{ t.meta.title | safe }}"
   pageDescription: "{{ t.meta.description | safe }}"
@@ -52,10 +55,19 @@ eleventyComputed:
           {% for c in cs %}{% if c.slug == slug %}
           {% set cl = c | loc(t.locale) %}
           <figure class="hyb-collage__item hyb-collage__item--{{ pos }}">
+            {#
+              Ячейки коллажа — от 169 до 389px, а исходники кадров до 1600.
+              Без srcset первый экран тянул три четверти мегабайта ради
+              картинок размером с почтовую марку, и LCP на телефоне уходил
+              за четыре секунды.
+            #}
             <img
               class="hyb-collage__media"
               src="{{ c.media.poster }}"
+              srcset="{{ c.media.poster | replace('.jpg', '-400.jpg') }} 400w, {{ c.media.poster | replace('.jpg', '-800.jpg') }} 800w"
+              sizes="{% if pos == 1 %}(min-width: 40rem) 390px, 350px{% else %}(min-width: 40rem) 190px, 170px{% endif %}"
               alt="{{ cl.title }} — {{ cl.tags }}"
+              {{ c.media.poster | dims | safe }}
               style="object-position: {{ c.media.focal }}"
               loading="{{ 'eager' if pos == 1 else 'lazy' }}"
               {% if pos == 1 %}fetchpriority="high"{% endif %}
@@ -103,6 +115,7 @@ eleventyComputed:
             class="hyb-case__media"
             src="{{ c.media.poster }}"
             alt=""
+            {{ c.media.poster | dims | safe }}
             style="object-position: {{ c.media.focal }}"
             loading="lazy"
           />
@@ -156,7 +169,7 @@ eleventyComputed:
           вообще, и Coccolino оказывался в пакете «2 video AI/3D» без причин.
         #}
         <div class="hyb-package__media" data-hyb-hover-video>
-          <img class="hyb-case__media" src="{{ p.mediaSrc }}" alt="{{ p.mediaLabel }}" loading="lazy" />
+          <img class="hyb-case__media" src="{{ p.mediaSrc }}" alt="{{ p.mediaLabel }}" {{ p.mediaSrc | dims | safe }} loading="lazy" />
           <span class="hyb-tag hyb-tag--gold hyb-package__tag">
             <span aria-hidden="true">✦</span> {{ p.mediaLabel }}
           </span>
@@ -191,7 +204,7 @@ eleventyComputed:
     {# Кастомный пакет: тёмная карточка, расколотая пополам кадром #}
     <div class="hyb-custom hyb-invert hyb-reveal">
       <div class="hyb-custom__media">
-        <img src="/assets/img/cases/drive-gas.jpg" alt="" loading="lazy" />
+        <img src="/assets/img/cases/drive-gas.jpg" alt="" {{ "/assets/img/cases/drive-gas.jpg" | dims | safe }} loading="lazy" />
       </div>
       <div class="hyb-custom__body">
         <p class="hyb-eyebrow hyb-eyebrow--gold">{{ t.monthly.custom.label }}</p>
@@ -231,7 +244,7 @@ eleventyComputed:
 
     <div class="hyb-mi__top hyb-reveal">
       <figure class="hyb-mi__hero">
-        <img src="/assets/img/cases/microinvest-family.jpg" alt="{{ t.microinvest.heroCaption }}" loading="lazy" />
+        <img src="/assets/img/cases/microinvest-family.jpg" alt="{{ t.microinvest.heroCaption }}" {{ "/assets/img/cases/microinvest-family.jpg" | dims | safe }} loading="lazy" />
         <figcaption>
           <span class="hyb-tag hyb-tag--gold"><span aria-hidden="true">✦</span> {{ t.microinvest.heroLabel }}</span>
           <span class="hyb-mi__caption">{{ t.microinvest.heroCaption }}</span>
@@ -239,11 +252,11 @@ eleventyComputed:
       </figure>
       <div class="hyb-mi__side">
         <figure class="hyb-mi__tile">
-          <img src="/assets/img/microinvest/branding.jpg" alt="{{ t.microinvest.sideLabels[0] }}" loading="lazy" />
+          <img src="/assets/img/microinvest/branding.jpg" alt="{{ t.microinvest.sideLabels[0] }}" {{ "/assets/img/microinvest/branding.jpg" | dims | safe }} loading="lazy" />
           <figcaption class="hyb-tag hyb-tag--light">{{ t.microinvest.sideLabels[0] }}</figcaption>
         </figure>
         <figure class="hyb-mi__tile">
-          <img src="/assets/img/microinvest/app-ui.jpg" alt="{{ t.microinvest.sideLabels[1] }}" loading="lazy" />
+          <img src="/assets/img/microinvest/app-ui.jpg" alt="{{ t.microinvest.sideLabels[1] }}" {{ "/assets/img/microinvest/app-ui.jpg" | dims | safe }} loading="lazy" />
           <figcaption class="hyb-tag hyb-tag--light">{{ t.microinvest.sideLabels[1] }}</figcaption>
         </figure>
       </div>
@@ -258,7 +271,7 @@ eleventyComputed:
       {% set files = ["mama", "fiica", "tatal", "mama-bucatarie"] %}
       {% for name in t.microinvest.portraits %}
       <figure class="hyb-mi__portrait">
-        <img src="/assets/img/microinvest/{{ files[loop.index0] }}.jpg" alt="{{ name }}" loading="lazy" />
+        <img src="/assets/img/microinvest/{{ files[loop.index0] }}.jpg" alt="{{ name }}" {{ ("/assets/img/microinvest/" + files[loop.index0] + ".jpg") | dims | safe }} loading="lazy" />
         <figcaption>{{ name }}</figcaption>
       </figure>
       {% endfor %}

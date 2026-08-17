@@ -34,13 +34,43 @@
   #}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@400;500;600;700&display=swap&subset=latin,latin-ext"
-    rel="stylesheet"
-  />
 
-  {# Единственный файл стилей: оболочка и секции собраны вместе. #}
-  <link rel="stylesheet" href="/assets/css/hybrid.css" />
+  {#
+    Шрифтовой CSS грузится, не задерживая первую отрисовку: media="print"
+    выводит его из числа блокирующих, onload возвращает в дело. Приём стоит
+    полутора секунд на медленной мобильной сети — ровно столько Lighthouse
+    насчитывал на ожидании ответа Google Fonts.
+
+    Поведение при этом не меняется: display=swap и так рисует текст системным
+    шрифтом до подхода Baloo и Quicksand. Без JS работает <noscript> ниже.
+  #}
+  {% set fontsHref = "https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@400;500;600;700&display=swap&subset=latin,latin-ext" %}
+  <link rel="preload" as="style" href="{{ fontsHref }}" />
+  <link rel="stylesheet" href="{{ fontsHref }}" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="{{ fontsHref }}" /></noscript>
+
+  {#
+    Кадр, который становится крупнейшим элементом первого экрана, браузер
+    иначе находит только после разбора HTML и CSS. Предзагрузка ставит его в
+    очередь сразу; imagesrcset повторяет набор из разметки, иначе браузер
+    скачал бы один файл по preload и другой по srcset.
+  #}
+  {% if preloadImage %}
+  <link
+    rel="preload"
+    as="image"
+    href="{{ preloadImage | url }}"
+    {% if preloadSrcset %}imagesrcset="{{ preloadSrcset }}" imagesizes="{{ preloadSizes }}"{% endif %}
+    fetchpriority="high"
+  />
+  {% endif %}
+
+  {#
+    Подключается минифицированная сборка. Рядом в dist лежит hybrid.css —
+    тот же файл с комментариями: он для разработчика, который будет заводить
+    раздел в MODX, а в браузер посетителя ехать ему незачем.
+  #}
+  <link rel="stylesheet" href="/assets/css/hybrid.min.css" />
 </head>
 
 {#
@@ -117,6 +147,7 @@
 
   {% include "partials/footer.njk" %}
 
-  <script src="/assets/js/hybrid.js" defer></script>
+  {# Минифицированная сборка; рядом лежит hybrid.js с комментариями #}
+  <script src="/assets/js/hybrid.min.js" defer></script>
 </body>
 </html>

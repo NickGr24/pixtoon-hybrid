@@ -18,7 +18,17 @@
         <ul class="hyb-footer__social">
           {% for s in site.social %}
           <li>
-            <a href="{{ s.url }}" class="hyb-footer__soc" rel="noopener" target="_blank" aria-label="{{ s.name }}">{{ s.short }}</a>
+            {#
+              Название сети остаётся текстом для скринридера: логотип его не
+              заменяет, а SVG помечен aria-hidden, иначе читалка объявила бы
+              безымянную графику.
+            #}
+            <a href="{{ s.url }}" class="hyb-footer__soc" rel="noopener" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                {{ icons.social[s.mod] | safe }}
+              </svg>
+              <span class="hyb-sr">{{ s.name }}</span>
+            </a>
           </li>
           {% endfor %}
         </ul>

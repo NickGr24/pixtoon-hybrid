@@ -5,8 +5,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "node build-css.mjs && eleventy",
-    "dev": "node build-css.mjs && eleventy --serve --port=8080",
+    "build": "node build-css.mjs && eleventy && node build-js.mjs",
+    "dev": "node build-css.mjs && node build-js.mjs && eleventy --serve --port=8080",
     "css": "node build-css.mjs"
   },
   "license": "UNLICENSED",
