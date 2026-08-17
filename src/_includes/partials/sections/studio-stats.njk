@@ -1,10 +1,10 @@
 {# «Мини-вселенная» — секция главной, переиспользуемая на /studio #}
-<section class="hyb-section hyb-section--alt" id="studio">
+<section class="hyb-section hyb-section--site hyb-section--alt" id="studio">
   <div class="hyb-wrap">
     {% if showHead %}
     <div class="hyb-head hyb-head--mid hyb-reveal">
-      <span class="hyb-eyebrow">{{ t.studioStats.eyebrow }}</span>
-      {% title t.studioStats.title %}
+      <span class="hyb-eyebrow hyb-eyebrow--pill">{{ t.studioStats.eyebrow }}</span>
+      {% title t.studioStats.title, "h2", "hyb-title--site" %}
     </div>
     {% endif %}
 

@@ -3,12 +3,12 @@
   слева, чётные — скруглённый прямоугольник справа. Оба параметра идут из
   данных (shape) и из позиции, а не из отдельных классов на каждый кейс.
 #}
-<section class="hyb-section" id="work">
+<section class="hyb-section hyb-section--site" id="work">
   <div class="hyb-wrap">
     {% if showHead %}
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">{{ t.siteWork.eyebrow }}</span>
-      {% title t.siteWork.title %}
+    <div class="hyb-head hyb-head--mid hyb-showcase-head hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">{{ t.siteWork.eyebrow }}</span>
+      {% title t.siteWork.title, "h2", "hyb-title--site" %}
     </div>
     {% endif %}
 

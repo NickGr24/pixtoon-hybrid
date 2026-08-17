@@ -8,6 +8,12 @@
 
 /* --- 1. Герой ------------------------------------------------------------ */
 
+/* Пилюля эйброу в герое на 2px шире по бокам, чем в секциях: 16 против 14 */
+.hyb-hero .hyb-eyebrow--pill {
+  padding-inline: 1rem;
+}
+
+
 /* Базовый .hyb-hero живёт в base.css: модификатор --home лежит в
    sections-site.css, который подключается раньше этого файла, и базовое
    правило отсюда молча перебивало бы его отступ. */
@@ -300,6 +306,25 @@
   transition: transform var(--hyb-dur) var(--hyb-ease);
 }
 
+/*
+  Наезд кадра при наведении. В макете он висит на каждом содержательном
+  снимке: коллаж, сетка работ, медиа абонементов, кадры Microinvest и
+  портреты. Единственное исключение — кадр кастомного пакета, у него зума
+  нет; там кадр расколот пополам с тёмной карточкой и движение бы её резало.
+*/
+.hyb-package__media img,
+.hyb-mi__hero img,
+.hyb-mi__tile img,
+.hyb-mi__portrait img {
+  transition: transform var(--hyb-dur-zoom) var(--hyb-ease);
+}
+.hyb-package__media:hover img,
+.hyb-mi__hero:hover img,
+.hyb-mi__tile:hover img,
+.hyb-mi__portrait:hover img {
+  transform: scale(1.05);
+}
+
 /* --- 3. Абонементы ------------------------------------------------------- */
 
 /*
@@ -311,6 +336,8 @@
 */
 .hyb-head--wide { max-width: 768px; }
 .hyb-head--mid  { max-width: 672px; }
+/* Шапка страницы и финальный призыв в макете не ограничены колонкой */
+.hyb-head--full { max-width: none; }
 .hyb-head--narrow { max-width: 584px; }
 
 .hyb-subtitle {
@@ -690,35 +717,12 @@
 
 /* --- 5. Процесс ---------------------------------------------------------- */
 
-.hyb-steps {
-  display: grid;
-  gap: var(--hyb-s-4);
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-}
-
-.hyb-step__n {
-  display: inline-block;
-  margin-bottom: var(--hyb-s-2);
-  font-family: var(--hyb-font-display);
-  font-weight: 700;
-  font-size: var(--hyb-t-small);
-  color: var(--hyb-accent-text);
-}
-
-.hyb-step__title {
-  margin-bottom: 0.5rem;
-  font-family: var(--hyb-font-display);
-  font-weight: 700;
-  font-size: var(--hyb-t-card);
-}
-
-.hyb-step__text {
-  font-size: var(--hyb-t-small);
-  color: var(--hyb-ink-muted);
-  line-height: var(--hyb-lh-body);
-}
+/* Компонент шага переехал в base.css: модификатор --flow лежит в
+   sections-site.css, который подключается раньше этого файла, и база
+   отсюда молча перебивала бы его раскладку. */
 
 /* --- 6. Cifrele vorbesc -------------------------------------------------- */
+
 
 .hyb-techniques {
   margin-top: 1.25rem;
@@ -842,9 +846,20 @@
 
 /* --- 9. Финальный CTA ---------------------------------------------------- */
 
+/*
+  Финальный призыв выровнен по левому краю, а не по центру: измерено на обеих
+  страницах макета — заголовок стоит на 112px от края, как весь остальной
+  контент. Центрирование было домыслено по скриншоту, где секция выглядела
+  симметричной из-за короткой строки.
+*/
 .hyb-final {
-  text-align: center;
-  padding-block: clamp(3.5rem, 2rem + 5vw, 7rem); /* 112px в макете */
+  padding-block: 4rem;
+}
+
+@media (min-width: 40rem) {
+  .hyb-final {
+    padding-block: 7rem; /* 112px в макете */
+  }
 }
 
 /*
@@ -855,20 +870,12 @@
 */
 .hyb-final .hyb-head {
   max-width: none;
-  margin-inline: auto;
 }
 
-/* Финальный заголовок в макете дорастает до 72px — как герой, единственное
-   такое место на странице. На узком экране он мельче героя: 36 против 48. */
-.hyb-final .hyb-title {
-  font-size: var(--hyb-t-h2-xl);
-}
+/* Кегль финального заголовка задаётся классом на самом заголовке, а не через
+   потомка: у раздела Hybrid он 72px, у страниц сайта — 115px, и правило
+   `.hyb-final .hyb-title` перебивало бы оба своей специфичностью. */
 
 .hyb-final .hyb-lead {
-  margin-inline: auto;
   max-width: 48ch;
-}
-
-.hyb-final .hyb-actions {
-  justify-content: center;
 }

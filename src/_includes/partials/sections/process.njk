@@ -1,22 +1,32 @@
 {# «Семь шагов» — секция главной, переиспользуемая на /capabilities #}
-<section class="hyb-section" id="process">
+<section class="hyb-section hyb-section--site" id="process">
   <div class="hyb-wrap">
     {% if showHead %}
     <div class="hyb-head hyb-head--mid hyb-reveal">
-      <span class="hyb-eyebrow">{{ t.siteProcess.eyebrow }}</span>
-      {% title t.siteProcess.title %}
+      <span class="hyb-eyebrow hyb-eyebrow--pill">{{ t.siteProcess.eyebrow }}</span>
+      {% title t.siteProcess.title, "h2", "hyb-title--gold hyb-title--site" %}
       <p class="hyb-lead">{{ t.siteProcess.lead }}</p>
     </div>
     {% endif %}
 
-    <ol class="hyb-steps hyb-steps--seven">
-      {% for s in t.siteProcess.steps %}
-      <li class="hyb-step hyb-reveal">
-        <span class="hyb-step__n" aria-hidden="true">{{ s.n }}</span>
-        <h3 class="hyb-step__title">{{ s.title }}</h3>
-        <p class="hyb-step__text">{{ s.text }}</p>
-      </li>
-      {% endfor %}
-    </ol>
+    {#
+      Лента, а не сетка: в макете семь шагов стоят в один ряд шириной 2416px
+      и прокручиваются вбок. Сетка с переносом рвала бы цепочку — а цепочка
+      здесь и есть смысл: она показывает, что этапы идут один за другим.
+
+      Соединитель нарисован псевдоэлементом в CSS, а не отдельным узлом:
+      разметке он ничего не сообщает, а скринридеру мешал бы.
+    #}
+    <div class="hyb-track" tabindex="0" role="group" aria-label="{{ t.siteProcess.eyebrow }}">
+      <ol class="hyb-steps hyb-steps--flow">
+        {% for s in t.siteProcess.steps %}
+        <li class="hyb-step hyb-reveal">
+          <span class="hyb-step__n" aria-hidden="true">{{ s.n }}</span>
+          <h3 class="hyb-step__title">{{ s.title }}</h3>
+          <p class="hyb-step__text">{{ s.text }}</p>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
   </div>
 </section>

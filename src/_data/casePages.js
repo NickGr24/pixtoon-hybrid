@@ -2,6 +2,11 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
+/* Кейсы берутся из cases.js, а не из casesData.json напрямую: флаги наличия
+   видео считаются там, и чтение сырого JSON лишило бы страницу кейса кнопки
+   воспроизведения при живом файле на диске. */
+import cases from "./cases.js";
+
 const here = dirname(fileURLToPath(import.meta.url));
 const read = (f) => JSON.parse(readFileSync(join(here, f), "utf8"));
 
@@ -14,7 +19,6 @@ const read = (f) => JSON.parse(readFileSync(join(here, f), "utf8"));
  * страницы последнего проекта был путь дальше, а не тупик.
  */
 export default function () {
-  const cases = read("cases.json");
   const locales = [read("i18n/en.json"), read("i18n/ro.json")];
   const featured = cases.featured;
 

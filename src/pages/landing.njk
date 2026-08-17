@@ -106,10 +106,10 @@ eleventyComputed:
             style="object-position: {{ c.media.focal }}"
             loading="lazy"
           />
-          {% if c.media.hasVideo %}
+          {% if c.media.hasPreview %}
           <video
             class="hyb-case__video"
-            data-src="{{ c.media.video | url }}"
+            data-src="{{ c.media.preview | url }}"
             muted loop playsinline preload="none" aria-hidden="true"
           ></video>
           {% endif %}
@@ -397,7 +397,7 @@ eleventyComputed:
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
       <span class="hyb-eyebrow">{{ t.finalCta.eyebrow }}</span>
-      {% title t.finalCta.title %}
+      {% title t.finalCta.title, "h2", "hyb-title--xl" %}
     </div>
     <p class="hyb-lead hyb-reveal">{{ t.finalCta.lead }}</p>
     <div class="hyb-actions hyb-reveal">

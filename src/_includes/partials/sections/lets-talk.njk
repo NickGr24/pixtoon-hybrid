@@ -1,9 +1,9 @@
 {# Финальный призыв — общий для главной и /studio #}
-<section class="hyb-section hyb-section--alt hyb-final" id="contact">
+<section class="hyb-section hyb-section--site hyb-section--alt hyb-final" id="contact">
   <div class="hyb-wrap">
-    <div class="hyb-head hyb-reveal">
-      <span class="hyb-eyebrow">{{ t.letsTalk.eyebrow }}</span>
-      {% title t.letsTalk.title %}
+    <div class="hyb-head hyb-head--full hyb-reveal">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">{{ t.letsTalk.eyebrow }}</span>
+      {% title t.letsTalk.title, "h2", "hyb-title--cta" %}
     </div>
     <div class="hyb-actions hyb-reveal">
       <a href="mailto:{{ site.contacts.email }}" class="hyb-btn hyb-btn--primary">

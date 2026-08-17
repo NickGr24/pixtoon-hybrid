@@ -19,9 +19,9 @@ eleventyComputed:
 #}
 <section class="hyb-pagehead">
   <div class="hyb-wrap">
-    <div class="hyb-head hyb-head--mid">
-      <span class="hyb-eyebrow">{{ t.siteWork.eyebrow }}</span>
-      {% title t.siteWork.title, "h1" %}
+    <div class="hyb-head hyb-head--full">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">{{ t.siteWork.eyebrow }}</span>
+      {% title t.siteWork.title, "h1", "hyb-title--page" %}
       <p class="hyb-lead">{{ t.siteWork.pageLead }}</p>
     </div>
   </div>
