@@ -25,7 +25,36 @@
     initCasePlayer();
     initBurger();
     initShowreel();
+    initStickyHeader();
   });
+
+  /* --- Шапка при прокрутке ----------------------------------------------- */
+
+  /**
+   * Сверху шапка прозрачная и высокая, ниже — сжимается и становится матовым
+   * стеклом. Это единственная анимация оболочки в макете.
+   *
+   * Порог в 32px, а не 0: без него шапка дёргается от инерционного скролла
+   * трекпада у самого верха страницы. Класс снимается и ставится только при
+   * смене состояния — присвоение на каждый кадр прокрутки заставляло бы
+   * браузер пересчитывать стили впустую.
+   */
+  function initStickyHeader() {
+    var header = document.querySelector("[data-hyb-header]");
+    if (!header) return;
+
+    var stuck = null;
+
+    function sync() {
+      var next = window.scrollY > 32;
+      if (next === stuck) return;
+      stuck = next;
+      header.classList.toggle("is-stuck", next);
+    }
+
+    window.addEventListener("scroll", sync, { passive: true });
+    sync();
+  }
 
   /* --- Появление секций при скролле ------------------------------------- */
 

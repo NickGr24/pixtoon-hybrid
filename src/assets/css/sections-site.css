@@ -8,9 +8,10 @@
 
 /* --- Шапка подстраницы --------------------------------------------------- */
 
-/* 176px сверху / 64px снизу — измерено на подстраницах макета */
+/* Отступ сверху общий с героем и задан в base.css; здесь только нижний,
+   он на подстраницах на 8px больше — 64 против 56. */
 .hyb-pagehead {
-  padding-block: clamp(3rem, 1rem + 11.1vw, 11rem) clamp(2rem, 1rem + 3vw, 4rem);
+  padding-bottom: clamp(2rem, 1rem + 3vw, 4rem);
 }
 .hyb-pagehead .hyb-head {
   margin-bottom: 0;
@@ -18,8 +19,9 @@
 
 /* --- Герой главной ------------------------------------------------------- */
 
+/* Главная начинается выше остальных: 128px при 390 и 160px при 1440 */
 .hyb-hero--home {
-  padding-block: clamp(3rem, 1rem + 10vw, 10rem) clamp(3rem, 2rem + 4vw, 6rem);
+  padding-block: clamp(8rem, 7.26rem + 3.05vw, 10rem) clamp(3rem, 2rem + 4vw, 6rem);
 }
 
 /*
@@ -154,11 +156,18 @@
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
 }
 
+/* Подъём на 4px с мягкой тенью при наведении — приём макета, там 500ms */
 .hyb-card {
   position: relative;
   padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
   border-radius: var(--hyb-r-card);
   background: var(--hyb-bg);
+  transition: transform var(--hyb-dur-slow) var(--hyb-ease),
+    box-shadow var(--hyb-dur-slow) var(--hyb-ease);
+}
+.hyb-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--hyb-shadow-lift);
 }
 
 .hyb-card__n {
@@ -212,9 +221,9 @@
 }
 
 /*
-  Обрезается изображение, а не контейнер. Если повесить overflow:hidden на
-  саму фигуру, круглая маска срежет золотую метку — в макете она лежит
-  снаружи круга, у левого верхнего угла колонки.
+  Форму держит обёртка .hyb-show__frame, а не сама фигура: маска на фигуре
+  срезала бы золотую метку — в макете она лежит снаружи круга, у левого
+  верхнего угла колонки.
 */
 .hyb-show__media {
   position: relative;
@@ -222,19 +231,34 @@
   display: grid;
 }
 
-.hyb-show__media img {
-  width: 100%;
-  object-fit: cover;
+.hyb-show__frame {
+  display: block;
+  overflow: hidden;
 }
 
-.hyb-show__media--circle img {
+.hyb-show__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--hyb-dur-zoom) var(--hyb-ease);
+}
+
+/* Зум по наведению на сам кадр, а не на всю строку витрины: строка занимает
+   половину экрана, и наведение на текст рядом двигало бы картинку ни с того
+   ни с сего. В макете так же. */
+.hyb-show__frame:hover img {
+  transform: scale(1.05);
+}
+
+.hyb-show__media--circle .hyb-show__frame {
   width: min(448px, 100%);
   aspect-ratio: 1;
   border-radius: 50%;
   justify-self: center;
 }
 
-.hyb-show__media--rect img {
+.hyb-show__media--rect .hyb-show__frame {
   aspect-ratio: 4 / 3;
   border-radius: var(--hyb-r-card);
 }

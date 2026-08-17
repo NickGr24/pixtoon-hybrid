@@ -1,5 +1,5 @@
 {
-  "_comment": "Кейсы раздела. Состав и подписи сняты с макета base44: пять работ, Efes и Medpark Diaspora из дизайна убраны. Поле media.focal — точка интереса кадра для object-position; лежит рядом с постером, потому что это свойство изображения, а не позиции в сетке.",
+  "_comment": "Кейсы раздела. Состав и подписи сняты с макета base44: пять работ, Efes и Medpark Diaspora из дизайна убраны. Порядок в этом файле — порядок сетки «Lucrări hibride selectate»; коллаж героя перечисляет работы отдельно, там он свой. Поле media.focal — точка интереса кадра для object-position; сейчас у всех центр, как в макете, но поле оставлено: под нестандартный постер смещение задаётся здесь, а не в CSS.",
   "featured": [
     {
       "slug": "drive-gas",
@@ -39,7 +39,7 @@
         "poster": "/assets/img/cases/coccolino.jpg",
         "video": "/assets/img/cases/coccolino-preview.mp4",
         "ratio": "16/9",
-        "focal": "38% 50%",
+        "focal": "50% 50%",
         "hasVideo": false
       },
       "en": {
@@ -69,7 +69,7 @@
         "poster": "/assets/img/cases/medpark-doctor-buba.jpg",
         "video": "/assets/img/cases/medpark-doctor-buba-preview.mp4",
         "ratio": "16/9",
-        "focal": "50% 40%",
+        "focal": "50% 50%",
         "hasVideo": false
       },
       "en": {
@@ -99,12 +99,12 @@
         "poster": "/assets/img/cases/microinvest-family.jpg",
         "video": "/assets/img/cases/microinvest-family-preview.mp4",
         "ratio": "16/10",
-        "focal": "50% 45%",
+        "focal": "50% 50%",
         "hasVideo": false
       },
       "en": {
         "title": "Familia Microinvest",
-        "tags": "Rigged 3D characters / AI animation",
+        "tags": "Hand-built character / Trained AI",
         "excerpt": "A family of characters built the classic way — fully modelled and rigged — and now animated with AI tools.",
         "challenge": "Give a financial brand a cast of characters that stays recognisable across years of campaigns, not a one-off commercial.",
         "solution": "The Microinvest family was modelled and rigged in classic 3D, with full animation controllers. That base is now driven by AI animation, so new scenes cost a fraction of a traditional shoot.",
@@ -113,7 +113,7 @@
       },
       "ro": {
         "title": "Familia Microinvest",
-        "tags": "Personaje 3D rigate / Animație AI",
+        "tags": "Personaj dezvoltat manual / AI antrenat",
         "excerpt": "O familie de personaje construită în metoda clasică — modelată și rigată complet — și animată acum cu instrumente AI.",
         "challenge": "Un brand financiar avea nevoie de personaje care rămân recognoscibile de-a lungul anilor de campanii, nu de un singur comercial.",
         "solution": "Familia Microinvest a fost modelată și rigată în 3D clasic, cu controllere complete de animație. Această bază este acum animată cu instrumente AI, astfel încât scenele noi costă o fracțiune dintr-o filmare tradițională.",
@@ -129,7 +129,7 @@
         "poster": "/assets/img/cases/bere-chisinau.jpg",
         "video": "/assets/img/cases/bere-chisinau-preview.mp4",
         "ratio": "16/10",
-        "focal": "50% 40%",
+        "focal": "50% 50%",
         "hasVideo": false
       },
       "en": {

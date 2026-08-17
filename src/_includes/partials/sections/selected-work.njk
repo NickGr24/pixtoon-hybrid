@@ -16,8 +16,16 @@
       {% for c in siteCases.items %}
       {% set cl = c | loc(t.locale) %}
       <article class="hyb-show hyb-show--{{ 'left' if loop.index is odd else 'right' }} hyb-reveal">
+        {#
+          Маска висит на обёртке, а не на самой картинке: при наведении кадр
+          наезжает на 5%, и обрезать его должна форма, а не он сам — иначе
+          растёт сам круг. Метка лежит снаружи обёртки, потому что в макете
+          она выступает за край круга и маска бы её срезала.
+        #}
         <figure class="hyb-show__media hyb-show__media--{{ c.shape }}">
-          <img src="{{ c.media }}" alt="{{ cl.title }} — {{ cl.kicker }}" loading="lazy" />
+          <span class="hyb-show__frame">
+            <img src="{{ c.media }}" alt="{{ cl.title }} — {{ cl.kicker }}" loading="lazy" />
+          </span>
           <figcaption class="hyb-tag hyb-tag--gold">{{ cl.tag }}</figcaption>
         </figure>
         <div class="hyb-show__body">

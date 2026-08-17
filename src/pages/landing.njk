@@ -35,21 +35,18 @@ eleventyComputed:
       </div>
 
       {#
-        Коллаж из пяти кадров. Ячейки разного размера, но внешний габарит —
-        ровный прямоугольник: позиции заданы явно в 12-колоночной сетке, а не
-        набираются потоком. Прежняя вёрстка на `columns: 2` балансировала
-        высоту сама и давала рваный низ — замечание клиента про размещение.
-      #}
-      {#
-        Порядок в коллаже свой, отличный от порядка кейсов в секции работ:
-        ячейки имеют фиксированные пропорции, и кадр должен попасть в ячейку
-        своей ориентации. Портретная бутылка Berea идёт в ячейку 3/4, широкая
-        кухня Microinvest — в полосу 16/5. Если брать порядок из данных, эти
-        двое меняются местами и оба кадра теряют смысл при обрезке.
+        Коллаж из пяти кадров: крупный слева, вертикальный справа, три мелких
+        нижним рядом. Позиции заданы явно, а не набираются потоком — прежняя
+        вёрстка на `columns: 2` балансировала высоту сама и давала рваный низ.
+
+        Порядок свой, отличный от порядка кейсов в секции работ, и задан
+        клиентом вручную в макете 17.08: Berea Chișinău в крупной ячейке,
+        Drive Gas — в мелкой. Читать порядок из cases.json нельзя, там он
+        другой; список ниже и есть источник истины для коллажа.
       #}
       <div class="hyb-hero__visual">
         <div class="hyb-collage">
-          {% set collageSlugs = ["drive-gas", "coccolino", "medpark-doctor-buba", "bere-chisinau", "microinvest-family"] %}
+          {% set collageSlugs = ["bere-chisinau", "coccolino", "medpark-doctor-buba", "drive-gas", "microinvest-family"] %}
           {% for slug in collageSlugs %}
           {% set pos = loop.index %}
           {% for c in cs %}{% if c.slug == slug %}
@@ -85,7 +82,7 @@ eleventyComputed:
   <div class="hyb-wrap">
     <div class="hyb-head hyb-reveal">
       <span class="hyb-eyebrow">{{ t.work.eyebrow }}</span>
-      {% title t.work.title %}
+      {% title t.work.title, "h2", "hyb-title--sm" %}
     </div>
 
     {#
@@ -137,7 +134,7 @@ eleventyComputed:
   <div class="hyb-wrap">
     <div class="hyb-head hyb-head--wide hyb-reveal">
       <span class="hyb-eyebrow">{{ t.monthly.eyebrow }}</span>
-      {% title t.monthly.title %}
+      {% title t.monthly.title, "h2", "hyb-title--lg" %}
       <p class="hyb-subtitle">{{ t.monthly.subtitle }}</p>
       <p class="hyb-lead">{{ t.monthly.lead }}</p>
     </div>
@@ -284,7 +281,7 @@ eleventyComputed:
     <div class="hyb-mi__why hyb-reveal">
       <div>
         <span class="hyb-eyebrow">{{ t.microinvest.why.eyebrow }}</span>
-        {% title t.microinvest.why.title, "h3" %}
+        {% title t.microinvest.why.title, "h3", "hyb-title--h3" %}
       </div>
       <div>
         <p class="hyb-closing__text">{{ t.microinvest.why.text }}</p>
@@ -371,7 +368,7 @@ eleventyComputed:
   <div class="hyb-wrap">
     <div class="hyb-price hyb-reveal">
       <span class="hyb-eyebrow hyb-eyebrow--gold">{{ t.pricing.eyebrow }}</span>
-      {% title t.pricing.title %}
+      {% title t.pricing.title, "h2", "hyb-title--lg" %}
 
       <div class="hyb-price__stats">
         {% for s in t.pricing.stats %}

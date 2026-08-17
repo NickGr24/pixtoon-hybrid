@@ -8,12 +8,9 @@
 
 /* --- 1. Герой ------------------------------------------------------------ */
 
-/* 176px сверху / 56px снизу при 1440 — измерено на макете. Коэффициент vw
-   подобран так, чтобы верхнее значение попадало в 176 ровно на 1440, а не
-   упиралось в потолок clamp раньше. */
-.hyb-hero {
-  padding-block: clamp(3rem, 1rem + 11.1vw, 11rem) clamp(2rem, 1rem + 3vw, 3.5rem);
-}
+/* Базовый .hyb-hero живёт в base.css: модификатор --home лежит в
+   sections-site.css, который подключается раньше этого файла, и базовое
+   правило отсюда молча перебивало бы его отступ. */
 
 /*
   Герой в макете — 12-колоночная сетка с зазором 32px: 12 × 72 + 11 × 32 =
@@ -40,22 +37,29 @@
 }
 
 /*
-  Коллаж. Ячейки разного размера, но внешний габарит — ровный прямоугольник:
-  каждая позиция задана явно в 12-колоночной сетке.
+  Коллаж. Габарит ровный, потому что позиции заданы явно, а не набираются
+  потоком: прежняя вёрстка на `columns: 2` балансировала высоту сама и давала
+  рваный низ — замечание клиента «amplasarea modulelor să fie corectă».
 
-  Прежняя вёрстка стояла на `columns: 2`. Колоночная модель льёт элементы
-  потоком и балансирует высоту сама, поэтому низ колонок не сходится
-  принципиально — расхождение доходило до 300px. Это и было замечание
-  клиента «amplasarea modulelor sau lucrărilor să fie corectă».
-
-  Пропорции ячеек — из макета: 4/3, 3/4, 4/3, 3/4, 16/5.
+  Высоту держат ряды, а не пропорции ячеек: в макете `auto-rows-[160px]`.
+  Пропорция ячейки при этом плавает с шириной окна, и это осознанно — так
+  крупный кадр и три мелких всегда стыкуются в один прямоугольник 592×512,
+  что при фиксированных aspect-ratio достижимо лишь на одной ширине.
 */
 .hyb-collage {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 140px;
+  gap: 0.75rem;
+}
+
+@media (min-width: 40rem) {
+  .hyb-collage {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: 160px;
+    gap: 1rem;
+  }
 }
 
 .hyb-collage__item {
@@ -66,24 +70,39 @@
   margin: 0;
 }
 
-.hyb-collage__item--1 { grid-column: 1 / 9;  aspect-ratio: 4 / 3; }
-.hyb-collage__item--2 { grid-column: 9 / 13; aspect-ratio: 3 / 4; }
-.hyb-collage__item--3 { grid-column: 1 / 7;  aspect-ratio: 4 / 3; }
-.hyb-collage__item--4 { grid-column: 7 / 13; aspect-ratio: 3 / 4; }
-.hyb-collage__item--5 { grid-column: 1 / 13; aspect-ratio: 16 / 5; }
+/* Узкий экран: два крупных кадра во всю ширину, пара мелких в один ряд */
+.hyb-collage__item--3,
+.hyb-collage__item--4 { grid-column: span 1; }
+.hyb-collage__item--1,
+.hyb-collage__item--2,
+.hyb-collage__item--5 { grid-column: span 2; }
+
+@media (min-width: 40rem) {
+  .hyb-collage__item--1 { grid-column: span 4; grid-row: span 2; }
+  .hyb-collage__item--2 { grid-column: span 2; grid-row: span 2; }
+  .hyb-collage__item--3,
+  .hyb-collage__item--4,
+  .hyb-collage__item--5 { grid-column: span 2; }
+}
 
 .hyb-collage__media {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--hyb-dur-zoom) var(--hyb-ease);
 }
 
-/* Кнопка showreel прижата к нижнему левому углу коллажа и слегка выходит
-   за него — в макете так же. Раньше она висела по центру в пустоте. */
+/* Кадр наезжает на 5% при наведении — приём макета */
+.hyb-collage__item:hover .hyb-collage__media {
+  transform: scale(1.05);
+}
+
+/* Кнопка showreel выходит за нижний левый угол коллажа на 16px по обеим осям
+   — в макете `-bottom-4 -left-4`. Раньше она висела по центру в пустоте. */
 .hyb-showreel {
   position: absolute;
-  left: -0.875rem;
-  bottom: 1.5rem;
+  left: -1rem;
+  bottom: -1rem;
   z-index: 2;
   display: inline-flex;
   align-items: center;
@@ -167,6 +186,24 @@
   grid-template-columns: 1fr;
 }
 
+/*
+  Базовое правило стоит ДО модификаторов сознательно. Специфичность у
+  `.hyb-case` и `.hyb-case--2` одинаковая (0,1,0), поэтому спор решает
+  порядок в файле. Когда базовый блок лежал ниже, его `aspect-ratio: 16/10`
+  молча перебивал 392/500 у Coccolino: карточка становилась низкой, справа
+  от Drive Gas зияла дыра — ровно то, что клиент назвал «composiția
+  blocurilor». Крупная карточка дефект прятала: 804/500 = 1.608 против
+  16/10 = 1.6, разница в 3px.
+*/
+.hyb-case {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-accent-wash);
+  aspect-ratio: 16 / 10;
+}
+
 @media (min-width: 48rem) {
   .hyb-work {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -181,15 +218,6 @@
   .hyb-case--5 { aspect-ratio: 392 / 240; }
 }
 
-.hyb-case {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border-radius: var(--hyb-r-card);
-  background: var(--hyb-accent-wash);
-  aspect-ratio: 16 / 10;
-}
-
 .hyb-case__frame {
   position: absolute;
   inset: 0;
@@ -200,6 +228,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.hyb-case__media {
+  transition: transform var(--hyb-dur-zoom) var(--hyb-ease);
+}
+.hyb-case:hover .hyb-case__media {
+  transform: scale(1.05);
+}
+/* Пока играет превью, зум снимается: два движения разом читаются как дрожь */
+.hyb-case.is-playing .hyb-case__media {
+  transform: none;
 }
 
 .hyb-case__video {
@@ -439,7 +478,9 @@
   margin-block: var(--hyb-s-1) var(--hyb-s-3);
   font-family: var(--hyb-font-display);
   font-weight: 800;
-  font-size: var(--hyb-t-h3);
+  /* 36px в макете: карточка кастомного пакета несёт целое предложение,
+     и кегль у него на ступень крупнее заголовков обычных пакетов */
+  font-size: var(--hyb-t-h3-lg);
   line-height: var(--hyb-lh-tight);
   color: var(--hyb-on-dark);
 }
@@ -817,10 +858,10 @@
   margin-inline: auto;
 }
 
-/* Финальный заголовок в макете набран кеглем героя (72px), а не секционным
-   (48px) — единственное место на странице, кроме первого экрана. */
+/* Финальный заголовок в макете дорастает до 72px — как герой, единственное
+   такое место на странице. На узком экране он мельче героя: 36 против 48. */
 .hyb-final .hyb-title {
-  font-size: var(--hyb-t-hero);
+  font-size: var(--hyb-t-h2-xl);
 }
 
 .hyb-final .hyb-lead {

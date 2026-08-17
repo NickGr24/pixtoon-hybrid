@@ -11,28 +11,68 @@
 
 body.hyb-page {
   margin: 0;
-  /* Шапка зафиксирована, поэтому контент отодвигается на её высоту */
-  padding-top: 80px;
+}
+
+/* Якорные переходы не должны загонять цель под шапку. Число, а не токен:
+   токены объявлены на .hyb-scope, то есть на body, и до html не достают. */
+html {
+  scroll-padding-top: 96px;
 }
 
 /* --- Шапка --------------------------------------------------------------- */
 
+/*
+  Шапка лежит поверх первого экрана, а не над ним: сверху она прозрачная и
+  герой просвечивает насквозь. Место под неё заложено в верхний отступ первой
+  секции (176px в макете), поэтому у body отступа под шапку нет — иначе весь
+  первый экран уезжает вниз ровно на 80px.
+
+  При прокрутке шапка сжимается с 80 до 64 и превращается в матовое стекло.
+  Высота набирается padding'ом вокруг логотипа в 40px, а не свойством height:
+  так одно изменение padding'а анимирует и высоту, и положение содержимого.
+
+  Да, padding — layout-свойство, и его анимация обычно повод для придирки.
+  Здесь она осознанная: заменить её на transform нельзя, не разойдясь с
+  макетом — там сжимается сама полоса стекла, а не только её содержимое.
+  Переход случается дважды за проход страницы (вниз и обратно), а не на
+  каждый кадр прокрутки, и затрагивает четыре элемента. `contain: layout`
+  запирает пересчёт внутри шапки, чтобы он не выходил на страницу.
+*/
 .hyb-header {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
-  height: 80px;
-  background: var(--hyb-bg);
-  /* В макете граница именно 0.5px: на обычном экране это волосяная линия,
-     на Retina — ровно один физический пиксель. */
-  border-bottom: 0.5px solid var(--hyb-line);
+  contain: layout;
+  padding-block: 1.25rem;
+  background: transparent;
+  /* Линия снизу нарисована тенью, а не границей: граница резервирует место
+     всегда, и шапка становилась 80.5px вместо ровных 80. */
+  box-shadow: 0 0 0 0 transparent;
+  transition: padding-block var(--hyb-dur-slow) var(--hyb-ease),
+    background-color var(--hyb-dur-slow) var(--hyb-ease),
+    box-shadow var(--hyb-dur-slow) var(--hyb-ease);
+}
+
+.hyb-header.is-stuck {
+  padding-block: 0.75rem;
+  background: var(--hyb-glass);
+  backdrop-filter: blur(24px);
+  /* 0.5px: на обычном экране волосяная линия, на Retina — ровно один
+     физический пиксель. Так же в макете. */
+  box-shadow: 0 0.5px 0 0 var(--hyb-line);
+}
+
+/* Без backdrop-filter полупрозрачный фон даёт кашу из текста под ним */
+@supports not (backdrop-filter: blur(1px)) {
+  .hyb-header.is-stuck {
+    background: var(--hyb-bg);
+  }
 }
 
 .hyb-header__inner {
   display: flex;
   align-items: center;
   gap: var(--hyb-s-2);
-  height: 100%;
   max-width: var(--hyb-page-max);
   margin-inline: auto;
   padding-inline: var(--hyb-gutter);
@@ -75,6 +115,9 @@ body.hyb-page {
      полная пилюля, а в макете у обводки видны углы. */
   border-radius: 12px;
   font-size: 0.95rem;
+  /* Высоту шапки задаёт логотип в 40px. С наследованным межстрочным в 1.6
+     пункт меню вырастал до 42 и растягивал шапку до 83 вместо 80. */
+  line-height: 1.4;
   font-weight: 600;
   color: var(--hyb-ink-muted);
   transition: color var(--hyb-dur) var(--hyb-ease),
@@ -131,9 +174,11 @@ body.hyb-page {
     display: flex;
   }
 
+  /* Привязка к 100%, а не к 80px: шапка сжимается при прокрутке, и жёсткое
+     число оторвало бы выпадающее меню от её нижнего края */
   .hyb-nav {
     position: absolute;
-    inset: 80px 0 auto 0;
+    inset: 100% 0 auto 0;
     display: none;
     flex-direction: column;
     align-items: stretch;

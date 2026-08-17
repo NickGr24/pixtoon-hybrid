@@ -31,7 +31,8 @@
     "title": {
       "a": "Big ideas.",
       "outline": "Faster",
-      "b": "production."
+      "b": "production.",
+      "break": true
     },
     "lead": "AI + animation + filmmaking, directed by people.",
     "highlight": "A commercial in just 3 days. From €1,000 for 20 seconds.",
@@ -43,7 +44,7 @@
     "eyebrow": "Selected hybrid work",
     "title": {
       "a": "We sell the result,",
-      "outline": "not the tool."
+      "b": "not the tool."
     },
     "viewCase": "View case study"
   },
@@ -51,7 +52,8 @@
     "eyebrow": "How hybrid production works",
     "title": {
       "a": "AI is part of the pipeline.",
-      "outline": "Not the director."
+      "outline": "Not the director.",
+      "break": true
     },
     "lead": "We combine traditional creative production with the newest AI tools to produce high-quality commercial content faster and more efficiently.",
     "steps": [
@@ -86,7 +88,8 @@
     "eyebrow": "What is included",
     "title": {
       "a": "Everything you need.",
-      "outline": "One production team."
+      "outline": "One production team.",
+      "break": true
     },
     "lead": "From the first brief to the final master — no middlemen, no handoffs, no surprises.",
     "items": [
@@ -109,7 +112,9 @@
   "monthly": {
     "eyebrow": "Monthly hybrid content",
     "title": {
-      "a": "Need content every single month?"
+      "a": "Need content",
+      "b": "every single month?",
+      "break": true
     },
     "subtitle": "Your AI content production team. Every month.",
     "lead": "Turn a campaign, a mascot, a product or a brand universe into a continuous stream of video. Instead of starting a new production from scratch every time, we build a visual system for the brand and keep producing new stories, situations and formats month after month.",
@@ -199,7 +204,8 @@
     "eyebrow": "Price",
     "title": {
       "a": "A commercial in days,",
-      "outline": "not weeks."
+      "b": "not weeks.",
+      "break": true
     },
     "stats": [
       {
@@ -218,7 +224,8 @@
     "eyebrow": "Let’s make something",
     "title": {
       "a": "That people actually",
-      "outline": "want to watch."
+      "outline": "want to watch.",
+      "break": true
     },
     "lead": "Tell us what you want to promote. We’ll recommend the smartest way to produce it.",
     "ctaPrimary": "Start a project",
@@ -246,10 +253,11 @@
     "eyebrow": "Case study — Microinvest",
     "title": {
       "a": "The Microinvest family.",
-      "outline": "Built classically. Animated with AI."
+      "outline": "Built by hand. Animated with AI.",
+      "break": true
     },
-    "lead": "The Microinvest family characters were created the classic 3D way — fully modelled and rigged, ready for traditional animation. Now we animate them with AI tools, producing far more content, far faster, with the characters’ identity kept intact.",
-    "heroLabel": "Rigged 3D characters + AI animation",
+    "lead": "The Microinvest family characters are built by hand — modelled in every pose, expression and detail a brand mascot needs. The AI is then trained on those characters, and the content is created with it — far faster, far more of it, with the identity kept intact. AI animation needs no rig.",
+    "heroLabel": "Hand-built character + trained AI",
     "heroCaption": "A brand universe, alive",
     "sideLabels": [
       "Branding",
@@ -263,12 +271,12 @@
     ],
     "features": [
       {
-        "title": "Characters built classically",
-        "text": "The Microinvest family — modelled and rigged in 3D the traditional way, with full animation controllers."
+        "title": "Character built by hand",
+        "text": "The Microinvest family — modelled by hand in every pose, expression and detail, as a complete brand mascot."
       },
       {
-        "title": "Animation accelerated with AI",
-        "text": "We now animate these characters with AI tools — much faster, much more content, without losing their identity."
+        "title": "AI trained on the character",
+        "text": "Once the character is ready, the AI is trained on it. Then it generates new content — no rig, straight from what it learned."
       },
       {
         "title": "Content volume",
@@ -278,11 +286,11 @@
     "why": {
       "eyebrow": "Why it works",
       "title": {
-        "a": "Classic rig + AI animation =",
+        "a": "Hand-built character + trained AI =",
         "outline": "real scalability"
       },
-      "text": "Characters built the classic way — with a full rig, expressions and controllers — have an identity and a consistency that AI alone cannot reproduce.",
-      "text2": "Combining that base with AI animation, we produce new scenes, reactions, movements and stories at a pace traditional animation alone could not reach.",
+      "text": "A character built by hand — in every pose, expression and detail — has an identity and a consistency that AI alone cannot reproduce.",
+      "text2": "Once the AI is trained on that character, we produce new scenes, reactions, movements and stories at a pace nothing else could reach — no rig, straight from what it learned.",
       "cta": "See how we can do this for your brand"
     }
   },

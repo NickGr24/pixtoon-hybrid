@@ -31,7 +31,8 @@
     "title": {
       "a": "Idei mari.",
       "outline": "Producție",
-      "b": "mai rapidă."
+      "b": "mai rapidă.",
+      "break": true
     },
     "lead": "AI + animație + filmmaking, regizat de oameni.",
     "highlight": "Video comercial în doar 3 zile. Începând de la €1.000 pentru 20 sec.",
@@ -43,7 +44,7 @@
     "eyebrow": "Lucrări hibride selectate",
     "title": {
       "a": "Vindem rezultatul,",
-      "outline": "nu toolul."
+      "b": "nu toolul."
     },
     "viewCase": "Vezi case study"
   },
@@ -51,7 +52,8 @@
     "eyebrow": "Cum funcționează producția hibridă",
     "title": {
       "a": "AI face parte din pipeline.",
-      "outline": "Nu e regizorul."
+      "outline": "Nu e regizorul.",
+      "break": true
     },
     "lead": "Combinăm producția creativă tradițională cu cele mai noi tooluri AI pentru a produce conținut comercial de înaltă calitate mai rapid și mai eficient.",
     "steps": [
@@ -86,7 +88,8 @@
     "eyebrow": "Ce este inclus",
     "title": {
       "a": "Tot ce ai nevoie.",
-      "outline": "O echipă de producție."
+      "outline": "O echipă de producție.",
+      "break": true
     },
     "lead": "De la primul brief la master final — fără intermediari, fără predări, fără surprize.",
     "items": [
@@ -109,7 +112,9 @@
   "monthly": {
     "eyebrow": "Conținut hibrid lunar",
     "title": {
-      "a": "Ai nevoie de conținut în fiecare lună?"
+      "a": "Ai nevoie de conținut",
+      "b": "în fiecare lună?",
+      "break": true
     },
     "subtitle": "Echipa ta de producție de conținut AI. În fiecare lună.",
     "lead": "Transformă o campanie, mascotă, produs sau univers de brand într-un flux continuu de conținut video. În loc să începi o producție nouă de la zero de fiecare dată, construim un sistem vizual pentru brand și continuăm să producem povești, situații și formate noi în fiecare lună.",
@@ -199,7 +204,8 @@
     "eyebrow": "Preț",
     "title": {
       "a": "Un comercial în zile,",
-      "outline": "nu în săptămâni."
+      "b": "nu în săptămâni.",
+      "break": true
     },
     "stats": [
       {
@@ -218,7 +224,8 @@
     "eyebrow": "Hai să facem ceva",
     "title": {
       "a": "Pe care oamenii chiar",
-      "outline": "vor să-l urmărească."
+      "outline": "vor să-l urmărească.",
+      "break": true
     },
     "lead": "Spune-ne ce vrei să promovezi. Îți recomandăm cea mai deșteaptă metodă de a produce.",
     "ctaPrimary": "Pornește un proiect",
@@ -246,10 +253,11 @@
     "eyebrow": "Case study — Microinvest",
     "title": {
       "a": "Familia Microinvest.",
-      "outline": "Construită clasic. Animată cu AI."
+      "outline": "Dezvoltată manual. Animată cu AI.",
+      "break": true
     },
-    "lead": "Personajele Familiei Microinvest au fost create în metoda clasică 3D — modelate și rigate complet, gata de animație tradițională. Acum le animăm cu ajutorul instrumentelor AI, producând mult mai mult conținut, mult mai rapid, păstrând identitatea personajelor intactă.",
-    "heroLabel": "Personaje 3D rigate + Animație AI",
+    "lead": "Personajele Familiei Microinvest sunt dezvoltate manual — modelate în toate pozițiile, expresiile și detaliile necesare pentru mascota de brand. Apoi AI-ul este antrenat pe aceste personaje, iar conținutul este creat cu ajutorul lui — mult mai rapid, mult mai mult, păstrând identitatea intactă. În animația AI nu există rig.",
+    "heroLabel": "Personaj dezvoltat manual + AI antrenat",
     "heroCaption": "Un univers de brand, viu",
     "sideLabels": [
       "Branding",
@@ -263,12 +271,12 @@
     ],
     "features": [
       {
-        "title": "Personaje construite clasic",
-        "text": "Familia Microinvest — modelată și rigată 3D în metoda tradițională, cu controllere complete de animație."
+        "title": "Personaj dezvoltat manual",
+        "text": "Familia Microinvest — modelată manual în toate pozițiile, expresiile și detaliile, ca mascotă de brand completă."
       },
       {
-        "title": "Animație accelerată cu AI",
-        "text": "Acum animăm aceste personaje cu instrumente AI — mult mai rapid, mult mai mult conținut, fără a pierde identitatea."
+        "title": "AI antrenat pe personaj",
+        "text": "După ce personajul e gata, AI-ul este antrenat pe el. Apoi generează conținut nou — fără rig, direct din învățare."
       },
       {
         "title": "Volum de conținut",
@@ -278,11 +286,11 @@
     "why": {
       "eyebrow": "De ce funcționează",
       "title": {
-        "a": "Rig clasic + Animație AI =",
+        "a": "Personaj manual + AI antrenat =",
         "outline": "scalabilitate reală"
       },
-      "text": "Personajele construite clasic — cu rig complet, expresii și controllere — au o identitate și o consistență pe care AI-ul singur nu o poate reproduce.",
-      "text2": "Combinând această bază cu animație AI, producem scene noi, reacții, mișcări și povești într-un ritm care nu ar fi posibil prin animație tradițională singură.",
+      "text": "Un personaj dezvoltat manual — în toate pozițiile, expresiile și detaliile — are o identitate și o consistență pe care AI-ul singur nu le poate reproduce.",
+      "text2": "După ce AI-ul este antrenat pe acest personaj, producem scene noi, reacții, mișcări și povești într-un ritm care nu ar fi posibil altfel — fără rig, direct din învățare.",
       "cta": "Vezi cum putem face asta pentru brandul tău"
     }
   },
