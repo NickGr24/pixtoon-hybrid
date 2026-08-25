@@ -17,7 +17,8 @@
  *
  * Ограничение битрейта, а не только CRF: у ролика Drive Gas 57 секунд, и на
  * чистом CRF 23 он выходил под 20 МБ. Потолок в 2 Мбит/с удерживает страницу
- * в разумном весе, оставаясь незаметным на анимации.
+ * в разумном весе, оставаясь незаметным на анимации. Кейс может задать свои
+ * crf и maxrate — так сделан Medpark, где ролик втрое длиннее прочих.
  *
  * faststart обязателен: без него индекс mp4 лежит в конце файла, и браузер
  * не начнёт воспроизведение, пока не скачает ролик целиком.
@@ -40,8 +41,11 @@ const SRC_DIR = arg("src", join(homedir(), "Downloads"));
 const ONLY = arg("only", null);
 
 /*
-  Medpark не перекодируется: рабочий файл уже лежит в репозитории, а мастер
-  идёт в HEVC на 168 секунд и 430 МБ — перегонять его заново незачем.
+  У Medpark свои настройки. Ролик идёт 168 секунд — вчетверо дольше
+  остальных, и на общих 1920/2 Мбит/с он весил бы под 40 МБ. При 1280 и
+  700 кбит/с выходит 15 МБ, а кадр на статике неотличим от прежнего:
+  мультипликация с плавными движениями и мягкими градиентами жмётся
+  заметно лучше съёмки.
 */
 const VIDEOS = {
   "drive-gas": {
@@ -56,6 +60,13 @@ const VIDEOS = {
   coccolino: {
     src: join(SRC_DIR, "LOCAL COCCOLINO.mov"),
     width: 1920,
+  },
+
+  "medpark-doctor-buba": {
+    src: join(SRC_DIR, "DOCTOR BUBA FINAL.mp4"),
+    width: 1280,
+    crf: 30,
+    maxrate: "700k",
   },
 
   "microinvest-family": {
@@ -86,7 +97,9 @@ for (const [slug, cfg] of Object.entries(VIDEOS)) {
     "-y", "-loglevel", "error", "-i", cfg.src,
     "-vf", `scale=${cfg.width}:-2:flags=lanczos`,
     "-c:v", "libx264", "-profile:v", "high", "-preset", "slow",
-    "-crf", "24", "-maxrate", "2M", "-bufsize", "4M",
+    "-crf", String(cfg.crf ?? 24),
+    "-maxrate", cfg.maxrate ?? "2M",
+    "-bufsize", cfg.bufsize ?? "4M",
     "-pix_fmt", "yuv420p",
     "-c:a", "aac", "-b:a", "128k", "-ac", "2",
     "-movflags", "+faststart",

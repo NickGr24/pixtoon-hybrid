@@ -247,15 +247,31 @@ Content`. К самим файлам это отношения не имеет.
 
 ## Демо на GitHub Pages
 
-Сайт собирается из ветки `gh-pages`. Обновить после правок:
+Pages настроены на ветку `gh-pages` (режим legacy), а не на Actions. Обновить
+после правок:
 
 ```bash
 PATH_PREFIX=/pixtoon-hybrid/ npm run build
-cd dist && git add -A && git commit -m "update" && git push origin gh-pages
+
+git worktree add /tmp/ghp gh-pages
+git -C /tmp/ghp reset --hard origin/gh-pages
+rsync -a --delete --exclude=.git dist/ /tmp/ghp/
+git -C /tmp/ghp add -A && git -C /tmp/ghp commit -m "Демо: …"
+git -C /tmp/ghp push origin gh-pages
+git worktree remove /tmp/ghp
 ```
+
+Через worktree, а не `cd dist`: каталог `dist/` лежит в `.gitignore` и своей
+истории не имеет. `reset --hard origin/gh-pages` перед копированием
+обязателен — иначе устаревшая локальная ветка откатит чужие коммиты демо.
 
 `PATH_PREFIX` обязателен: Pages отдаёт сайт из подпапки, без префикса ссылки
 уедут в корень домена. Для боевой сборки переменная не задаётся.
+
+Workflow `.github/workflows/deploy.yml` удалён: он использовал
+`actions/deploy-pages`, который работает только когда Pages переключены в
+режим `workflow`. В режиме legacy он падал после каждого пуша, ничего при
+этом не публикуя.
 
 ## Интеграция в MODX
 
@@ -265,7 +281,8 @@ cd dist && git add -A && git commit -m "update" && git push origin gh-pages
    в те же пути на сервере. В HTML подключён именно `.min` — рядом лежит
    `hybrid.css`, тот же файл с комментариями: он для чтения и правок, в
    браузер посетителя ехать ему незачем (87 КБ против 35).
-3. Шрифты Baloo 2 и Quicksand подключаются из Google Fonts ссылкой в `<head>`.
+3. Шрифты Baloo 2, Quicksand и Caveat подключаются из Google Fonts одной
+   ссылкой в `<head>`.
    Параметр `subset=latin,latin-ext` обязателен: без него ș, ț, ă, î
    подставятся из системного шрифта и румынский текст поедет по начертанию.
 4. **Шапку и футер завести заново.** Раньше здесь стояла оговорка «заменить

@@ -126,7 +126,7 @@
       {
         "label": "Pachet lunar 01",
         "title": "2 videoclipuri hibride AI / 3D pe lună",
-        "mediaSrc": "/assets/img/cases/coccolino.jpg",
+        "mediaSrc": "/assets/img/cases/coccolino/pack.jpg",
         "price": "€1.500",
         "mediaLabel": "Coccolino — conținut cu personaj",
         "idealFor": [
@@ -152,7 +152,7 @@
       {
         "label": "Pachet lunar 02",
         "title": "3 videoclipuri hibride / animație pe lună",
-        "mediaSrc": "/assets/img/cases/doctor-buba-youtube.jpg",
+        "mediaSrc": "/assets/img/cases/medpark-doctor-buba/pack.jpg",
         "price": "€2.000",
         "mediaLabel": "Medpark — animație + AI",
         "idealFor": [
