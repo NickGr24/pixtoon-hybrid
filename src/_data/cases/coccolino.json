@@ -1,0 +1,252 @@
+{
+  "_comment": "ЧЕРНОВИК. Макета на этот кейс клиент не присылал — тексты ветки page написаны в тональности двух присланных раскладок на основе challenge/solution/production/result ниже. Правится здесь, вёрстку трогать не нужно.",
+  "slug": "coccolino",
+  "order": "02",
+  "brand": "Coccolino",
+  "hero": "pano",
+  "media": {
+    "poster": "/assets/img/cases/coccolino.jpg",
+    "video": "/assets/img/cases/coccolino.mp4",
+    "ratio": "16/9",
+    "focal": "50% 50%",
+    "preview": "/assets/img/cases/coccolino-preview.mp4"
+  },
+  "en": {
+    "title": "Coccolino",
+    "tags": "AI character / Product commercial",
+    "excerpt": "AI-assisted character and product advertising built around the existing Coccolino brand universe.",
+    "challenge": "Work inside a brand universe that already exists, with a mascot audiences know — nothing could look reinterpreted or off-model.",
+    "solution": "AI generation was constrained to the established look: the bear, the palette and the product stayed on-model, while AI opened up settings that would have needed a full shoot.",
+    "production": "Creative concept, visual development against brand guidelines, AI image and video generation, animation and compositing, editing, music and sound design.",
+    "result": "Product advertising that sits inside the existing brand world rather than beside it.",
+    "page": {
+      "subtitle": "A universe that already exists.\nExtended, not reinvented.",
+      "lead": "We produced product advertising inside the Coccolino universe: the mascot, the palette and the packaging stay true to the brand, while the hybrid pipeline opens settings that would have required a full shoot.",
+      "meta": [
+        {
+          "label": "Client",
+          "value": "Coccolino",
+          "icon": "target"
+        },
+        {
+          "label": "Objective",
+          "value": "Product campaign",
+          "icon": "arrow"
+        },
+        {
+          "label": "Production",
+          "value": "Hybrid animation",
+          "icon": "spark"
+        },
+        {
+          "label": "Format",
+          "value": "Horizontal video 16:9",
+          "icon": "frame"
+        }
+      ],
+      "heroBadge": "VIDEO 16:9",
+      "panel": {
+        "title": "Campaign production at retail speed.",
+        "items": [
+          {
+            "icon": "diamond",
+            "label": "On brand",
+            "text": "The mascot and palette stay exactly as audiences know them."
+          },
+          {
+            "icon": "spark",
+            "label": "New settings",
+            "text": "Environments that would have needed a full shoot."
+          },
+          {
+            "icon": "bolt",
+            "label": "Campaign pace",
+            "text": "Material ready for the date of the promotion."
+          },
+          {
+            "icon": "frame",
+            "label": "Multiple formats",
+            "text": "The same universe, adapted per channel."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "type": "story",
+          "title": "A brand universe we enter, not one we rebuild.",
+          "underline": "not one we rebuild",
+          "slot": "story-1",
+          "text": [
+            "The mascot, the palette and the packaging were already set, and audiences know them by heart.",
+            "We produced new frames inside that universe without reinterpreting any part of it."
+          ]
+        },
+        {
+          "type": "process"
+        },
+        {
+          "type": "compare"
+        },
+        {
+          "type": "statement",
+          "text": "We don't reinterpret the brand.\nWe take it to new settings."
+        },
+        {
+          "type": "cards",
+          "title": "One campaign, several messages.",
+          "items": [
+            {
+              "slot": "card-1",
+              "badge": "Promo"
+            },
+            {
+              "slot": "card-2",
+              "badge": "The mascot"
+            },
+            {
+              "slot": "card-3",
+              "badge": "Retail partner"
+            }
+          ]
+        },
+        {
+          "type": "outcome",
+          "title": {
+            "a": "More settings.",
+            "outline": "No shoot days.",
+            "b": "The same mascot."
+          },
+          "checks": [
+            "Material ready for the date of the promotion.",
+            "Environments that would have required a full shoot.",
+            "Mascot and product rendered true to the brand guide."
+          ]
+        }
+      ],
+      "cta": {
+        "title": "Have brand guidelines to respect?",
+        "text": "We produce inside them — the pipeline adapts to the brand, not the other way round."
+      },
+      "annotation": "a frame from the product campaign ♡"
+    }
+  },
+  "ro": {
+    "title": "Coccolino",
+    "tags": "Personaj AI / Comercial de produs",
+    "excerpt": "Personaj și publicitate de produs asistate de AI, construite în universul de brand Coccolino deja existent.",
+    "challenge": "Să lucrăm într-un univers de brand care există deja, cu o mascotă pe care publicul o cunoaște — nimic nu avea voie să pară reinterpretat.",
+    "solution": "Generarea AI a fost ținută strict în stilul stabilit: ursulețul, paleta și produsul au rămas fidele brandului, iar AI-ul a deschis decoruri care ar fi cerut o filmare completă.",
+    "production": "Concept creativ, dezvoltare vizuală după ghidul de brand, generare AI de imagine și video, animație și compoziție, montaj, muzică și sound design.",
+    "result": "Publicitate de produs care stă în interiorul universului de brand, nu alături de el.",
+    "page": {
+      "subtitle": "Un univers care există deja.\nExtins, nu reinventat.",
+      "lead": "Am produs publicitate de produs în interiorul universului Coccolino: mascota, paleta și ambalajul rămân fidele brandului, iar pipeline-ul hibrid deschide decoruri care ar fi cerut o filmare completă.",
+      "meta": [
+        {
+          "label": "Client",
+          "value": "Coccolino",
+          "icon": "target"
+        },
+        {
+          "label": "Obiectiv",
+          "value": "Campanie de produs",
+          "icon": "arrow"
+        },
+        {
+          "label": "Producție",
+          "value": "Hybrid animation",
+          "icon": "spark"
+        },
+        {
+          "label": "Format",
+          "value": "Video orizontal 16:9",
+          "icon": "frame"
+        }
+      ],
+      "heroBadge": "VIDEO 16:9",
+      "panel": {
+        "title": "Producție de campanie în ritmul retail-ului.",
+        "items": [
+          {
+            "icon": "diamond",
+            "label": "Pe brand",
+            "text": "Mascota și paleta rămân exact cum le știe publicul."
+          },
+          {
+            "icon": "spark",
+            "label": "Decoruri noi",
+            "text": "Medii care ar fi cerut o filmare completă."
+          },
+          {
+            "icon": "bolt",
+            "label": "Ritm de campanie",
+            "text": "Materiale gata la termenul promoției."
+          },
+          {
+            "icon": "frame",
+            "label": "Formate multiple",
+            "text": "Același univers, adaptat pe canale."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "type": "story",
+          "title": "Un univers de brand în care intrăm, nu pe care îl refacem.",
+          "underline": "nu pe care îl refacem",
+          "slot": "story-1",
+          "text": [
+            "Mascota, paleta și ambalajul erau deja stabilite, iar publicul le știe pe de rost.",
+            "Am produs cadre noi în interiorul acestui univers, fără să reinterpretăm nimic din el."
+          ]
+        },
+        {
+          "type": "process"
+        },
+        {
+          "type": "compare"
+        },
+        {
+          "type": "statement",
+          "text": "Nu reinterpretăm brandul.\nÎl ducem în decoruri noi."
+        },
+        {
+          "type": "cards",
+          "title": "O campanie, mai multe mesaje.",
+          "items": [
+            {
+              "slot": "card-1",
+              "badge": "Promoție"
+            },
+            {
+              "slot": "card-2",
+              "badge": "Mascota"
+            },
+            {
+              "slot": "card-3",
+              "badge": "Partener retail"
+            }
+          ]
+        },
+        {
+          "type": "outcome",
+          "title": {
+            "a": "Mai multe decoruri.",
+            "outline": "Fără zile de filmare.",
+            "b": "Aceeași mascotă."
+          },
+          "checks": [
+            "Materiale gata la termenul promoției.",
+            "Decoruri care ar fi cerut o filmare completă.",
+            "Mascotă și produs redate fidel ghidului de brand."
+          ]
+        }
+      ],
+      "cta": {
+        "title": "Ai un ghid de brand de respectat?",
+        "text": "Producem în interiorul lui — pipeline-ul se adaptează brandului, nu invers."
+      },
+      "annotation": "cadru din campania de produs ♡"
+    }
+  }
+}

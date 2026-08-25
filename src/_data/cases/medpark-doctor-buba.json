@@ -1,0 +1,282 @@
+{
+  "_comment": "ЧЕРНОВИК. Макета на этот кейс клиент не присылал — тексты ветки page написаны в тональности двух присланных раскладок на основе challenge/solution/production/result ниже. Правится здесь, вёрстку трогать не нужно.",
+  "slug": "medpark-doctor-buba",
+  "order": "03",
+  "brand": "Medpark",
+  "hero": "pano",
+  "media": {
+    "poster": "/assets/img/cases/medpark-doctor-buba.jpg",
+    "video": "/assets/img/cases/medpark-doctor-buba.mp4",
+    "ratio": "16/9",
+    "focal": "50% 50%",
+    "preview": "/assets/img/cases/medpark-doctor-buba-preview.mp4"
+  },
+  "en": {
+    "title": "Medpark — Doctor Buba",
+    "tags": "AI animated series / Brand characters",
+    "excerpt": "A branded animated content universe created around Medpark's characters.",
+    "challenge": "Make a private clinic approachable for children and parents — a subject where tone matters more than production value.",
+    "solution": "A cast of brand characters and a repeatable series format. Once the world was designed, each new episode starts from an existing set, not from a blank page.",
+    "production": "Character and world design, series format, script per episode, AI-assisted production, 2D and 3D animation, voice, music and sound design.",
+    "result": "A content universe that keeps producing episodes instead of a single finished spot.",
+    "page": {
+      "subtitle": "A universe for children.\nA format that continues.",
+      "lead": "We built an animated universe for Medpark with its own cast and a repeatable series format: every new episode starts from a set that already exists, not from a blank page.",
+      "meta": [
+        {
+          "label": "Client",
+          "value": "Medpark",
+          "icon": "target"
+        },
+        {
+          "label": "Objective",
+          "value": "Animated series",
+          "icon": "arrow"
+        },
+        {
+          "label": "Production",
+          "value": "Hybrid animation",
+          "icon": "spark"
+        },
+        {
+          "label": "Format",
+          "value": "Horizontal video 16:9",
+          "icon": "frame"
+        }
+      ],
+      "heroBadge": "VIDEO 16:9",
+      "panel": {
+        "title": "A clinic children actually understand.",
+        "items": [
+          {
+            "icon": "check",
+            "label": "The right tone",
+            "text": "A medical subject told in a child's language."
+          },
+          {
+            "icon": "ring",
+            "label": "Its own cast",
+            "text": "Recognisable characters, built for a series."
+          },
+          {
+            "icon": "bolt",
+            "label": "New episodes",
+            "text": "Each one starts from a set that already exists."
+          },
+          {
+            "icon": "diamond",
+            "label": "Made for digital",
+            "text": "Content ready for YouTube and social media."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "type": "story",
+          "title": "A clinic told in a child's language.",
+          "underline": "in a child's language",
+          "slot": "story-1",
+          "text": [
+            "We built an animated surgery where every character has a clear role and a story to tell.",
+            "Children recognise the cast from the first frame, and parents get the message effortlessly."
+          ]
+        },
+        {
+          "type": "process"
+        },
+        {
+          "type": "compare"
+        },
+        {
+          "type": "statement",
+          "text": "We didn't make a spot.\nWe made a series that continues."
+        },
+        {
+          "type": "characters",
+          "title": "The cast that returns in every episode.",
+          "layout": "captioned",
+          "items": [
+            {
+              "slot": "person-1",
+              "name": "Doctor Buba",
+              "text": [
+                "Calm and patient.",
+                "She explains every step before taking it."
+              ]
+            },
+            {
+              "slot": "person-2",
+              "name": "The bear",
+              "text": [
+                "Brave but emotional.",
+                "He asks the questions children actually have."
+              ]
+            }
+          ],
+          "aside": [
+            {
+              "slot": "strip-1",
+              "badge": "The hedgehog"
+            },
+            {
+              "slot": "strip-2",
+              "badge": "The patient"
+            }
+          ]
+        },
+        {
+          "type": "outcome",
+          "title": {
+            "a": "More episodes.",
+            "outline": "One universe built.",
+            "b": "The same characters."
+          },
+          "checks": [
+            "New episodes starting from a set that already exists.",
+            "Content ready for YouTube and social media.",
+            "A recognisable cast that children love."
+          ]
+        }
+      ],
+      "cta": {
+        "title": "Want a series, not a single spot?",
+        "text": "We build the world once and keep producing episodes from it."
+      },
+      "annotation": "a frame from the series episode ♡"
+    }
+  },
+  "ro": {
+    "title": "Medpark — Doctor Buba",
+    "tags": "Seria animată AI / Personaje de brand",
+    "excerpt": "Un univers de conținut animat, construit în jurul personajelor Medpark.",
+    "challenge": "Să facem o clinică privată prietenoasă pentru copii și părinți — un subiect unde tonul contează mai mult decât bugetul de producție.",
+    "solution": "O distribuție de personaje de brand și un format de serie repetabil. Odată ce lumea a fost desenată, fiecare episod nou pornește dintr-un decor existent, nu de la pagina albă.",
+    "production": "Design de personaje și de lume, format de serie, scenariu per episod, producție asistată de AI, animație 2D și 3D, voce, muzică și sound design.",
+    "result": "Un univers de conținut care continuă să producă episoade, în loc de un singur spot finalizat.",
+    "page": {
+      "subtitle": "Un univers pentru copii.\nUn format care continuă.",
+      "lead": "Am construit pentru Medpark un univers animat cu personaje proprii și un format de serie repetabil: fiecare episod nou pornește dintr-un decor care există deja, nu de la pagina albă.",
+      "meta": [
+        {
+          "label": "Client",
+          "value": "Medpark",
+          "icon": "target"
+        },
+        {
+          "label": "Obiectiv",
+          "value": "Serie animată",
+          "icon": "arrow"
+        },
+        {
+          "label": "Producție",
+          "value": "Hybrid animation",
+          "icon": "spark"
+        },
+        {
+          "label": "Format",
+          "value": "Video orizontal 16:9",
+          "icon": "frame"
+        }
+      ],
+      "heroBadge": "VIDEO 16:9",
+      "panel": {
+        "title": "O clinică pe care copiii o înțeleg.",
+        "items": [
+          {
+            "icon": "check",
+            "label": "Tonul potrivit",
+            "text": "Un subiect medical povestit pe limba copiilor."
+          },
+          {
+            "icon": "ring",
+            "label": "Personaje proprii",
+            "text": "Un cast recognoscibil, construit pentru serie."
+          },
+          {
+            "icon": "bolt",
+            "label": "Episoade noi",
+            "text": "Fiecare pornește dintr-un decor care există deja."
+          },
+          {
+            "icon": "diamond",
+            "label": "Pentru digital",
+            "text": "Conținut pregătit pentru YouTube și social media."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "type": "story",
+          "title": "O clinică povestită pe limba copiilor.",
+          "underline": "pe limba copiilor",
+          "slot": "story-1",
+          "text": [
+            "Am construit un cabinet animat unde fiecare personaj are un rol clar și o poveste de spus.",
+            "Copiii recunosc distribuția din primul cadru, iar părinții primesc mesajul fără efort."
+          ]
+        },
+        {
+          "type": "process"
+        },
+        {
+          "type": "compare"
+        },
+        {
+          "type": "statement",
+          "text": "Nu am făcut un spot.\nAm făcut o serie care continuă."
+        },
+        {
+          "type": "characters",
+          "title": "Distribuția care revine în fiecare episod.",
+          "layout": "captioned",
+          "items": [
+            {
+              "slot": "person-1",
+              "name": "Doctor Buba",
+              "text": [
+                "Calmă și răbdătoare.",
+                "Explică fiecare pas înainte să îl facă."
+              ]
+            },
+            {
+              "slot": "person-2",
+              "name": "Ursulețul",
+              "text": [
+                "Curajos, dar emotiv.",
+                "Pune întrebările pe care le au copiii."
+              ]
+            }
+          ],
+          "aside": [
+            {
+              "slot": "strip-1",
+              "badge": "Ariciul"
+            },
+            {
+              "slot": "strip-2",
+              "badge": "Pacientul"
+            }
+          ]
+        },
+        {
+          "type": "outcome",
+          "title": {
+            "a": "Mai multe episoade.",
+            "outline": "Un singur univers construit.",
+            "b": "Aceleași personaje."
+          },
+          "checks": [
+            "Episoade noi pornite dintr-un decor care există deja.",
+            "Conținut pregătit pentru YouTube și social media.",
+            "Un cast recognoscibil, îndrăgit de copii."
+          ]
+        }
+      ],
+      "cta": {
+        "title": "Vrei o serie, nu un singur spot?",
+        "text": "Construim lumea o dată și continuăm să producem episoade din ea."
+      },
+      "annotation": "cadru din episodul de serie ♡"
+    }
+  }
+}

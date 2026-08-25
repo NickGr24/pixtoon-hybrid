@@ -233,21 +233,69 @@
   },
   "caseStudy": {
     "backToHybrid": "All hybrid work",
-    "challenge": "Challenge",
-    "challengeLead": "What we had to solve.",
-    "solution": "Solution",
-    "solutionLead": "How we combined filming, AI and post-production.",
-    "production": "Production",
-    "productionLead": "How the project was made.",
-    "result": "Result",
-    "resultLead": "The finished film.",
-    "nextCase": "Next case study",
-    "ctaTitle": {
-      "a": "Want something like this?",
-      "outline": "Let's",
-      "b": "talk."
+    "eyebrow": "Case study",
+    "playLabel": "Play the film",
+    "related": {
+      "eyebrow": "Other case studies",
+      "title": "Explore more Hybrid PIXTOON projects.",
+      "link": "See all projects"
     },
-    "cta": "Start a project"
+    "ctaButton": "Let's discuss the project",
+    "process": {
+      "title": {
+        "a": "Where we work classically.",
+        "outline": "Where AI speeds us up.",
+        "break": true
+      },
+      "items": [
+        {
+          "label": "Concept & design",
+          "text": "We define the personalities, the look and the world the characters live in."
+        },
+        {
+          "label": "Classic 3D build",
+          "text": "We model and rig the characters with full control over their identity."
+        },
+        {
+          "label": "Sets & props",
+          "text": "We build the environments and key objects for coherence and storytelling."
+        },
+        {
+          "label": "AI-assisted animation",
+          "text": "We use AI to generate motion, variations and iterations at scale."
+        },
+        {
+          "label": "Compositing & colour",
+          "text": "We finish the image, the light and the rhythm for publication-ready deliverables."
+        }
+      ]
+    },
+    "compare": {
+      "human": {
+        "label": "Human creative control",
+        "items": [
+          "Design, proportions and expressions 100% controlled.",
+          "Brand coherence in every frame.",
+          "Creative decisions signed off by people."
+        ]
+      },
+      "ai": {
+        "label": "AI acceleration",
+        "items": [
+          "More iterations in less time.",
+          "A range of motion and situations generated fast.",
+          "Optimised cost, with no compromise on identity."
+        ]
+      }
+    },
+    "player": {
+      "play": "Play",
+      "pause": "Pause",
+      "seek": "Seek",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "fullscreen": "Full screen"
+    }
   },
   "microinvest": {
     "eyebrow": "Case study — Microinvest",

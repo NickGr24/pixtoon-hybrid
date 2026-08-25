@@ -2,21 +2,24 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
-/* Кейсы берутся из cases.js, а не из casesData.json напрямую: флаги наличия
-   видео считаются там, и чтение сырого JSON лишило бы страницу кейса кнопки
-   воспроизведения при живом файле на диске. */
+/* Кейсы берутся из cases.js, а не из файлов _data/cases/ напрямую: там
+   считаются флаги наличия видео и карта кадров, и чтение сырого JSON
+   лишило бы страницу и кнопки воспроизведения, и картинок. */
 import cases from "./cases.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const read = (f) => JSON.parse(readFileSync(join(here, f), "utf8"));
 
 /**
- * Плоский список страниц кейсов: 4 проекта x 2 локали = 8 страниц.
+ * Плоский список страниц кейсов: 5 проектов x 2 локали = 10 страниц.
  *
  * Eleventy умеет пагинировать только по одному измерению, поэтому пары
  * (кейс, локаль) разворачиваются здесь. Шаблон case.njk остаётся один.
- * Заодно тут считается «следующий кейс» — навигация по кругу, чтобы со
- * страницы последнего проекта был путь дальше, а не тупик.
+ *
+ * Здесь же собирается блок «Alte case studies» — четыре остальных кейса.
+ * Список начинается со следующего по счёту и идёт по кругу: если бы он
+ * всегда начинался с первого, подборка выглядела бы одинаково на всех
+ * страницах, а порядок — случайным именно там, где кейс сам стоит первым.
  */
 export default function () {
   const locales = [read("i18n/en.json"), read("i18n/ro.json")];
@@ -26,7 +29,17 @@ export default function () {
 
   for (const t of locales) {
     featured.forEach((c, i) => {
-      const next = featured[(i + 1) % featured.length];
+      const related = [];
+      for (let step = 1; step < featured.length; step += 1) {
+        const other = featured[(i + step) % featured.length];
+        const content = other[t.locale] || other.en;
+        related.push({
+          slug: other.slug,
+          title: content.title,
+          brand: other.brand,
+          thumb: other.shots.thumb,
+        });
+      }
 
       /* Поля локали разворачиваются в корень объекта намеренно: pagination
          отдаёт его шаблону под именем t, и тогда шапка с футером получают
@@ -36,7 +49,7 @@ export default function () {
         slug: c.slug,
         case: c,
         content: c[t.locale] || c.en,
-        next: { slug: next.slug, title: (next[t.locale] || next.en).title },
+        related,
       });
     });
   }

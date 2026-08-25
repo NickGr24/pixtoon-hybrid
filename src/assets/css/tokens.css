@@ -108,6 +108,10 @@
   */
   --hyb-font-display: "Baloo 2", system-ui, sans-serif;
   --hyb-font-body: "Quicksand", system-ui, -apple-system, sans-serif;
+  /* Рукописные пометки страниц кейсов. Запасной вариант — курсив системного
+     шрифта: если Caveat не подъедет, пометка должна остаться отличимой от
+     основного текста, иначе она читается как оборванная строка абзаца. */
+  --hyb-font-hand: "Caveat", "Segoe Script", cursive;
 
   /* Шкала: min — мобильный, max — ровно то, что отдаёт макет на 1440 */
   --hyb-t-hero: clamp(2.5rem, 1.2rem + 5.2vw, 4.5rem); /* 40 → 72 */

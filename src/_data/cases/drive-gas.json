@@ -1,0 +1,252 @@
+{
+  "_comment": "Тексты ветки page сняты с макета PIXTOON_DriveGas_Case_Study_HQ.png дословно. Английские — перевод. Поля challenge/solution/production/result на странице больше не рендерятся: в макете этих блоков нет. Оставлены как источник формулировок и для витрины.",
+  "slug": "drive-gas",
+  "order": "01",
+  "brand": "Drive Gas",
+  "hero": "pano",
+  "media": {
+    "poster": "/assets/img/cases/drive-gas.jpg",
+    "video": "/assets/img/cases/drive-gas.mp4",
+    "ratio": "16/10",
+    "focal": "50% 50%",
+    "preview": "/assets/img/cases/drive-gas-preview.mp4"
+  },
+  "en": {
+    "title": "Drive Gas",
+    "tags": "AI hybrid / 3D character / Product / Environment",
+    "excerpt": "A branded 3D world and character-driven commercial created through a hybrid AI + animation pipeline.",
+    "challenge": "Give a fuel retailer a loyalty campaign that reads as a story rather than a discount banner — and put a recognisable face on the brand.",
+    "solution": "We built a branded 3D world and a host character to carry it. AI handled environment and product visuals; the character performance and brand geometry stayed hand-directed.",
+    "production": "Concept and script in-house, character design and 3D development, AI-assisted environments and product shots, animation, compositing, sound design and final master.",
+    "result": "A campaign world that can be re-entered for the next promo instead of being rebuilt from zero.",
+    "page": {
+      "subtitle": "One brand character. Many campaigns.",
+      "lead": "The Drive Gas character became a recurring communicator for the brand — recognisable, flexible and ready to explain offers and services fast.",
+      "meta": [
+        {
+          "label": "Client",
+          "value": "Drive Gas",
+          "icon": "target"
+        },
+        {
+          "label": "Objective",
+          "value": "Recurring campaigns",
+          "icon": "arrow"
+        },
+        {
+          "label": "Production",
+          "value": "Hybrid animation",
+          "icon": "spark"
+        },
+        {
+          "label": "Format",
+          "value": "Horizontal video 16:9",
+          "icon": "frame"
+        }
+      ],
+      "heroBadge": "VIDEO 16:9",
+      "panel": {
+        "title": "More communication from the same visual universe.",
+        "items": [
+          {
+            "icon": "bolt",
+            "label": "Faster",
+            "text": "New campaigns in a shorter time."
+          },
+          {
+            "icon": "ring",
+            "label": "Cost optimised",
+            "text": "More content from better-used resources."
+          },
+          {
+            "icon": "check",
+            "label": "Clear message",
+            "text": "Offers become easier to understand."
+          },
+          {
+            "icon": "diamond",
+            "label": "Constant identity",
+            "text": "The same presence in every campaign."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "type": "story",
+          "title": "A character who sells without sounding like an ad.",
+          "underline": "without sounding like an ad",
+          "slot": "story-1",
+          "text": [
+            "We built a brand communicator who explains offers, services and promotions in the customer's own language.",
+            "The same character returns in every campaign, so audiences recognise him from the first frame."
+          ]
+        },
+        {
+          "type": "process"
+        },
+        {
+          "type": "compare"
+        },
+        {
+          "type": "statement",
+          "text": "AI accelerates the campaign.\nThe character stays the brand's."
+        },
+        {
+          "type": "cards",
+          "title": "Different campaigns. The same character.",
+          "items": [
+            {
+              "slot": "card-1",
+              "badge": "Client benefits"
+            },
+            {
+              "slot": "card-2",
+              "badge": "Brand story"
+            },
+            {
+              "slot": "card-3",
+              "badge": "Promo"
+            }
+          ]
+        },
+        {
+          "type": "outcome",
+          "title": {
+            "a": "More campaigns.",
+            "outline": "Less production time.",
+            "b": "The same character."
+          },
+          "checks": [
+            "Spots, promotions and materials for the network.",
+            "A hybrid flow that shortens the road from brief to delivery.",
+            "A consistent brand presence in every appearance."
+          ]
+        }
+      ],
+      "cta": {
+        "title": "Already have a brand character?",
+        "text": "We can turn it into a content universe that keeps growing."
+      },
+      "annotation": "a frame from the campaign spot ♡"
+    }
+  },
+  "ro": {
+    "title": "Drive Gas",
+    "tags": "Hibrid AI / Personaj 3D / Produs / Mediu",
+    "excerpt": "O lume 3D branduită și un comercial condus de personaje, creat printr-un pipeline hibrid AI + animație.",
+    "challenge": "Să transformăm o campanie de loialitate într-o poveste, nu într-un banner cu reduceri — și să dăm brandului un chip memorabil.",
+    "solution": "Am construit o lume 3D branduită și un personaj-gazdă care o duce mai departe. AI-ul a lucrat mediile și vizualele de produs; jocul personajului și geometria brandului au rămas regizate manual.",
+    "production": "Concept și scenariu in-house, design de personaj și dezvoltare 3D, medii și cadre de produs asistate de AI, animație, compoziție, sound design și master final.",
+    "result": "O lume de campanie în care se poate reveni pentru următoarea promoție, în loc să fie reconstruită de la zero.",
+    "page": {
+      "subtitle": "Un personaj de brand. Mai multe campanii.",
+      "lead": "Personajul Drive Gas devine un comunicator recurent pentru brand — recognoscibil, flexibil și pregătit să explice rapid oferte și servicii.",
+      "meta": [
+        {
+          "label": "Client",
+          "value": "Drive Gas",
+          "icon": "target"
+        },
+        {
+          "label": "Obiectiv",
+          "value": "Campanii recurente",
+          "icon": "arrow"
+        },
+        {
+          "label": "Producție",
+          "value": "Hybrid animation",
+          "icon": "spark"
+        },
+        {
+          "label": "Format",
+          "value": "Video orizontal 16:9",
+          "icon": "frame"
+        }
+      ],
+      "heroBadge": "VIDEO 16:9",
+      "panel": {
+        "title": "Mai multă comunicare din același univers vizual.",
+        "items": [
+          {
+            "icon": "bolt",
+            "label": "Mai rapid",
+            "text": "Campanii noi într-un timp mai scurt."
+          },
+          {
+            "icon": "ring",
+            "label": "Cost optimizat",
+            "text": "Mai mult conținut cu resurse mai bine folosite."
+          },
+          {
+            "icon": "check",
+            "label": "Mesaj clar",
+            "text": "Ofertele devin mai ușor de înțeles."
+          },
+          {
+            "icon": "diamond",
+            "label": "Identitate constantă",
+            "text": "Aceeași prezență în fiecare campanie."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "type": "story",
+          "title": "Un personaj care vinde fără să pară reclamă.",
+          "underline": "fără să pară reclamă",
+          "slot": "story-1",
+          "text": [
+            "Am construit un comunicator de brand care explică oferte, servicii și promoții pe limba clientului.",
+            "Același personaj revine în fiecare campanie, așa că publicul îl recunoaște din primul cadru."
+          ]
+        },
+        {
+          "type": "process"
+        },
+        {
+          "type": "compare"
+        },
+        {
+          "type": "statement",
+          "text": "AI-ul accelerează campania.\nPersonajul rămâne al brandului."
+        },
+        {
+          "type": "cards",
+          "title": "Campanii diferite. Același personaj.",
+          "items": [
+            {
+              "slot": "card-1",
+              "badge": "Beneficii client"
+            },
+            {
+              "slot": "card-2",
+              "badge": "Brand story"
+            },
+            {
+              "slot": "card-3",
+              "badge": "Promoție"
+            }
+          ]
+        },
+        {
+          "type": "outcome",
+          "title": {
+            "a": "Mai multe campanii.",
+            "outline": "Mai puțin timp de producție.",
+            "b": "Același personaj."
+          },
+          "checks": [
+            "Spoturi, promoții și materiale pentru rețea.",
+            "Un flux hibrid care scurtează drumul de la brief la livrare.",
+            "O prezență de brand consecventă în fiecare apariție."
+          ]
+        }
+      ],
+      "cta": {
+        "title": "Ai deja un personaj de brand?",
+        "text": "Îl putem transforma într-un univers de conținut care crește."
+      },
+      "annotation": "cadru din spotul de campanie ♡"
+    }
+  }
+}

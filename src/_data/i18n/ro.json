@@ -233,21 +233,69 @@
   },
   "caseStudy": {
     "backToHybrid": "Toate lucrările hibride",
-    "challenge": "Provocarea",
-    "challengeLead": "Ce trebuia să realizăm.",
-    "solution": "Soluția",
-    "solutionLead": "Cum am combinat filmarea, AI-ul și post-producția.",
-    "production": "Producția",
-    "productionLead": "Cum a fost realizat proiectul.",
-    "result": "Rezultatul",
-    "resultLead": "Filmul final.",
-    "nextCase": "Următorul case study",
-    "ctaTitle": {
-      "a": "Vrei ceva similar?",
-      "outline": "Hai",
-      "b": "să vorbim."
+    "eyebrow": "Case study",
+    "playLabel": "Redă filmul",
+    "related": {
+      "eyebrow": "Alte case studies",
+      "title": "Descoperă și alte proiecte Hybrid PIXTOON.",
+      "link": "Vezi toate proiectele"
     },
-    "cta": "Pornește un proiect"
+    "ctaButton": "Discutăm proiectul",
+    "process": {
+      "title": {
+        "a": "Unde lucrăm clasic.",
+        "outline": "Unde accelerăm cu AI.",
+        "break": true
+      },
+      "items": [
+        {
+          "label": "Concept & design",
+          "text": "Definim personalitățile, look-ul și lumea în care trăiesc personajele."
+        },
+        {
+          "label": "Construcție 3D clasică",
+          "text": "Modelăm și rigăm personajele cu control complet asupra identității."
+        },
+        {
+          "label": "Seturi & prop-uri",
+          "text": "Construim mediile și obiectele cheie pentru coerență și storytelling."
+        },
+        {
+          "label": "Animație asistată de AI",
+          "text": "Folosim AI pentru a genera mișcări, variații și iterații la scară mare."
+        },
+        {
+          "label": "Compoziție & color",
+          "text": "Finalizăm imaginea, lumina și ritmul pentru livrabile gata de publicare."
+        }
+      ]
+    },
+    "compare": {
+      "human": {
+        "label": "Control creativ uman",
+        "items": [
+          "Design, proporții și expresii 100% controlate.",
+          "Coerență de brand în fiecare cadru.",
+          "Decizii creative validate de oameni."
+        ]
+      },
+      "ai": {
+        "label": "Accelerare prin AI",
+        "items": [
+          "Mai multe iterații într-un timp mai scurt.",
+          "Varietate de mișcări și situații generate rapid.",
+          "Costuri optimizate, fără compromis la identitate."
+        ]
+      }
+    },
+    "player": {
+      "play": "Redă",
+      "pause": "Pauză",
+      "seek": "Derulează",
+      "mute": "Oprește sunetul",
+      "unmute": "Pornește sunetul",
+      "fullscreen": "Ecran complet"
+    }
   },
   "microinvest": {
     "eyebrow": "Case study — Microinvest",

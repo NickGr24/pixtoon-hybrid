@@ -10,7 +10,7 @@
  */
 
 import { HtmlBasePlugin } from "@11ty/eleventy";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 
 /*
   На GitHub Pages сайт живёт в подпапке /<repo>/, а все ссылки в шаблонах
@@ -57,14 +57,25 @@ export default function (eleventyConfig) {
   // Escape, а не литерал: невидимый U+00A0 в исходнике редактор способен
   // молча заменить обычным пробелом, и дефект вернётся, не оставив следа в дифе.
   const NBSP = "\u00A0";
-  const bindOrphans = (text) => {
-    const words = String(text).split(/\s+/).filter(Boolean);
-    return words.reduce((acc, word, i) =>
-      i === 0
-        ? word
-        : acc + (/^\p{L}$/u.test(words[i - 1]) ? NBSP : " ") + word
-    , "");
-  };
+  /*
+    \u041F\u0435\u0440\u0435\u0432\u043E\u0434 \u0441\u0442\u0440\u043E\u043A\u0438 \u0432 \u0438\u0441\u0445\u043E\u0434\u043D\u043E\u043C \u0442\u0435\u043A\u0441\u0442\u0435 \u2014 \u044D\u0442\u043E \u0437\u0430\u043F\u0440\u043E\u0448\u0435\u043D\u043D\u044B\u0439 \u043F\u0435\u0440\u0435\u043D\u043E\u0441, \u0430 \u043D\u0435 \u043F\u0440\u043E\u0431\u0435\u043B.
+    \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u044B \u043A\u0435\u0439\u0441\u043E\u0432 \u0434\u0435\u043B\u044F\u0442 \u043F\u043E\u0434\u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0433\u0435\u0440\u043E\u044F \u0438 \u043A\u0440\u0443\u043F\u043D\u0443\u044E \u0444\u0440\u0430\u0437\u0443 \u043D\u0430\u0434\u0432\u043E\u0435 \u0440\u043E\u0432\u043D\u043E
+    \u0442\u0430\u043C, \u0433\u0434\u0435 \u044D\u0442\u043E \u0441\u0434\u0435\u043B\u0430\u043D\u043E \u0432 \u043C\u0430\u043A\u0435\u0442\u0435 (\u00ABAcelea\u0219i personaje. / Mai mult
+    con\u021Binut.\u00BB), \u0430 \u043F\u043E\u043B\u0435 break \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442 \u0442\u043E\u043B\u044C\u043A\u043E \u043C\u0435\u0436\u0434\u0443 \u043A\u0443\u0441\u043A\u0430\u043C\u0438 a \u0438 outline \u2014
+    \u0432\u043D\u0443\u0442\u0440\u0438 \u043E\u0434\u043D\u043E\u0433\u043E \u043A\u0443\u0441\u043A\u0430 \u043F\u0435\u0440\u0435\u043D\u043E\u0441\u0438\u0442\u044C \u0431\u044B\u043B\u043E \u043D\u0435\u0447\u0435\u043C.
+  */
+  const bindOrphans = (text) =>
+    String(text)
+      .split("\n")
+      .map((line) => {
+        const words = line.split(/\s+/).filter(Boolean);
+        return words.reduce((acc, word, i) =>
+          i === 0
+            ? word
+            : acc + (/^\p{L}$/u.test(words[i - 1]) ? NBSP : " ") + word
+        , "");
+      })
+      .join("<br>");
 
   /** Последнее слово куска — одинокая буква? Тогда и склейка кусков неразрывна. */
   const endsWithSingleLetter = (text) =>
@@ -177,6 +188,44 @@ export default function (eleventyConfig) {
 
     sizeCache.set(webPath, attrs);
     return attrs;
+  });
+
+  /**
+   * Набор для srcset по имени базового кадра.
+   *
+   * `{{ shot | srcset | safe }}` → `…/hero-400.jpg 400w, …/hero-800.jpg 800w,
+   * …/hero.jpg 1600w`. Ширины уменьшенных копий берутся из имени файла, а
+   * ширина базового — из его заголовка тем же читателем, что и dims.
+   *
+   * Копии перечисляются, только если они есть на диске: tools/crop-cases.mjs
+   * не делает копию шире базы, и кадры вроде мозаичных плиток в 600 px
+   * существуют без -800. Записанный вручную srcset обещал бы браузеру файл,
+   * которого нет, и тот получил бы 404 вместо картинки.
+   */
+  const STEPS = [400, 800];
+
+  eleventyConfig.addFilter("srcset", function (webPath) {
+    if (!webPath) return "";
+
+    const web = String(webPath);
+    const stem = web.replace(/\.jpg$/, "");
+    const entries = [];
+
+    for (const step of STEPS) {
+      if (existsSync("src" + stem + `-${step}.jpg`)) {
+        entries.push(`${stem}-${step}.jpg ${step}w`);
+      }
+    }
+
+    try {
+      const size = readImageSize("src" + web);
+      if (size) entries.push(`${web} ${size.w}w`);
+    } catch {
+      /* Базового файла нет — валидация слотов в cases.js уронит сборку
+         раньше и с внятным сообщением; здесь молчим. */
+    }
+
+    return entries.join(", ");
   });
 
   /**

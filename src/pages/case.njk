@@ -16,99 +16,427 @@ eleventyComputed:
 {% set p = t %}
 {% set c = t.content %}
 {% set cs = t.caseStudy %}
+{% set page = c.page %}
+{% set shots = p.case.shots %}
 
 {#
-  Структура Challenge → Solution → Production → Result задана вторым ТЗ
-  (Pixtoon AI Video Production.pdf, раздел 2). Порядок не декоративный:
-  это то, в каком порядке клиент задаёт вопросы о чужой работе.
+  Страница собрана по двум раскладкам клиента: первая задала каркас (герой,
+  панель преимуществ, карточки, «Alte case studies», призыв), вторая —
+  рассказ, процесс, панель сравнения и рукописный слой.
+
+  Секции не зашиты в шаблон: кейс перечисляет их в page.sections, а тип
+  выбирает ветку ниже. Причина не в красоте — материала у кейсов от шести
+  кадров до двенадцати, и жёсткая раскладка заставила бы либо оставлять
+  пустые слоты, либо резать секции руками для каждого кейса.
+
+  Тексты процесса и панели сравнения лежат в локали, а не в кейсе: они
+  описывают пайплайн студии, который у всех пяти один. Кейс приносит кадры
+  шагов, а формулировки может переопределить — так сделан Microinvest, где
+  в раскладке шаги говорят про семью, а не про персонажей вообще.
 #}
 
+{% macro shot(path, alt, sizes, eager) %}
+<img
+  src="{{ path }}"
+  srcset="{{ path | srcset }}"
+  sizes="{{ sizes }}"
+  alt="{{ alt }}"
+  {{ path | dims | safe }}
+  {% if eager %}fetchpriority="high"{% else %}loading="lazy" decoding="async"{% endif %} />
+{% endmacro %}
+
+{# Плашка поверх кадра. Рисуется разметкой, а не запекается в JPEG: иначе
+   подпись не переводится и мылится при масштабировании. #}
+{% macro badge(text) %}{% if text %}<span class="hyb-cs__badge">{{ text }}</span>{% endif %}{% endmacro %}
+
+{% macro ico(name, size) %}
+<svg class="hyb-cs__ico" width="{{ size or 20 }}" height="{{ size or 20 }}" viewBox="0 0 24 24"
+     fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true">{{ icons.cs[name] | safe }}</svg>
+{% endmacro %}
+
+{#
+  Рукописный декор. Это фигуры, а не текст, поэтому они и живут в SVG: сами
+  пометки набираются шрифтом и переводятся, а волна и стрелки одинаковы в
+  обеих локалях. Волна тянется по ширине слова, отсюда
+  preserveAspectRatio="none" — иначе она центрировалась бы, оставляя слово
+  недочёркнутым.
+#}
+{%- macro decor(name, box, cls) -%}
+<svg class="hyb-cs__decor hyb-cs__decor--{{ name }} {{ cls }}" viewBox="{{ box }}"
+     {% if name == "wave" %}preserveAspectRatio="none"{% endif %}
+     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true">{{ icons.decor[name] | safe }}</svg>
+{%- endmacro %}
+
+{# Заголовок с волнистым подчёркиванием под частью фразы. Если фрагмент в
+   заголовке не найден, заголовок выводится целиком и волна не появляется —
+   опечатка в данных не должна рвать фразу пополам. #}
+{% macro underlined(title, fragment) %}
+{%- if fragment and fragment in title -%}
+  {%- set parts = title.split(fragment) -%}
+  {{- parts[0] -}}<span class="hyb-cs__uline">{{- fragment -}}{{ decor("wave", "0 0 96 10") }}</span>{{- parts[1] -}}
+{%- else -%}
+  {{ title }}
+{%- endif -%}
+{% endmacro %}
+
+{# Иконки плеера заливкой: в панели они 16–18px, и контур там осыпается. #}
+{%- macro playerIcon(name, state) -%}
+<svg class="hyb-player__ico hyb-player__ico--{{ state }}" width="18" height="18" viewBox="0 0 24 24"
+     fill="currentColor" aria-hidden="true">{{ icons.player[name] | safe }}</svg>
+{%- endmacro %}
+
+{% macro metaRow(item) %}
+<div class="hyb-cs__meta-row">
+  <span class="hyb-cs__meta-ico">{{ ico(item.icon) }}</span>
+  <dt class="hyb-cs__meta-label">{{ item.label }}</dt>
+  <dd class="hyb-cs__meta-value">{{ item.value }}</dd>
+</div>
+{% endmacro %}
+
+{% macro heroMedia(p, cs, page, shots, ratio) %}
+<figure class="hyb-cs__shot hyb-cs__shot--{{ ratio }}" data-hyb-player>
+  {{ shot(shots.hero, p.content.title, "(max-width: 900px) 100vw, " + ("465px" if ratio == "portrait" else "1280px"), true) }}
+  {{ badge(page.heroBadge) }}
+  {#
+    Кнопка воспроизведения появляется, только когда файл действительно лежит
+    на диске: кнопка, которая ничего не запускает, хуже её отсутствия, а
+    браузер к тому же тянул несуществующий mp4 и получал 404.
+  #}
+  {% if p.case.media.hasVideo %}
+  {#
+    Свои органы управления вместо controls. Нативная панель браузера рисуется
+    внутри самого видео, а кадр здесь кадрируется по контейнеру (object-fit),
+    и панель уезжала за границу фигуры — перемотать ролик было нечем.
+    preload="none" сохранён: страница не должна тянуть мастер, пока его не
+    попросили.
+  #}
+  <video class="hyb-cs__video" data-src="{{ p.case.media.video | url }}"
+         poster="{{ shots.hero }}" playsinline preload="none"></video>
+
+  <button class="hyb-cs__play" type="button" data-hyb-play
+          aria-label="{{ cs.player.play }}" data-label-play="{{ cs.player.play }}"
+          data-label-pause="{{ cs.player.pause }}">
+    <svg width="22" height="22" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7-4.5z"/></svg>
+  </button>
+
+  <div class="hyb-player" data-hyb-controls hidden>
+    {#
+      В каждой кнопке лежат оба состояния, а нужное показывает CSS. Так
+      скрипт переключает только классы и подпись: собирать svg строками в JS
+      значило бы держать те же контуры во втором месте, мимо icons.js.
+    #}
+    <button class="hyb-player__btn" type="button" data-act="toggle" aria-label="{{ cs.player.pause }}">
+      {{ playerIcon("pause", "on-play") }}{{ playerIcon("play", "on-pause") }}
+    </button>
+
+    {#
+      Ползунок — нативный input[type=range]: он бесплатно даёт перемотку с
+      клавиатуры, роль slider для скринридера и перетаскивание на тач-экране.
+      Свой div из этого не умеет ничего без сотни строк.
+    #}
+    <input class="hyb-player__seek" type="range" min="0" max="1000" value="0" step="1"
+           data-act="seek" aria-label="{{ cs.player.seek }}" />
+
+    <span class="hyb-player__time" data-hyb-time aria-hidden="true">0:00 / 0:00</span>
+
+    <button class="hyb-player__btn" type="button" data-act="mute"
+            aria-label="{{ cs.player.mute }}" data-label-on="{{ cs.player.mute }}"
+            data-label-off="{{ cs.player.unmute }}">
+      {{ playerIcon("sound", "on-loud") }}{{ playerIcon("muted", "on-muted") }}
+    </button>
+
+    <button class="hyb-player__btn" type="button" data-act="full" aria-label="{{ cs.player.fullscreen }}">
+      {{ playerIcon("full", "on-window") }}{{ playerIcon("exit", "on-full") }}
+    </button>
+  </div>
+  {% endif %}
+</figure>
+{% endmacro %}
+
 <article class="hyb-cs">
-  <header class="hyb-cs__hero">
-    <div class="hyb-wrap">
-      <a class="hyb-link hyb-cs__back" href="{{ (site.hybridPath + '/') | localeUrl(t) }}">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        {{ cs.backToHybrid }}
-      </a>
 
-      <p class="hyb-cs__tags">{{ p.case.order }} — {{ c.tags }}</p>
-      <h1 class="hyb-title hyb-title--hero">{{ c.title }}</h1>
-      <p class="hyb-lead">{{ c.excerpt }}</p>
-    </div>
+  {# ---------- Герой ------------------------------------------------- #}
 
+  <header class="hyb-cs__hero hyb-cs__hero--{{ p.case.hero }}">
     <div class="hyb-wrap">
-      <figure class="hyb-cs__media">
-        <img src="{{ p.case.media.poster }}" alt="{{ c.title }}" {{ p.case.media.poster | dims | safe }} fetchpriority="high" />
-        {#
-          Кнопка воспроизведения появляется только когда файл действительно
-          лежит на диске. Флаг hasVideo считается при сборке по факту наличия
-          файла: кнопка, которая ничего не запускает, хуже её отсутствия, а
-          браузер к тому же тянул несуществующий mp4 и получал 404.
-        #}
-        {% if p.case.media.hasVideo %}
-        <video
-          class="hyb-cs__video"
-          data-src="{{ p.case.media.video | url }}"
-          poster="{{ p.case.media.poster }}"
-          controls
-          playsinline
-          preload="none"
-        ></video>
-        <button class="hyb-cs__play" type="button" data-hyb-play aria-label="{{ cs.resultLead }}">
-          <svg width="22" height="22" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7-4.5z"/></svg>
-        </button>
+      <div class="hyb-cs__hero-grid">
+        <div class="hyb-cs__intro">
+          <a class="hyb-link hyb-cs__back" href="{{ (site.hybridPath + '/') | localeUrl(t) }}">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            {{ cs.backToHybrid }}
+          </a>
+
+          <p class="hyb-eyebrow">{{ cs.eyebrow }} — {{ p.case.brand }}</p>
+          <h1 class="hyb-title hyb-title--hero">{{ c.title }}</h1>
+          {% title { outline: page.subtitle }, "p", "hyb-cs__subtitle" %}
+          <p class="hyb-lead">{{ page.lead }}</p>
+
+          {# У портретного героя мета стоит рядом с кадром, у широкого —
+             строкой под ним, ближе к самому кадру. #}
+          {% if p.case.hero == "portrait" %}
+          <dl class="hyb-cs__meta">
+            {% for item in page.meta %}{{ metaRow(item) }}{% endfor %}
+          </dl>
+          {% endif %}
+        </div>
+
+        {% if p.case.hero == "portrait" %}
+          {# У портретного героя пометка стоит над кадром, в его же колонке:
+             кадр здесь справа, и стрелка из колонки текста указывала бы через
+             всю страницу. #}
+          <div class="hyb-cs__hero-media">
+            {% if page.annotation %}
+            <p class="hyb-cs__note hyb-cs__note--above">
+              <span class="hyb-cs__note-text">{{ page.annotation }}</span>
+              {{ decor("arrowToMedia", "0 0 62 50") }}
+            </p>
+            {% endif %}
+            {{ heroMedia(p, cs, page, shots, "portrait") }}
+          </div>
+        {% elif page.annotation %}
+          {# Рукописная пометка со стрелкой к кадру. Стоит в потоке справа от
+             лида, как в раскладке, а не абсолютом поверх кадра — иначе на
+             узком экране она легла бы на текст. #}
+          <p class="hyb-cs__note">
+            <span class="hyb-cs__note-text">{{ page.annotation }}</span>
+            {{ decor("arrowToMedia", "0 0 62 50") }}
+          </p>
         {% endif %}
-      </figure>
+      </div>
     </div>
+
+    {% if p.case.hero != "portrait" %}
+    <div class="hyb-wrap">
+      {{ heroMedia(p, cs, page, shots, p.case.hero) }}
+      <dl class="hyb-cs__meta hyb-cs__meta--row">
+        {% for item in page.meta %}{{ metaRow(item) }}{% endfor %}
+      </dl>
+    </div>
+    {% endif %}
   </header>
 
-  <section class="hyb-section">
-    <div class="hyb-wrap">
-      <div class="hyb-cs__blocks">
-        {% set blocks = [
-          { key: cs.challenge, lead: cs.challengeLead, text: c.challenge },
-          { key: cs.solution,  lead: cs.solutionLead,  text: c.solution },
-          { key: cs.production, lead: cs.productionLead, text: c.production },
-          { key: cs.result,    lead: cs.resultLead,    text: c.result }
-        ] %}
+  {# ---------- Панель преимуществ ------------------------------------ #}
 
-        {% for b in blocks %}
-        <section class="hyb-cs__block hyb-reveal">
-          <div class="hyb-cs__block-head">
-            <h2 class="hyb-cs__block-title">{{ b.key }}</h2>
-            <p class="hyb-cs__block-lead">{{ b.lead }}</p>
-          </div>
-          <p class="hyb-cs__block-text">{{ b.text }}</p>
-        </section>
-        {% endfor %}
+  {# Есть не у всех: во второй раскладке её место занимает панель сравнения,
+     и две панели со списками подряд спорили бы друг с другом. #}
+  {% if page.panel %}
+  <section class="hyb-section hyb-section--tight">
+    <div class="hyb-wrap">
+      <div class="hyb-cs__panel hyb-reveal">
+        <h2 class="hyb-cs__panel-title">{{ page.panel.title }}</h2>
+        <ul class="hyb-cs__panel-grid">
+          {% for item in page.panel.items %}
+          <li class="hyb-cs__panel-item">
+            <span class="hyb-cs__coin">{{ ico(item.icon, 18) }}</span>
+            <span class="hyb-cs__panel-label">{{ item.label }}</span>
+            <p class="hyb-cs__panel-text">{{ item.text }}</p>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
   </section>
+  {% endif %}
 
-  {# Следующий кейс — путь дальше вместо тупика в конце страницы #}
-  <section class="hyb-section hyb-section--alt hyb-section--tight">
+  {# ---------- Секции контента ---------------------------------------- #}
+
+  {% for s in page.sections %}
+
+    {% if s.type == "story" %}
+    <section class="hyb-section">
+      <div class="hyb-wrap">
+        <div class="hyb-cs__story hyb-reveal">
+          <div class="hyb-cs__story-text">
+            <h2 class="hyb-title hyb-title--h3">{{ underlined(s.title, s.underline) }}</h2>
+            {% for para in s.text %}<p class="hyb-cs__story-para">{{ para }}</p>{% endfor %}
+          </div>
+          <figure class="hyb-cs__story-media">
+            {{ shot(shots[s.slot], s.title, "(max-width: 900px) 92vw, 736px") }}
+          </figure>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if s.type == "process" %}
+    {% set proc = cs.process %}
+    {% set steps = s.items or proc.items %}
+    <section class="hyb-section">
+      <div class="hyb-wrap">
+        <div class="hyb-head hyb-reveal">
+          {% title proc.title, "h2", "hyb-title--h3" %}
+        </div>
+        <ol class="hyb-cs__steps hyb-reveal">
+          {% for step in steps %}
+          <li class="hyb-cs__step">
+            {% if s.slots and s.slots[loop.index0] %}
+            <figure class="hyb-cs__step-media">
+              {{ shot(shots[s.slots[loop.index0]], step.label, "(max-width: 900px) 45vw, 247px") }}
+            </figure>
+            {% endif %}
+            <span class="hyb-cs__step-num">{{ "0" + loop.index if loop.index < 10 else loop.index }}</span>
+            <h3 class="hyb-cs__step-label">{{ step.label }}</h3>
+            <p class="hyb-cs__step-text">{{ step.text }}</p>
+            {# Пунктирная дуга к следующему шагу. У последнего её нет: она
+               уводила бы взгляд за пределы ряда. #}
+            {% if not loop.last %}{{ decor("link", "0 0 60 20", "hyb-cs__step-link") }}{% endif %}
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if s.type == "compare" %}
+    <section class="hyb-section hyb-section--tight">
+      <div class="hyb-wrap">
+        <div class="hyb-cs__compare hyb-reveal">
+          {% for col in [cs.compare.human, cs.compare.ai] %}
+          <div class="hyb-cs__compare-col">
+            <h2 class="hyb-cs__compare-label">{{ col.label }}</h2>
+            <ul class="hyb-cs__checks">
+              {% for item in col.items %}
+              <li><span class="hyb-cs__coin">{{ ico("check", 14) }}</span>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {#
+      Крупная фраза. Правило «один outline-заголовок на секцию» соблюдается —
+      она стоит в своей. Искры по бокам зеркальны: один и тот же контур,
+      правый отражён через CSS.
+    #}
+    {% if s.type == "statement" %}
+    <section class="hyb-section hyb-section--tight">
+      <div class="hyb-wrap hyb-cs__statement hyb-reveal">
+        {{ decor("spark", "0 0 18 24", "hyb-cs__spark hyb-cs__spark--left") }}
+        {% title { outline: s.text }, "h2", "hyb-title--xl" %}
+        {{ decor("spark", "0 0 18 24", "hyb-cs__spark hyb-cs__spark--right") }}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if s.type == "characters" %}
+    <section class="hyb-section">
+      <div class="hyb-wrap">
+        <h2 class="hyb-title hyb-title--h3 hyb-reveal">{{ s.title }}</h2>
+        <div class="hyb-cs__cast hyb-reveal">
+          <ul class="hyb-cs__cast-people">
+            {% for item in s.items %}
+            <li class="hyb-cs__person">
+              <figure class="hyb-cs__person-media">
+                {{ shot(shots[item.slot], item.name, "(max-width: 900px) 45vw, 393px") }}
+              </figure>
+              <h3 class="hyb-cs__person-name">{{ item.name }}</h3>
+              {% for line in item.text %}<p class="hyb-cs__person-text">{{ line }}</p>{% endfor %}
+            </li>
+            {% endfor %}
+          </ul>
+
+          {% if s.aside %}
+          <div class="hyb-cs__cast-aside">
+            {% for item in s.aside %}
+            <figure class="hyb-cs__tile">
+              {{ shot(shots[item.slot], item.badge, "(max-width: 900px) 45vw, 457px") }}
+              {{ badge(item.badge) }}
+            </figure>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if s.type == "cards" %}
+    <section class="hyb-section hyb-section--tight">
+      <div class="hyb-wrap">
+        <h2 class="hyb-title hyb-title--h3 hyb-reveal">{{ s.title }}</h2>
+        <ul class="hyb-cs__cards hyb-reveal">
+          {% for item in s.items %}
+          <li class="hyb-cs__tile">
+            {{ shot(shots[item.slot], item.badge, "(max-width: 700px) 90vw, 413px") }}
+            {{ badge(item.badge) }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if s.type == "outcome" %}
+    <section class="hyb-section">
+      <div class="hyb-wrap">
+        <div class="hyb-cs__outcome hyb-reveal">
+          {% title s.title, "h2", "hyb-cs__outcome-title" %}
+          <div class="hyb-cs__outcome-side">
+            <ul class="hyb-cs__checks">
+              {% for check in s.checks %}
+              <li><span class="hyb-cs__coin">{{ ico("check", 14) }}</span>{{ check }}</li>
+              {% endfor %}
+            </ul>
+            {{ decor("arrowToCta", "0 0 60 44", "hyb-cs__outcome-arrow") }}
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+  {% endfor %}
+
+  {# ---------- Другие кейсы ------------------------------------------- #}
+
+  <section class="hyb-section hyb-section--alt">
     <div class="hyb-wrap">
-      <a class="hyb-cs__next" href="{{ (site.hybridPath + '/' + p.next.slug + '/') | localeUrl(t) }}">
-        <span class="hyb-eyebrow">{{ cs.nextCase }}</span>
-        <span class="hyb-cs__next-title">
-          {{ p.next.title }}
-          <svg width="16" height="16" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-      </a>
+      <div class="hyb-head hyb-head--wide hyb-reveal">
+        <span class="hyb-eyebrow">{{ cs.related.eyebrow }}</span>
+        <h2 class="hyb-title">{{ cs.related.title }}</h2>
+      </div>
+
+      <ul class="hyb-cs__related hyb-reveal">
+        {% for r in p.related %}
+        <li>
+          <a class="hyb-cs__related-card" href="{{ (site.hybridPath + '/' + r.slug + '/') | localeUrl(t) }}">
+            {{ shot(r.thumb, r.title, "(max-width: 700px) 45vw, 305px") }}
+            <span class="hyb-cs__badge">{{ r.brand }}</span>
+            <span class="hyb-cs__related-go" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <p class="hyb-cs__related-all hyb-reveal">
+        <a class="hyb-link hyb-link--accent" href="{{ (site.hybridPath + '/') | localeUrl(t) }}">
+          {{ cs.related.link }} <span aria-hidden="true">→</span>
+        </a>
+      </p>
     </div>
   </section>
+
+  {# ---------- Призыв -------------------------------------------------- #}
 
   <section class="hyb-section hyb-final">
     <div class="hyb-wrap">
-      <div class="hyb-head hyb-reveal">
-        {% title cs.ctaTitle %}
-      </div>
-      <div class="hyb-actions hyb-reveal">
+      <div class="hyb-cs__cta hyb-reveal">
+        {{ decor("spark", "0 0 18 24", "hyb-cs__spark hyb-cs__spark--left") }}
+        <h2 class="hyb-cs__cta-title">{{ page.cta.title }}</h2>
+        <p class="hyb-cs__cta-text">{{ page.cta.text }}</p>
         <a href="mailto:{{ site.contacts.email }}" class="hyb-btn hyb-btn--primary">
-          {{ cs.cta }}
+          {{ cs.ctaButton }}
           <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
         </a>
+        {{ decor("spark", "0 0 18 24", "hyb-cs__spark hyb-cs__spark--right") }}
       </div>
     </div>
   </section>
+
 </article>

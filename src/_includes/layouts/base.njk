@@ -22,6 +22,14 @@
   <link type="image/png" rel="shortcut icon" href="/assets/img/favicon.png" />
 
   {#
+    Caveat — третий шрифт, только для рукописных пометок на страницах кейсов
+    («scenă din film de brand», подписи со стрелками). Дописан в ту же ссылку,
+    а не подключён отдельной: соединение с Google Fonts уже открыто, и второй
+    запрос стоил бы дороже самих начертаний. Взяты два веса из четырёх.
+
+    Пометки набираются шрифтом, а не рисуются кривыми, потому что это текст:
+    он переводится на вторую локаль, правится в JSON и читается скринридером.
+
     Baloo 2 + Quicksand — оба шрифта макета. Poppins убран: макет набран
     Quicksand, и подмена вскрылась только на живой странице — в мелком кегле
     эти два шрифта по скриншоту неразличимы.
@@ -44,7 +52,7 @@
     Поведение при этом не меняется: display=swap и так рисует текст системным
     шрифтом до подхода Baloo и Quicksand. Без JS работает <noscript> ниже.
   #}
-  {% set fontsHref = "https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@400;500;600;700&display=swap&subset=latin,latin-ext" %}
+  {% set fontsHref = "https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@500;600&family=Quicksand:wght@400;500;600;700&display=swap&subset=latin,latin-ext" %}
   <link rel="preload" as="style" href="{{ fontsHref }}" />
   <link rel="stylesheet" href="{{ fontsHref }}" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="{{ fontsHref }}" /></noscript>
