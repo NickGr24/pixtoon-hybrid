@@ -3430,6 +3430,13 @@ html {
   color: #ffffff;
 }
 
+/* Атрибут hidden даёт display:none из таблицы браузера, а правило класса
+   выше по специфичности и перебивало его: панель висела поверх кадра ещё до
+   запуска ролика, с ползунком на нуле. */
+.hyb-player[hidden] {
+  display: none;
+}
+
 .hyb-player__btn {
   display: grid;
   place-items: center;
