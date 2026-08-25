@@ -316,9 +316,9 @@ eleventyComputed:
     {% if s.type == "statement" %}
     <section class="hyb-section hyb-section--tight">
       <div class="hyb-wrap hyb-cs__statement hyb-reveal">
-        {{ decor("spark", "0 0 18 24", "hyb-cs__spark hyb-cs__spark--left") }}
+        {{ decor("spark", "0 0 26 30", "hyb-cs__spark hyb-cs__spark--left") }}
         {% title { outline: s.text }, "h2", "hyb-title--xl" %}
-        {{ decor("spark", "0 0 18 24", "hyb-cs__spark hyb-cs__spark--right") }}
+        {{ decor("spark", "0 0 26 30", "hyb-cs__spark hyb-cs__spark--right") }}
       </div>
     </section>
     {% endif %}
@@ -427,14 +427,14 @@ eleventyComputed:
   <section class="hyb-section hyb-final">
     <div class="hyb-wrap">
       <div class="hyb-cs__cta hyb-reveal">
-        {{ decor("spark", "0 0 18 24", "hyb-cs__spark hyb-cs__spark--left") }}
+        {{ decor("spark", "0 0 26 30", "hyb-cs__spark hyb-cs__spark--left") }}
         <h2 class="hyb-cs__cta-title">{{ page.cta.title }}</h2>
         <p class="hyb-cs__cta-text">{{ page.cta.text }}</p>
         <a href="mailto:{{ site.contacts.email }}" class="hyb-btn hyb-btn--primary">
           {{ cs.ctaButton }}
           <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
         </a>
-        {{ decor("spark", "0 0 18 24", "hyb-cs__spark hyb-cs__spark--right") }}
+        {{ decor("spark", "0 0 26 30", "hyb-cs__spark hyb-cs__spark--right") }}
       </div>
     </div>
   </section>

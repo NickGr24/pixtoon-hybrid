@@ -40,10 +40,6 @@ const SRC_DIR = arg("src", join(homedir(), "Downloads"));
 const ONLY = arg("only", null);
 
 /*
-  Ролика Coccolino нет ни в мастерах, ни на канале студии — кейс остаётся без
-  кнопки воспроизведения, и это видно на странице честно: cases.js считает
-  hasVideo по факту наличия файла.
-
   Medpark не перекодируется: рабочий файл уже лежит в репозитории, а мастер
   идёт в HEVC на 168 секунд и 430 МБ — перегонять его заново незачем.
 */
@@ -57,6 +53,11 @@ const VIDEOS = {
     /* Вертикальный мастер 2160x3840 — ширина по короткой стороне */
     width: 1080,
   },
+  coccolino: {
+    src: join(SRC_DIR, "LOCAL COCCOLINO.mov"),
+    width: 1920,
+  },
+
   "microinvest-family": {
     /* Мастера нет: ролик снят с канала студии (youtu.be/UvWq7Vk_aF4,
        «Microinvest RO Family 30 sec») через yt-dlp. */

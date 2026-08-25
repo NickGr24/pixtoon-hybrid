@@ -51,7 +51,7 @@
           {
             "icon": "spark",
             "label": "No shoot",
-            "text": "Light and atmosphere are generated, not rigged."
+            "text": "Light and atmosphere are generated, not staged."
           },
           {
             "icon": "bolt",
@@ -118,7 +118,7 @@
           },
           "checks": [
             "Vertical format, built for the feed.",
-            "Light and texture constructed, not rigged.",
+            "Light and texture built, not staged.",
             "Hand grading on top of generation."
           ]
         }

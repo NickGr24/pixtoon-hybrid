@@ -21,7 +21,7 @@
     "result": "A campaign world that can be re-entered for the next promo instead of being rebuilt from zero.",
     "page": {
       "subtitle": "One brand character. Many campaigns.",
-      "lead": "The Drive Gas character became a recurring communicator for the brand — recognisable, flexible and ready to explain offers and services fast.",
+      "lead": "The Drive Gas character becomes a recurring communicator for the brand — recognisable, flexible and ready to explain offers and services fast.",
       "meta": [
         {
           "label": "Client",
@@ -89,7 +89,7 @@
         },
         {
           "type": "statement",
-          "text": "AI accelerates the campaign.\nThe character stays the brand's."
+          "text": "AI accelerates the campaign.\nThe character still belongs to the brand."
         },
         {
           "type": "cards",
@@ -118,7 +118,7 @@
           },
           "checks": [
             "Spots, promotions and materials for the network.",
-            "A hybrid flow that shortens the road from brief to delivery.",
+            "A hybrid flow that shortens the path from brief to delivery.",
             "A consistent brand presence in every appearance."
           ]
         }

@@ -243,7 +243,7 @@
     "ctaButton": "Let's discuss the project",
     "process": {
       "title": {
-        "a": "Where we work classically.",
+        "a": "Where we work the classic way.",
         "outline": "Where AI speeds us up.",
         "break": true
       },
@@ -283,8 +283,8 @@
         "label": "AI acceleration",
         "items": [
           "More iterations in less time.",
-          "A range of motion and situations generated fast.",
-          "Optimised cost, with no compromise on identity."
+          "A variety of movements and situations, generated fast.",
+          "Optimised costs, with no compromise on identity."
         ]
       }
     },
