@@ -75,7 +75,7 @@
           "type": "story",
           "title": "A brand universe we enter, not one we rebuild.",
           "underline": "not one we rebuild",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "The mascot, the palette and the packaging were already set, and audiences know them by heart.",
             "We produced new frames inside that universe without reinterpreting any part of it."
@@ -194,7 +194,7 @@
           "type": "story",
           "title": "Un univers de brand în care intrăm, nu pe care îl refacem.",
           "underline": "nu pe care îl refacem",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "Mascota, paleta și ambalajul erau deja stabilite, iar publicul le știe pe de rost.",
             "Am produs cadre noi în interiorul acestui univers, fără să reinterpretăm nimic din el."

@@ -50,7 +50,7 @@
           "type": "story",
           "title": "A family that explains finance simply.",
           "underline": "finance simply",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "We built a close, believable and expressive family that lives through real financial situations from everyday life.",
             "The characters speak directly, clearly and in terms everyone understands."
@@ -183,7 +183,7 @@
           "type": "story",
           "title": "O familie care explică finanțele simplu.",
           "underline": "finanțele simplu",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "Am construit o familie apropiată, credibilă și expresivă, care trăiește situații financiare reale din viața de zi cu zi.",
             "Personajele vorbesc direct, clar și pe înțelesul tuturor."

@@ -75,6 +75,11 @@ for (const c of featured) {
     for (const s of page.sections || []) {
       if (s.slot) used.push(s.slot);
       for (const item of s.items || []) if (item.slot) used.push(item.slot);
+      /* aside проверялся не с самого начала, и пропавший слот боковой плитки
+         дошёл до страницы картинкой без адреса: секция перечисляет кадры в
+         двух местах, а проверка смотрела в одно. */
+      for (const item of s.aside || []) if (item.slot) used.push(item.slot);
+      for (const slot of s.slots || []) used.push(slot);
     }
 
     for (const slot of used) {

@@ -75,7 +75,7 @@
           "type": "story",
           "title": "A clinic told in a child's language.",
           "underline": "in a child's language",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "We built an animated clinic where every character has a clear role and a story to tell.",
             "Children recognise the cast from the first frame, and parents get the message effortlessly."
@@ -209,7 +209,7 @@
           "type": "story",
           "title": "O clinică povestită pe limba copiilor.",
           "underline": "pe limba copiilor",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "Am construit un cabinet animat unde fiecare personaj are un rol clar și o poveste de spus.",
             "Copiii recunosc distribuția din primul cadru, iar părinții primesc mesajul fără efort."

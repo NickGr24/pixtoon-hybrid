@@ -75,7 +75,7 @@
           "type": "story",
           "title": "The light of a product studio, built frame by frame.",
           "underline": "built frame by frame",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "Condensation, reflection and background depth are worked until the bottle reads like a studio shoot.",
             "The colour then goes through hand grading, so the brand's blue stays exactly its own."
@@ -194,7 +194,7 @@
           "type": "story",
           "title": "Lumina unui studio de produs, construită cadru cu cadru.",
           "underline": "construită cadru cu cadru",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "Condensul, reflexia și adâncimea fundalului sunt lucrate până când sticla arată ca într-o filmare de studio.",
             "Culoarea trece apoi prin gradare manuală, ca albastrul brandului să rămână exact al lui."

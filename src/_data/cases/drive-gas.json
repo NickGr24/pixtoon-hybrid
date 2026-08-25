@@ -75,7 +75,7 @@
           "type": "story",
           "title": "A character who sells without sounding like an ad.",
           "underline": "without sounding like an ad",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "We built a brand communicator who explains offers, services and promotions in the customer's own language.",
             "The same character returns in every campaign, so audiences recognise him from the first frame."
@@ -194,7 +194,7 @@
           "type": "story",
           "title": "Un personaj care vinde fără să pară reclamă.",
           "underline": "fără să pară reclamă",
-          "slot": "story-1",
+          "slot": "story",
           "text": [
             "Am construit un comunicator de brand care explică oferte, servicii și promoții pe limba clientului.",
             "Același personaj revine în fiecare campanie, așa că publicul îl recunoaște din primul cadru."
