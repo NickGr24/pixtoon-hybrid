@@ -114,6 +114,10 @@
   */
   --hyb-font-display: "Baloo 2", system-ui, sans-serif;
   --hyb-font-body: "Quicksand", system-ui, -apple-system, sans-serif;
+  /* Рукописные пометки страниц кейсов. Запасной вариант — курсив системного
+     шрифта: если Caveat не подъедет, пометка должна остаться отличимой от
+     основного текста, иначе она читается как оборванная строка абзаца. */
+  --hyb-font-hand: "Caveat", "Segoe Script", cursive;
 
   /* Шкала: min — мобильный, max — ровно то, что отдаёт макет на 1440 */
   --hyb-t-hero: clamp(2.5rem, 1.2rem + 5.2vw, 4.5rem); /* 40 → 72 */
@@ -2623,59 +2627,757 @@ html {
 
 
 /* ===== sections-case.css ===== */
-/* ==========================================================================
-   Страница кейса: Challenge → Solution → Production → Result
-   ========================================================================== */
+/* ======================================================================
+   Страница кейса
 
-/* Страниц кейсов в макете нет, поэтому отступ не измерен, а собран: высота
-   шапки плюс собственный воздух блока. Шапка накрывает контент, и без
-   слагаемого ссылка «назад» оказалась бы под ней. */
+   Раскладка снята с двух HQ-макетов клиента обмером, а не на глаз: контент
+   в них занимает 2480 из 2880 px (Microinvest) и 1860 из 2160 (Drive Gas),
+   что при контейнере 1280 даёт масштабы 1.9375 и 1.4531. Все размеры ниже
+   пересчитаны через них, поэтому числа выходят круглыми: карточка персонажа
+   8:7, плитки мозаики 3:5, широкая плитка 16:10, превью кейса 16:10.
+
+   Пропорции кадров задаёт не CSS, а нарезка (tools/crop-cases.mjs): картинки
+   вставляются height:auto и приносят свою форму сами. Исключение — мозаика,
+   где соседние плитки обязаны сойтись по высоте.
+   ====================================================================== */
+
+/* --- Герой ------------------------------------------------------------ */
+
 .hyb-cs__hero {
-  padding-top: calc(var(--hyb-header-h) + clamp(1.5rem, 1rem + 2vw, 3rem));
+  padding-top: calc(var(--hyb-header-h) + var(--hyb-s-5));
+  padding-bottom: var(--hyb-s-4);
 }
 
+/* flex, а не inline-flex: следующий за ссылкой eyebrow — inline-block, и в
+   строчном потоке они вставали в одну строку («Toate lucrările hibride CASE
+   STUDY — MICROINVEST»). width:fit-content оставляет подчёркивание по длине
+   текста, а не по всей колонке. */
 .hyb-cs__back {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: var(--hyb-s-1);
   margin-bottom: var(--hyb-s-4);
+  font-size: var(--hyb-t-small);
+}
+
+/*
+  Портретный вариант: мета столбиком слева, вертикальный кадр справа.
+  682 + 134 + 465 = 1281 — обмер макета Microinvest. Зазор задан clamp, а не
+  константой: 134px между колонками осмысленны на 1280 и съедают половину
+  строки на планшете.
+*/
+.hyb-cs__hero-grid {
+  display: grid;
+  gap: clamp(var(--hyb-s-4), 8vw, 8.375rem);
+}
+
+.hyb-cs__hero--portrait .hyb-cs__hero-grid {
+  grid-template-columns: minmax(0, 682fr) minmax(0, 465fr);
+  align-items: start;
+}
+
+.hyb-cs__subtitle {
+  margin: var(--hyb-s-2) 0 var(--hyb-s-3);
+  font-size: var(--hyb-t-h2-lg);
+}
+
+.hyb-cs__hero .hyb-lead {
+  max-width: 46ch;
+}
+
+/* Кадр героя. Бейдж и кнопка лежат поверх, поэтому relative и overflow. */
+.hyb-cs__shot {
+  position: relative;
+  margin: 0;
+  border-radius: var(--hyb-r-media);
+  overflow: hidden;
+  background: var(--hyb-bg-alt);
+}
+
+.hyb-cs__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hyb-cs__hero--pano .hyb-cs__shot,
+.hyb-cs__hero--wide .hyb-cs__shot {
+  margin-top: var(--hyb-s-3);
+}
+
+/* Колонка кадра у портретного героя: пометка над кадром, кадр под ней. */
+.hyb-cs__hero-media {
+  display: grid;
+  gap: var(--hyb-s-1);
+  justify-items: end;
+}
+
+/* Стрелка над кадром смотрит вниз-вправо, а не вниз-влево: кадр под ней,
+   а не слева. */
+.hyb-cs__note--above {
+  margin-bottom: 0;
+}
+
+.hyb-cs__note--above .hyb-cs__decor--arrowToMedia {
+  margin-right: var(--hyb-s-4);
+  transform: scaleX(-1);
+}
+
+/* --- Мета-таблица ------------------------------------------------------ */
+
+/*
+  46px кружок, 150px колонка подписи, значение — остаток. Разделители сверху
+  у каждой строки и снизу у последней: в макете таблица закрыта линиями с
+  обеих сторон, и без нижней она выглядит оборванной.
+*/
+.hyb-cs__meta {
+  margin: var(--hyb-s-5) 0 0;
+}
+
+.hyb-cs__meta-row {
+  display: grid;
+  grid-template-columns: 46px 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 0 var(--hyb-s-3);
+  padding: var(--hyb-s-2) 0;
+  border-top: 1px solid var(--hyb-line);
+}
+
+.hyb-cs__meta-row:last-child {
+  border-bottom: 1px solid var(--hyb-line);
+}
+
+.hyb-cs__meta-ico,
+.hyb-cs__coin {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--hyb-accent-wash);
+  color: var(--hyb-accent-text);
+}
+
+.hyb-cs__meta-label {
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 700;
+  letter-spacing: var(--hyb-ls-label);
+  text-transform: uppercase;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-cs__meta-value {
+  margin: 0;
+  font-family: var(--hyb-font-display);
+  font-size: var(--hyb-t-h4);
+  font-weight: 600;
+  color: var(--hyb-ink);
+}
+
+/*
+  Широкий герой набирает ту же мета-таблицу строкой в четыре колонки: кадр
+  под ней идёт во всю ширину, и столбик слева оставил бы половину экрана
+  пустой. Иконок в этом варианте макета нет — при четырёх колонках по 320px
+  кружок 46px съедает треть колонки и отжимает значение на вторую строку.
+*/
+.hyb-cs__meta--row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--hyb-line);
+  border-bottom: 1px solid var(--hyb-line);
+}
+
+.hyb-cs__meta--row .hyb-cs__meta-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: var(--hyb-s-1);
+  padding: var(--hyb-s-3);
+  border-top: 0;
+}
+
+.hyb-cs__meta--row .hyb-cs__meta-row:last-child {
+  border-bottom: 0;
+}
+
+.hyb-cs__meta--row .hyb-cs__meta-row + .hyb-cs__meta-row {
+  border-left: 1px solid var(--hyb-line);
+}
+
+.hyb-cs__meta--row .hyb-cs__meta-ico {
+  display: none;
+}
+
+/* Первая колонка прижата к краю контейнера, как в макете: отступ слева у
+   неё съел бы выравнивание с заголовком, стоящим прямо над ней. */
+.hyb-cs__meta--row .hyb-cs__meta-row:first-child {
+  padding-left: 0;
+}
+
+/* --- Панель преимуществ ------------------------------------------------ */
+
+/*
+  Градиент, а не заливка: в макете панель светлее по краям и чуть теплее в
+  правом нижнем углу. Тени нет — глубину, как и везде в разделе, даёт разница
+  фонов.
+*/
+.hyb-cs__panel {
+  padding: clamp(var(--hyb-s-4), 4vw, var(--hyb-s-6)) clamp(var(--hyb-s-3), 3vw, var(--hyb-s-5));
+  border-radius: var(--hyb-r-xl);
+  background: linear-gradient(135deg, #faf7fc 0%, #f5f1f8 55%, #f7f2f6 100%);
+}
+
+.hyb-cs__panel-title {
+  margin: 0 0 var(--hyb-s-5);
+  font-family: var(--hyb-font-display);
+  font-size: var(--hyb-t-h3-lg);
+  line-height: var(--hyb-lh-tight);
+  font-weight: 700;
+  text-align: center;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-cs__panel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hyb-cs__panel-item {
+  display: grid;
+  justify-items: center;
+  gap: var(--hyb-s-2);
+  padding: 0 var(--hyb-s-2);
+  text-align: center;
+}
+
+/* Разделители между колонками — граница у всех, кроме первой. Псевдоэлементы
+   здесь были бы лишними: своя граница не рисуется у крайних сама собой. */
+.hyb-cs__panel-item + .hyb-cs__panel-item {
+  border-left: 1px solid var(--hyb-line);
+}
+
+/* Монета панели белая, а не сиреневая: она лежит на сиреневом фоне, и
+   заливка --hyb-accent-wash на нём не читается. */
+.hyb-cs__panel-item .hyb-cs__coin {
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+}
+
+.hyb-cs__panel-label {
+  font-size: var(--hyb-t-small);
+  font-weight: 700;
+  letter-spacing: var(--hyb-ls-micro);
+  text-transform: uppercase;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-cs__panel-text {
+  margin: 0;
+  font-size: var(--hyb-t-small);
+  line-height: var(--hyb-lh-snug);
   color: var(--hyb-ink-muted);
 }
 
-.hyb-cs__tags {
-  font-size: var(--hyb-t-eyebrow);
-  font-weight: 600;
-  letter-spacing: 0.12em;
+/* --- Крупная фраза ----------------------------------------------------- */
+
+/*
+  Флекс, а не блок с text-align: искры — отдельные svg, и в блочном потоке
+  они вставали над фразой и под ней, по центру. Здесь они нужны по бокам,
+  как в раскладке.
+*/
+.hyb-cs__statement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(var(--hyb-s-2), 3vw, var(--hyb-s-5));
+  text-align: center;
+}
+
+/*
+  Своя шкала, а не --hyb-t-h2-xl: в макете строка фразы стоит на 46px при
+  кегле около 44, тогда как xl доходит до 72 и разгоняет её с двух строк на
+  три. Крупная фраза здесь — акцент внутри страницы, а не финальный призыв.
+*/
+.hyb-cs__statement .hyb-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.1rem + 2.6vw, 2.75rem);
+}
+
+/* --- Персонажи --------------------------------------------------------- */
+
+.hyb-cs__chars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--hyb-s-3);
+  margin: var(--hyb-s-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hyb-cs__char {
+  position: relative;
+  border-radius: var(--hyb-r-card);
+  overflow: hidden;
+  background: var(--hyb-bg-alt);
+}
+
+.hyb-cs__char img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hyb-cs__caption {
+  margin: var(--hyb-s-3) 0 0;
+  font-size: var(--hyb-t-small);
+  text-align: center;
+  color: var(--hyb-ink-muted);
+}
+
+/* --- Карточки кампаний -------------------------------------------------- */
+
+/* Плитка кадра: карточки кампаний и боковая колонка секции персонажей.
+   Пропорцию приносит сам файл — нарезка уже отдала нужную форму, поэтому
+   height:auto, а не aspect-ratio. */
+.hyb-cs__tile {
+  position: relative;
+  margin: 0;
+  border-radius: var(--hyb-r-media);
+  overflow: hidden;
+  background: var(--hyb-bg-alt);
+}
+
+.hyb-cs__tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+.hyb-cs__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--hyb-s-2);
+  margin: var(--hyb-s-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* --- Рукописный слой ---------------------------------------------------- */
+
+/*
+  Пометка со стрелкой у героя. Набирается Caveat и переводится, в отличие от
+  стрелки рядом — та фигура и лежит в SVG.
+
+  Стоит в потоке, а не абсолютом поверх кадра: на узком экране абсолютная
+  пометка легла бы на лид. Прижата к правому краю колонки и повёрнута на
+  пару градусов — в раскладке она написана от руки, а рукописное от руки и
+  не выравнивается по сетке.
+*/
+.hyb-cs__note {
+  align-self: end;
+  margin-bottom: calc(var(--hyb-s-2) * -1);
+  justify-self: end;
+  display: grid;
+  justify-items: end;
+  gap: var(--hyb-s-1);
+  margin: 0;
+  max-width: 16rem;
+  color: var(--hyb-accent-text);
+  text-align: right;
+}
+
+.hyb-cs__note-text {
+  font-family: var(--hyb-font-hand);
+  font-size: 1.375rem;
+  line-height: var(--hyb-lh-tight);
+  transform: rotate(-2deg);
+}
+
+.hyb-cs__decor--arrowToMedia {
+  width: 62px;
+  height: 50px;
+  margin-right: var(--hyb-s-5);
+  stroke-width: 1.6;
+}
+
+/*
+  Волнистое подчёркивание. Абсолютом под словом, а не border-bottom: волна
+  должна выходить за базовую линию и слегка за края слова, как проведённая
+  маркером. Слово остаётся выделяемым и переносимым — подчёркивание к нему не
+  привязано жёстко.
+*/
+.hyb-cs__uline {
+  position: relative;
+  white-space: nowrap;
+}
+
+/* Ширина считается от слова, а не задаётся парой left/right: у svg есть
+   собственный размер из viewBox, и при width:auto пара краёв его не
+   растягивает — волна оставалась в 81px под словом в 222px. */
+.hyb-cs__decor--wave {
+  position: absolute;
+  left: -0.1em;
+  bottom: -0.26em;
+  width: calc(100% + 0.2em);
+  height: 0.26em;
+  color: var(--hyb-accent);
+  stroke-width: 2.5;
+}
+
+/* Искры у крупной фразы и призыва. Один контур на обе стороны — правая
+   отражена, иначе пришлось бы держать два почти одинаковых пути. */
+.hyb-cs__spark {
+  width: 22px;
+  height: 30px;
+  color: var(--hyb-accent-soft);
+  stroke-width: 2.4;
+  flex: none;
+}
+
+.hyb-cs__spark--right {
+  transform: scaleX(-1);
+}
+
+/* --- Рассказ о кейсе ---------------------------------------------------- */
+
+/* 442 + 82 + 736 = 1260 — обмер второй раскладки. */
+.hyb-cs__story {
+  display: grid;
+  grid-template-columns: minmax(0, 442fr) minmax(0, 736fr);
+  gap: clamp(var(--hyb-s-3), 6vw, 82px);
+  align-items: center;
+}
+
+.hyb-cs__story-text .hyb-title {
+  margin: 0 0 var(--hyb-s-3);
+}
+
+.hyb-cs__story-para {
+  margin: 0 0 var(--hyb-s-2);
+  color: var(--hyb-ink-muted);
+  line-height: var(--hyb-lh-relaxed);
+}
+
+.hyb-cs__story-media {
+  margin: 0;
+  border-radius: var(--hyb-r-media);
+  overflow: hidden;
+  background: var(--hyb-bg-alt);
+}
+
+.hyb-cs__story-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* --- Процесс ------------------------------------------------------------ */
+
+/*
+  Пять шагов в ряд. Кадры необязательны: у трёх кейсов исходников всего по
+  три-четыре, и повторить один и тот же снимок пять раз было бы хуже, чем
+  честный ряд из номера и текста — в раскладке кадры несут смысл (скетч,
+  модель, сет, анимация, цвет), а не заполняют место.
+*/
+.hyb-cs__steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: var(--hyb-s-4) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.hyb-cs__step {
+  position: relative;
+}
+
+.hyb-cs__step-media {
+  margin: 0 0 var(--hyb-s-2);
+  border-radius: var(--hyb-r-sm);
+  overflow: hidden;
+  background: var(--hyb-bg-alt);
+}
+
+.hyb-cs__step-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hyb-cs__step-num {
+  display: block;
+  font-family: var(--hyb-font-display);
+  font-size: var(--hyb-t-h3);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--hyb-accent);
+}
+
+.hyb-cs__step-label {
+  margin: var(--hyb-s-1) 0 var(--hyb-s-1);
+  font-family: var(--hyb-font-display);
+  font-size: var(--hyb-t-card);
+  font-weight: 700;
+  line-height: var(--hyb-lh-tight);
+}
+
+.hyb-cs__step-text {
+  margin: 0;
+  font-size: var(--hyb-t-small);
+  line-height: var(--hyb-lh-snug);
+  color: var(--hyb-ink-muted);
+}
+
+/* Дуга к следующему шагу висит в зазоре между колонками, поэтому вынесена
+   за правый край карточки и не влияет на её высоту. */
+.hyb-cs__step-link {
+  position: absolute;
+  right: -22px;
+  bottom: 0.35rem;
+  width: 32px;
+  height: 11px;
+  color: var(--hyb-accent-soft);
+  stroke-width: 2.5;
+}
+
+/* Список с галочками: панель сравнения и блок итога. Кружок и текст —
+   колонки грида, а не строчный поток: при длинном пункте вторая строка
+   заезжала бы под кружок. */
+.hyb-cs__checks {
+  display: grid;
+  gap: var(--hyb-s-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hyb-cs__checks li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--hyb-s-2);
+  font-size: var(--hyb-t-small);
+  line-height: var(--hyb-lh-snug);
+}
+
+.hyb-cs__checks .hyb-cs__coin {
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+}
+
+/* --- Панель сравнения --------------------------------------------------- */
+
+.hyb-cs__compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(var(--hyb-s-3), 5vw, var(--hyb-s-6));
+  padding: clamp(var(--hyb-s-3), 3vw, var(--hyb-s-5));
+  border-radius: var(--hyb-r-xl);
+  background: linear-gradient(135deg, #faf7fc 0%, #f5f1f8 55%, #f7f2f6 100%);
+}
+
+/* Разделитель пунктирный, а не сплошной: сплошная линия читалась бы как
+   граница двух блоков, а это две стороны одного метода. */
+.hyb-cs__compare-col + .hyb-cs__compare-col {
+  border-left: 1px dashed var(--hyb-accent-soft);
+  padding-left: clamp(var(--hyb-s-3), 5vw, var(--hyb-s-6));
+}
+
+.hyb-cs__compare-label {
+  margin: 0 0 var(--hyb-s-3);
+  font-size: var(--hyb-t-small);
+  font-weight: 700;
+  letter-spacing: var(--hyb-ls-label);
   text-transform: uppercase;
   color: var(--hyb-accent-text);
-  margin-bottom: var(--hyb-s-2);
 }
 
-.hyb-cs__media {
-  position: relative;
-  margin: var(--hyb-s-5) 0 0;
+/* --- Персонажи с подписями ---------------------------------------------- */
+
+/* 230 / 229 / 268 — обмер: боковая колонка чуть шире карточек персонажей. */
+.hyb-cs__cast {
+  display: grid;
+  grid-template-columns: minmax(0, 230fr) minmax(0, 229fr) minmax(0, 268fr);
+  gap: var(--hyb-s-2);
+  margin-top: var(--hyb-s-4);
+}
+
+.hyb-cs__cast-people {
+  display: contents;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hyb-cs__person-media {
+  margin: 0 0 var(--hyb-s-2);
+  border-radius: var(--hyb-r-card);
   overflow: hidden;
-  border-radius: var(--hyb-r-media);
-  background: var(--hyb-dark);
-  aspect-ratio: 16 / 9;
+  background: var(--hyb-bg-alt);
 }
 
-.hyb-cs__media img,
+.hyb-cs__person-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hyb-cs__person-name {
+  margin: 0 0 var(--hyb-s-1);
+  font-family: var(--hyb-font-display);
+  font-size: var(--hyb-t-h4);
+  font-weight: 700;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-cs__person-text {
+  margin: 0;
+  font-size: var(--hyb-t-small);
+  line-height: var(--hyb-lh-snug);
+  color: var(--hyb-ink-muted);
+}
+
+.hyb-cs__cast-aside {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: var(--hyb-s-2);
+  align-content: start;
+}
+
+/* Одна плитка вместо двух растягивается на высоту колонки: прижатая к верху,
+   она оставляла под собой пустое место вровень с карточками персонажей, и
+   колонка читалась как незаполненная, а не как задуманная. */
+.hyb-cs__cast-aside:has(> :only-child) {
+  align-content: stretch;
+}
+
+.hyb-cs__cast-aside:has(> :only-child) .hyb-cs__tile img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Итог --------------------------------------------------------------- */
+
+.hyb-cs__outcome {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(var(--hyb-s-3), 5vw, var(--hyb-s-6));
+  align-items: center;
+  padding-top: var(--hyb-s-4);
+  border-top: 1px solid var(--hyb-line);
+}
+
+/* Своя шкала: --hyb-t-h2-lg доходит до 60px, и «Mai puțin timp per
+   livrabil.» разрывается на две строки, ломая ритм трёх утверждений. */
+.hyb-cs__outcome-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.125rem);
+}
+
+/* Три куска заголовка стоят каждый со своей строки: в раскладке это три
+   утверждения подряд, а не одна фраза в три строки по ширине контейнера. */
+.hyb-cs__outcome-title .hyb-title__plain,
+.hyb-cs__outcome-title .hyb-title__outline {
+  display: block;
+}
+
+.hyb-cs__outcome-side {
+  position: relative;
+}
+
+.hyb-cs__outcome-arrow {
+  position: absolute;
+  right: 0;
+  bottom: -2.25rem;
+  width: 60px;
+  height: 44px;
+  color: var(--hyb-accent-soft);
+  stroke-width: 1.6;
+}
+
+/* --- Плашки поверх кадров ----------------------------------------------- */
+
+/*
+  Плашка светлая и полупрозрачная: кадры кейсов бывают и тёмными (Bere), и
+  светлыми (Microinvest), и одна заливка под оба случая не подходит. Размытие
+  подложки вытягивает контраст там, где под плашкой оказался светлый кадр.
+*/
+.hyb-cs__badge {
+  position: absolute;
+  top: var(--hyb-s-2);
+  left: var(--hyb-s-2);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--hyb-r-pill);
+  background: var(--hyb-glass);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-size: var(--hyb-t-micro);
+  font-weight: 700;
+  letter-spacing: var(--hyb-ls-label);
+  text-transform: uppercase;
+  color: var(--hyb-accent-text);
+}
+
+/* Бейдж кадра героя стоит справа — так в обоих макетах: слева над кадром
+   уже идёт колонка с текстом, и плашка спорила бы с ней по чтению. */
+.hyb-cs__shot .hyb-cs__badge {
+  left: auto;
+  right: var(--hyb-s-2);
+}
+
+/* Чип персонажа — снизу слева, набран крупнее плашки: это подпись к
+   портрету, а не служебная метка формата. */
+.hyb-cs__chip {
+  position: absolute;
+  left: var(--hyb-s-2);
+  bottom: var(--hyb-s-2);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--hyb-r-pill);
+  background: var(--hyb-glass);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-size: var(--hyb-t-small);
+  font-weight: 600;
+  color: var(--hyb-ink);
+}
+
+/* --- Плеер --------------------------------------------------------------- */
+
+/*
+  Панель своя, а не нативная. Кадр в фигуре кадрируется по контейнеру, и
+  панель браузера, которая рисуется внутри самого видео, уезжала за границу
+  фигуры: перемотать ролик было нечем.
+
+  Пока ролик не запущен, видео прозрачно и не ловит указатель — под ним
+  стоит постер, тот же кадр с плашкой формата.
+*/
 .hyb-cs__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* Видео лежит поверх постера и включается по кнопке. preload="none" —
-   иначе браузер тянет файл при каждом открытии страницы кейса. */
-.hyb-cs__video {
   opacity: 0;
   pointer-events: none;
 }
 
-.hyb-cs__media.is-playing .hyb-cs__video {
+.hyb-cs__shot.is-playing .hyb-cs__video {
   opacity: 1;
   pointer-events: auto;
+  /* contain, а не cover: при запуске скрипт подгоняет пропорцию фигуры под
+     ролик, и обрезать больше нечего — а если пропорция не пришла, лучше
+     показать кадр целиком, чем срезать ему края. */
+  object-fit: contain;
+  background: var(--hyb-dark);
 }
 
 .hyb-cs__play {
@@ -2702,98 +3404,410 @@ html {
   box-shadow: var(--hyb-shadow-lift);
 }
 
-.hyb-cs__media.is-playing .hyb-cs__play {
+.hyb-cs__shot.is-playing .hyb-cs__play {
   display: none;
 }
 
-/* --- Блоки Challenge / Solution / Production / Result --------------------- */
+/* Панель: стекло поверх нижнего края кадра, как у плашек формата выше. */
+.hyb-player {
+  position: absolute;
+  left: var(--hyb-s-2);
+  right: var(--hyb-s-2);
+  bottom: var(--hyb-s-2);
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: var(--hyb-s-2);
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--hyb-r-pill);
+  background: rgba(35, 30, 41, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+}
+
+.hyb-player__btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background var(--hyb-dur) var(--hyb-ease);
+}
+
+.hyb-player__btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Обе иконки состояния лежат в кнопке, показ переключает состояние фигуры —
+   скрипту не приходится собирать svg строками мимо icons.js. */
+.hyb-player__ico--on-play,
+.hyb-player__ico--on-muted,
+.hyb-player__ico--on-full {
+  display: none;
+}
+
+.hyb-cs__shot.is-running .hyb-player__ico--on-play {
+  display: block;
+}
+
+.hyb-cs__shot.is-running .hyb-player__ico--on-pause {
+  display: none;
+}
+
+.hyb-cs__shot.is-muted .hyb-player__ico--on-muted {
+  display: block;
+}
+
+.hyb-cs__shot.is-muted .hyb-player__ico--on-loud {
+  display: none;
+}
+
+.hyb-cs__shot:fullscreen .hyb-player__ico--on-full {
+  display: block;
+}
+
+.hyb-cs__shot:fullscreen .hyb-player__ico--on-window {
+  display: none;
+}
+
+.hyb-player__time {
+  font-size: var(--hyb-t-micro);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--hyb-ls-micro);
+  white-space: nowrap;
+  opacity: 0.85;
+}
 
 /*
-  Двухколоночная раскладка: слева название этапа, справа текст. Читается как
-  разбор проекта, а не как четыре одинаковые карточки — линия между блоками
-  делает работу разделителя без лишней рамки.
+  Ползунок. Оформление у дорожки и бегунка задаётся отдельно для WebKit и
+  Firefox — общего стандартного селектора для внутренностей range нет.
 */
-.hyb-cs__blocks {
-  display: grid;
-  gap: 0;
+.hyb-player__seek {
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
-.hyb-cs__block {
+/* Граница градиента едет вместе со значением: у range нет отдельного
+   элемента под «уже проигранное», и залить его больше нечем. */
+.hyb-player__seek::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: var(--hyb-r-pill);
+  background: linear-gradient(
+    to right,
+    #ffffff var(--hyb-seek, 0%),
+    rgba(255, 255, 255, 0.3) var(--hyb-seek, 0%)
+  );
+}
+
+.hyb-player__seek::-moz-range-track {
+  height: 4px;
+  border-radius: var(--hyb-r-pill);
+  background: linear-gradient(
+    to right,
+    #ffffff var(--hyb-seek, 0%),
+    rgba(255, 255, 255, 0.3) var(--hyb-seek, 0%)
+  );
+}
+
+.hyb-player__seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.hyb-player__seek::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+/* Фокус виден на тёмной панели: обычная контурная подсветка темы на ней
+   теряется. */
+.hyb-player__seek:focus-visible,
+.hyb-player__btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* В полноэкранном режиме фигура растягивается на экран, и кадр должен
+   вписаться целиком, а не обрезаться по пропорции страницы. */
+.hyb-cs__shot:fullscreen {
+  aspect-ratio: auto !important;
+  border-radius: 0;
+  background: var(--hyb-dark);
+}
+
+.hyb-cs__shot:fullscreen .hyb-cs__video {
+  object-fit: contain;
+}
+
+/* --- Другие кейсы -------------------------------------------------------- */
+
+.hyb-cs__related {
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--hyb-s-2);
-  padding-block: clamp(1.75rem, 1rem + 2.5vw, 3rem);
-  border-top: 1px solid var(--hyb-line);
+  margin: var(--hyb-s-4) 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.hyb-cs__block:first-child {
-  border-top: 0;
-  padding-top: 0;
+.hyb-cs__related-card {
+  position: relative;
+  display: block;
+  border-radius: var(--hyb-r-media);
+  overflow: hidden;
+  background: var(--hyb-bg-alt);
+  text-decoration: none;
 }
 
-@media (min-width: 48rem) {
-  .hyb-cs__block {
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
-    gap: clamp(2rem, 1rem + 3vw, 4rem);
-    align-items: start;
+.hyb-cs__related-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform var(--hyb-dur-zoom) var(--hyb-ease-out);
+}
+
+.hyb-cs__related-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Круглая стрелка в углу — единственный элемент карточки, который меняет
+   цвет при наведении: подпись бренда остаётся плашкой, как на кадрах выше. */
+.hyb-cs__related-go {
+  position: absolute;
+  right: var(--hyb-s-2);
+  bottom: var(--hyb-s-2);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--hyb-glass);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--hyb-ink);
+  transition: background var(--hyb-dur) var(--hyb-ease),
+    color var(--hyb-dur) var(--hyb-ease);
+}
+
+.hyb-cs__related-card:hover .hyb-cs__related-go {
+  background: var(--hyb-accent);
+  color: #ffffff;
+}
+
+.hyb-cs__related-all {
+  margin: var(--hyb-s-4) 0 0;
+  text-align: center;
+}
+
+/* --- Призыв -------------------------------------------------------------- */
+
+.hyb-cs__cta {
+  position: relative;
+  padding: clamp(var(--hyb-s-5), 6vw, var(--hyb-s-7)) var(--hyb-s-4);
+  border-radius: var(--hyb-r-xl);
+  background: linear-gradient(135deg, #faf7fc 0%, #f5f1f8 55%, #f7f2f6 100%);
+  text-align: center;
+}
+
+.hyb-cs__cta-title {
+  margin: 0 0 var(--hyb-s-2);
+  font-family: var(--hyb-font-display);
+  font-size: var(--hyb-t-h2-lg);
+  line-height: var(--hyb-lh-tight);
+  font-weight: 700;
+}
+
+.hyb-cs__cta-text {
+  margin: 0 0 var(--hyb-s-4);
+  color: var(--hyb-ink-muted);
+}
+
+/* Искры призыва — абсолютом по краям панели: в потоке они разрывали бы
+   центрированную колонку заголовок → подзаголовок → кнопка. */
+.hyb-cs__cta .hyb-cs__spark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hyb-cs__cta .hyb-cs__spark--left {
+  left: clamp(var(--hyb-s-3), 5vw, var(--hyb-s-6));
+}
+
+.hyb-cs__cta .hyb-cs__spark--right {
+  right: clamp(var(--hyb-s-3), 5vw, var(--hyb-s-6));
+  transform: translateY(-50%) scaleX(-1);
+}
+
+/* ======================================================================
+   Узкие экраны
+
+   Порядок переломов идёт от того, что ломается первым: мозаика на 1024,
+   потому что четыре плитки по 196px превращаются в полосу; split и
+   портретный герой — на 900; сетки по три и по четыре — на 700.
+   ====================================================================== */
+
+@media (max-width: 1024px) {
+  /* Пять шагов в ряд дают на планшете колонки по 130px — текст в них рвётся
+     по слогам. Ряд складывается вдвое, дуги при этом убираются: они ведут
+     вправо, а следующий шаг оказывается снизу. */
+  .hyb-cs__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--hyb-s-3);
+  }
+
+  .hyb-cs__step-link {
+    display: none;
+  }
+
+  /* Боковая колонка уходит под карточки персонажей на всю ширину */
+  .hyb-cs__cast {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hyb-cs__cast-aside {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
   }
 }
 
-.hyb-cs__block-title {
-  font-family: var(--hyb-font-display);
-  font-weight: 800;
-  font-size: var(--hyb-t-h3);
-  color: var(--hyb-ink);
+@media (max-width: 900px) {
+  .hyb-cs__story,
+  .hyb-cs__outcome {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Пометка перестаёт быть подписью к кадру справа и встаёт над ним слева */
+  .hyb-cs__note {
+    justify-self: start;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .hyb-cs__decor--arrowToMedia {
+    margin-right: 0;
+    transform: scaleX(-1);
+  }
+
+  .hyb-cs__outcome-arrow {
+    display: none;
+  }
+
+  .hyb-cs__hero--portrait .hyb-cs__hero-grid,
+  .hyb-cs__split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hyb-cs__split {
+    gap: var(--hyb-s-3);
+  }
+
+  /* Кадр героя на узком экране не должен занимать весь экран по высоте:
+     вертикальный кадр 9:16 во всю ширину телефона выше самого экрана. */
+  .hyb-cs__hero--portrait .hyb-cs__shot {
+    max-width: 420px;
+  }
+
+  .hyb-cs__panel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--hyb-s-4) 0;
+  }
+
+  /* При двух колонках граница нужна только у правой в каждой паре */
+  .hyb-cs__panel-item + .hyb-cs__panel-item {
+    border-left: 0;
+  }
+
+  .hyb-cs__panel-item:nth-child(even) {
+    border-left: 1px solid var(--hyb-line);
+  }
 }
 
-.hyb-cs__block-lead {
-  margin-top: 0.35rem;
-  font-size: var(--hyb-t-small);
-  color: var(--hyb-ink-faint);
+@media (max-width: 700px) {
+  .hyb-cs__steps,
+  .hyb-cs__cast,
+  .hyb-cs__cast-aside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Разделитель между колонками сравнения становится горизонтальным:
+     вертикальный при одной колонке повис бы слева от текста. */
+  .hyb-cs__compare {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hyb-cs__compare-col + .hyb-cs__compare-col {
+    padding-left: 0;
+    padding-top: var(--hyb-s-3);
+    border-left: 0;
+    border-top: 1px dashed var(--hyb-accent-soft);
+  }
+
+  /* Четыре колонки мета превращаются в две: «Video orizontal 16:9» в колонке
+     шириной 80px переносится посимвольно. */
+  .hyb-cs__meta--row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hyb-cs__meta--row .hyb-cs__meta-row:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .hyb-cs__chars,
+  .hyb-cs__cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hyb-cs__related {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Подпись мета-строки уходит над значением: 150px колонка и значение
+     «Video orizontal 16:9» вместе не помещаются в 320px. */
+  .hyb-cs__meta-row {
+    grid-template-columns: 46px minmax(0, 1fr);
+    row-gap: 0.15rem;
+  }
+
+  .hyb-cs__meta-label {
+    grid-column: 2;
+  }
+
+  .hyb-cs__meta-value {
+    grid-column: 2;
+  }
 }
 
-.hyb-cs__block-text {
-  font-size: var(--hyb-t-lead);
-  line-height: 1.6;
-  color: var(--hyb-ink-muted);
-  max-width: 62ch;
-}
+@media (max-width: 480px) {
+  .hyb-cs__panel-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 
-/* --- Следующий кейс ------------------------------------------------------- */
-
-.hyb-cs__next {
-  display: block;
-  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
-  border-radius: var(--hyb-r-card);
-  background: var(--hyb-bg);
-  transition: transform var(--hyb-dur) var(--hyb-ease),
-    box-shadow var(--hyb-dur) var(--hyb-ease);
-}
-
-.hyb-cs__next:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--hyb-shadow-card);
-}
-
-.hyb-cs__next-title {
-  display: flex;
-  align-items: center;
-  gap: 0.6em;
-  font-family: var(--hyb-font-display);
-  font-weight: 800;
-  font-size: var(--hyb-t-h2);
-  line-height: 1.15;
-  color: var(--hyb-ink);
-}
-
-.hyb-cs__next:hover .hyb-cs__next-title {
-  color: var(--hyb-accent);
-}
-
-.hyb-cs__next svg {
-  flex: none;
-  transition: transform var(--hyb-dur) var(--hyb-ease);
-}
-
-.hyb-cs__next:hover svg {
-  transform: translate(3px, -3px);
+  .hyb-cs__panel-item:nth-child(even) {
+    border-left: 0;
+  }
 }
