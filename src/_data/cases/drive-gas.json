@@ -1,5 +1,5 @@
 {
-  "_comment": "Тексты ветки page сняты с макета PIXTOON_DriveGas_Case_Study_HQ.png дословно. Английские — перевод. Поля challenge/solution/production/result на странице больше не рендерятся: в макете этих блоков нет. Оставлены как источник формулировок и для витрины.",
+  "_comment": "Тексты ветки page сняты с документа клиента PIXTOON_Hybrid_Production_Case_Studies_RO.docx (29.08.2026): румынские дословно, английские — перевод. Порядок секций у всех пяти одинаковый: рассказ, перечень работ, процесс, сравнение, фраза, кадры, итог, условия применимости. Поля challenge/solution/production/result убраны вместе со старыми текстами: они нигде не рендерились, а формулировки в них («AI-ул работал среды и визуалы продукта») прямо противоречат новой позиции документа — «Nu vindem AI».",
   "slug": "drive-gas",
   "order": "01",
   "brand": "Drive Gas",
@@ -13,15 +13,12 @@
   },
   "en": {
     "title": "Drive Gas",
-    "tags": "AI hybrid / 3D character / Product / Environment",
-    "excerpt": "A branded 3D world and character-driven commercial created through a hybrid AI + animation pipeline.",
-    "challenge": "Give a fuel retailer a loyalty campaign that reads as a story rather than a discount banner — and put a recognisable face on the brand.",
-    "solution": "We built a branded 3D world and a host character to carry it. AI handled environment and product visuals; the character performance and brand geometry stayed hand-directed.",
-    "production": "Concept and script in-house, character design and 3D development, AI-assisted environments and product shots, animation, compositing, sound design and final master.",
-    "result": "A campaign world that can be re-entered for the next promo instead of being rebuilt from zero.",
+    "tags": "Mascot / Explainer campaign / Hybrid 3D",
+    "card": "From a single image to a finished spot.",
+    "excerpt": "Drive Gas had a picture of a character and a promotion to explain. We turned the drawing into a brand hero who carries the whole campaign on his own.",
     "page": {
-      "subtitle": "One brand character. Many campaigns.",
-      "lead": "The Drive Gas character becomes a recurring communicator for the brand — recognisable, flexible and ready to explain offers and services fast.",
+      "subtitle": "A single image. A character able to carry a whole campaign.",
+      "lead": "Drive Gas came to us with two things: the image of a character and the wish to explain the new bonus scheme at its filling stations.",
       "meta": [
         {
           "label": "Client",
@@ -30,12 +27,12 @@
         },
         {
           "label": "Objective",
-          "value": "Recurring campaigns",
+          "value": "Explainer campaign",
           "icon": "arrow"
         },
         {
           "label": "Production",
-          "value": "Hybrid animation",
+          "value": "Hybrid 3D",
           "icon": "spark"
         },
         {
@@ -46,101 +43,134 @@
       ],
       "heroBadge": "VIDEO 16:9",
       "panel": {
-        "title": "More communication from the same visual universe.",
+        "title": "What the brand gained from this campaign.",
         "items": [
           {
             "icon": "bolt",
-            "label": "Faster",
-            "text": "New campaigns in a shorter time."
-          },
-          {
-            "icon": "ring",
-            "label": "Cost optimised",
-            "text": "More content from better-used resources."
+            "label": "A character of its own",
+            "text": "A still image became a hero we can use again."
           },
           {
             "icon": "check",
-            "label": "Clear message",
-            "text": "Offers become easier to understand."
+            "label": "A clear mechanic",
+            "text": "The promotion turned into a story people follow."
+          },
+          {
+            "icon": "ring",
+            "label": "Voice and music",
+            "text": "The spot has a sound identity of its own."
           },
           {
             "icon": "diamond",
-            "label": "Constant identity",
-            "text": "The same presence in every campaign."
+            "label": "Campaigns that continue",
+            "text": "The character can come back in new episodes."
           }
         ]
       },
       "sections": [
         {
           "type": "story",
-          "title": "A character who sells without sounding like an ad.",
-          "underline": "without sounding like an ad",
+          "title": "The character existed. The personality did not.",
+          "underline": "The personality did not",
           "slot": "story",
           "text": [
-            "We built a brand communicator who explains offers, services and promotions in the customer's own language.",
-            "The same character returns in every campaign, so audiences recognise him from the first frame."
+            "The character existed as a picture, but it had no personality, no voice and no world of its own yet.",
+            "Our job was to turn it into a real brand hero — one who could carry the story and explain the mechanics of the promotion in plain words."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "What we built",
+          "slot": "brief",
+          "badge": "The promo mechanic",
+          "flip": true,
+          "text": [
+            "We developed the character's expressiveness and behaviour, built the story around it, and turned commercial information into a spot that is easy to follow."
+          ],
+          "items": [
+            "Character development",
+            "Concept and script",
+            "The visual world and the scenes",
+            "Animation",
+            "The character's voice",
+            "Lyrics and music",
+            "Final post-production"
           ]
         },
         {
           "type": "process"
         },
         {
-          "type": "compare"
+          "type": "compare",
+          "title": "Why we chose hybrid production",
+          "text": [
+            "Made entirely through classic 3D modelling, rigging, animation and rendering, a comparable spot would have cost roughly three times as much.",
+            "The hybrid pipeline let us keep the 3D look and the character's identity while producing the spot far faster and at a workable budget."
+          ]
         },
         {
           "type": "statement",
-          "text": "AI accelerates the campaign.\nThe character still belongs to the brand."
+          "text": "Already have a character?\nWe can give it a voice, a personality and a whole world."
         },
         {
           "type": "cards",
-          "title": "Different campaigns. The same character.",
+          "title": "The campaign, in three posts.",
+          "cols": 3,
           "items": [
             {
               "slot": "card-1",
-              "badge": "Client benefits"
+              "badge": "The campaign character"
             },
             {
               "slot": "card-2",
-              "badge": "Brand story"
+              "badge": "The station network"
             },
             {
               "slot": "card-3",
-              "badge": "Promo"
+              "badge": "At the pump"
             }
           ]
         },
         {
           "type": "outcome",
           "title": {
-            "a": "More campaigns.",
-            "outline": "Less production time.",
-            "b": "The same character."
+            "a": "An image became a character.",
+            "outline": "A character became a campaign.",
+            "b": "The campaign can continue."
           },
           "checks": [
-            "Spots, promotions and materials for the network.",
-            "A hybrid flow that shortens the path from brief to delivery.",
-            "A consistent brand presence in every appearance."
+            "A still image became a character we can use again.",
+            "A promotional mechanic became a story that is easy to understand.",
+            "The spot gained its own voice and musical identity.",
+            "The character can return in new campaigns and episodes."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "This model can work for your brand if:",
+          "items": [
+            "You already have a drawing or an image of a mascot.",
+            "You want to explain a promotion, a product or a service.",
+            "You need a spot quickly, but with an identity of its own.",
+            "You want the character to become a recurring communication tool."
           ]
         }
       ],
       "cta": {
-        "title": "Already have a brand character?",
-        "text": "We can turn it into a content universe that keeps growing."
+        "title": "Let's look at what you already have.",
+        "text": "Send us the character, the sketch, or just the idea — we'll tell you what can be built from it."
       },
       "annotation": "a frame from the campaign spot ♡"
     }
   },
   "ro": {
     "title": "Drive Gas",
-    "tags": "Hibrid AI / Personaj 3D / Produs / Mediu",
-    "excerpt": "O lume 3D branduită și un comercial condus de personaje, creat printr-un pipeline hibrid AI + animație.",
-    "challenge": "Să transformăm o campanie de loialitate într-o poveste, nu într-un banner cu reduceri — și să dăm brandului un chip memorabil.",
-    "solution": "Am construit o lume 3D branduită și un personaj-gazdă care o duce mai departe. AI-ul a lucrat mediile și vizualele de produs; jocul personajului și geometria brandului au rămas regizate manual.",
-    "production": "Concept și scenariu in-house, design de personaj și dezvoltare 3D, medii și cadre de produs asistate de AI, animație, compoziție, sound design și master final.",
-    "result": "O lume de campanie în care se poate reveni pentru următoarea promoție, în loc să fie reconstruită de la zero.",
+    "tags": "Mascotă / Campanie explicativă / Hybrid 3D",
+    "card": "Dintr-o imagine într-un spot complet.",
+    "excerpt": "Drive Gas avea imaginea unui personaj și o promoție de explicat. Am transformat desenul într-un erou de brand care duce singur întreaga campanie.",
     "page": {
-      "subtitle": "Un personaj de brand. Mai multe campanii.",
-      "lead": "Personajul Drive Gas devine un comunicator recurent pentru brand — recognoscibil, flexibil și pregătit să explice rapid oferte și servicii.",
+      "subtitle": "O singură imagine. Un personaj capabil să conducă întreaga campanie.",
+      "lead": "Drive Gas a venit la noi cu două lucruri: imaginea unui personaj și dorința de a explica noul sistem de bonusuri al stațiilor sale de alimentare.",
       "meta": [
         {
           "label": "Client",
@@ -149,12 +179,12 @@
         },
         {
           "label": "Obiectiv",
-          "value": "Campanii recurente",
+          "value": "Campanie explicativă",
           "icon": "arrow"
         },
         {
           "label": "Producție",
-          "value": "Hybrid animation",
+          "value": "Hybrid 3D",
           "icon": "spark"
         },
         {
@@ -165,86 +195,122 @@
       ],
       "heroBadge": "VIDEO 16:9",
       "panel": {
-        "title": "Mai multă comunicare din același univers vizual.",
+        "title": "Ce a câștigat brandul din această campanie.",
         "items": [
           {
             "icon": "bolt",
-            "label": "Mai rapid",
-            "text": "Campanii noi într-un timp mai scurt."
-          },
-          {
-            "icon": "ring",
-            "label": "Cost optimizat",
-            "text": "Mai mult conținut cu resurse mai bine folosite."
+            "label": "Personaj propriu",
+            "text": "O imagine statică a devenit un erou reutilizabil."
           },
           {
             "icon": "check",
-            "label": "Mesaj clar",
-            "text": "Ofertele devin mai ușor de înțeles."
+            "label": "Mecanică limpede",
+            "text": "Promoția a devenit o poveste ușor de înțeles."
+          },
+          {
+            "icon": "ring",
+            "label": "Voce și muzică",
+            "text": "Spotul are propria identitate sonoră."
           },
           {
             "icon": "diamond",
-            "label": "Identitate constantă",
-            "text": "Aceeași prezență în fiecare campanie."
+            "label": "Campanii care continuă",
+            "text": "Personajul poate reveni în episoade noi."
           }
         ]
       },
       "sections": [
         {
           "type": "story",
-          "title": "Un personaj care vinde fără să pară reclamă.",
-          "underline": "fără să pară reclamă",
+          "title": "Personajul exista. Personalitatea, încă nu.",
+          "underline": "Personalitatea, încă nu",
           "slot": "story",
           "text": [
-            "Am construit un comunicator de brand care explică oferte, servicii și promoții pe limba clientului.",
-            "Același personaj revine în fiecare campanie, așa că publicul îl recunoaște din primul cadru."
+            "Personajul exista vizual, dar nu avea încă o personalitate, o voce sau o lume proprie.",
+            "Rolul nostru a fost să-l transformăm într-un adevărat erou de brand, capabil să conducă povestea și să explice simplu mecanica promoției."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Ce am construit",
+          "slot": "brief",
+          "badge": "Mecanica promoției",
+          "flip": true,
+          "text": [
+            "Am dezvoltat expresivitatea și comportamentul personajului, am creat povestea din jurul său și am transformat informația comercială într-un spot ușor de urmărit."
+          ],
+          "items": [
+            "Dezvoltarea personajului",
+            "Conceptul și scenariul",
+            "Lumea vizuală și scenele",
+            "Animația",
+            "Vocea personajului",
+            "Versurile și melodia",
+            "Post-producția finală"
           ]
         },
         {
           "type": "process"
         },
         {
-          "type": "compare"
+          "type": "compare",
+          "title": "De ce am ales producția hibridă",
+          "text": [
+            "Realizat integral prin modelare, rigging, animație și randare 3D clasică, un spot similar ar fi presupus un buget de aproximativ trei ori mai mare.",
+            "Pipeline-ul hibrid ne-a permis să păstrăm aspectul 3D și identitatea personajului, dar să producem spotul mult mai rapid și la un cost accesibil."
+          ]
         },
         {
           "type": "statement",
-          "text": "AI-ul accelerează campania.\nPersonajul rămâne al brandului."
+          "text": "Ai deja un personaj?\nNoi îi putem da voce, personalitate și o lume întreagă."
         },
         {
           "type": "cards",
-          "title": "Campanii diferite. Același personaj.",
+          "title": "Campania, în trei postări.",
+          "cols": 3,
           "items": [
             {
               "slot": "card-1",
-              "badge": "Beneficii client"
+              "badge": "Personajul campaniei"
             },
             {
               "slot": "card-2",
-              "badge": "Brand story"
+              "badge": "Rețeaua de stații"
             },
             {
               "slot": "card-3",
-              "badge": "Promoție"
+              "badge": "La pompă"
             }
           ]
         },
         {
           "type": "outcome",
           "title": {
-            "a": "Mai multe campanii.",
-            "outline": "Mai puțin timp de producție.",
-            "b": "Același personaj."
+            "a": "O imagine a devenit personaj.",
+            "outline": "Un personaj a devenit campanie.",
+            "b": "Campania poate continua."
           },
           "checks": [
-            "Spoturi, promoții și materiale pentru rețea.",
-            "Un flux hibrid care scurtează drumul de la brief la livrare.",
-            "O prezență de brand consecventă în fiecare apariție."
+            "O imagine statică a devenit un personaj reutilizabil.",
+            "O mecanică promoțională a devenit o poveste ușor de înțeles.",
+            "Spotul a primit propria voce și identitate muzicală.",
+            "Personajul poate reveni în campanii și episoade noi."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Acest model poate funcționa pentru brandul tău dacă:",
+          "items": [
+            "Ai deja desenul sau imaginea unei mascote.",
+            "Vrei să explici o promoție, un produs sau un serviciu.",
+            "Ai nevoie de un spot rapid, dar cu identitate proprie.",
+            "Vrei să transformi personajul într-un instrument recurent de comunicare."
           ]
         }
       ],
       "cta": {
-        "title": "Ai deja un personaj de brand?",
-        "text": "Îl putem transforma într-un univers de conținut care crește."
+        "title": "Hai să vedem ce ai deja.",
+        "text": "Trimite-ne personajul, schița sau doar ideea — îți spunem ce se poate construi din ea."
       },
       "annotation": "cadru din spotul de campanie ♡"
     }

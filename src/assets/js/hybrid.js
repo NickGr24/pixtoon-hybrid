@@ -22,6 +22,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     initReveal();
     initHoverVideo();
+    initClips();
     initCarousel();
     initCasePlayer();
     initBurger();
@@ -154,6 +155,52 @@
         holder.classList.remove("is-playing");
         video.pause();
       });
+    });
+  }
+
+  /* --- Закулисные клипы --------------------------------------------------- */
+
+  /**
+   * Куски записей экрана из продакшена: моделирование по референсу, playblast,
+   * риггинг. Играют беззвучно по кругу, пока видны, и останавливаются, когда
+   * уезжают за экран — иначе четыре декодера работали бы всю прокрутку.
+   *
+   * Источник подставляется при первом появлении, а не в разметке: клип весит
+   * до 750 КБ, а до него на странице ещё половина текста. Пока он не нужен,
+   * виден постер — тот самый кадр, с которого клип и начинается.
+   *
+   * Ничего не делаем в трёх случаях, и во всех трёх постер остаётся картинкой:
+   * запрошено уменьшение движения, включена экономия трафика, нет
+   * IntersectionObserver.
+   */
+  function initClips() {
+    var clips = document.querySelectorAll("[data-hyb-clip]");
+    if (!clips.length || reduced || !("IntersectionObserver" in window)) return;
+
+    var conn = navigator.connection;
+    if (conn && conn.saveData) return;
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          var video = entry.target;
+          if (!entry.isIntersecting) {
+            video.pause();
+            return;
+          }
+          if (!video.src) video.src = video.dataset.src;
+          var p = video.play();
+          if (p && p.catch) p.catch(function () {});
+        });
+      },
+      /* Четверть кадра, а не появление первого пикселя: клип, начавший
+         играть краем у нижней границы окна, к моменту, когда его видно
+         целиком, успевает пройти половину петли. */
+      { threshold: 0.25 }
+    );
+
+    clips.forEach(function (video) {
+      io.observe(video);
     });
   }
 

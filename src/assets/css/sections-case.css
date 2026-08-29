@@ -332,12 +332,18 @@
 
 .hyb-cs__cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--hyb-s-2);
   margin: var(--hyb-s-4) 0 0;
   padding: 0;
   list-style: none;
 }
+
+.hyb-cs__cards--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Четыре в ряд — только для листов персонажей, где каждый и так широкий
+   16:9. Ставим их 2x2, а не в строку: шесть ракурсов, сжатые до 305px,
+   перестают читаться как ракурсы. */
+.hyb-cs__cards--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 /* --- Рукописный слой ---------------------------------------------------- */
 
@@ -438,14 +444,50 @@
   line-height: var(--hyb-lh-relaxed);
 }
 
+/*
+  Кадр меняется местами с текстом. Переставить нужно и порядок, и ширины:
+  колонки здесь неравные (442 и 736), и один только order отдавал кадру
+  узкую колонку, а тексту широкую — перевёрнутая секция выглядела не
+  зеркалом обычной, а другой вёрсткой.
+*/
+.hyb-cs__story--flip {
+  grid-template-columns: minmax(0, 736fr) minmax(0, 442fr);
+}
+
+.hyb-cs__story--flip .hyb-cs__story-text {
+  order: 2;
+}
+
+/*
+  Перечень без кадра: слева заголовок с вводным абзацем, справа сам список в
+  две колонки. Правая доля шире левой ровно так же, как у кадра, — две
+  соседние секции с разной сеткой читались бы как две разные страницы.
+*/
+.hyb-cs__story--plain {
+  align-items: start;
+}
+
+.hyb-cs__checks--split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--hyb-s-2) var(--hyb-s-4);
+}
+
+/* Список внутри текстовой колонки — отдельный блок, а не продолжение
+   абзаца: без отступа он прилипал к последней строке лида. */
+.hyb-cs__story-text .hyb-cs__checks {
+  margin-top: var(--hyb-s-3);
+}
+
 .hyb-cs__story-media {
+  position: relative;
   margin: 0;
   border-radius: var(--hyb-r-media);
   overflow: hidden;
   background: var(--hyb-bg-alt);
 }
 
-.hyb-cs__story-media img {
+.hyb-cs__story-media img,
+.hyb-cs__clip {
   display: block;
   width: 100%;
   height: auto;
@@ -462,15 +504,27 @@
 .hyb-cs__steps {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 12px;
+  /* 28px, а не 12: в зазор встаёт дуга к следующему шагу. При 12 она
+     выходила за него и ложилась на соседнюю карточку, а при 20 помещалась,
+     но была так мелка, что не читалась. Колонка теряет 11px из 244 — это
+     дешевле, чем декор, которого не видно. */
+  gap: 28px;
   margin: var(--hyb-s-4) 0 0;
   padding: 0;
   list-style: none;
-  counter-reset: none;
 }
 
+/*
+  Отступ снизу — место для дуги. Без него текст доходит до самого низа
+  карточки, и дуга ложилась прямо на последнюю строку.
+
+  Колонки грида по умолчанию растягиваются до высоты самой высокой, поэтому
+  низ у всех карточек ряда общий и дуги встают на одну линию — независимо от
+  того, две строки текста в колонке или три.
+*/
 .hyb-cs__step {
   position: relative;
+  padding-bottom: 1.5rem;
 }
 
 .hyb-cs__step-media {
@@ -510,16 +564,16 @@
   color: var(--hyb-ink-muted);
 }
 
-/* Дуга к следующему шагу висит в зазоре между колонками, поэтому вынесена
-   за правый край карточки и не влияет на её высоту. */
+/* Дуга к следующему шагу стоит в зазоре между колонками и в отступе под
+   текстом: по ширине равна зазору, по высоте — ниже последней строки. */
 .hyb-cs__step-link {
   position: absolute;
-  right: -22px;
-  bottom: 0.35rem;
-  width: 32px;
-  height: 11px;
-  color: var(--hyb-accent-soft);
-  stroke-width: 2.5;
+  right: -28px;
+  bottom: 0.25rem;
+  width: 28px;
+  height: 12px;
+  color: var(--hyb-accent);
+  stroke-width: 2.2;
 }
 
 /* Список с галочками: панель сравнения и блок итога. Кружок и текст —
@@ -573,70 +627,6 @@
   letter-spacing: var(--hyb-ls-label);
   text-transform: uppercase;
   color: var(--hyb-accent-text);
-}
-
-/* --- Персонажи с подписями ---------------------------------------------- */
-
-/* 230 / 229 / 268 — обмер: боковая колонка чуть шире карточек персонажей. */
-.hyb-cs__cast {
-  display: grid;
-  grid-template-columns: minmax(0, 230fr) minmax(0, 229fr) minmax(0, 268fr);
-  gap: var(--hyb-s-2);
-  margin-top: var(--hyb-s-4);
-}
-
-.hyb-cs__cast-people {
-  display: contents;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hyb-cs__person-media {
-  margin: 0 0 var(--hyb-s-2);
-  border-radius: var(--hyb-r-card);
-  overflow: hidden;
-  background: var(--hyb-bg-alt);
-}
-
-.hyb-cs__person-media img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.hyb-cs__person-name {
-  margin: 0 0 var(--hyb-s-1);
-  font-family: var(--hyb-font-display);
-  font-size: var(--hyb-t-h4);
-  font-weight: 700;
-  color: var(--hyb-accent-text);
-}
-
-.hyb-cs__person-text {
-  margin: 0;
-  font-size: var(--hyb-t-small);
-  line-height: var(--hyb-lh-snug);
-  color: var(--hyb-ink-muted);
-}
-
-.hyb-cs__cast-aside {
-  display: grid;
-  grid-template-rows: auto auto;
-  gap: var(--hyb-s-2);
-  align-content: start;
-}
-
-/* Одна плитка вместо двух растягивается на высоту колонки: прижатая к верху,
-   она оставляла под собой пустое место вровень с карточками персонажей, и
-   колонка читалась как незаполненная, а не как задуманная. */
-.hyb-cs__cast-aside:has(> :only-child) {
-  align-content: stretch;
-}
-
-.hyb-cs__cast-aside:has(> :only-child) .hyb-cs__tile img {
-  height: 100%;
-  object-fit: cover;
 }
 
 /* --- Итог --------------------------------------------------------------- */
@@ -1062,23 +1052,22 @@
   .hyb-cs__step-link {
     display: none;
   }
-
-  /* Боковая колонка уходит под карточки персонажей на всю ширину */
-  .hyb-cs__cast {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .hyb-cs__cast-aside {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: none;
-  }
 }
 
 @media (max-width: 900px) {
   .hyb-cs__story,
   .hyb-cs__outcome {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* В одну колонку кадр снова уходит под текст: order переставлял его
+     наверх, и заголовок секции оказывался под картинкой. */
+  .hyb-cs__story--flip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hyb-cs__story--flip .hyb-cs__story-text {
+    order: 0;
   }
 
   /* Пометка перестаёт быть подписью к кадру справа и встаёт над ним слева */
@@ -1128,9 +1117,12 @@
 }
 
 @media (max-width: 700px) {
-  .hyb-cs__steps,
-  .hyb-cs__cast,
-  .hyb-cs__cast-aside {
+  /* Перечень в две колонки на телефоне даёт по два слова в строке */
+  .hyb-cs__checks--split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hyb-cs__steps {
     grid-template-columns: minmax(0, 1fr);
   }
 

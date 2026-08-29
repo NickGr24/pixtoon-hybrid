@@ -38,6 +38,10 @@ const arg = (name, fallback) => {
 const SRC_DIR = arg("src", join(homedir(), "Downloads/Telegram Desktop"));
 const ONLY = arg("only", null);
 
+/* Пакет клиента «wep pagy hibrid» от 29.08.2026: посты кампаний, листы
+   персонажей, снимки продакшена. Путь с пробелом на конце — так в архиве. */
+const PKG_DIR = arg("pkg", join(homedir(), "Downloads/wep pagy hibrid "));
+
 /* ------------------------------------------------------------------ */
 /* Исходники                                                           */
 /* ------------------------------------------------------------------ */
@@ -67,6 +71,14 @@ function shot(n) {
 /** Кадр, уже лежащий в репозитории (у Microinvest своего исходника нет). */
 const repo = (p) => join(ROOT, "src/assets/img", p);
 
+/**
+ * Файл из пакета клиента — по его собственному имени из архива, с пробелами
+ * и заглавными как есть. Переименовать было бы приятнее, но тогда рецепт
+ * перестал бы совпадать с тем, что лежит в присланном zip, и следующая
+ * поставка потребовала бы сверять два списка имён вместо одного.
+ */
+const pkg = (rel) => join(PKG_DIR, rel);
+
 /* ------------------------------------------------------------------ */
 /* Пропорции слотов — сняты с макетов, см. spec                        */
 /* ------------------------------------------------------------------ */
@@ -79,15 +91,14 @@ const R = {
   tall: 3 / 5, //  вертикальная карточка кампании
 
   /*
-    Пропорции ниже подобраны под реальный материал, а не срисованы с
-    раскладки. У клиента под каждый слот был свой кадр; у нас исходники
-    Microinvest вертикальные (600x1075), и голова занимает в них 54% высоты.
-    Слот 4:3 отдаёт под кадр 42% — макушка срезалась не из-за промаха в
-    фокусе, а потому что не помещалась в принципе.
+    Две пропорции ниже подобраны под реальный материал, а не срисованы с
+    раскладки: исходники шагов процесса у Microinvest вертикальные
+    (600x1075), и голова занимает в них 54% высоты — прямоугольный слот
+    срезал бы макушку не из-за промаха в фокусе, а потому что она в него не
+    помещается.
   */
-  person: 4 / 5, //  карточка персонажа: 70% высоты портрета — голова и плечи
   step: 1, //  шаг процесса: квадрат вмещает голову любого из наших портретов
-  strip: 4 / 3, //  боковая плитка секции персонажей
+  strip: 4 / 3, //  кадр 4:3 — снимок площадки, афиша кампании
 };
 
 /* ------------------------------------------------------------------ */
@@ -110,7 +121,6 @@ const CASES = {
     /* Панорама 2.9:1 из раскладки брала от вертикального кадра 19% высоты и
        резала сцену по пояс. 16:9 берёт 31% — стол с персонажами целиком. */
     hero: { src: repo("cases/microinvest-family.jpg"), r: R.wide, w: 1600, focus: [0.5, 0], top: 0.32 },
-    story: { src: repo("cases/microinvest-family.jpg"), r: R.land, w: 1100, focus: [0.5, 0], top: 0.3 },
 
     "step-1": { src: repo("microinvest/tatal.jpg"), r: R.step, w: 600, focus: [0.5, 0], top: 0.03 },
     "step-2": { src: repo("microinvest/mama.jpg"), r: R.step, w: 600, focus: [0.5, 0], top: 0.01 },
@@ -118,38 +128,73 @@ const CASES = {
     "step-4": { src: repo("microinvest/fiica.jpg"), r: R.step, w: 600, focus: [0.5, 0], top: 0.08 },
     "step-5": { src: repo("cases/microinvest-family.jpg"), r: R.step, w: 800, focus: [0.5, 0], top: 0.28 },
 
-    "person-1": { src: repo("microinvest/mama.jpg"), r: R.person, w: 600, focus: [0.5, 0], top: 0 },
-    "person-2": { src: repo("microinvest/tatal.jpg"), r: R.person, w: 600, focus: [0.5, 0], top: 0.02 },
 
-    "strip-1": { src: repo("microinvest/fiica.jpg"), r: R.strip, w: 800, focus: [0.5, 0], top: 0.08 },
+    /*
+      Четыре turnaround-листа из пакета: отец, мать, дочь и кот, добавленный
+      в новом этапе кампании. Исходники ровно 16:9 (1672x941), поэтому режем
+      их не по содержимому, а только по размеру — шесть ракурсов в ряду
+      нельзя тронуть рамкой, не потеряв половину.
+    */
+    "sheet-1": { src: pkg("MICROINVEST/characters9.png"), r: R.wide, w: 900, focus: [0.5, 0.5] },
+    "sheet-2": { src: pkg("MICROINVEST/characters10.png"), r: R.wide, w: 900, focus: [0.5, 0.5] },
+    "sheet-3": { src: pkg("MICROINVEST/characters11.png"), r: R.wide, w: 900, focus: [0.5, 0.5] },
+    "sheet-4": { src: pkg("MICROINVEST/characters12.png"), r: R.wide, w: 900, focus: [0.5, 0.5] },
+
+    /* Снимок сцены в 3D-пакете: сетка, панели, таймлайн. Кейс утверждает,
+       что семью строили руками задолго до генеративных инструментов, и это
+       единственный кадр, который утверждение показывает, а не повторяет. */
+    craft: { src: pkg("MICROINVEST/post 3D clasic.jpg"), r: R.wide, w: 1100, focus: [0.5, 0.5] },
+
+    green: { src: pkg("MICROINVEST/AFTERMOVIE .png"), r: R.strip, w: 1100, focus: [0.5, 0.5] },
   },
 
+  /*
+    Карточки кампании больше не кадры из ролика, а три реальные публикации
+    из пакета: ключевой арт, сеть станций, заправка. Пропорция 3:4 у всех
+    трёх, потому что ряд плиток берёт высоту из файла: смешай 3:4 и 16:10 —
+    и низ у карточек разъедется.
+  */
   "drive-gas": {
     thumb: { src: shot(25), r: R.land, w: 640, focus: [0.5, 0.5] },
     hero: { src: shot(25), r: R.wide, w: 1600, focus: [0.5, 0.5] },
     story: { src: shot(24), r: R.land, w: 1100, focus: [0.5, 0.5] },
-    "card-1": { src: shot(23), r: R.wide, w: 840, focus: [0.5, 0.5] },
-    "card-2": { src: shot(22), r: R.wide, w: 840, focus: [0.5, 0.5] },
-    /* Тот же кадр, что и в герое. Приближение мягче прежнего 0.6: на нём
-       надпись «500 lei» разрезалась пополам и читалась как брак. */
-    /* Только персонаж, без надписи: любая рамка, задевающая «500 lei»,
-       разрезает цифры и читается как брак. */
-    "card-3": { src: shot(25), r: R.wide, w: 840, focus: [0.79, 0.5], zoom: 0.5 },
+
+    /* Верхняя часть ключевого арта: логотип и три плашки промо-механики
+       («600 L», скидка, баллы) — то, что кейс называет коммерческой
+       информацией, превращённой в историю. */
+    brief: { src: pkg("DRIVE GAS/post-33.png"), r: R.land, w: 1100, focus: [0.62, 0], top: 0 },
+
+    "card-1": { src: pkg("DRIVE GAS/post-33.png"), r: R.photo, w: 840, focus: [0.5, 0.5] },
+    /* Аэросъёмка вертикальная (3072x5504): 3:4 берёт 74% высоты, и top
+       поднимает рамку так, чтобы станция стояла в середине, а не тонула
+       между небом и передним планом дороги. */
+    "card-2": { src: pkg("DRIVE GAS/post10.jpg"), r: R.photo, w: 840, focus: [0.5, 0], top: 0.08 },
+    "card-3": { src: pkg("DRIVE GAS/post9.png"), r: R.photo, w: 840, focus: [0.5, 0], top: 0.12 },
   },
 
-  "medpark-doctor-buba": {
+  "medpark-mafa-girafa": {
     thumb: { src: shot(18), r: R.land, w: 640, focus: [0.5, 0], top: 0, trim: 0.14 },
     hero: { src: shot(18), r: R.wide, w: 1600, focus: [0.5, 0.5], trim: 0.14 },
     story: { src: shot(15), r: R.land, w: 1100, focus: [0.5, 0], top: 0, trim: 0.14 },
     pack: { src: shot(18), r: R.land, w: 1200, focus: [0.5, 0], top: 0, trim: 0.14 },
 
-    /* Исходники горизонтальные, поэтому 4:5 берёт всю доступную высоту и
-       голова помещается целиком — двигать нужно только по горизонтали. */
-    "person-1": { src: shot(12), r: R.person, w: 800, focus: [0.52, 0.5], trim: 0.14 },
-    "person-2": { src: shot(13), r: R.person, w: 800, focus: [0.46, 0.5], trim: 0.14 },
 
-    "strip-1": { src: shot(17), r: R.strip, w: 800, focus: [0.48, 0.5] },
-    "strip-2": { src: shot(16), r: R.strip, w: 800, focus: [0.42, 0.5] },
+    /*
+      Три возраста маскота в одном ряду: лист персонажа, 3D-модель, ростовая
+      кукла в коридоре больницы. Пропорция у всех 3:4 — ряд плиток берёт
+      высоту из файла.
+
+      У рендера head и trim: его прислали кадром вертикального видео, где
+      содержимое занимает 13–86.5% высоты, а остальное — чёрные поля. Доли
+      сняты профилем яркости по 200 строкам: на глазок взятые 12% оставляли
+      сверху чёрную полоску в пару пикселей, заметную на светлой плитке.
+    */
+    sheet: { src: pkg("MAFA GIRAFA /mafa girafa3.jpg"), r: R.photo, w: 840, focus: [0.5, 0], top: 0.03 },
+    render: {
+      src: pkg("MAFA GIRAFA /mafa girfa 2.jpg"),
+      r: R.photo, w: 840, focus: [0.5, 0], top: 0, head: 0.135, trim: 0.14,
+    },
+    mascot: { src: pkg("MAFA GIRAFA /mafa girafa4.jpg"), r: R.photo, w: 840, focus: [0.5, 0], top: 0.06 },
   },
 
   coccolino: {
@@ -162,6 +207,15 @@ const CASES = {
     "card-1": { src: shot(21), r: R.wide, w: 840, focus: [0.68, 0.5], zoom: 0.72 },
     "card-2": { src: shot(19), r: R.wide, w: 840, focus: [0.4, 0.5], zoom: 0.8 },
     "card-3": { src: shot(20), r: R.wide, w: 840, focus: [0.5, 0.5] },
+
+    /*
+      personaj-.png из пакета не берём. Это не готовый визуал акции, а
+      рабочая сборка: слово COCCOLINO наполовину закрыто лапой медведя, а
+      под ним стоит зелёная подложка хромакея. Показать целиком нельзя —
+      обрезанное слово читается как брак; вырезать медведя без слова тоже
+      нельзя — по горизонтали они перекрываются. Механику кампании на этой
+      странице несёт clip-test: тест действий персонажа из того же пакета.
+    */
   },
 
   "bere-chisinau": {
@@ -169,7 +223,6 @@ const CASES = {
        горизонтальная обрезка оставила бы от бутылки поясок в середине. */
     thumb: { src: shot(10), r: R.land, w: 640, focus: [0.5, 0], top: 0.2 },
     hero: { src: shot(10), r: R.portrait, w: 900, focus: [0.5, 0.5] },
-    story: { src: shot(9), r: R.photo, w: 900, focus: [0.5, 0], top: 0.14 },
     "card-1": { src: shot(8), r: R.tall, w: 640, focus: [0.44, 0], top: 0.3, zoom: 0.52 },
     "card-2": { src: shot(10), r: R.tall, w: 640, focus: [0.55, 0], top: 0.1, zoom: 0.88 },
     "card-3": { src: shot(9), r: R.tall, w: 640, focus: [0.5, 0.45] },
@@ -184,8 +237,14 @@ const CASES = {
  * Наибольший прямоугольник пропорции `ratio`, помещающийся в кадр и
  * сдвинутый к точке интереса.
  */
-function computeCrop(sw, sh, ratio, [fx, fy], trim = 0, zoom = 1, top = null) {
-  const usableH = Math.round(sh * (1 - trim));
+function computeCrop(sw, sh, ratio, [fx, fy], trim = 0, zoom = 1, top = null, head = 0) {
+  /* head и trim снимают долю сверху и снизу ДО расчёта рамки. У trim повод
+     был один — выжженные субтитры внизу кадров Doctor Buba. У head другой:
+     рендер жирафа прислали кадром вертикального видео, и содержимое в нём
+     занимает 12–86% высоты, остальное — чёрные поля. Без head любая рамка
+     тащила бы их внутрь и слот выглядел бы недокрашенным. */
+  const y0 = Math.round(sh * head);
+  const usableH = Math.round(sh * (1 - trim - head));
 
   let cw = Math.min(sw, usableH * ratio);
   let ch = cw / ratio;
@@ -214,7 +273,7 @@ function computeCrop(sw, sh, ratio, [fx, fy], trim = 0, zoom = 1, top = null) {
     w: cw,
     h: ch,
     x: clamp(fx * sw - cw / 2, sw - cw),
-    y: clamp(y, usableH - ch),
+    y: y0 + clamp(y, usableH - ch),
   };
 }
 
@@ -258,7 +317,7 @@ for (const [slug, slots] of Object.entries(CASES)) {
     if (!existsSync(s.src)) throw new Error(`Нет исходника: ${s.src}`);
 
     const { w: sw, h: sh } = probeSize(s.src);
-    const crop = computeCrop(sw, sh, s.r, s.focus, s.trim, s.zoom, s.top ?? null);
+    const crop = computeCrop(sw, sh, s.r, s.focus, s.trim, s.zoom, s.top ?? null, s.head);
 
     /* Ширину слота не раздуваем сверх того, что есть в исходнике: апскейл
        добавит килобайты и ни одного пикселя резкости. */

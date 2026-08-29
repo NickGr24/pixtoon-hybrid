@@ -1,5 +1,5 @@
 {
-  "_comment": "Тексты ветки page сняты со второй раскладки клиента (pagina test.png) дословно. Английские — перевод. Перенос строки в subtitle и statement стоит там же, где в макете. Секция process переопределяет общий текст из caseStudy.process: в раскладке шаги говорят про семью, а не про персонажей вообще.",
+  "_comment": "Тексты ветки page сняты с документа клиента PIXTOON_Hybrid_Production_Case_Studies_RO.docx (29.08.2026): румынские дословно, английские — перевод. Порядок секций у всех пяти одинаковый: рассказ, перечень работ, процесс, сравнение, фраза, кадры, итог, условия применимости. Поля challenge/solution/production/result убраны вместе со старыми текстами: они нигде не рендерились, а формулировки в них («AI-ул работал среды и визуалы продукта») прямо противоречат новой позиции документа — «Nu vindem AI».",
   "slug": "microinvest-family",
   "order": "04",
   "brand": "Microinvest",
@@ -12,17 +12,13 @@
     "preview": "/assets/img/cases/microinvest-family-preview.mp4"
   },
   "en": {
-    "title": "Familia Microinvest",
-    "tags": "Hand-built character / Trained AI",
-    "excerpt": "A family of characters built the classic way — fully modelled and rigged — and now animated with AI tools.",
-    "challenge": "Give a financial brand a cast of characters that stays recognisable across years of campaigns, not a one-off commercial.",
-    "solution": "The Microinvest family was modelled and rigged in classic 3D, with full animation controllers. That base is now driven by AI animation, so new scenes cost a fraction of a traditional shoot.",
-    "production": "Classic 3D modelling and rigging in-house, AI-assisted animation, compositing, sound and final master.",
-    "result": "A brand universe that can be extended continuously — reels, social spots and brand scenes — without rebuilding the characters each time.",
+    "title": "The Microinvest Family",
+    "tags": "Brand universe / Recurring content",
+    "card": "A family that can live episode after episode.",
+    "excerpt": "Three characters built by hand for Microinvest became a universe that can grow every month — with new episodes, new situations and new characters.",
     "page": {
-      "subtitle": "3D identity built the classic way.\nProduction accelerated with AI.",
-      "lead": "We brought Familia Microinvest into classic 3D animation and used AI tools to produce more content, faster, without losing the identity of the characters.",
-      "annotation": "a frame from the brand film ♡",
+      "subtitle": "From three characters to a world that can grow every month.",
+      "lead": "Long before today's generative tools existed, Pixtoon built Microinvest a whole family: a mother, a father and a daughter.",
       "meta": [
         {
           "label": "Client",
@@ -30,30 +26,72 @@
           "icon": "target"
         },
         {
-          "label": "Project",
-          "value": "3D identity & animation",
+          "label": "Objective",
+          "value": "Monthly content",
           "icon": "arrow"
         },
         {
           "label": "Production",
-          "value": "PixToon Studio",
+          "value": "Classic 3D + hybrid",
           "icon": "spark"
         },
         {
-          "label": "Deliverables",
-          "value": "Characters, scenes, reels, spots, app content",
+          "label": "Format",
+          "value": "Up to 2 spots a month",
           "icon": "frame"
         }
       ],
+      "heroBadge": "SERIES",
+      "panel": {
+        "title": "What makes hybrid production possible.",
+        "items": [
+          {
+            "icon": "bolt",
+            "label": "Characters we reuse",
+            "text": "We don't start from zero for every episode."
+          },
+          {
+            "icon": "check",
+            "label": "A consistent identity",
+            "text": "The same characters, the same visual world."
+          },
+          {
+            "icon": "ring",
+            "label": "A monthly flow",
+            "text": "Up to two spots a month, on new subjects."
+          },
+          {
+            "icon": "diamond",
+            "label": "A world that grows",
+            "text": "Sets, situations and characters get added over time."
+          }
+        ]
+      },
       "sections": [
         {
           "type": "story",
-          "title": "A family that explains finance simply.",
-          "underline": "finance simply",
-          "slot": "story",
+          "title": "The family was built by hand, character by character.",
+          "underline": "by hand, character by character",
+          "slot": "craft",
           "text": [
-            "We built a close, believable and expressive family that lives through real financial situations from everyday life.",
-            "The characters speak directly, clearly and in terms everyone understands."
+            "We developed the characters and used them across a run of campaigns — some comic, some educational — where financial products could be explained in terms close to people's own lives.",
+            "In time the characters became more than the heroes of a single spot. They became a recognisable identity for how Microinvest speaks."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "A new stage for the same family",
+          "slot": "green",
+          "badge": "Ready for any set",
+          "flip": true,
+          "text": [
+            "As the Pixtoon hybrid pipeline developed, we proposed turning the family into a recurring format: up to two spots a month, with new episodes, new situations and new campaigns."
+          ],
+          "items": [
+            "We are no longer limited to the same house.",
+            "We brought in a cat.",
+            "We created a second family.",
+            "We can widen the world around them step by step."
           ]
         },
         {
@@ -64,98 +102,85 @@
             "step-3",
             "step-4",
             "step-5"
-          ],
-          "items": [
-            {
-              "label": "Concept & design",
-              "text": "We define the personalities, the look and the world the family lives in."
-            },
-            {
-              "label": "Classic 3D build",
-              "text": "We model and rig the characters with full control over their identity."
-            },
-            {
-              "label": "Sets & props",
-              "text": "We build the environments and key objects for coherence and storytelling."
-            },
-            {
-              "label": "AI-assisted animation",
-              "text": "We use AI to generate motion, variations and iterations at scale."
-            },
-            {
-              "label": "Compositing & colour",
-              "text": "We finish the image, the light and the rhythm for publication-ready deliverables."
-            }
           ]
         },
         {
-          "type": "compare"
+          "type": "compare",
+          "title": "From a campaign to a brand series",
+          "text": [
+            "Instead of starting from zero every time, Microinvest can build a world that develops along with the brand.",
+            "The characters can teach, entertain, explain products and come back in short formats, themed episodes or seasonal campaigns. Every Microinvest product can become the subject of an episode, without audiences feeling they are watching one more unconnected ad."
+          ]
         },
         {
           "type": "statement",
-          "text": "AI accelerates production.\nThe identity stays ours."
+          "text": "We don't just create characters.\nWe build worlds a brand can speak from for years."
         },
         {
-          "type": "characters",
-          "title": "One family. Three personalities.",
-          "layout": "captioned",
+          "type": "cards",
+          "title": "The family, modelled from every angle.",
+          "cols": 4,
           "items": [
             {
-              "slot": "person-1",
-              "name": "Mother",
-              "text": [
-                "Empathetic and organised.",
-                "She looks after the household budget."
-              ]
+              "slot": "sheet-1",
+              "badge": "The father"
             },
             {
-              "slot": "person-2",
-              "name": "Father",
-              "text": [
-                "Practical and responsible.",
-                "He takes care of the long-term plans."
-              ]
-            }
-          ],
-          "aside": [
+              "slot": "sheet-2",
+              "badge": "The mother"
+            },
             {
-              "slot": "strip-1",
-              "badge": "Vertical format"
+              "slot": "sheet-3",
+              "badge": "The daughter"
+            },
+            {
+              "slot": "sheet-4",
+              "badge": "The cat"
             }
           ]
         },
         {
           "type": "outcome",
           "title": {
-            "a": "More content.",
-            "outline": "Less time per deliverable.",
-            "b": "The same identity."
+            "a": "Characters built once.",
+            "outline": "Content every month.",
+            "b": "The same world, steadily bigger."
           },
           "checks": [
-            "Reels, spots, brand scenes and content for the app.",
-            "A hybrid production flow that cuts execution time.",
-            "Consistent characters, recognised and loved."
+            "Characters that have already been developed get reused.",
+            "The visual identity stays consistent.",
+            "New sets, situations and characters come together quickly.",
+            "A monthly flow of content becomes possible.",
+            "Episodes adapt to different products and campaigns.",
+            "A long-term relationship builds between audiences and characters."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "This model can work for your brand if:",
+          "items": [
+            "You announce new products or offers every month.",
+            "You want characters audiences will recognise.",
+            "You need both commercial and educational content.",
+            "You want to build a series, not a collection of unrelated spots."
           ]
         }
       ],
       "cta": {
-        "title": "Have a character, or want us to build one?",
-        "text": "We can turn it into a content universe that keeps growing."
-      }
+        "title": "Do you communicate every month?",
+        "text": "We build the world once and keep producing episodes from it."
+      },
+      "annotation": "a frame from one of the family's episodes ♡"
     }
   },
   "ro": {
     "title": "Familia Microinvest",
-    "tags": "Personaj dezvoltat manual / AI antrenat",
-    "excerpt": "O familie de personaje construită în metoda clasică — modelată și rigată complet — și animată acum cu instrumente AI.",
-    "challenge": "Un brand financiar avea nevoie de personaje care rămân recognoscibile de-a lungul anilor de campanii, nu de un singur comercial.",
-    "solution": "Familia Microinvest a fost modelată și rigată în 3D clasic, cu controllere complete de animație. Această bază este acum animată cu instrumente AI, astfel încât scenele noi costă o fracțiune dintr-o filmare tradițională.",
-    "production": "Modelare și rigging 3D clasic in-house, animație asistată de AI, compoziție, sound design și master final.",
-    "result": "Un univers de brand care poate fi extins continuu — reel-uri, spoturi sociale și scene de brand — fără a reconstrui personajele de fiecare dată.",
+    "tags": "Univers de brand / Conținut recurent",
+    "card": "O familie care poate trăi episod după episod.",
+    "excerpt": "Trei personaje create manual pentru Microinvest au devenit un univers care poate crește în fiecare lună — cu episoade, situații și personaje noi.",
     "page": {
-      "subtitle": "Identitate 3D construită clasic.\nProducție accelerată cu AI.",
-      "lead": "Am transpus Familia Microinvest în animație 3D clasică și am folosit instrumente AI pentru a produce mai mult conținut, mai rapid, fără a pierde identitatea personajelor.",
-      "annotation": "scenă din film de brand ♡",
+      "subtitle": "De la trei personaje la o lume care poate crește în fiecare lună.",
+      "lead": "Cu mult înainte de apariția tehnologiilor generative actuale, Pixtoon a creat pentru Microinvest o familie întreagă: mama, tata și fiica.",
       "meta": [
         {
           "label": "Client",
@@ -163,30 +188,72 @@
           "icon": "target"
         },
         {
-          "label": "Proiect",
-          "value": "Identitate 3D & animație",
+          "label": "Obiectiv",
+          "value": "Conținut lunar",
           "icon": "arrow"
         },
         {
           "label": "Producție",
-          "value": "PixToon Studio",
+          "value": "3D clasic + hibrid",
           "icon": "spark"
         },
         {
-          "label": "Livrabile",
-          "value": "Personaje, scene, reels, spoturi, app content",
+          "label": "Format",
+          "value": "Până la 2 spoturi pe lună",
           "icon": "frame"
         }
       ],
+      "heroBadge": "SERIE",
+      "panel": {
+        "title": "Ce face posibilă producția hibridă.",
+        "items": [
+          {
+            "icon": "bolt",
+            "label": "Personaje reutilizabile",
+            "text": "Nu pornim de la zero la fiecare episod."
+          },
+          {
+            "icon": "check",
+            "label": "Identitate consecventă",
+            "text": "Aceleași personaje, același univers vizual."
+          },
+          {
+            "icon": "ring",
+            "label": "Flux lunar",
+            "text": "Până la două spoturi pe lună, cu subiecte noi."
+          },
+          {
+            "icon": "diamond",
+            "label": "O lume care crește",
+            "text": "Decoruri, situații și personaje se adaugă în timp."
+          }
+        ]
+      },
       "sections": [
         {
           "type": "story",
-          "title": "O familie care explică finanțele simplu.",
-          "underline": "finanțele simplu",
-          "slot": "story",
+          "title": "Familia a fost construită manual, personaj cu personaj.",
+          "underline": "manual, personaj cu personaj",
+          "slot": "craft",
           "text": [
-            "Am construit o familie apropiată, credibilă și expresivă, care trăiește situații financiare reale din viața de zi cu zi.",
-            "Personajele vorbesc direct, clar și pe înțelesul tuturor."
+            "Am dezvoltat personajele și le-am folosit într-o serie de campanii — unele comice, altele educative — prin care produsele financiare puteau fi explicate într-o formă apropiată de viața oamenilor.",
+            "În timp, personajele au devenit mai mult decât eroii unui singur spot. Au devenit o identitate recognoscibilă a comunicării Microinvest."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "O nouă etapă pentru aceeași familie",
+          "slot": "green",
+          "badge": "Pregătiți pentru orice decor",
+          "flip": true,
+          "text": [
+            "Odată cu dezvoltarea pipeline-ului hibrid Pixtoon, am propus transformarea familiei într-un format recurent: până la două spoturi pe lună, cu episoade, situații și campanii noi."
+          ],
+          "items": [
+            "Nu mai suntem limitați la aceeași casă.",
+            "Am introdus un motan.",
+            "Am creat o familie nouă.",
+            "Putem extinde treptat lumea din jurul lor."
           ]
         },
         {
@@ -197,84 +264,75 @@
             "step-3",
             "step-4",
             "step-5"
-          ],
-          "items": [
-            {
-              "label": "Concept & design",
-              "text": "Definim personalitățile, look-ul și lumea în care trăiește familia."
-            },
-            {
-              "label": "Construcție 3D clasică",
-              "text": "Modelăm și rigăm personajele cu control complet asupra identității."
-            },
-            {
-              "label": "Seturi & prop-uri",
-              "text": "Construim mediile și obiectele cheie pentru coerență și storytelling."
-            },
-            {
-              "label": "Animație asistată de AI",
-              "text": "Folosim AI pentru a genera mișcări, variații și iterații la scară mare."
-            },
-            {
-              "label": "Compoziție & color",
-              "text": "Finalizăm imaginea, lumina și ritmul pentru livrabile gata de publicare."
-            }
           ]
         },
         {
-          "type": "compare"
+          "type": "compare",
+          "title": "De la campanie la serial de brand",
+          "text": [
+            "În loc să pornească de fiecare dată de la zero, Microinvest poate construi o lume care evoluează odată cu brandul.",
+            "Personajele pot educa, distra, explica produse și reveni în formate scurte, episoade tematice sau campanii sezoniere. Astfel, fiecare produs Microinvest poate deveni subiectul unui episod, fără ca publicul să simtă că privește mereu o reclamă separată."
+          ]
         },
         {
           "type": "statement",
-          "text": "AI-ul accelerează producția.\nIdentitatea rămâne controlată de noi."
+          "text": "Nu creăm doar personaje.\nConstruim lumi în care brandul poate comunica ani la rând."
         },
         {
-          "type": "characters",
-          "title": "O familie. Trei personalități.",
-          "layout": "captioned",
+          "type": "cards",
+          "title": "Familia, modelată din toate unghiurile.",
+          "cols": 4,
           "items": [
             {
-              "slot": "person-1",
-              "name": "Mama",
-              "text": [
-                "Empatică și organizată.",
-                "Se ocupă de bugetul casei."
-              ]
+              "slot": "sheet-1",
+              "badge": "Tata"
             },
             {
-              "slot": "person-2",
-              "name": "Tatăl",
-              "text": [
-                "Practic și responsabil.",
-                "Are grijă de planurile pe termen lung."
-              ]
-            }
-          ],
-          "aside": [
+              "slot": "sheet-2",
+              "badge": "Mama"
+            },
             {
-              "slot": "strip-1",
-              "badge": "Format vertical"
+              "slot": "sheet-3",
+              "badge": "Fiica"
+            },
+            {
+              "slot": "sheet-4",
+              "badge": "Motanul"
             }
           ]
         },
         {
           "type": "outcome",
           "title": {
-            "a": "Mai mult conținut.",
-            "outline": "Mai puțin timp per livrabil.",
-            "b": "Aceeași identitate."
+            "a": "Personaje construite o dată.",
+            "outline": "Conținut în fiecare lună.",
+            "b": "Aceeași lume, tot mai mare."
           },
           "checks": [
-            "Reels, spoturi, scene de brand și conținut pentru aplicație.",
-            "Flux de producție hibrid care reduce timpul de execuție.",
-            "Personaje consistente, recunoscute și îndrăgite."
+            "Reutilizarea personajelor deja dezvoltate.",
+            "Menținerea unei identități vizuale consecvente.",
+            "Crearea rapidă de decoruri, situații și personaje noi.",
+            "Producerea unui flux lunar de conținut.",
+            "Adaptarea episoadelor pentru produse și campanii diferite.",
+            "Construirea unei relații pe termen lung între public și personaje."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Acest model poate funcționa pentru brandul tău dacă:",
+          "items": [
+            "Comunici lunar produse sau oferte noi.",
+            "Vrei personaje pe care publicul să le recunoască.",
+            "Ai nevoie atât de conținut comercial, cât și educativ.",
+            "Vrei să construiești o serie, nu o colecție de spoturi fără continuitate."
           ]
         }
       ],
       "cta": {
-        "title": "Ai un personaj sau vrei să construim unul?",
-        "text": "Îl putem transforma într-un univers de conținut care crește."
-      }
+        "title": "Comunici în fiecare lună?",
+        "text": "Construim lumea o dată și producem din ea episod după episod."
+      },
+      "annotation": "cadru dintr-un episod al familiei ♡"
     }
   }
 }

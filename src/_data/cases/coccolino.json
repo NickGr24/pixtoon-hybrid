@@ -1,5 +1,5 @@
 {
-  "_comment": "ЧЕРНОВИК. Макета на этот кейс клиент не присылал — тексты ветки page написаны в тональности двух присланных раскладок на основе challenge/solution/production/result ниже. Правится здесь, вёрстку трогать не нужно.",
+  "_comment": "Тексты ветки page сняты с документа клиента PIXTOON_Hybrid_Production_Case_Studies_RO.docx (29.08.2026): румынские дословно, английские — перевод. Порядок секций у всех пяти одинаковый: рассказ, перечень работ, процесс, сравнение, фраза, кадры, итог, условия применимости. Поля challenge/solution/production/result убраны вместе со старыми текстами: они нигде не рендерились, а формулировки в них («AI-ул работал среды и визуалы продукта») прямо противоречат новой позиции документа — «Nu vindem AI».",
   "slug": "coccolino",
   "order": "02",
   "brand": "Coccolino",
@@ -13,15 +13,12 @@
   },
   "en": {
     "title": "Coccolino",
-    "tags": "AI character / Product commercial",
-    "excerpt": "AI-assisted character and product advertising built around the existing Coccolino brand universe.",
-    "challenge": "Work inside a brand universe that already exists, with a mascot audiences know — nothing could look reinterpreted or off-model.",
-    "solution": "AI generation was constrained to the established look: the bear, the palette and the product stayed on-model, while AI opened up settings that would have needed a full shoot.",
-    "production": "Creative concept, visual development against brand guidelines, AI image and video generation, animation and compositing, editing, music and sound design.",
-    "result": "Product advertising that sits inside the existing brand world rather than beside it.",
+    "tags": "Brand character / Hybrid production",
+    "card": "An existing character, activated in a new campaign.",
+    "excerpt": "The client arrived with the brand character and the campaign mechanic already set. We built the scenes, animated the character and worked the products into a complete spot.",
     "page": {
-      "subtitle": "A universe that already exists.\nExtended, not reinvented.",
-      "lead": "We produced product advertising inside the Coccolino universe: the mascot, the palette and the packaging stay true to the brand, while the hybrid pipeline opens settings that would have required a full shoot.",
+      "subtitle": "From an existing character to a complete campaign spot.",
+      "lead": "On Coccolino, the client came to us with the brand character and a campaign mechanic that was already settled.",
       "meta": [
         {
           "label": "Client",
@@ -30,12 +27,12 @@
         },
         {
           "label": "Objective",
-          "value": "Product campaign",
+          "value": "Campaign adaptation",
           "icon": "arrow"
         },
         {
           "label": "Production",
-          "value": "Hybrid animation",
+          "value": "Hybrid production",
           "icon": "spark"
         },
         {
@@ -46,101 +43,134 @@
       ],
       "heroBadge": "VIDEO 16:9",
       "panel": {
-        "title": "Campaign production at retail speed.",
+        "title": "What the brand gained.",
         "items": [
           {
-            "icon": "diamond",
-            "label": "On brand",
-            "text": "The mascot and palette stay exactly as audiences know them."
-          },
-          {
-            "icon": "spark",
-            "label": "New settings",
-            "text": "Environments that would have needed a full shoot."
-          },
-          {
             "icon": "bolt",
-            "label": "Campaign pace",
-            "text": "Material ready for the date of the promotion."
+            "label": "Quick adaptation",
+            "text": "A familiar character, activated without a rebuild."
           },
           {
-            "icon": "frame",
-            "label": "Multiple formats",
-            "text": "The same universe, adapted per channel."
+            "icon": "check",
+            "label": "Identity respected",
+            "text": "The campaign's visual world stays intact."
+          },
+          {
+            "icon": "ring",
+            "label": "All in one spot",
+            "text": "Character, product, voice and music in the same story."
+          },
+          {
+            "icon": "diamond",
+            "label": "Versions and sequels",
+            "text": "New variants can come out of the same material."
           }
         ]
       },
       "sections": [
         {
           "type": "story",
-          "title": "A brand universe we enter, not one we rebuild.",
-          "underline": "not one we rebuild",
+          "title": "The challenge was not to invent a new identity.",
+          "underline": "to invent a new identity",
           "slot": "story",
           "text": [
-            "The mascot, the palette and the packaging were already set, and audiences know them by heart.",
-            "We produced new frames inside that universe without reinterpreting any part of it."
+            "It was to develop the scenes, animate the character and work the products into a story that keeps the brand's visual world.",
+            "We took the campaign elements that already existed and turned them into a complete animated spot."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "What we did",
+          "clip": "clip-test",
+          "badge": "Action test",
+          "flip": true,
+          "text": [
+            "We adapted the character for the actions the script asked for. The test alongside is that very stage — where the movements get settled, before any scene is built."
+          ],
+          "items": [
+            "The concept for the scenes",
+            "Adapting the character for the required actions",
+            "Working the products into the story",
+            "Animation",
+            "Voice",
+            "Composing the music",
+            "Edit and final post-production"
           ]
         },
         {
           "type": "process"
         },
         {
-          "type": "compare"
+          "type": "compare",
+          "title": "An important test for our hybrid pipeline",
+          "text": [
+            "Coccolino was one of the projects where we tested and refined this production method. We showed that an existing brand character can be activated in a new campaign without rebuilding the whole process through traditional animation.",
+            "That way, time and budget can go into the story, the execution and the commercial impact."
+          ]
         },
         {
           "type": "statement",
-          "text": "We don't reinterpret the brand.\nWe take it to new settings."
+          "text": "An existing character does not just have to appear.\nIt can become the lead of the campaign."
         },
         {
           "type": "cards",
-          "title": "One campaign, several messages.",
+          "title": "The same elements, a new story.",
+          "cols": 3,
           "items": [
             {
               "slot": "card-1",
-              "badge": "Promo"
+              "badge": "The product and the prizes"
             },
             {
               "slot": "card-2",
-              "badge": "The mascot"
+              "badge": "The character"
             },
             {
               "slot": "card-3",
-              "badge": "Retail partner"
+              "badge": "The closing frame"
             }
           ]
         },
         {
           "type": "outcome",
           "title": {
-            "a": "More settings.",
-            "outline": "No shoot days.",
-            "b": "The same mascot."
+            "a": "A character people knew.",
+            "outline": "An entirely new campaign.",
+            "b": "Nothing rebuilt."
           },
           "checks": [
-            "Material ready for the date of the promotion.",
-            "Environments that would have required a full shoot.",
-            "Mascot and product rendered true to the brand guide."
+            "Quick adaptation of a character audiences already knew.",
+            "The campaign's visual identity was respected.",
+            "Character, product, voice and music came together in a single spot.",
+            "More versions and sequels remain possible."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "This model can work for your brand if:",
+          "items": [
+            "You have a character or visual assets that are already approved.",
+            "You need to adapt an international campaign for the local market.",
+            "You want the character to present the product or the offer.",
+            "You need new content without rebuilding everything from scratch."
           ]
         }
       ],
       "cta": {
-        "title": "Have brand guidelines to respect?",
-        "text": "We produce inside them — the pipeline adapts to the brand, not the other way round."
+        "title": "Have a campaign to adapt?",
+        "text": "We start from what already exists and build only what is missing."
       },
-      "annotation": "a frame from the product campaign ♡"
+      "annotation": "a frame from the campaign spot ♡"
     }
   },
   "ro": {
     "title": "Coccolino",
-    "tags": "Personaj AI / Comercial de produs",
-    "excerpt": "Personaj și publicitate de produs asistate de AI, construite în universul de brand Coccolino deja existent.",
-    "challenge": "Să lucrăm într-un univers de brand care există deja, cu o mascotă pe care publicul o cunoaște — nimic nu avea voie să pară reinterpretat.",
-    "solution": "Generarea AI a fost ținută strict în stilul stabilit: ursulețul, paleta și produsul au rămas fidele brandului, iar AI-ul a deschis decoruri care ar fi cerut o filmare completă.",
-    "production": "Concept creativ, dezvoltare vizuală după ghidul de brand, generare AI de imagine și video, animație și compoziție, montaj, muzică și sound design.",
-    "result": "Publicitate de produs care stă în interiorul universului de brand, nu alături de el.",
+    "tags": "Personaj de brand / Producție hibridă",
+    "card": "Personaj existent, activat într-o campanie nouă.",
+    "excerpt": "Clientul a venit cu personajul de brand și mecanica campaniei. Am construit scenele, am animat personajul și am integrat produsele într-un spot complet.",
     "page": {
-      "subtitle": "Un univers care există deja.\nExtins, nu reinventat.",
-      "lead": "Am produs publicitate de produs în interiorul universului Coccolino: mascota, paleta și ambalajul rămân fidele brandului, iar pipeline-ul hibrid deschide decoruri care ar fi cerut o filmare completă.",
+      "subtitle": "Dintr-un personaj existent, într-un spot complet de campanie.",
+      "lead": "În cazul Coccolino, clientul a venit cu personajul de brand și mecanica deja stabilită a campaniei.",
       "meta": [
         {
           "label": "Client",
@@ -149,12 +179,12 @@
         },
         {
           "label": "Obiectiv",
-          "value": "Campanie de produs",
+          "value": "Adaptare de campanie",
           "icon": "arrow"
         },
         {
           "label": "Producție",
-          "value": "Hybrid animation",
+          "value": "Producție hibridă",
           "icon": "spark"
         },
         {
@@ -165,88 +195,124 @@
       ],
       "heroBadge": "VIDEO 16:9",
       "panel": {
-        "title": "Producție de campanie în ritmul retail-ului.",
+        "title": "Ce a câștigat brandul.",
         "items": [
           {
-            "icon": "diamond",
-            "label": "Pe brand",
-            "text": "Mascota și paleta rămân exact cum le știe publicul."
-          },
-          {
-            "icon": "spark",
-            "label": "Decoruri noi",
-            "text": "Medii care ar fi cerut o filmare completă."
-          },
-          {
             "icon": "bolt",
-            "label": "Ritm de campanie",
-            "text": "Materiale gata la termenul promoției."
+            "label": "Adaptare rapidă",
+            "text": "Un personaj deja cunoscut, activat fără reconstrucție."
           },
           {
-            "icon": "frame",
-            "label": "Formate multiple",
-            "text": "Același univers, adaptat pe canale."
+            "icon": "check",
+            "label": "Identitate respectată",
+            "text": "Universul vizual al campaniei rămâne intact."
+          },
+          {
+            "icon": "ring",
+            "label": "Totul într-un spot",
+            "text": "Personaj, produs, voce și muzică în aceeași poveste."
+          },
+          {
+            "icon": "diamond",
+            "label": "Versiuni și continuări",
+            "text": "Din același material pot apărea variante noi."
           }
         ]
       },
       "sections": [
         {
           "type": "story",
-          "title": "Un univers de brand în care intrăm, nu pe care îl refacem.",
-          "underline": "nu pe care îl refacem",
+          "title": "Provocarea nu era să inventăm o identitate nouă.",
+          "underline": "să inventăm o identitate nouă",
           "slot": "story",
           "text": [
-            "Mascota, paleta și ambalajul erau deja stabilite, iar publicul le știe pe de rost.",
-            "Am produs cadre noi în interiorul acestui univers, fără să reinterpretăm nimic din el."
+            "Era să dezvoltăm scenele, să animăm personajul și să integrăm produsele într-o poveste care păstrează universul vizual al brandului.",
+            "Am preluat elementele existente ale campaniei și le-am transformat într-un spot animat complet."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Ce am făcut",
+          "clip": "clip-test",
+          "badge": "Test de acțiuni",
+          "flip": true,
+          "text": [
+            "Am adaptat personajul pentru acțiunile cerute de scenariu. Testul de alături este chiar etapa în care se stabilesc mișcările, înainte ca scenele să fie construite."
+          ],
+          "items": [
+            "Conceptul scenelor",
+            "Adaptarea personajului pentru acțiunile necesare",
+            "Integrarea produselor în poveste",
+            "Animația",
+            "Vocea",
+            "Compoziția melodiei",
+            "Montajul și post-producția finală"
           ]
         },
         {
           "type": "process"
         },
         {
-          "type": "compare"
+          "type": "compare",
+          "title": "Un test important pentru pipeline-ul nostru hibrid",
+          "text": [
+            "Coccolino a fost unul dintre proiectele în care am testat și rafinat această metodă de producție. Am demonstrat că un personaj de brand existent poate fi activat într-o campanie nouă fără reconstruirea întregului proces prin animație tradițională.",
+            "Astfel, timpul și bugetul pot fi direcționate către poveste, execuție și impactul comercial."
+          ]
         },
         {
           "type": "statement",
-          "text": "Nu reinterpretăm brandul.\nÎl ducem în decoruri noi."
+          "text": "Un personaj existent nu trebuie doar afișat.\nPoate deveni protagonistul campaniei."
         },
         {
           "type": "cards",
-          "title": "O campanie, mai multe mesaje.",
+          "title": "Aceleași elemente, o poveste nouă.",
+          "cols": 3,
           "items": [
             {
               "slot": "card-1",
-              "badge": "Promoție"
+              "badge": "Produsul și premiile"
             },
             {
               "slot": "card-2",
-              "badge": "Mascota"
+              "badge": "Personajul"
             },
             {
               "slot": "card-3",
-              "badge": "Partener retail"
+              "badge": "Finalul spotului"
             }
           ]
         },
         {
           "type": "outcome",
           "title": {
-            "a": "Mai multe decoruri.",
-            "outline": "Fără zile de filmare.",
-            "b": "Aceeași mascotă."
+            "a": "Personaj deja cunoscut.",
+            "outline": "Campanie complet nouă.",
+            "b": "Fără reconstrucție."
           },
           "checks": [
-            "Materiale gata la termenul promoției.",
-            "Decoruri care ar fi cerut o filmare completă.",
-            "Mascotă și produs redate fidel ghidului de brand."
+            "Adaptarea rapidă a unui personaj deja cunoscut.",
+            "Respectarea identității vizuale a campaniei.",
+            "Integrarea personajului, produsului, vocii și muzicii într-un singur spot.",
+            "Posibilitatea de a crea mai multe versiuni și continuări."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Acest model poate funcționa pentru brandul tău dacă:",
+          "items": [
+            "Ai un personaj sau materiale vizuale deja aprobate.",
+            "Trebuie să adaptezi o campanie internațională pentru piața locală.",
+            "Vrei ca personajul să prezinte produsul sau oferta.",
+            "Ai nevoie de conținut nou fără a reconstrui totul de la zero."
           ]
         }
       ],
       "cta": {
-        "title": "Ai un ghid de brand de respectat?",
-        "text": "Producem în interiorul lui — pipeline-ul se adaptează brandului, nu invers."
+        "title": "Ai o campanie de adaptat?",
+        "text": "Pornim de la ce există deja și construim doar ce lipsește."
       },
-      "annotation": "cadru din campania de produs ♡"
+      "annotation": "cadru din spotul de campanie ♡"
     }
   }
 }

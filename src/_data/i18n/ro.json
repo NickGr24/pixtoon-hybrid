@@ -152,7 +152,7 @@
       {
         "label": "Pachet lunar 02",
         "title": "3 videoclipuri hibride / animație pe lună",
-        "mediaSrc": "/assets/img/cases/medpark-doctor-buba/pack.jpg",
+        "mediaSrc": "/assets/img/cases/medpark-mafa-girafa/pack.jpg",
         "price": "€2.000",
         "mediaLabel": "Medpark — animație + AI",
         "idealFor": [
@@ -243,48 +243,48 @@
     "ctaButton": "Discutăm proiectul",
     "process": {
       "title": {
-        "a": "Unde lucrăm clasic.",
-        "outline": "Unde accelerăm cu AI.",
+        "a": "Alegem metoda",
+        "outline": "pentru fiecare cadru.",
         "break": true
       },
       "items": [
         {
-          "label": "Concept & design",
-          "text": "Definim personalitățile, look-ul și lumea în care trăiesc personajele."
+          "label": "Concept & personaje",
+          "text": "Definim povestea, personalitățile și lumea în care se petrece."
         },
         {
           "label": "Construcție 3D clasică",
-          "text": "Modelăm și rigăm personajele cu control complet asupra identității."
+          "text": "Modelăm și texturăm ce trebuie să rămână identic în fiecare cadru."
         },
         {
-          "label": "Seturi & prop-uri",
-          "text": "Construim mediile și obiectele cheie pentru coerență și storytelling."
+          "label": "Scene & decoruri",
+          "text": "Construim mediile și obiectele care duc povestea mai departe."
         },
         {
-          "label": "Animație asistată de AI",
-          "text": "Folosim AI pentru a genera mișcări, variații și iterații la scară mare."
+          "label": "Producție hibridă",
+          "text": "Restul cadrelor le facem cu metode mai rapide, alese scenă cu scenă."
         },
         {
-          "label": "Compoziție & color",
-          "text": "Finalizăm imaginea, lumina și ritmul pentru livrabile gata de publicare."
+          "label": "Compoziție & finisaj",
+          "text": "Aducem totul într-un singur limbaj: lumină, culoare, ritm, sunet."
         }
       ]
     },
     "compare": {
-      "human": {
-        "label": "Control creativ uman",
+      "classic": {
+        "label": "Unde lucrăm în 3D clasic",
         "items": [
-          "Design, proporții și expresii 100% controlate.",
-          "Coerență de brand în fiecare cadru.",
-          "Decizii creative validate de oameni."
+          "Produsul și personajul rămân exact așa cum au fost aprobate.",
+          "Control complet asupra mișcării, proporțiilor și expresiilor.",
+          "Cadrele în care precizia contează cel mai mult."
         ]
       },
-      "ai": {
-        "label": "Accelerare prin AI",
+      "hybrid": {
+        "label": "Unde lucrăm hibrid",
         "items": [
-          "Mai multe iterații într-un timp mai scurt.",
-          "Varietate de mișcări și situații generate rapid.",
-          "Costuri optimizate, fără compromis la identitate."
+          "Scene, situații și variante noi, într-un timp mult mai scurt.",
+          "Bugetul se concentrează în cadrele care duc filmul.",
+          "Conținut care poate continua lună după lună."
         ]
       }
     },

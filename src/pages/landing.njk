@@ -49,7 +49,7 @@ eleventyComputed:
       #}
       <div class="hyb-hero__visual">
         <div class="hyb-collage">
-          {% set collageSlugs = ["bere-chisinau", "coccolino", "medpark-doctor-buba", "drive-gas", "microinvest-family"] %}
+          {% set collageSlugs = ["bere-chisinau", "coccolino", "medpark-mafa-girafa", "drive-gas", "microinvest-family"] %}
           {% for slug in collageSlugs %}
           {% set pos = loop.index %}
           {% for c in cs %}{% if c.slug == slug %}
@@ -130,7 +130,14 @@ eleventyComputed:
         <div class="hyb-case__body">
           <span class="hyb-tag hyb-tag--glass">{{ cl.tags }}</span>
           <h3 class="hyb-case__title">{{ cl.title }}</h3>
-          {% if loop.first %}<p class="hyb-case__excerpt">{{ cl.excerpt }}</p>{% endif %}
+          {#
+            Подпись есть у всех карточек, а не только у первой. Раньше здесь
+            стоял excerpt — он длинный, потому что служит ещё и описанием
+            страницы кейса в поиске, и на четырёх мелких плитках бенто не
+            помещался. Документ клиента даёт под каждый кейс отдельную
+            строку в одно предложение, она и стоит здесь.
+          #}
+          <p class="hyb-case__excerpt">{{ cl.card }}</p>
           <span class="hyb-case__cta">
             {{ t.work.viewCase }}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>

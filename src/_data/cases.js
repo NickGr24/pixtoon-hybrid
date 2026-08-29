@@ -53,11 +53,19 @@ for (const c of featured) {
      tools/crop-cases.mjs. */
   const shotsDir = join(srcRoot, "assets/img/cases", c.slug);
   c.shots = {};
+  c.clips = {};
   if (existsSync(shotsDir)) {
     for (const file of readdirSync(shotsDir)) {
-      const m = file.match(/^(.+)\.jpg$/);
-      if (!m || /-(400|800)$/.test(m[1])) continue;
-      c.shots[m[1]] = `/assets/img/cases/${c.slug}/${file}`;
+      const jpg = file.match(/^(.+)\.jpg$/);
+      if (jpg && !/-(400|800)$/.test(jpg[1])) {
+        c.shots[jpg[1]] = `/assets/img/cases/${c.slug}/${file}`;
+      }
+      /* Закулисные клипы лежат в той же папке и под тем же именем, что их
+         постер: clip-rig.mp4 рядом с clip-rig.jpg. Отдельного каталога им
+         не заводим — иначе имя слота пришлось бы держать синхронным в двух
+         местах, а так рассинхрон невозможен по устройству. */
+      const mp4 = file.match(/^(.+)\.mp4$/);
+      if (mp4) c.clips[mp4[1]] = `/assets/img/cases/${c.slug}/${file}`;
     }
   }
 
@@ -72,6 +80,7 @@ for (const c of featured) {
     if (!page) continue;
 
     const used = ["hero", "thumb"];
+    const clipped = [];
     for (const s of page.sections || []) {
       if (s.slot) used.push(s.slot);
       for (const item of s.items || []) if (item.slot) used.push(item.slot);
@@ -80,6 +89,13 @@ for (const c of featured) {
          двух местах, а проверка смотрела в одно. */
       for (const item of s.aside || []) if (item.slot) used.push(item.slot);
       for (const slot of s.slots || []) used.push(slot);
+      /* Клип нужен и как mp4, и как постер: постер стоит на странице до
+         запуска и остаётся единственной картинкой при prefers-reduced-motion.
+         Отсюда клип попадает в оба списка. */
+      if (s.clip) {
+        used.push(s.clip);
+        clipped.push(s.clip);
+      }
     }
 
     for (const slot of used) {
@@ -88,6 +104,17 @@ for (const c of featured) {
           `Кейс «${c.slug}» (${locale}) просит кадр «${slot}», которого нет в ` +
             `src/assets/img/cases/${c.slug}/. Есть: ${Object.keys(c.shots).join(", ") || "ни одного"}. ` +
             `Нарезать: node tools/crop-cases.mjs --only=${c.slug}`
+        );
+      }
+    }
+
+    for (const slot of clipped) {
+      if (!c.clips[slot]) {
+        throw new Error(
+          `Кейс «${c.slug}» (${locale}) просит клип «${slot}», но ` +
+            `src/assets/img/cases/${c.slug}/${slot}.mp4 нет. Есть: ` +
+            `${Object.keys(c.clips).join(", ") || "ни одного"}. ` +
+            `Собрать: node tools/encode-videos.mjs --what=clips --only=${c.slug}`
         );
       }
     }

@@ -152,7 +152,7 @@
       {
         "label": "Monthly package 02",
         "title": "3 hybrid / animated videos per month",
-        "mediaSrc": "/assets/img/cases/medpark-doctor-buba/pack.jpg",
+        "mediaSrc": "/assets/img/cases/medpark-mafa-girafa/pack.jpg",
         "price": "€2,000",
         "mediaLabel": "Medpark — animation + AI",
         "idealFor": [
@@ -243,48 +243,48 @@
     "ctaButton": "Let's discuss the project",
     "process": {
       "title": {
-        "a": "Where we work the classic way.",
-        "outline": "Where AI speeds us up.",
+        "a": "We choose the method",
+        "outline": "shot by shot.",
         "break": true
       },
       "items": [
         {
-          "label": "Concept & design",
-          "text": "We define the personalities, the look and the world the characters live in."
+          "label": "Concept & characters",
+          "text": "We define the story, the personalities and the world it happens in."
         },
         {
           "label": "Classic 3D build",
-          "text": "We model and rig the characters with full control over their identity."
+          "text": "We model and texture whatever has to stay identical in every shot."
         },
         {
           "label": "Sets & props",
-          "text": "We build the environments and key objects for coherence and storytelling."
+          "text": "We build the environments and objects that carry the story."
         },
         {
-          "label": "AI-assisted animation",
-          "text": "We use AI to generate motion, variations and iterations at scale."
+          "label": "Hybrid production",
+          "text": "The rest of the shots use faster methods, chosen scene by scene."
         },
         {
-          "label": "Compositing & colour",
-          "text": "We finish the image, the light and the rhythm for publication-ready deliverables."
+          "label": "Compositing & finish",
+          "text": "Everything arrives in one language: light, colour, rhythm, sound."
         }
       ]
     },
     "compare": {
-      "human": {
-        "label": "Human creative control",
+      "classic": {
+        "label": "Where we work in classic 3D",
         "items": [
-          "Design, proportions and expressions 100% controlled.",
-          "Brand coherence in every frame.",
-          "Creative decisions signed off by people."
+          "The product and the character stay exactly as approved.",
+          "Full control over movement, proportions and expressions.",
+          "The shots where precision matters most."
         ]
       },
-      "ai": {
-        "label": "AI acceleration",
+      "hybrid": {
+        "label": "Where we work hybrid",
         "items": [
-          "More iterations in less time.",
-          "A variety of movements and situations, generated fast.",
-          "Optimised costs, with no compromise on identity."
+          "New scenes, situations and variants in far less time.",
+          "The budget concentrates on the shots that carry the film.",
+          "Content that can keep going month after month."
         ]
       }
     },

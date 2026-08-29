@@ -155,7 +155,18 @@
   font-weight: 700;
   letter-spacing: var(--hyb-ls-micro);
   text-transform: uppercase;
-  white-space: nowrap;
+
+  /*
+    Метка переносится, а не уезжает за край. Раньше стоял nowrap: метки были
+    в два слова и держались в строке. В таблице документа у Drive Gas их три
+    («Mascotă / Campanie explicativă / Hybrid 3D»), и на мелкой плитке бенто
+    строка выходила за плитку, обрываясь на середине слова.
+
+    Ширина ограничена не плиткой, а её содержимым: метка позиционирована
+    абсолютом, и без max-width перенос не наступает вовсе.
+  */
+  max-width: calc(100% - 1.5rem);
+  white-space: normal;
 }
 
 .hyb-tag--gold {

@@ -1,5 +1,5 @@
 {
-  "_comment": "ЧЕРНОВИК. Макета на этот кейс клиент не присылал — тексты ветки page написаны в тональности двух присланных раскладок на основе challenge/solution/production/result ниже. Правится здесь, вёрстку трогать не нужно. Герой портретный: весь материал кейса вертикальный.",
+  "_comment": "Тексты ветки page сняты с документа клиента PIXTOON_Hybrid_Production_Case_Studies_RO.docx (29.08.2026): румынские дословно, английские — перевод. Порядок секций у всех пяти одинаковый: рассказ, перечень работ, процесс, сравнение, фраза, кадры, итог, условия применимости. Поля challenge/solution/production/result убраны вместе со старыми текстами: они нигде не рендерились, а формулировки в них («AI-ул работал среды и визуалы продукта») прямо противоречат новой позиции документа — «Nu vindem AI».",
   "slug": "bere-chisinau",
   "order": "05",
   "brand": "Bere Chișinău",
@@ -13,29 +13,26 @@
   },
   "en": {
     "title": "Berea Chișinău",
-    "tags": "AI product / Brand commercial",
-    "excerpt": "A product commercial built around the bottle itself — mood, light and texture generated rather than filmed.",
-    "challenge": "Show the product with the atmosphere of a studio shoot, without a studio shoot.",
-    "solution": "Product visuals and environment were generated through the hybrid AI pipeline, then graded and finished by hand to keep the brand's light and colour intact.",
-    "production": "Concept, visual direction, AI generation, compositing, grading and final master.",
-    "result": "Material ready for social and digital placements, produced on a schedule a traditional product shoot could not match.",
+    "tags": "Hybrid 3D / Product film",
+    "card": "Classic 3D and hybrid, against a short deadline.",
+    "excerpt": "A product spot with complex scenes, simulations and rendering, delivered on a deadline that classic 3D production could not have met.",
     "page": {
-      "subtitle": "Studio atmosphere.\nWithout the studio.",
-      "lead": "The commercial is built around the bottle: light, condensation and texture are generated through the hybrid pipeline, then graded by hand so the brand's colour stays intact.",
+      "subtitle": "A product spot delivered on time through a hybrid 3D pipeline.",
+      "lead": "The client came to Pixtoon asking for a product spot on a very short deadline.",
       "meta": [
         {
           "label": "Client",
-          "value": "Bere Chișinău",
+          "value": "Berea Chișinău",
           "icon": "target"
         },
         {
           "label": "Objective",
-          "value": "Product commercial",
+          "value": "Product spot",
           "icon": "arrow"
         },
         {
           "label": "Production",
-          "value": "Hybrid production",
+          "value": "Classic 3D + hybrid",
           "icon": "spark"
         },
         {
@@ -46,115 +43,147 @@
       ],
       "heroBadge": "VIDEO 9:16",
       "panel": {
-        "title": "A product frame without a shoot day.",
+        "title": "The result, in short.",
         "items": [
           {
-            "icon": "spark",
-            "label": "No shoot",
-            "text": "Light and atmosphere are generated, not staged."
+            "icon": "bolt",
+            "label": "Deadline met",
+            "text": "The spot was finished on the date asked for."
           },
           {
-            "icon": "bolt",
-            "label": "Short lead time",
-            "text": "Material ready before a classic shoot could start."
+            "icon": "check",
+            "label": "The product, right",
+            "text": "The bottle stayed recognisable in every shot."
           },
           {
             "icon": "ring",
-            "label": "True colour",
-            "text": "Hand grading on top of generation."
+            "label": "Less rendering",
+            "text": "Simulation and render time dropped considerably."
           },
           {
-            "icon": "frame",
-            "label": "Social-first",
-            "text": "Vertical format, built for the feed."
+            "icon": "diamond",
+            "label": "One language",
+            "text": "The different methods do not show in the result."
           }
         ]
       },
       "sections": [
         {
           "type": "story",
-          "title": "The light of a product studio, built frame by frame.",
-          "underline": "built frame by frame",
-          "slot": "story",
+          "title": "A product gets modelled from reference, not approximated.",
+          "underline": "not approximated",
+          "clip": "clip-model",
+          "badge": "Modelling from reference",
           "text": [
-            "Condensation, reflection and background depth are worked until the bottle reads like a studio shoot.",
-            "The colour then goes through hand grading, so the brand's blue stays exactly its own."
+            "The project involved complex scenes, simulations and rendering. Made entirely by traditional 3D methods, a spot like this would have needed at least a month of production — time that was not available.",
+            "The bottle was built from the product photograph: proportions, label, relief. There is no room for interpretation here."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "We chose the method for every shot",
+          "clip": "clip-previz",
+          "badge": "Playblast",
+          "flip": true,
+          "text": [
+            "Rather than force the whole spot through a single technique, we looked at each scene separately."
+          ],
+          "items": [
+            "Shots needing product precision and controlled movement — classic 3D.",
+            "The remaining shots — the hybrid technique Pixtoon developed.",
+            "At the end, everything integrated into one cinematic language."
           ]
         },
         {
           "type": "process"
         },
         {
-          "type": "compare"
+          "type": "compare",
+          "title": "Why this approach is efficient",
+          "text": [
+            "Hybrid production does not replace classic 3D. We use it exactly where it adds the most value, and for the rest of the shots we pick faster, more flexible methods.",
+            "Budget and time end up concentrated in the scenes that matter most."
+          ]
         },
         {
           "type": "statement",
-          "text": "The product stays the product.\nOnly the way it is shot changes."
+          "text": "Every shot gets the technique it needs —\nnot the cost of a production it never asked for."
         },
         {
           "type": "cards",
-          "title": "Three frames. The same product.",
+          "title": "The spot, shot by shot.",
+          "cols": 3,
           "items": [
             {
               "slot": "card-1",
-              "badge": "Texture"
+              "badge": "The label, close up"
             },
             {
               "slot": "card-2",
-              "badge": "Product"
+              "badge": "Bottle and glass"
             },
             {
               "slot": "card-3",
-              "badge": "The emblem"
+              "badge": "The bottle neck"
             }
           ]
         },
         {
           "type": "outcome",
           "title": {
-            "a": "Studio atmosphere.",
-            "outline": "No shoot day.",
-            "b": "The same product."
+            "a": "A short deadline.",
+            "outline": "Complex scenes.",
+            "b": "A premium result."
           },
           "checks": [
-            "Vertical format, built for the feed.",
-            "Light and texture built, not staged.",
-            "Hand grading on top of generation."
+            "The spot was finished within the deadline requested.",
+            "The product stayed recognisable and correctly represented.",
+            "Complex scenes were distributed sensibly between classic 3D and hybrid production.",
+            "Simulation and render time came down.",
+            "The client gave very good feedback on the final result."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "This model can work for your brand if:",
+          "items": [
+            "You have a fixed launch date.",
+            "The product has to be represented precisely.",
+            "The spot involves liquids, simulations or complex effects.",
+            "The deadline rules out a full classic-3D production.",
+            "You need a premium result from an optimised pipeline."
           ]
         }
       ],
       "cta": {
-        "title": "Need a product shot without a shoot?",
-        "text": "We build the light, the texture and the mood — and grade them to your brand."
+        "title": "Have a launch date that will not move?",
+        "text": "We choose the method shot by shot and deliver on time."
       },
       "annotation": "a frame from the product spot ♡"
     }
   },
   "ro": {
     "title": "Berea Chișinău",
-    "tags": "Produs AI / Comercial de brand",
-    "excerpt": "Un comercial de produs construit în jurul sticlei — atmosferă, lumină și textură generate, nu filmate.",
-    "challenge": "Să arătăm produsul cu atmosfera unei filmări de studio, fără o filmare de studio.",
-    "solution": "Vizualele de produs și mediul au fost generate prin pipeline-ul hibrid AI, apoi gradate și finisate manual pentru a păstra lumina și culoarea brandului.",
-    "production": "Concept, direcție vizuală, generare AI, compoziție, gradare și master final.",
-    "result": "Material pregătit pentru plasări social și digital, produs într-un termen pe care o filmare de produs tradițională nu îl putea atinge.",
+    "tags": "Hybrid 3D / Product film",
+    "card": "3D clasic și hibrid pentru un termen scurt.",
+    "excerpt": "Un spot de produs cu scene complexe, simulări și randări, livrat într-un termen pe care producția 3D clasică nu l-ar fi acoperit.",
     "page": {
-      "subtitle": "Atmosferă de studio.\nFără studio.",
-      "lead": "Comercialul este construit în jurul sticlei: lumina, condensul și textura sunt generate prin pipeline-ul hibrid, apoi gradate manual pentru a păstra culoarea brandului.",
+      "subtitle": "Un spot de produs realizat la timp printr-un pipeline 3D hibrid.",
+      "lead": "Clientul a venit la Pixtoon cu solicitarea de a crea un spot de produs într-un termen foarte scurt.",
       "meta": [
         {
           "label": "Client",
-          "value": "Bere Chișinău",
+          "value": "Berea Chișinău",
           "icon": "target"
         },
         {
           "label": "Obiectiv",
-          "value": "Comercial de produs",
+          "value": "Spot de produs",
           "icon": "arrow"
         },
         {
           "label": "Producție",
-          "value": "Hybrid production",
+          "value": "3D clasic + hibrid",
           "icon": "spark"
         },
         {
@@ -165,86 +194,121 @@
       ],
       "heroBadge": "VIDEO 9:16",
       "panel": {
-        "title": "Un cadru de produs fără zi de filmare.",
+        "title": "Rezultatul, pe scurt.",
         "items": [
           {
-            "icon": "spark",
-            "label": "Fără filmare",
-            "text": "Lumina și atmosfera sunt generate, nu montate."
+            "icon": "bolt",
+            "label": "Termen respectat",
+            "text": "Spotul a fost finalizat la data cerută."
           },
           {
-            "icon": "bolt",
-            "label": "Termen scurt",
-            "text": "Material gata înainte de o filmare clasică."
+            "icon": "check",
+            "label": "Produs corect",
+            "text": "Sticla a rămas recognoscibilă în fiecare cadru."
           },
           {
             "icon": "ring",
-            "label": "Culoare fidelă",
-            "text": "Gradare manuală peste generare."
+            "label": "Randare redusă",
+            "text": "Timpul de simulare și randare a scăzut considerabil."
           },
           {
-            "icon": "frame",
-            "label": "Social-first",
-            "text": "Format vertical, pregătit pentru feed."
+            "icon": "diamond",
+            "label": "Un singur limbaj",
+            "text": "Metodele diferite nu se văd în rezultat."
           }
         ]
       },
       "sections": [
         {
           "type": "story",
-          "title": "Lumina unui studio de produs, construită cadru cu cadru.",
-          "underline": "construită cadru cu cadru",
-          "slot": "story",
+          "title": "Produsul se modelează după referință, nu se aproximează.",
+          "underline": "nu se aproximează",
+          "clip": "clip-model",
+          "badge": "Modelare după referință",
           "text": [
-            "Condensul, reflexia și adâncimea fundalului sunt lucrate până când sticla arată ca într-o filmare de studio.",
-            "Culoarea trece apoi prin gradare manuală, ca albastrul brandului să rămână exact al lui."
+            "Proiectul presupunea scene complexe, simulări și randări. Produs integral prin metoda 3D tradițională, un asemenea spot ar fi necesitat cel puțin o lună de producție — timp care nu era disponibil.",
+            "Sticla a fost construită după fotografia de produs: proporții, etichetă, relief. Aici nu există loc de interpretare."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Am ales metoda pentru fiecare cadru",
+          "clip": "clip-previz",
+          "badge": "Playblast",
+          "flip": true,
+          "text": [
+            "În loc să forțăm întregul spot într-o singură tehnică, am analizat separat fiecare scenă."
+          ],
+          "items": [
+            "Scenele cu precizie de produs și control al mișcării — 3D clasic.",
+            "Restul cadrelor — tehnica hibridă dezvoltată de Pixtoon.",
+            "La final, totul integrat într-un singur limbaj cinematografic."
           ]
         },
         {
           "type": "process"
         },
         {
-          "type": "compare"
+          "type": "compare",
+          "title": "De ce această abordare este eficientă",
+          "text": [
+            "Producția hibridă nu elimină 3D-ul clasic. Îl folosim exact acolo unde aduce cea mai mare valoare, iar pentru restul cadrelor alegem metode mai rapide și mai flexibile.",
+            "Astfel, bugetul și timpul sunt concentrate în scenele care contează cel mai mult."
+          ]
         },
         {
           "type": "statement",
-          "text": "Produsul rămâne produsul.\nSe schimbă doar felul în care e filmat."
+          "text": "Fiecare cadru primește tehnica de care are nevoie —\nnu costul unei producții pe care nu o cere."
         },
         {
           "type": "cards",
-          "title": "Trei cadre. Același produs.",
+          "title": "Spotul, cadru cu cadru.",
+          "cols": 3,
           "items": [
             {
               "slot": "card-1",
-              "badge": "Textură"
+              "badge": "Eticheta, în detaliu"
             },
             {
               "slot": "card-2",
-              "badge": "Produs"
+              "badge": "Sticla și paharul"
             },
             {
               "slot": "card-3",
-              "badge": "Emblema"
+              "badge": "Gâtul sticlei"
             }
           ]
         },
         {
           "type": "outcome",
           "title": {
-            "a": "Atmosferă de studio.",
-            "outline": "Fără zi de filmare.",
-            "b": "Același produs."
+            "a": "Termen scurt.",
+            "outline": "Scene complexe.",
+            "b": "Rezultat premium."
           },
           "checks": [
-            "Format vertical, pregătit pentru feed.",
-            "Lumină și textură construite, nu montate.",
-            "Gradare manuală peste generare."
+            "Spotul a fost finalizat în termenul solicitat.",
+            "Produsul a rămas recognoscibil și corect reprezentat.",
+            "Scenele complexe au fost distribuite inteligent între 3D clasic și producție hibridă.",
+            "Timpul de simulare și randare a fost redus.",
+            "Clientul a oferit un feedback foarte bun asupra rezultatului final."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Acest model poate funcționa pentru brandul tău dacă:",
+          "items": [
+            "Ai o dată fixă de lansare.",
+            "Produsul trebuie reprezentat cu precizie.",
+            "Spotul presupune lichide, simulări sau efecte complexe.",
+            "Termenul nu permite o producție integrală în 3D clasic.",
+            "Ai nevoie de un rezultat premium într-un pipeline optimizat."
           ]
         }
       ],
       "cta": {
-        "title": "Ai nevoie de un cadru de produs fără filmare?",
-        "text": "Construim lumina, textura și atmosfera — și le gradăm pe brandul tău."
+        "title": "Ai o dată de lansare care nu se mișcă?",
+        "text": "Alegem metoda cadru cu cadru și livrăm la termen."
       },
       "annotation": "cadru din spotul de produs ♡"
     }

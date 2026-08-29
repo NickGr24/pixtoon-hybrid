@@ -87,6 +87,42 @@ eleventyComputed:
      fill="currentColor" aria-hidden="true">{{ icons.player[name] | safe }}</svg>
 {%- endmacro %}
 
+{# Список с галочками. Живёт в трёх секциях — панели сравнения, итоге и
+   перечнях, — и разошёлся бы между ними при первой же правке разметки. #}
+{% macro checks(items, cls) %}
+<ul class="hyb-cs__checks {{ cls }}">
+  {% for item in items %}
+  <li><span class="hyb-cs__coin">{{ ico("check", 14) }}</span>{{ item }}</li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+{#
+  Кадр или закулисный клип в медиа-рамке секции.
+
+  Клип — это кусок записи экрана из продакшена: моделирование по референсу,
+  playblast, риггинг. Он играет беззвучно по кругу и стартует сам, когда
+  доезжает до экрана, поэтому у него нет ни кнопки, ни панели: нечего
+  включать и нечего перематывать.
+
+  preload="none" и data-src, а не src: на странице таких клипов до двух, и
+  без этого они качались бы в момент открытия — вместе с постером, который
+  для того и нужен, чтобы клип не качался, пока его не видно.
+#}
+{% macro sectionMedia(p, s, alt) %}
+{% set poster = p.case.shots[s.clip or s.slot] %}
+<figure class="hyb-cs__story-media">
+  {% if s.clip %}
+  <video class="hyb-cs__clip" data-hyb-clip data-src="{{ p.case.clips[s.clip] | url }}"
+         poster="{{ poster }}" {{ poster | dims | safe }}
+         muted loop playsinline preload="none" aria-label="{{ alt }}"></video>
+  {% else %}
+  {{ shot(poster, alt, "(max-width: 900px) 92vw, 736px") }}
+  {% endif %}
+  {{ badge(s.badge) }}
+</figure>
+{% endmacro %}
+
 {% macro metaRow(item) %}
 <div class="hyb-cs__meta-row">
   <span class="hyb-cs__meta-ico">{{ ico(item.icon) }}</span>
@@ -244,17 +280,31 @@ eleventyComputed:
 
   {% for s in page.sections %}
 
-    {% if s.type == "story" %}
+    {#
+      Рассказ и перечень — одна раскладка с разной начинкой: слева текст,
+      справа кадр или клип. Различаются они тем, что перечень добавляет к
+      тексту список пунктов, а без кадра раскладывает его в две колонки.
+
+      flip меняет стороны местами. Нужен там, где две такие секции идут
+      подряд: одинаковая сторона у кадров превращает страницу в столбик.
+    #}
+    {% if s.type == "story" or s.type == "list" %}
+    {% set hasMedia = s.slot or s.clip %}
     <section class="hyb-section">
       <div class="hyb-wrap">
-        <div class="hyb-cs__story hyb-reveal">
+        <div class="hyb-cs__story {{ "hyb-cs__story--flip" if s.flip }}
+                    {{ "hyb-cs__story--plain" if not hasMedia }} hyb-reveal">
           <div class="hyb-cs__story-text">
             <h2 class="hyb-title hyb-title--h3">{{ underlined(s.title, s.underline) }}</h2>
             {% for para in s.text %}<p class="hyb-cs__story-para">{{ para }}</p>{% endfor %}
+            {% if s.items and hasMedia %}{{ checks(s.items) }}{% endif %}
           </div>
-          <figure class="hyb-cs__story-media">
-            {{ shot(shots[s.slot], s.title, "(max-width: 900px) 92vw, 736px") }}
-          </figure>
+
+          {% if hasMedia %}
+            {{ sectionMedia(p, s, s.title) }}
+          {% elif s.items %}
+            {{ checks(s.items, "hyb-cs__checks--split") }}
+          {% endif %}
         </div>
       </div>
     </section>
@@ -289,18 +339,25 @@ eleventyComputed:
     </section>
     {% endif %}
 
+    {#
+      Панель сравнения. Колонки общие для всех пяти кейсов — это метод
+      студии, а не свойство проекта, — а заголовок с подводкой кейс приносит
+      свои: у каждого свой довод, почему гибрид выбран именно здесь.
+    #}
     {% if s.type == "compare" %}
     <section class="hyb-section hyb-section--tight">
       <div class="hyb-wrap">
+        {% if s.title %}
+        <div class="hyb-head hyb-head--wide hyb-reveal">
+          <h2 class="hyb-title hyb-title--h3">{{ s.title }}</h2>
+          {% for para in s.text %}<p class="hyb-lead">{{ para }}</p>{% endfor %}
+        </div>
+        {% endif %}
         <div class="hyb-cs__compare hyb-reveal">
-          {% for col in [cs.compare.human, cs.compare.ai] %}
+          {% for col in [cs.compare.classic, cs.compare.hybrid] %}
           <div class="hyb-cs__compare-col">
             <h2 class="hyb-cs__compare-label">{{ col.label }}</h2>
-            <ul class="hyb-cs__checks">
-              {% for item in col.items %}
-              <li><span class="hyb-cs__coin">{{ ico("check", 14) }}</span>{{ item }}</li>
-              {% endfor %}
-            </ul>
+            {{ checks(col.items) }}
           </div>
           {% endfor %}
         </div>
@@ -323,43 +380,13 @@ eleventyComputed:
     </section>
     {% endif %}
 
-    {% if s.type == "characters" %}
-    <section class="hyb-section">
-      <div class="hyb-wrap">
-        <h2 class="hyb-title hyb-title--h3 hyb-reveal">{{ s.title }}</h2>
-        <div class="hyb-cs__cast hyb-reveal">
-          <ul class="hyb-cs__cast-people">
-            {% for item in s.items %}
-            <li class="hyb-cs__person">
-              <figure class="hyb-cs__person-media">
-                {{ shot(shots[item.slot], item.name, "(max-width: 900px) 45vw, 393px") }}
-              </figure>
-              <h3 class="hyb-cs__person-name">{{ item.name }}</h3>
-              {% for line in item.text %}<p class="hyb-cs__person-text">{{ line }}</p>{% endfor %}
-            </li>
-            {% endfor %}
-          </ul>
-
-          {% if s.aside %}
-          <div class="hyb-cs__cast-aside">
-            {% for item in s.aside %}
-            <figure class="hyb-cs__tile">
-              {{ shot(shots[item.slot], item.badge, "(max-width: 900px) 45vw, 457px") }}
-              {{ badge(item.badge) }}
-            </figure>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
     {% if s.type == "cards" %}
     <section class="hyb-section hyb-section--tight">
       <div class="hyb-wrap">
         <h2 class="hyb-title hyb-title--h3 hyb-reveal">{{ s.title }}</h2>
-        <ul class="hyb-cs__cards hyb-reveal">
+        {# Кейс задаёт число колонок: у Microinvest в ряду четыре листа
+           персонажей, и втиснутые в три они встали бы 3+1. #}
+        <ul class="hyb-cs__cards hyb-cs__cards--{{ s.cols or 3 }} hyb-reveal">
           {% for item in s.items %}
           <li class="hyb-cs__tile">
             {{ shot(shots[item.slot], item.badge, "(max-width: 700px) 90vw, 413px") }}
@@ -377,11 +404,7 @@ eleventyComputed:
         <div class="hyb-cs__outcome hyb-reveal">
           {% title s.title, "h2", "hyb-cs__outcome-title" %}
           <div class="hyb-cs__outcome-side">
-            <ul class="hyb-cs__checks">
-              {% for check in s.checks %}
-              <li><span class="hyb-cs__coin">{{ ico("check", 14) }}</span>{{ check }}</li>
-              {% endfor %}
-            </ul>
+            {{ checks(s.checks) }}
             {{ decor("arrowToCta", "0 0 60 44", "hyb-cs__outcome-arrow") }}
           </div>
         </div>
