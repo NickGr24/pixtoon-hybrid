@@ -3,11 +3,11 @@
   "slug": "microinvest-family",
   "order": "04",
   "brand": "Microinvest",
-  "hero": "pano",
+  "hero": "portrait",
   "media": {
     "poster": "/assets/img/cases/microinvest-family.jpg",
     "video": "/assets/img/cases/microinvest-family.mp4",
-    "ratio": "16/10",
+    "ratio": "9/16",
     "focal": "50% 50%",
     "preview": "/assets/img/cases/microinvest-family-preview.mp4"
   },
@@ -37,11 +37,11 @@
         },
         {
           "label": "Format",
-          "value": "Up to 2 spots a month",
+          "value": "Vertical reel 9:16",
           "icon": "frame"
         }
       ],
-      "heroBadge": "SERIES",
+      "heroBadge": "REEL 9:16",
       "panel": {
         "title": "What makes hybrid production possible.",
         "items": [
@@ -199,11 +199,11 @@
         },
         {
           "label": "Format",
-          "value": "Până la 2 spoturi pe lună",
+          "value": "Reel vertical 9:16",
           "icon": "frame"
         }
       ],
-      "heroBadge": "SERIE",
+      "heroBadge": "REEL 9:16",
       "panel": {
         "title": "Ce face posibilă producția hibridă.",
         "items": [

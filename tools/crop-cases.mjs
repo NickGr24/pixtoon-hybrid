@@ -42,6 +42,10 @@ const ONLY = arg("only", null);
    персонажей, снимки продакшена. Путь с пробелом на конце — так в архиве. */
 const PKG_DIR = arg("pkg", join(homedir(), "Downloads/wep pagy hibrid "));
 
+/* Мастера роликов — там же, где их берёт encode-videos.mjs. Кадр героя
+   вырезается из самого ролика, а не из отдельной картинки. */
+const MASTER_DIR = arg("masters", join(homedir(), "Downloads"));
+
 /* ------------------------------------------------------------------ */
 /* Исходники                                                           */
 /* ------------------------------------------------------------------ */
@@ -70,6 +74,18 @@ function shot(n) {
 
 /** Кадр, уже лежащий в репозитории (у Microinvest своего исходника нет). */
 const repo = (p) => join(ROOT, "src/assets/img", p);
+
+/**
+ * Кадр мастера по времени: `frame("REEL 2 MICROINVEST.mp4", 1)`.
+ *
+ * Раньше герой и превью Microinvest резались из афиши кампании, лежащей в
+ * репозитории, — постер играющего ролика показывал не тот ролик. Здесь
+ * источник и постер по определению совпадают.
+ *
+ * ffmpeg читает видео тем же вызовом, что и картинку, поэтому вся разница —
+ * в `-ss` перед `-i`; за это отвечает поле `at`.
+ */
+const frame = (name, at) => ({ file: join(MASTER_DIR, name), at });
 
 /**
  * Файл из пакета клиента — по его собственному имени из архива, с пробелами
@@ -117,16 +133,22 @@ const CASES = {
     дочь 12–48%, мама на кухне 20–45%.
   */
   "microinvest-family": {
-    thumb: { src: repo("cases/microinvest-family.jpg"), r: R.land, w: 640, focus: [0.5, 0], top: 0.32 },
-    /* Панорама 2.9:1 из раскладки брала от вертикального кадра 19% высоты и
-       резала сцену по пояс. 16:9 берёт 31% — стол с персонажами целиком. */
-    hero: { src: repo("cases/microinvest-family.jpg"), r: R.wide, w: 1600, focus: [0.5, 0], top: 0.32 },
+    /*
+      Кадр на первой секунде ролика: мама с дочерью за столом и кот на стуле.
+      Кот здесь не случайность — кейс говорит «Am introdus un motan», и это
+      единственный кадр, где новый персонаж виден вместе со старыми.
+
+      Герой берёт кадр целиком (9:16), а не режет его: мастер вертикальный,
+      и горизонтальная рамка оставила бы от кухни полосу.
+    */
+    thumb: { src: frame("REEL 2 MICROINVEST.mp4", 1), r: R.land, w: 640, focus: [0.5, 0.5] },
+    hero: { src: frame("REEL 2 MICROINVEST.mp4", 1), r: R.portrait, w: 900, focus: [0.5, 0.5] },
 
     "step-1": { src: repo("microinvest/tatal.jpg"), r: R.step, w: 600, focus: [0.5, 0], top: 0.03 },
     "step-2": { src: repo("microinvest/mama.jpg"), r: R.step, w: 600, focus: [0.5, 0], top: 0.01 },
     "step-3": { src: repo("microinvest/mama-bucatarie.jpg"), r: R.step, w: 600, focus: [0.5, 0], top: 0.15 },
     "step-4": { src: repo("microinvest/fiica.jpg"), r: R.step, w: 600, focus: [0.5, 0], top: 0.08 },
-    "step-5": { src: repo("cases/microinvest-family.jpg"), r: R.step, w: 800, focus: [0.5, 0], top: 0.28 },
+    "step-5": { src: frame("REEL 2 MICROINVEST.mp4", 1), r: R.step, w: 800, focus: [0.5, 0], top: 0.28 },
 
 
     /*
@@ -229,6 +251,22 @@ const CASES = {
   },
 };
 
+/*
+  Картинки карточек в сетке работ: assets/img/cases/<slug>.jpg. Лежат не в
+  папке кадров, а рядом с ней, потому что адресуются из данных кейса
+  (media.poster) и служат ещё og:image.
+
+  До сих пор они были готовыми файлами без рецепта, и это вышло боком:
+  карточка Microinvest показывала кадр одного ролика, а по наведению играл
+  другой. Здесь их источник — тот же мастер, что и у самого ролика.
+
+  Кадрирования нет: карточка вписывает картинку через object-fit: cover и
+  сама решает, что показать. Обрезать заранее значило бы решить это дважды.
+*/
+const POSTERS = {
+  "microinvest-family": { src: frame("REEL 2 MICROINVEST.mp4", 1), w: 1080 },
+};
+
 /* ------------------------------------------------------------------ */
 /* Расчёт рамки и запуск ffmpeg                                        */
 /* ------------------------------------------------------------------ */
@@ -277,14 +315,19 @@ function computeCrop(sw, sh, ratio, [fx, fy], trim = 0, zoom = 1, top = null, he
   };
 }
 
-function probeSize(file) {
+/* Источник — либо путь к картинке, либо {file, at} для кадра из ролика.
+   Разворачиваем в одном месте, чтобы probeSize и render не знали разницы. */
+const srcFile = (src) => (typeof src === "string" ? src : src.file);
+const srcSeek = (src) => (typeof src === "string" ? [] : ["-ss", String(src.at)]);
+
+function probeSize(src) {
   const r = spawnSync(
     "ffprobe",
     ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
-     "-of", "csv=p=0", file],
+     "-of", "csv=p=0", srcFile(src)],
     { encoding: "utf8" }
   );
-  if (r.status !== 0) throw new Error(`ffprobe не смог прочитать ${file}\n${r.stderr}`);
+  if (r.status !== 0) throw new Error(`ffprobe не смог прочитать ${srcFile(src)}\n${r.stderr}`);
   const [w, h] = r.stdout.trim().split(",").map(Number);
   return { w, h };
 }
@@ -295,7 +338,8 @@ function render(src, out, crop, width, quality) {
     `scale=${width}:-2:flags=lanczos,format=yuv420p`;
   const r = spawnSync(
     "ffmpeg",
-    ["-y", "-loglevel", "error", "-i", src, "-vf", vf, "-q:v", String(quality), out],
+    ["-y", "-loglevel", "error", ...srcSeek(src), "-i", srcFile(src),
+     "-frames:v", "1", "-vf", vf, "-q:v", String(quality), out],
     { encoding: "utf8" }
   );
   if (r.status !== 0) throw new Error(`ffmpeg упал на ${out}\n${r.stderr}`);
@@ -314,7 +358,7 @@ for (const [slug, slots] of Object.entries(CASES)) {
   mkdirSync(dir, { recursive: true });
 
   for (const [slot, s] of Object.entries(slots)) {
-    if (!existsSync(s.src)) throw new Error(`Нет исходника: ${s.src}`);
+    if (!existsSync(srcFile(s.src))) throw new Error(`Нет исходника: ${srcFile(s.src)}`);
 
     const { w: sw, h: sh } = probeSize(s.src);
     const crop = computeCrop(sw, sh, s.r, s.focus, s.trim, s.zoom, s.top ?? null, s.head);
@@ -338,4 +382,23 @@ for (const [slug, slots] of Object.entries(CASES)) {
   }
 }
 
-console.log(`\nГотово: ${made} файлов в src/assets/img/cases/<slug>/`);
+for (const [slug, cfg] of Object.entries(POSTERS)) {
+  if (ONLY && slug !== ONLY) continue;
+  if (!existsSync(srcFile(cfg.src))) throw new Error(`Нет исходника: ${srcFile(cfg.src)}`);
+
+  const { w: sw, h: sh } = probeSize(cfg.src);
+  const whole = { w: sw, h: sh, x: 0, y: 0 };
+
+  render(cfg.src, join(OUT_ROOT, `${slug}.jpg`), whole, cfg.w, 3);
+  made += 1;
+
+  for (const step of STEPS) {
+    if (step >= cfg.w) continue;
+    render(cfg.src, join(OUT_ROOT, `${slug}-${step}.jpg`), whole, step, 5);
+    made += 1;
+  }
+
+  console.log(`${slug}.jpg (карточка): ${sw}x${sh} → ${cfg.w}px`);
+}
+
+console.log(`\nГотово: ${made} файлов в src/assets/img/cases/`);
