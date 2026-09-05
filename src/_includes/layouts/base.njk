@@ -160,6 +160,9 @@
 
   {% include "partials/footer.njk" %}
 
+  {# Баннер согласия на cookie: спрятан, пока hybrid.js не решит показать #}
+  {% include "partials/cookies.njk" %}
+
   {# Минифицированная сборка; рядом лежит hybrid.js с комментариями #}
   <script src="/assets/js/hybrid.min.js" defer></script>
 </body>

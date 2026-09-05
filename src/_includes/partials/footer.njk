@@ -65,6 +65,24 @@
 
     <div class="hyb-footer__bottom">
       <p>{{ f.copyright }}</p>
+      {#
+        Юридические документы и кнопка панели cookie — в нижней полосе, а не
+        четвёртой колонкой: три колонки сняты с макета, и четвёртая
+        перестроила бы его сетку ради трёх служебных ссылок. Адреса берутся
+        из самих документов (_data/legal/), у локалей они разные.
+
+        «Setări cookie» — кнопка, а не ссылка: она открывает панель на месте,
+        переходить некуда. Без JS панели нет, и кнопка честно ничего не делает.
+      #}
+      <nav class="hyb-footer__legal" aria-label="{{ t.legal.footerLabel }}">
+        <ul>
+          {% for key in ["terms", "privacy", "cookies"] %}
+          {% set doc = legal[key] | loc(t.locale) %}
+          <li><a href="{{ legal[key].paths[t.locale] | localeUrl(t) }}">{{ doc.navTitle }}</a></li>
+          {% endfor %}
+          <li><button type="button" class="hyb-footer__cookie" data-hyb-consent-open>{{ t.cookies.footerButton }}</button></li>
+        </ul>
+      </nav>
       <p>{{ f.tagline }}</p>
     </div>
   </div>

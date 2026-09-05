@@ -1,0 +1,389 @@
+{
+  "_comment": "Политика конфиденциальности. RO — дословно из «PIXTOON - Politica de Confidentialitate.docx» (01.09.2026), EN переведён нами, юристом не читан. Реквизиты оператора в 1.1 вынесены в facts и рисуются карточкой, а не абзацем. Плейсхолдеры {privacy}, {cookies}, {terms} подменяются адресами страниц в legalPages.js.",
+  "key": "privacy",
+  "order": 2,
+  "paths": {
+    "en": "privacy-policy/",
+    "ro": "politica-de-confidentialitate/"
+  },
+  "en": {
+    "navTitle": "Privacy Policy",
+    "meta": {
+      "title": "Privacy Policy — PixToon",
+      "description": "What personal data pixtoon.com collects, why, who it is shared with, how long it is kept, and your rights under Law no. 195/2024."
+    },
+    "title": {
+      "a": "Privacy",
+      "outline": "policy"
+    },
+    "subtitle": "Information notice on the processing of personal data – www.pixtoon.com",
+    "version": "Version 1.0",
+    "effectiveLabel": "Effective / last updated",
+    "effectiveDate": "01.09.2026",
+    "intro": "The confidentiality of your data matters to us. This Privacy Policy explains what personal data we collect through the website www.pixtoon.com (hereinafter “the Site”), for what purposes and on what legal grounds we process it, to whom we may disclose it, how long we keep it, and what rights you have in relation to it. Processing is carried out in accordance with Law no. 195/2024 on the protection of personal data and the other legal provisions applicable in the Republic of Moldova.",
+    "sections": [
+      {
+        "id": "data-controller",
+        "title": "The personal data controller",
+        "clauses": [
+          {
+            "n": "1.1",
+            "text": "The controller that determines the purposes and means of processing the data collected through the Site is:",
+            "facts": [
+              { "label": "Name", "value": "PIXTOON ANIMATION Limited Liability Company" },
+              { "label": "IDNO / Tax code", "value": "1019600005543" },
+              { "label": "Registered office", "value": "MD-2023, Chișinău, Ciocana district, str. Podul Înalt 8/1, ap. (of.) 3, Republic of Moldova" },
+              { "label": "Contact e-mail", "value": "<a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>" },
+              { "label": "Phone", "value": "<a href=\"tel:+37378555333\">+373 78 555 333</a>" }
+            ]
+          },
+          { "n": "1.2", "text": "For any question or request regarding the processing of your personal data, you can contact us using the details above." }
+        ]
+      },
+      {
+        "id": "processing-principles",
+        "title": "Processing principles",
+        "clauses": [
+          { "n": "2.1", "text": "We process your data in compliance with the principles of lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, as well as integrity and confidentiality, in accordance with Law no. 195/2024." }
+        ]
+      },
+      {
+        "id": "categories-of-data",
+        "title": "Categories of data we process",
+        "clauses": [
+          {
+            "n": "3.1",
+            "text": "Data you provide to us directly:",
+            "list": [
+              "through the contact form: your name, e-mail address, phone number, the content of your message and the files you attach;",
+              "through subscription to the newsletter: your e-mail address (and, where applicable, your name);",
+              "through direct communication with us (e-mail, phone): identification and contact details and the information you share with us."
+            ]
+          },
+          {
+            "n": "3.2",
+            "text": "Data collected automatically when you visit the Site:",
+            "list": [
+              "IP address, device and browser type, operating system, online identifiers and cookies;",
+              "data on browsing and use of the Site (pages visited, length of visit, referral source), collected in particular through web analytics tools such as Google Analytics / Google Tag Manager."
+            ]
+          },
+          { "n": "3.3", "text": "We do not seek to collect special categories of data (sensitive data) through the Site. Please do not send us such data through the contact form or as attachments." }
+        ]
+      },
+      {
+        "id": "purposes-and-legal-grounds",
+        "title": "Purposes and legal grounds of processing",
+        "clauses": [
+          {
+            "n": "4.1",
+            "text": "We process your data for the following purposes and on the following legal grounds:",
+            "list": [
+              "to respond to requests sent through the contact form or by other means and to take steps at your request prior to entering into a possible contract – ground: pre-contractual measures and/or our legitimate interest in communicating with interested persons;",
+              "to send commercial communications and newsletters – ground: your consent, which you may withdraw at any time;",
+              "to ensure the operation, security and maintenance of the Site – ground: our legitimate interest;",
+              "to analyse and improve the Site through analytics cookies – ground: your consent, given through the cookie banner;",
+              "to comply with our legal obligations – ground: legal obligation;",
+              "to establish, exercise or defend a legal claim – ground: our legitimate interest."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cookies",
+        "title": "Cookies",
+        "clauses": [
+          { "n": "5.1", "text": "The Site uses cookies and similar technologies. Cookies that are not strictly necessary (including analytics and marketing cookies) are used only on the basis of your consent, given through the cookie banner." },
+          { "n": "5.2", "text": "Details on the types of cookies, their purpose, duration and how to manage your preferences are set out in the <a href=\"{cookies}\">Cookie Policy</a>, available on the Site." }
+        ]
+      },
+      {
+        "id": "recipients-of-data",
+        "title": "Recipients of the data",
+        "clauses": [
+          {
+            "n": "6.1",
+            "text": "We may disclose your data to the following categories of recipients, only to the extent necessary:",
+            "list": [
+              "service providers acting as processors on behalf of the controller, under contracts that ensure data protection, such as: the web hosting provider, the e-mail/newsletter service provider and the providers of web analytics tools (for example, Google);",
+              "public authorities, courts or other competent bodies, where we have a legal obligation to do so;",
+              "professional advisers (legal, accounting), where necessary."
+            ]
+          },
+          { "n": "6.2", "text": "We do not sell your personal data and do not disclose it to third parties for purposes other than those set out in this Policy." }
+        ]
+      },
+      {
+        "id": "transfers-outside-moldova",
+        "title": "Transfers outside the Republic of Moldova",
+        "clauses": [
+          { "n": "7.1", "text": "Some of our service providers (for example, web analytics or e-mail providers) may process data on servers located outside the Republic of Moldova, including in third countries such as the United States of America." },
+          { "n": "7.2", "text": "In such cases, we ensure that the transfer is carried out in compliance with Law no. 195/2024, on the basis of appropriate safeguards (for example, standard contractual clauses or other mechanisms provided by law) or in one of the situations permitted by law." }
+        ]
+      },
+      {
+        "id": "retention-period",
+        "title": "Data retention period",
+        "clauses": [
+          {
+            "n": "8.1",
+            "text": "We keep your data only for as long as necessary for the purposes for which it was collected, as follows:",
+            "list": [
+              "data from contact requests: for the duration of handling the request and, thereafter, for a period of 3 years (for example, to comply with limitation periods), after which it is deleted or anonymised;",
+              "newsletter subscription data: until consent is withdrawn (unsubscription);",
+              "data collected through cookies: for the validity period of each cookie, as indicated in the <a href=\"{cookies}\">Cookie Policy</a>;",
+              "data required to comply with legal obligations: for the period provided by the applicable legislation."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "your-rights",
+        "title": "Your rights",
+        "clauses": [
+          {
+            "n": "9.1",
+            "text": "In accordance with Law no. 195/2024, you have the following rights:",
+            "list": [
+              "the right of access to your data;",
+              "the right to rectification of inaccurate or incomplete data;",
+              "the right to erasure of data (“the right to be forgotten”), under the conditions provided by law;",
+              "the right to restriction of processing;",
+              "the right to object to processing based on legitimate interest and to processing for direct marketing purposes;",
+              "the right to data portability;",
+              "the right to withdraw your consent at any time, without affecting the lawfulness of processing carried out before the withdrawal;",
+              "the right not to be subject to a decision based solely on automated processing which produces legal effects or similarly significantly affects you."
+            ]
+          },
+          { "n": "9.2", "text": "You can exercise these rights by sending a request to <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>. We will respond to your request within the time limits provided by law." },
+          { "n": "9.3", "text": "If you consider that the processing of your data breaches the legislation, you have the right to lodge a complaint with the supervisory authority: the National Centre for Personal Data Protection (CNPDCP), Chișinău, str. Serghei Lazo 48, MD-2004, Republic of Moldova; e-mail: <a href=\"mailto:centru@datepersonale.md\">centru@datepersonale.md</a>; web: <a href=\"https://www.datepersonale.md\" rel=\"noopener\" target=\"_blank\">www.datepersonale.md</a>." }
+        ]
+      },
+      {
+        "id": "data-security",
+        "title": "Data security",
+        "clauses": [
+          { "n": "10.1", "text": "We apply appropriate technical and organisational measures to protect personal data against unauthorised access, loss, destruction, alteration or unauthorised disclosure. However, the transmission of information over the internet cannot be guaranteed to be completely secure." }
+        ]
+      },
+      {
+        "id": "minors",
+        "title": "Processing of minors’ data",
+        "clauses": [
+          { "n": "11.1", "text": "The Site is addressed to persons with full legal capacity and is not intended for minors. We do not knowingly collect data from minors. If you believe that a minor has provided us with data without the necessary consent, please contact us so that we can remove it." }
+        ]
+      },
+      {
+        "id": "automated-decisions",
+        "title": "Automated decisions and profiling",
+        "clauses": [
+          { "n": "12.1", "text": "We do not make decisions based solely on automated processing of data that produce legal effects concerning you or similarly significantly affect you. Web analytics tools may process data in aggregated form, for statistical purposes." }
+        ]
+      },
+      {
+        "id": "changes-to-this-policy",
+        "title": "Changes to this Policy",
+        "clauses": [
+          { "n": "13.1", "text": "We may update this Privacy Policy from time to time. The updated version is published on the Site, indicating the date of the last update, and takes effect from the date of publication. We recommend that you review it periodically." }
+        ]
+      },
+      {
+        "id": "contact",
+        "title": "Contact",
+        "clauses": [
+          { "n": "14.1", "text": "For any questions or requests regarding this Policy or the processing of your personal data, you can contact us at: e-mail <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>, phone <a href=\"tel:+37378555333\">+373 78 555 333</a>." }
+        ]
+      }
+    ]
+  },
+  "ro": {
+    "navTitle": "Politica de confidențialitate",
+    "meta": {
+      "title": "Politica de confidențialitate — PixToon",
+      "description": "Ce date cu caracter personal colectează pixtoon.com, în ce scop, cui le divulgă, cât le păstrează și ce drepturi aveți conform Legii nr. 195/2024."
+    },
+    "title": {
+      "a": "Politica de",
+      "outline": "confidențialitate"
+    },
+    "subtitle": "Notă de informare privind prelucrarea datelor cu caracter personal – www.pixtoon.com",
+    "version": "Versiunea 1.0",
+    "effectiveLabel": "Data intrării în vigoare / ultimei actualizări",
+    "effectiveDate": "01.09.2026",
+    "intro": "Confidențialitatea datelor dumneavoastră este importantă pentru noi. Prezenta Politică de confidențialitate explică ce date cu caracter personal colectăm prin intermediul site-ului web www.pixtoon.com (denumit în continuare „Site-ul”), în ce scopuri și pe ce temeiuri le prelucrăm, cui le putem divulga, cât timp le păstrăm și ce drepturi aveți în legătură cu acestea. Prelucrarea se realizează în conformitate cu Legea nr. 195/2024 privind protecția datelor cu caracter personal și cu celelalte dispoziții legale aplicabile în Republica Moldova.",
+    "sections": [
+      {
+        "id": "operatorul-de-date",
+        "title": "Operatorul de date cu caracter personal",
+        "clauses": [
+          {
+            "n": "1.1",
+            "text": "Operatorul care stabilește scopurile și mijloacele de prelucrare a datelor colectate prin Site este:",
+            "facts": [
+              { "label": "Denumire", "value": "Societatea cu Răspundere Limitată PIXTOON ANIMATION" },
+              { "label": "IDNO / Cod fiscal", "value": "1019600005543" },
+              { "label": "Sediu", "value": "MD-2023, mun. Chișinău, sectorul Ciocana, str. Podul Înalt 8/1, ap. (of.) 3, Republica Moldova" },
+              { "label": "E-mail de contact", "value": "<a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>" },
+              { "label": "Telefon", "value": "<a href=\"tel:+37378555333\">+373 78 555 333</a>" }
+            ]
+          },
+          { "n": "1.2", "text": "Pentru orice întrebare sau solicitare privind prelucrarea datelor dumneavoastră cu caracter personal, ne puteți contacta la datele de mai sus." }
+        ]
+      },
+      {
+        "id": "principiile-prelucrarii",
+        "title": "Principiile prelucrării",
+        "clauses": [
+          { "n": "2.1", "text": "Prelucrăm datele dumneavoastră cu respectarea principiilor legalității, echității și transparenței, limitării la scopurile determinate, minimizării datelor, exactității, limitării perioadei de stocare, precum și integrității și confidențialității, în conformitate cu Legea nr. 195/2024." }
+        ]
+      },
+      {
+        "id": "categoriile-de-date",
+        "title": "Categoriile de date pe care le prelucrăm",
+        "clauses": [
+          {
+            "n": "3.1",
+            "text": "Date pe care ni le furnizați direct:",
+            "list": [
+              "prin formularul de contact: numele, adresa de e-mail, numărul de telefon, conținutul mesajului și fișierele pe care le atașați;",
+              "prin abonarea la newsletter: adresa de e-mail (și, după caz, numele);",
+              "prin comunicarea directă cu noi (e-mail, telefon): datele de identificare și de contact și informațiile pe care ni le comunicați."
+            ]
+          },
+          {
+            "n": "3.2",
+            "text": "Date colectate automat, atunci când vizitați Site-ul:",
+            "list": [
+              "adresa IP, tipul dispozitivului și al browserului, sistemul de operare, identificatorii online și fișierele de tip cookie;",
+              "date privind navigarea și utilizarea Site-ului (pagini vizitate, durata vizitei, sursa accesării), colectate în special prin instrumente de analiză web precum Google Analytics / Google Tag Manager."
+            ]
+          },
+          { "n": "3.3", "text": "Nu urmărim să colectăm prin Site categorii speciale de date (date sensibile). Vă rugăm să nu ne transmiteți astfel de date prin formularul de contact sau prin atașamente." }
+        ]
+      },
+      {
+        "id": "scopurile-si-temeiurile-juridice",
+        "title": "Scopurile și temeiurile juridice ale prelucrării",
+        "clauses": [
+          {
+            "n": "4.1",
+            "text": "Prelucrăm datele dumneavoastră în următoarele scopuri și pe următoarele temeiuri juridice:",
+            "list": [
+              "pentru a răspunde solicitărilor transmise prin formularul de contact sau prin alte mijloace și pentru a lua măsuri la cererea dumneavoastră anterior încheierii unui eventual contract – temei: măsuri precontractuale și/sau interesul nostru legitim de a comunica cu persoanele interesate;",
+              "pentru transmiterea de comunicări comerciale și buletine informative (newsletter) – temei: consimțământul dumneavoastră, pe care îl puteți retrage oricând;",
+              "pentru asigurarea funcționării, securității și mentenanței Site-ului – temei: interesul nostru legitim;",
+              "pentru analiza și îmbunătățirea Site-ului prin cookie-uri de analiză – temei: consimțământul dumneavoastră, exprimat prin bannerul de cookie-uri;",
+              "pentru respectarea obligațiilor legale care ne revin – temei: obligația legală;",
+              "pentru constatarea, exercitarea sau apararea unui drept în justiție – temei: interesul nostru legitim."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fisiere-cookie",
+        "title": "Fișiere cookie",
+        "clauses": [
+          { "n": "5.1", "text": "Site-ul utilizează fișiere de tip cookie și tehnologii similare. Cookie-urile care nu sunt strict necesare (inclusiv cele de analiză și de marketing) sunt utilizate numai pe baza consimțământului dumneavoastră, exprimat prin bannerul de cookie-uri." },
+          { "n": "5.2", "text": "Detaliile privind tipurile de cookie-uri, scopul, durata și modul de gestionare a preferințelor sunt prezentate în <a href=\"{cookies}\">Politica privind cookie-urile</a>, disponibilă pe Site." }
+        ]
+      },
+      {
+        "id": "destinatarii-datelor",
+        "title": "Destinatarii datelor",
+        "clauses": [
+          {
+            "n": "6.1",
+            "text": "Putem divulga datele dumneavoastră următoarelor categorii de destinatari, numai în măsura necesară:",
+            "list": [
+              "furnizori de servicii care acționează în calitate de persoane împuternicite de operator, în baza unor contracte care asigură protecția datelor, precum: furnizorul de găzduire web, furnizorul serviciului de e-mail/newsletter și furnizorii de instrumente de analiză web (de exemplu, Google);",
+              "autorități publice, instanțe sau alte organe competente, atunci când avem o obligație legală în acest sens;",
+              "consultanți profesioniști (juridici, contabili), atunci când este necesar."
+            ]
+          },
+          { "n": "6.2", "text": "Nu vindem datele dumneavoastră cu caracter personal și nu le divulgăm terților în alte scopuri decât cele prevăzute în prezenta Politică." }
+        ]
+      },
+      {
+        "id": "transferuri-in-afara-republicii-moldova",
+        "title": "Transferuri în afara Republicii Moldova",
+        "clauses": [
+          { "n": "7.1", "text": "Unii dintre furnizorii noștri de servicii (de exemplu, furnizorii de analiză web sau de e-mail) pot prelucra date pe servere situate în afara Republicii Moldova, inclusiv în state terțe precum Statele Unite ale Americii." },
+          { "n": "7.2", "text": "În astfel de cazuri, ne asigurăm că transferul se realizează cu respectarea Legii nr. 195/2024, în baza unor garanții adecvate (de exemplu, clauze contractuale standard sau alte mecanisme prevăzute de lege) ori într-una dintre situațiile permise de lege." }
+        ]
+      },
+      {
+        "id": "perioada-de-stocare",
+        "title": "Perioada de stocare a datelor",
+        "clauses": [
+          {
+            "n": "8.1",
+            "text": "Păstrăm datele dumneavoastră numai atât timp cât este necesar pentru scopurile pentru care au fost colectate, după cum urmează:",
+            "list": [
+              "datele din solicitările de contact: pe durata soluționării solicitării și, ulterior, pentru o perioadă de 3 ani (de exemplu, în vederea respectării termenelor de prescripție), după care sunt șterse sau anonimizate;",
+              "datele de abonare la newsletter: până la retragerea consimțământului (dezabonare);",
+              "datele colectate prin cookie-uri: pe durata de valabilitate a fiecărui cookie, indicată în <a href=\"{cookies}\">Politica privind cookie-urile</a>;",
+              "datele necesare pentru respectarea obligațiilor legale: pe perioada prevăzută de legislația aplicabilă."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "drepturile-dumneavoastra",
+        "title": "Drepturile dumneavoastră",
+        "clauses": [
+          {
+            "n": "9.1",
+            "text": "În conformitate cu Legea nr. 195/2024, beneficiați de următoarele drepturi:",
+            "list": [
+              "dreptul de acces la datele dumneavoastră;",
+              "dreptul la rectificarea datelor inexacte sau incomplete;",
+              "dreptul la ștergerea datelor („dreptul de a fi uitat”), în condițiile legii;",
+              "dreptul la restricționarea prelucrării;",
+              "dreptul de a vă opune prelucrării întemeiate pe interes legitim și prelucrării în scop de marketing direct;",
+              "dreptul la portabilitatea datelor;",
+              "dreptul de a vă retrage oricând consimțământul, fără a afecta legalitatea prelucrării efectuate anterior retragerii;",
+              "dreptul de a nu face obiectul unei decizii bazate exclusiv pe prelucrarea automată, care produce efecte juridice sau vă afectează în mod similar semnificativ."
+            ]
+          },
+          { "n": "9.2", "text": "Vă puteți exercita aceste drepturi printr-o cerere adresată la <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>. Vom răspunde solicitării dumneavoastră în termenele prevăzute de lege." },
+          { "n": "9.3", "text": "Dacă apreciați că prelucrarea datelor dumneavoastră încalcă legislația, aveți dreptul de a depune o plângere la autoritatea de supraveghere: Centrul Național pentru Protecția Datelor cu Caracter Personal (CNPDCP), mun. Chișinău, str. Serghei Lazo 48, MD-2004, Republica Moldova; e-mail: <a href=\"mailto:centru@datepersonale.md\">centru@datepersonale.md</a>; web: <a href=\"https://www.datepersonale.md\" rel=\"noopener\" target=\"_blank\">www.datepersonale.md</a>." }
+        ]
+      },
+      {
+        "id": "securitatea-datelor",
+        "title": "Securitatea datelor",
+        "clauses": [
+          { "n": "10.1", "text": "Aplicăm măsuri tehnice și organizatorice adecvate pentru a proteja datele cu caracter personal împotriva accesului neautorizat, pierderii, distrugerii, alterării sau divulgării neautorizate. Cu toate acestea, transmiterea informațiilor prin internet nu poate fi garantată ca fiind complet sigură." }
+        ]
+      },
+      {
+        "id": "prelucrarea-datelor-minorilor",
+        "title": "Prelucrarea datelor minorilor",
+        "clauses": [
+          { "n": "11.1", "text": "Site-ul se adresează persoanelor cu capacitate deplină de exercițiu și nu este destinat minorilor. Nu colectăm cu bună știință date de la minori. Dacă apreciați că un minor ne-a furnizat date fără consimțământul necesar, vă rugăm să ne contactați pentru a le elimina." }
+        ]
+      },
+      {
+        "id": "decizii-automate-si-profilare",
+        "title": "Decizii automate și profilare",
+        "clauses": [
+          { "n": "12.1", "text": "Nu luăm decizii bazate exclusiv pe prelucrarea automată a datelor care să producă efecte juridice asupra dumneavoastră sau să vă afecteze în mod similar semnificativ. Instrumentele de analiză web pot prelucra date în mod agregat, în scop statistic." }
+        ]
+      },
+      {
+        "id": "modificari-ale-prezentei-politici",
+        "title": "Modificări ale prezentei Politici",
+        "clauses": [
+          { "n": "13.1", "text": "Putem actualiza periodic prezenta Politică de confidențialitate. Versiunea actualizată se publică pe Site, cu indicarea datei ultimei actualizări, și produce efecte de la data publicării. Vă recomandăm să o consultați periodic." }
+        ]
+      },
+      {
+        "id": "contact",
+        "title": "Contact",
+        "clauses": [
+          { "n": "14.1", "text": "Pentru orice întrebări sau solicitări privind prezenta Politică sau prelucrarea datelor dumneavoastră cu caracter personal, ne puteți contacta la: e-mail <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>, telefon <a href=\"tel:+37378555333\">+373 78 555 333</a>." }
+        ]
+      }
+    ]
+  }
+}

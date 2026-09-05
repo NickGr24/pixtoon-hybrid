@@ -28,6 +28,8 @@
     initBurger();
     initForm();
     initStickyHeader();
+    initLegal();
+    initConsent();
   });
 
   /* --- Шапка при прокрутке ----------------------------------------------- */
@@ -468,6 +470,313 @@
         }
       });
     });
+  }
+
+  /* --- Юридические страницы: оглавление и полоса чтения ------------------ */
+
+  /**
+   * Оглавление со скролл-спаем и полоса прочитанного. Работает только там,
+   * где есть документ (data-hyb-doc) — на шести юридических страницах.
+   *
+   * Обе вещи считаются от одной линии чтения — 30% высоты окна: туда
+   * смотрит читающий, а не на верхний край экрана. Текущий раздел — последний,
+   * чей верх поднялся выше этой линии; полоса — доля документа, прошедшая
+   * через неё. Одна линия, одно правило, и маркер с полосой не спорят.
+   *
+   * Считается на прокрутке, а не наблюдателем пересечений: наблюдатель
+   * отдаёт «пересекает полосу» и для хвоста уходящего раздела, и для головы
+   * приходящего, и выбрать между ними без геометрии нельзя. Восемнадцать
+   * getBoundingClientRect на кадр — дешевле любого обходного правила.
+   *
+   * Маркер в оглавлении едет за активной ссылкой по двум переменным —
+   * смещению и высоте; сам переход рисует CSS.
+   */
+  function initLegal() {
+    var doc = document.querySelector("[data-hyb-doc]");
+    if (!doc) return;
+
+    var toc = document.querySelector("[data-hyb-toc]");
+    var list = document.querySelector("[data-hyb-toc-list]");
+    var links = Array.prototype.slice.call(document.querySelectorAll("[data-hyb-toc-link]"));
+    var sections = Array.prototype.slice.call(doc.querySelectorAll("[data-hyb-sec]"));
+    var narrow = window.matchMedia("(max-width: 61.99rem)");
+
+    /* <details> оглавления: на десктопе раскрыт всегда — summary там не
+       кликается, и закрыть его нечем; на телефоне свёрнут, иначе восемнадцать
+       пунктов отодвигают сам документ на экран вниз. */
+    if (toc) {
+      var syncToc = function () {
+        toc.open = !narrow.matches;
+      };
+      syncToc();
+      if (narrow.addEventListener) narrow.addEventListener("change", syncToc);
+    }
+
+    /* Плавный ход к разделу. Адрес обновляется заменой, а не записью: клик
+       по оглавлению не должен плодить шаги в истории браузера. На телефоне
+       оглавление после выбора сворачивается — оно уже сделало своё. */
+    links.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var target = document.getElementById(a.getAttribute("href").slice(1));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+        history.replaceState(null, "", "#" + target.id);
+        if (toc && narrow.matches) toc.open = false;
+      });
+    });
+
+    var marked = null;
+
+    function mark(section) {
+      if (section === marked) return;
+      marked = section;
+
+      var current = null;
+      links.forEach(function (a) {
+        var on = section !== null && a.getAttribute("href") === "#" + section.id;
+        a.classList.toggle("is-current", on);
+        if (on) current = a;
+      });
+      if (!list) return;
+      if (!current) {
+        list.style.setProperty("--hyb-toc-on", "0");
+        return;
+      }
+      list.style.setProperty("--hyb-toc-y", current.offsetTop + "px");
+      list.style.setProperty("--hyb-toc-h", current.offsetHeight + "px");
+      list.style.setProperty("--hyb-toc-on", "1");
+    }
+
+    var bar = document.querySelector("[data-hyb-progress]");
+    var queued = false;
+
+    function paint() {
+      queued = false;
+
+      var line = window.innerHeight * 0.3;
+      var atEnd =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+
+      /* Последний раздел, чей верх выше линии. До первого раздела текущего
+         нет и маркер спрятан; у самого низа страницы текущий — последний:
+         короткий финальный раздел до линии может и не дойти. */
+      var current = null;
+      for (var i = 0; i < sections.length; i += 1) {
+        if (sections[i].getBoundingClientRect().top <= line) current = sections[i];
+      }
+      if (atEnd && sections.length) current = sections[sections.length - 1];
+      mark(current);
+
+      /* Ноль, когда верх документа стоит на линии, единица — когда до неё
+         дошёл его низ либо страница прокручена до конца. */
+      if (bar) {
+        var top = doc.getBoundingClientRect().top;
+        var p = atEnd ? 1 : (line - top) / doc.offsetHeight;
+        bar.style.setProperty("--hyb-progress", Math.min(1, Math.max(0, p)).toFixed(4));
+      }
+    }
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(paint);
+      },
+      { passive: true }
+    );
+    window.addEventListener("resize", paint);
+    paint();
+  }
+
+  /* --- Согласие на cookie ------------------------------------------------ */
+
+  /**
+   * Баннер согласия. Категории — по политике клиента: строго необходимые
+   * (без переключателя), аналитика, маркетинг, функциональные.
+   *
+   * Решение хранится в cookie hyb_consent на 180 дней — это тот самый
+   * «строго необходимый» cookie, который политика описывает как память о
+   * выборе. Cookie, а не localStorage: его читает и Google Tag Manager, и
+   * сервер, если понадобится.
+   *
+   * Наружу решение уходит тремя путями, и все три ничего не требуют от
+   * страницы: window.hybConsent — прочитать текущее; событие hyb:consent на
+   * document — узнать об изменении; запись в dataLayer и вызов gtag consent
+   * update — для GTM и Consent Mode, когда их подключат. Самих скриптов
+   * аналитики здесь нет и не будет: их место в MODX, за этими сигналами.
+   *
+   * Без сохранённого решения баннер выезжает через секунду после загрузки:
+   * не на первой отрисовке, чтобы не спорить с главным кадром страницы, и
+   * не позже, чтобы читатель не успел уйти вглубь. Фокус при этом остаётся
+   * на странице; в панель он переносится только по кнопке посетителя.
+   */
+  var CONSENT_KEY = "hyb_consent";
+  var CONSENT_CATS = ["analytics", "marketing", "functional"];
+  var CONSENT_DAYS = 180;
+
+  function readConsent() {
+    var m = document.cookie.match(new RegExp("(?:^|; )" + CONSENT_KEY + "=([^;]*)"));
+    if (!m) return null;
+    try {
+      var state = JSON.parse(decodeURIComponent(m[1]));
+      return state && state.v === 1 ? state : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeConsent(state) {
+    var secure = location.protocol === "https:" ? "; Secure" : "";
+    document.cookie =
+      CONSENT_KEY + "=" + encodeURIComponent(JSON.stringify(state)) +
+      "; Max-Age=" + CONSENT_DAYS * 24 * 3600 + "; Path=/; SameSite=Lax" + secure;
+  }
+
+  function applyConsent(state) {
+    window.hybConsent = state;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "hyb_consent", consent: state });
+
+    var grant = function (on) { return on ? "granted" : "denied"; };
+    if (typeof window.gtag === "function") {
+      window.gtag("consent", "update", {
+        analytics_storage: grant(state.analytics),
+        ad_storage: grant(state.marketing),
+        ad_user_data: grant(state.marketing),
+        ad_personalization: grant(state.marketing),
+        functionality_storage: grant(state.functional),
+        personalization_storage: grant(state.functional),
+      });
+    }
+
+    document.dispatchEvent(new CustomEvent("hyb:consent", { detail: state }));
+  }
+
+  function initConsent() {
+    var box = document.querySelector("[data-hyb-consent]");
+    if (!box) return;
+
+    var views = {};
+    box.querySelectorAll("[data-hyb-consent-view]").forEach(function (v) {
+      views[v.dataset.hybConsentView] = v;
+    });
+    var switches = box.querySelectorAll("[data-hyb-consent-cat]");
+
+    var opener = null; /* кнопка, открывшая панель: туда вернётся фокус */
+    var closing = null;
+
+    function setView(name) {
+      Object.keys(views).forEach(function (k) {
+        views[k].hidden = k !== name;
+      });
+    }
+
+    function fill(state) {
+      switches.forEach(function (sw) {
+        var key = sw.dataset.hybConsentCat;
+        sw.setAttribute("aria-checked", state && state[key] ? "true" : "false");
+      });
+    }
+
+    function show(view) {
+      clearTimeout(closing);
+      setView(view);
+      box.hidden = false;
+      /* Два кадра, не один: первый снимает hidden, и только на втором у
+         перехода есть исходное состояние, от которого ехать. */
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          box.classList.add("is-open");
+        });
+      });
+    }
+
+    function hide() {
+      box.classList.remove("is-open");
+      closing = setTimeout(function () {
+        box.hidden = true;
+      }, reduced ? 0 : 600);
+      if (opener) {
+        opener.focus();
+        opener = null;
+      }
+    }
+
+    function everything(value) {
+      var state = {};
+      CONSENT_CATS.forEach(function (key) {
+        state[key] = value;
+      });
+      return state;
+    }
+
+    function decide(choice) {
+      var state = { v: 1, necessary: true, at: new Date().toISOString() };
+      CONSENT_CATS.forEach(function (key) {
+        state[key] = Boolean(choice[key]);
+      });
+      writeConsent(state);
+      applyConsent(state);
+      fill(state);
+      box.classList.add("has-choice");
+      hide();
+    }
+
+    box.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-act]");
+      if (!btn) return;
+      var act = btn.dataset.act;
+
+      if (act === "accept") decide(everything(true));
+      else if (act === "reject") decide(everything(false));
+      else if (act === "save") {
+        var picked = {};
+        switches.forEach(function (sw) {
+          picked[sw.dataset.hybConsentCat] = sw.getAttribute("aria-checked") === "true";
+        });
+        decide(picked);
+      } else if (act === "settings") setView("prefs");
+      else if (act === "back") setView("main");
+      else if (act === "close") hide();
+    });
+
+    switches.forEach(function (sw) {
+      sw.addEventListener("click", function () {
+        var on = sw.getAttribute("aria-checked") === "true";
+        sw.setAttribute("aria-checked", on ? "false" : "true");
+      });
+    });
+
+    /* Esc закрывает панель, но только когда решение уже есть: до него
+       закрыть баннер, ничего не выбрав, нельзя — как и крестиком. */
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape" || box.hidden) return;
+      if (box.classList.contains("has-choice")) hide();
+    });
+
+    document.querySelectorAll("[data-hyb-consent-open]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        opener = btn;
+        fill(readConsent());
+        show("prefs");
+        box.focus();
+      });
+    });
+
+    var saved = readConsent();
+    if (saved) {
+      applyConsent(saved);
+      fill(saved);
+      box.classList.add("has-choice");
+    } else {
+      fill(everything(false));
+      setTimeout(function () {
+        show("main");
+      }, 900);
+    }
   }
 
   /* --- Мобильное меню ---------------------------------------------------- */

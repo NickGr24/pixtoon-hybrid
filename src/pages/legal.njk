@@ -1,0 +1,180 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: legalPages
+  size: 1
+  alias: t
+permalink: "{{ t.url }}index.html"
+eleventyComputed:
+  pageTitle: "{{ t.doc.meta.title | safe }}"
+  pageDescription: "{{ t.doc.meta.description | safe }}"
+  altUrl: "{{ t.altUrl }}"
+---
+
+{#
+  Юридическая страница — все шесть (три документа x две локали) из этого
+  шаблона. Данные разворачивает _data/legalPages.js; тексты лежат в
+  _data/legal/<документ>.json и в разметку не попадают.
+
+  Раскладка: шапка страницы как у /work и /studio, ниже — оглавление слева
+  (липкое на десктопе, свёрнутое на телефоне) и документ справа. Секции
+  документа нумеруются по порядку в данных, пункты несут свой номер из
+  документа клиента: нумерация 1.1, 9.3 — часть текста, на неё ссылаются
+  соседние пункты («în condițiile art. 16»), и пересчитывать её нельзя.
+
+  Пункт умеет три приложения, и все три необязательны: list — подпункты
+  a), b), c) с буквой из CSS-счётчика; defs — определения с выделенным
+  термином; facts — реквизиты компании карточкой. Кавычки у терминов
+  ставятся здесь, а не в данных: у локалей они разные.
+#}
+{% set d = t.doc %}
+{% set L = t.legal %}
+{% set qOpen = "„" if t.locale == "ro" else "“" %}
+{% set qClose = "”" %}
+
+{# Полоса прочитанного: едет по верхнему краю окна, пока читается документ #}
+<div class="hyb-progress" data-hyb-progress aria-hidden="true"><span class="hyb-progress__bar"></span></div>
+
+<section class="hyb-pagehead hyb-legalhead">
+  <div class="hyb-wrap">
+    <div class="hyb-head hyb-head--full">
+      <span class="hyb-eyebrow hyb-eyebrow--pill">{{ L.eyebrow }}</span>
+      {% title d.title, "h1", "hyb-title--page" %}
+      <p class="hyb-lead">{{ d.subtitle }}</p>
+      <ul class="hyb-legal__meta">
+        <li class="hyb-legal__pill">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3.5h10v9H3z"/><path d="M5.5 6.5h5M5.5 9h3"/></svg>
+          {{ d.version }}
+        </li>
+        <li class="hyb-legal__pill">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.5" y="3.5" width="11" height="10" rx="1.5"/><path d="M2.5 7h11M5.5 2v3M10.5 2v3"/></svg>
+          <span>{{ d.effectiveLabel }}:</span> <time datetime="2026-09-01">{{ d.effectiveDate }}</time>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="hyb-section hyb-legal">
+  <div class="hyb-wrap hyb-legal__grid">
+    <aside class="hyb-legal__side">
+      {#
+        <details>, а не свой аккордеон: на телефоне сворачивается без единой
+        строки скрипта. На десктопе summary спрятан стилями, а раскрытое
+        состояние держит hybrid.js — закрытый details не рисует содержимое
+        независимо от CSS.
+      #}
+      <details class="hyb-toc" data-hyb-toc open>
+        <summary class="hyb-toc__summary">
+          <span class="hyb-label">{{ L.contents }}</span>
+          <svg class="hyb-toc__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+        </summary>
+        <ol class="hyb-toc__list" data-hyb-toc-list>
+          {% for s in d.sections %}
+          <li>
+            <a class="hyb-toc__link" href="#{{ s.id }}" data-hyb-toc-link>
+              <span class="hyb-toc__n" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+              <span class="hyb-toc__t">{{ s.title }}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ol>
+      </details>
+    </aside>
+
+    <article class="hyb-legal__doc" data-hyb-doc>
+      <p class="hyb-legal__intro">{{ d.intro | safe }}</p>
+
+      {% for s in d.sections %}
+      <section class="hyb-legal__sec hyb-reveal" id="{{ s.id }}" data-hyb-sec>
+        <h2 class="hyb-legal__h">
+          <span class="hyb-legal__num" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+          <span>{{ s.title }}</span>
+        </h2>
+
+        {% for c in s.clauses %}
+        <div class="hyb-legal__clause">
+          <span class="hyb-legal__cn">{{ c.n }}</span>
+          <div class="hyb-legal__body">
+            <p>{{ c.text | safe }}</p>
+
+            {% if c.list %}
+            <ol class="hyb-legal__list">
+              {% for item in c.list %}<li>{{ item | safe }}</li>{% endfor %}
+            </ol>
+            {% endif %}
+
+            {% if c.defs %}
+            <ul class="hyb-legal__defs">
+              {% for df in c.defs %}
+              <li><b class="hyb-legal__term">{{ qOpen }}{{ df.term }}{{ qClose }}</b> {{ df.text | safe }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if c.facts %}
+            <dl class="hyb-legal__facts">
+              {% for f in c.facts %}
+              <div class="hyb-legal__fact">
+                <dt>{{ f.label }}</dt>
+                <dd>{{ f.value | safe }}</dd>
+              </div>
+              {% endfor %}
+            </dl>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+      {% endfor %}
+    </article>
+  </div>
+</section>
+
+<section class="hyb-section hyb-section--alt hyb-legal-more">
+  <div class="hyb-wrap">
+    {#
+      Панель предпочтений обещана самим текстом политики («panoul de
+      preferințe disponibil pe Site»), поэтому на странице cookie есть
+      кнопка, которая её открывает. Кнопка, а не ссылка: без JS баннера нет
+      и открывать нечего — button без обработчика хотя бы не обещает переход.
+    #}
+    {% if t.key == "cookies" %}
+    <div class="hyb-legal__manage hyb-reveal">
+      <div>
+        <span class="hyb-eyebrow hyb-eyebrow--gold">{{ L.manage.eyebrow }}</span>
+        <h2 class="hyb-h3">{{ L.manage.title }}</h2>
+        <p class="hyb-legal__manage-text">{{ L.manage.text }}</p>
+      </div>
+      <button type="button" class="hyb-btn hyb-btn--primary" data-hyb-consent-open>
+        {{ L.manage.button }}
+        <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+      </button>
+    </div>
+    {% endif %}
+
+    <div class="hyb-head hyb-reveal">
+      <span class="hyb-eyebrow">{{ L.relatedEyebrow }}</span>
+      <h2 class="hyb-title hyb-title--sm">{{ L.relatedTitle }}</h2>
+    </div>
+
+    <ul class="hyb-legal__related">
+      {% for r in t.related %}
+      <li class="hyb-reveal">
+        <a class="hyb-card hyb-legal__rel" href="{{ r.url }}">
+          <span class="hyb-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              {{ icons.legal[r.key] | safe }}
+            </svg>
+          </span>
+          <span class="hyb-card__title">{{ r.title }}</span>
+          <span class="hyb-card__text">{{ r.text }}</span>
+          <span class="hyb-legal__rel-go" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

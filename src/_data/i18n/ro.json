@@ -577,5 +577,57 @@
       "outline": "original."
     },
     "ctaPrimary": "Pornește un proiect"
+  },
+  "_legal_comment": "legal — общие подписи юридических страниц (сами тексты документов в _data/legal/). cookies — баннер согласия: заголовок, текст и три кнопки дословно из приложения к «Politica Cookies + Banner.docx», панель категорий — по разделу 3.1 той же политики. Плейсхолдеры {cookies} и {privacy} в тексте баннера подменяются ссылками в партиале.",
+  "legal": {
+    "eyebrow": "Documente legale",
+    "contents": "Cuprins",
+    "relatedEyebrow": "Documente conexe",
+    "relatedTitle": "De citit împreună",
+    "manage": {
+      "eyebrow": "Preferințele dumneavoastră",
+      "title": "Gestionați preferințele privind cookie-urile",
+      "text": "Puteți revedea sau modifica opțiunile oricând. Cookie-urile strict necesare rămân active — ele rețin tocmai această alegere.",
+      "button": "Deschide preferințele"
+    },
+    "footerLabel": "Legal"
+  },
+  "cookies": {
+    "title": "Acest site folosește cookie-uri",
+    "text": "Utilizăm cookie-uri strict necesare pentru funcționarea site-ului și, cu acordul dumneavoastră, cookie-uri de analiză și marketing pentru a îmbunătăți experiența și a înțelege modul de utilizare a site-ului. Puteți accepta toate cookie-urile, le puteți refuza pe cele neesențiale sau vă puteți personaliza opțiunile. Detalii în {cookies} și în {privacy}.",
+    "acceptAll": "Accept toate",
+    "reject": "Refuz",
+    "settings": "Setări",
+    "close": "Închide",
+    "panel": {
+      "title": "Preferințe cookie",
+      "text": "Alegeți ce categorii permiteți. Puteți reveni oricând din linkul „Setări cookie” din subsol.",
+      "always": "Întotdeauna active",
+      "save": "Salvează preferințele",
+      "back": "Înapoi"
+    },
+    "categories": [
+      {
+        "key": "necessary",
+        "title": "Strict necesare",
+        "text": "Asigură funcționarea de bază a site-ului și memorarea preferințelor privind cookie-urile; nu pot fi dezactivate."
+      },
+      {
+        "key": "analytics",
+        "title": "Analiză / performanță",
+        "text": "Ne ajută să înțelegem cum este utilizat site-ul (pagini vizitate, durata vizitei), pentru a-l îmbunătăți."
+      },
+      {
+        "key": "marketing",
+        "title": "Marketing / publicitate",
+        "text": "Utilizate pentru a măsura eficiența campaniilor și, eventual, pentru afișarea de conținut relevant."
+      },
+      {
+        "key": "functional",
+        "title": "Funcționale",
+        "text": "Rețin preferințele dumneavoastră (de exemplu, limba) pentru o experiență personalizată."
+      }
+    ],
+    "footerButton": "Setări cookie"
   }
 }

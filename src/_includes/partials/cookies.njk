@@ -1,0 +1,78 @@
+{#
+  Баннер согласия на cookie. Заголовок, текст и три кнопки — из приложения
+  к политике клиента («Textul bannerului de consimțământ»); панель категорий
+  повторяет раздел 3.1 той же политики. Тексты в i18n под ключом cookies.
+
+  Спрятан до решения скрипта: hybrid.js показывает его, если решения ещё
+  нет, и открывает панель по кнопкам data-hyb-consent-open в футере и на
+  странице политики. Без JS баннера нет вовсе — и это верно: без скрипта
+  не ставятся и те cookie, о которых он спрашивает.
+
+  Не модальный намеренно: страница читается и прокручивается, пока баннер
+  висит. Фокус в него не переносится при автопоказе — только когда панель
+  открыл сам посетитель.
+#}
+{% set c = t.cookies %}
+{% set cookiesDoc = legal.cookies | loc(t.locale) %}
+{% set privacyDoc = legal.privacy | loc(t.locale) %}
+{% set cookiesLink = '<a href="' + (legal.cookies.paths[t.locale] | localeUrl(t)) + '">' + cookiesDoc.navTitle + '</a>' %}
+{% set privacyLink = '<a href="' + (legal.privacy.paths[t.locale] | localeUrl(t)) + '">' + privacyDoc.navTitle + '</a>' %}
+
+<aside
+  class="hyb-consent"
+  data-hyb-consent
+  role="dialog"
+  aria-labelledby="hyb-consent-title"
+  aria-describedby="hyb-consent-text"
+  tabindex="-1"
+  hidden
+>
+  <button type="button" class="hyb-consent__close" data-act="close" aria-label="{{ c.close }}">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12"/></svg>
+  </button>
+
+  <div class="hyb-consent__view" data-hyb-consent-view="main">
+    <span class="hyb-consent__icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{{ icons.legal.cookies | safe }}</svg>
+    </span>
+    <h2 class="hyb-consent__title" id="hyb-consent-title">{{ c.title }}</h2>
+    <p class="hyb-consent__text" id="hyb-consent-text">{{ c.text | replace("{cookies}", cookiesLink) | replace("{privacy}", privacyLink) | safe }}</p>
+    <div class="hyb-consent__actions">
+      <button type="button" class="hyb-btn hyb-btn--primary hyb-btn--sm" data-act="accept">{{ c.acceptAll }}</button>
+      <button type="button" class="hyb-btn hyb-btn--ghost hyb-btn--sm" data-act="reject">{{ c.reject }}</button>
+      <button type="button" class="hyb-consent__link" data-act="settings">{{ c.settings }}</button>
+    </div>
+  </div>
+
+  <div class="hyb-consent__view" data-hyb-consent-view="prefs" hidden>
+    <h2 class="hyb-consent__title">{{ c.panel.title }}</h2>
+    <p class="hyb-consent__text">{{ c.panel.text }}</p>
+    <ul class="hyb-consent__cats">
+      {% for cat in c.categories %}
+      <li class="hyb-consent__cat">
+        <div class="hyb-consent__cat-head">
+          <span class="hyb-consent__cat-title" id="hyb-consent-cat-{{ cat.key }}">{{ cat.title }}</span>
+          {% if cat.key == "necessary" %}
+          <span class="hyb-consent__always">{{ c.panel.always }}</span>
+          {% else %}
+          <button
+            type="button"
+            class="hyb-switch"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="hyb-consent-cat-{{ cat.key }}"
+            data-hyb-consent-cat="{{ cat.key }}"
+          ><span class="hyb-switch__knob"></span></button>
+          {% endif %}
+        </div>
+        <p class="hyb-consent__cat-text">{{ cat.text }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="hyb-consent__actions">
+      <button type="button" class="hyb-btn hyb-btn--primary hyb-btn--sm" data-act="save">{{ c.panel.save }}</button>
+      <button type="button" class="hyb-btn hyb-btn--ghost hyb-btn--sm" data-act="accept">{{ c.acceptAll }}</button>
+      <button type="button" class="hyb-consent__link" data-act="back">{{ c.panel.back }}</button>
+    </div>
+  </div>
+</aside>

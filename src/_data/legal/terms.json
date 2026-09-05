@@ -1,0 +1,451 @@
+{
+  "_comment": "Условия использования. RO — дословно из «PIXTOON - Termeni si Conditii.docx» (01.09.2026), EN переведён нами, юристом не читан. Определения из 2.1 вынесены в defs: термин выделяется, а тире из документа не набирается. Реквизиты 1.1 — в facts. Плейсхолдеры {privacy}, {cookies}, {terms} подменяются адресами страниц в legalPages.js.",
+  "key": "terms",
+  "order": 1,
+  "paths": {
+    "en": "terms-and-conditions/",
+    "ro": "termeni-si-conditii/"
+  },
+  "en": {
+    "navTitle": "Terms and Conditions",
+    "meta": {
+      "title": "Terms and Conditions — PixToon",
+      "description": "Conditions for accessing and using pixtoon.com, intellectual property, user submissions, quote requests and the general framework for animation services."
+    },
+    "title": {
+      "a": "Terms and",
+      "outline": "conditions"
+    },
+    "subtitle": "www.pixtoon.com",
+    "version": "Version 1.0",
+    "effectiveLabel": "Effective / last updated",
+    "effectiveDate": "01.09.2026",
+    "intro": "This document (“the Terms and Conditions” or “the Terms”) sets out the conditions for accessing and using the website www.pixtoon.com (hereinafter “the Site”), as well as the general contractual framework between PIXTOON ANIMATION SRL, as owner and administrator of the Site, and any person who accesses or uses the Site. Please read these Terms carefully before using the Site.",
+    "sections": [
+      {
+        "id": "general-provisions",
+        "title": "General provisions and identification of the operator",
+        "clauses": [
+          {
+            "n": "1.1",
+            "text": "The website www.pixtoon.com is owned and administered by:",
+            "facts": [
+              { "label": "Name", "value": "PIXTOON ANIMATION Limited Liability Company" },
+              { "label": "Legal form", "value": "Limited liability company (SRL)" },
+              { "label": "IDNO / Tax code", "value": "1019600005543" },
+              { "label": "Date of registration", "value": "11 February 2019" },
+              { "label": "Field of activity", "value": "Information technology consultancy activities" },
+              { "label": "Registered office / legal address", "value": "MD-2023, Chișinău, Ciocana district, str. Podul Înalt 8/1, ap. (of.) 3, Republic of Moldova" },
+              { "label": "Contact e-mail", "value": "<a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>" },
+              { "label": "Phone", "value": "<a href=\"tel:+37378555333\">+373 78 555 333</a>" }
+            ]
+          },
+          { "n": "1.2", "text": "Throughout this document, PIXTOON ANIMATION SRL is referred to interchangeably as “Pixtoon”, “the Operator”, “the Provider”, “we” or “the Company”." },
+          { "n": "1.3", "text": "This document governs access to and use of the Site, the intellectual property rights over its content, the submission of materials by users, subscription to commercial communications, as well as the general conditions applicable to quote requests and the provision of the animation services offered by Pixtoon." },
+          { "n": "1.4", "text": "These Terms apply in accordance with the legislation of the Republic of Moldova, including, without limitation: the Civil Code of the Republic of Moldova (Law no. 1107/2002), Law no. 195/2024 on the protection of personal data, and Law no. 139/2010 on copyright and related rights." }
+        ]
+      },
+      {
+        "id": "definitions",
+        "title": "Definitions",
+        "clauses": [
+          {
+            "n": "2.1",
+            "text": "For the purposes of this document, the terms below have the following meaning:",
+            "defs": [
+              { "term": "Site", "text": "means the website accessible at www.pixtoon.com, together with all of its subdomains, pages and functionalities;" },
+              { "term": "User", "text": "means any natural or legal person who accesses or uses the Site, regardless of purpose;" },
+              { "term": "Visitor", "text": "means a User who browses the Site without submitting data through forms;" },
+              { "term": "Client", "text": "means the natural or legal person who requests or contracts services from Pixtoon;" },
+              { "term": "Content", "text": "means all the elements on the Site, including texts, images, graphic and video materials, animations, portfolio, trademarks, logos, source code and design;" },
+              { "term": "Services", "text": "means the animation production and related services offered by Pixtoon, described in art. 4;" },
+              { "term": "Offer", "text": "means the commercial proposal sent by Pixtoon following a request;" },
+              { "term": "Deliverable", "text": "means the result of the services handed over to the Client under the contract;" },
+              { "term": "Personal data", "text": "means any information relating to an identified or identifiable natural person, within the meaning of Law no. 195/2024." }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "acceptance-of-terms",
+        "title": "Acceptance of the Terms",
+        "clauses": [
+          { "n": "3.1", "text": "Accessing and/or using the Site constitutes full and unconditional acceptance of this document. If you do not agree with any of its provisions, please do not access or use the Site." },
+          { "n": "3.2", "text": "By using the Site, the User declares that they have the legal capacity to accept these Terms and that, where acting on behalf of a legal person, they are authorised to represent it." },
+          { "n": "3.3", "text": "Pixtoon reserves the right to amend this document under the conditions of art. 16. Continued use of the Site after the publication of the amendments is deemed acceptance of the updated version." }
+        ]
+      },
+      {
+        "id": "purpose-of-the-site",
+        "title": "Purpose of the Site and description of the Services",
+        "clauses": [
+          { "n": "4.1", "text": "The Site serves to present and promote the activity of Pixtoon, a studio specialising in the production of 2D and 3D animated content. The Site provides Users with information about services, a portfolio of work, articles and means of contact." },
+          { "n": "4.2", "text": "The services offered by Pixtoon include, without limitation: commercial animation and explainer videos, motion graphics, 3D animation and video, visual effects (VFX), character and brand mascot design, as well as other related creative services." },
+          { "n": "4.3", "text": "The Site is not an online store and does not allow the direct purchase of services or products. No information on the Site constitutes a binding offer within the meaning of the law; services are contracted under the conditions of art. 9." }
+        ]
+      },
+      {
+        "id": "access-and-use",
+        "title": "Access to and use of the Site",
+        "clauses": [
+          { "n": "5.1", "text": "Access to the Site is, in principle, free of charge. The costs of the internet connection and the equipment needed to access the Site are borne exclusively by the User." },
+          { "n": "5.2", "text": "The User undertakes to use the Site in good faith, for legitimate purposes and in accordance with the applicable legislation, this document and good morals." },
+          {
+            "n": "5.3",
+            "text": "The following, among others, are prohibited:",
+            "list": [
+              "using the Site for illegal or fraudulent purposes or in ways that may harm Pixtoon or third parties;",
+              "unauthorised access to the Site, its servers or related systems, as well as any attempt to undermine their security;",
+              "transmitting viruses, malicious code or materials that may affect the operation of the Site;",
+              "systematic, automated or mass extraction of the Content (scraping, data mining) without the prior written consent of Pixtoon;",
+              "reproducing, distributing or exploiting the Content in breach of art. 6;",
+              "transmitting false or defamatory information or information that infringes the rights of third parties."
+            ]
+          },
+          { "n": "5.4", "text": "Pixtoon reserves the right to restrict or suspend, without prior notice, the access of any User who breaches this document, without prejudice to other legal remedies." }
+        ]
+      },
+      {
+        "id": "intellectual-property",
+        "title": "Intellectual property",
+        "clauses": [
+          { "n": "6.1", "text": "The entire Content of the Site, including but not limited to texts, graphic materials, illustrations, animations, video materials, photographs, design, structure, source code, the name “Pixtoon”, the related logos and trademarks, is the property of Pixtoon or is used under valid rights or licences and is protected by Law no. 139/2010 on copyright and related rights and by industrial property legislation." },
+          { "n": "6.2", "text": "The User is not granted any intellectual property right over the Content. Copying, reproducing, publishing, distributing, modifying, publicly communicating or exploiting the Content in any form, in whole or in part, without the prior written consent of Pixtoon is prohibited, with the exception of personal, non-commercial use permitted by law." },
+          { "n": "6.3", "text": "Pixtoon’s trade name, trademark and visual identity elements may not be used by third parties without Pixtoon’s written authorisation." },
+          { "n": "6.4", "text": "Some works presented in the portfolio on the Site may include elements whose rights belong to clients or third parties and are displayed to showcase Pixtoon’s experience. Their display does not grant the User any right of use." }
+        ]
+      },
+      {
+        "id": "user-submitted-content",
+        "title": "User-submitted content",
+        "clauses": [
+          { "n": "7.1", "text": "Through the contact form or other means made available on the Site, the User may submit messages, attached files, materials, suggestions or other information (“Submitted Materials”)." },
+          { "n": "7.2", "text": "The User warrants that they hold all rights over the Submitted Materials, that these do not infringe the rights of third parties and are not illegal, offensive or harmful." },
+          { "n": "7.3", "text": "By submitting Materials, the User grants Pixtoon the right to store and process them for the purpose of handling the request and communicating with the User. Personal data is processed in accordance with art. 11 and the <a href=\"{privacy}\">Privacy Policy</a>." },
+          { "n": "7.4", "text": "Pixtoon reserves the right not to accept, to refuse or to delete any Submitted Materials that contravene this document or the applicable legislation, without being obliged to give reasons for its decision." }
+        ]
+      },
+      {
+        "id": "newsletter",
+        "title": "Newsletter and commercial communications",
+        "clauses": [
+          { "n": "8.1", "text": "The Site may offer the possibility to subscribe to a newsletter. Subscription is voluntary and is based on the User’s express consent, given by ticking the corresponding box." },
+          { "n": "8.2", "text": "The User may unsubscribe at any time, free of charge, by clicking the unsubscribe link included in every communication or by sending a request to <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>." },
+          { "n": "8.3", "text": "Commercial communications are sent in compliance with Law no. 284/2004 on electronic commerce and Law no. 195/2024 on the protection of personal data." }
+        ]
+      },
+      {
+        "id": "quote-requests-and-services",
+        "title": "Quote requests and conditions for the provision of Services",
+        "clauses": [
+          { "n": "9.1", "text": "Service requests submitted through the Site (contact form, e-mail or phone) constitute an invitation to make an offer and do not constitute a firm order or a contract. Nothing on the Site constitutes a binding offer on the part of Pixtoon." },
+          { "n": "9.2", "text": "The provision of services generally follows this process: (a) receipt of the Client’s request; (b) clarification of requirements; (c) submission of an Offer by Pixtoon; (d) conclusion, where applicable, of a separate service contract detailing the scope, price, deadlines and specific conditions." },
+          { "n": "9.3", "text": "Offers sent by Pixtoon are valid for the period indicated in them and do not bind Pixtoon until they are accepted and, where applicable, until the specific contract is concluded." },
+          { "n": "9.4", "text": "Prices, currency, payment methods and payment terms are set individually in the Offer and/or in the service contract. The applicable tax regime (including VAT, where applicable) is indicated in those documents." },
+          { "n": "9.5", "text": "Deliverables, technical specifications, execution deadlines and the number of revisions included are set out in the Offer and/or in the specific contract. Requests that exceed the agreed scope may be subject to additional charges." },
+          { "n": "9.6", "text": "Intellectual property rights over the Deliverables are transferred to the Client, under the conditions and within the limits agreed in the specific contract, only after full payment of the price. Until full payment, all rights over the Deliverables and intermediate materials remain with Pixtoon." },
+          { "n": "9.7", "text": "Unless otherwise agreed in writing (for example, through a confidentiality agreement), Pixtoon has the right to include the works produced in its own portfolio and promotional materials." },
+          { "n": "9.8", "text": "In the event of any inconsistency between this document and the service contract concluded with a Client, the provisions of the specific contract prevail." }
+        ]
+      },
+      {
+        "id": "third-party-links",
+        "title": "Links to third-party websites",
+        "clauses": [
+          { "n": "10.1", "text": "The Site may contain links to websites or resources belonging to third parties, including social networks. These links are provided solely for the User’s convenience." },
+          { "n": "10.2", "text": "Pixtoon does not control and is not responsible for the content, policies or practices of third-party websites. Accessing them is at the User’s own risk, subject to the terms and policies applicable to those websites." }
+        ]
+      },
+      {
+        "id": "personal-data-protection",
+        "title": "Protection of personal data",
+        "clauses": [
+          { "n": "11.1", "text": "Pixtoon processes Users’ personal data in compliance with Law no. 195/2024 on the protection of personal data and the principles of lawfulness, transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality." },
+          { "n": "11.2", "text": "Detailed information on the categories of data processed, the purposes, legal grounds, recipients, retention periods, transfers and the rights of data subjects (including the right to lodge a complaint with the National Centre for Personal Data Protection) is set out in the <a href=\"{privacy}\">Privacy Policy</a>, available on the Site, which forms an integral part of this document." }
+        ]
+      },
+      {
+        "id": "cookies",
+        "title": "Cookies",
+        "clauses": [
+          { "n": "12.1", "text": "The Site uses cookies and similar technologies for its operation and for analytics. Cookies that are not strictly necessary are used only on the basis of the User’s consent." },
+          { "n": "12.2", "text": "Details on the cookies used, their purpose and duration, as well as how to manage preferences, are set out in the <a href=\"{cookies}\">Cookie Policy</a>, available on the Site." }
+        ]
+      },
+      {
+        "id": "availability-of-the-site",
+        "title": "Availability of the Site",
+        "clauses": [
+          { "n": "13.1", "text": "The Site is provided “as is” and “as available”. Pixtoon makes reasonable efforts to ensure the proper functioning of the Site, but does not guarantee uninterrupted, error-free or permanent access to it." },
+          { "n": "13.2", "text": "Pixtoon may temporarily suspend, restrict or interrupt access to the Site for maintenance, updates or for technical or security reasons, without prior notice and without liability for any inconvenience." }
+        ]
+      },
+      {
+        "id": "limitation-of-liability",
+        "title": "Limitation of liability and warranties",
+        "clauses": [
+          { "n": "14.1", "text": "The information published on the Site is of a general and informative nature and does not constitute a contractual obligation, a warranty or professional advice." },
+          { "n": "14.2", "text": "To the extent permitted by law, Pixtoon gives no warranties as to the accuracy, currency, completeness or availability of the Content and is not liable for decisions taken by the User on the basis of the information on the Site." },
+          { "n": "14.3", "text": "To the extent permitted by the applicable legislation, Pixtoon is not liable for indirect, incidental or consequential damages resulting from accessing or using the Site, from the impossibility of using it or from the use of third-party websites accessed through links." },
+          { "n": "14.4", "text": "Nothing in this document limits or excludes liability that cannot be limited or excluded under the mandatory legislation of the Republic of Moldova, including in relations with consumers." }
+        ]
+      },
+      {
+        "id": "impediment",
+        "title": "Excuse due to an impediment",
+        "clauses": [
+          { "n": "15.1", "text": "Pixtoon is not liable for the non-performance or improper performance of its obligations where this is due to an impediment, within the meaning of the legislation of the Republic of Moldova." }
+        ]
+      },
+      {
+        "id": "amendment-of-terms",
+        "title": "Amendment of the Terms",
+        "clauses": [
+          { "n": "16.1", "text": "Pixtoon reserves the right to amend this document at any time, in whole or in part. The updated version is published on the Site, indicating the date of the last update, and takes effect from the date of publication." },
+          { "n": "16.2", "text": "It is the User’s responsibility to review this document periodically. Use of the Site after the publication of the amendments constitutes acceptance of them." }
+        ]
+      },
+      {
+        "id": "governing-law-and-disputes",
+        "title": "Governing law and dispute resolution",
+        "clauses": [
+          { "n": "17.1", "text": "This document is governed by and interpreted in accordance with the legislation of the Republic of Moldova." },
+          { "n": "17.2", "text": "The parties will make efforts to resolve amicably any disagreements arising from the use of the Site or the provision of the Services, including, where appropriate, through mediation." },
+          { "n": "17.3", "text": "In the absence of an amicable settlement, disputes are resolved by the competent courts at Pixtoon’s registered office, Chișinău, Republic of Moldova, without prejudice to the mandatory rights of consumers regarding the competent court." },
+          { "n": "17.4", "text": "Consumers benefit from the rights provided by the related legislation and the other applicable legal provisions." }
+        ]
+      },
+      {
+        "id": "final-provisions",
+        "title": "Final provisions",
+        "clauses": [
+          { "n": "18.1", "text": "If any provision of this document is declared null or unenforceable, the remaining provisions remain valid and fully applicable." },
+          { "n": "18.2", "text": "Pixtoon’s failure to exercise a right provided for in this document does not constitute a waiver of that right." },
+          { "n": "18.3", "text": "This document, together with the <a href=\"{privacy}\">Privacy Policy</a> and the <a href=\"{cookies}\">Cookie Policy</a>, constitutes the entire agreement between Pixtoon and the User regarding the use of the Site." },
+          { "n": "18.4", "text": "For any questions regarding this document, you can contact us at the e-mail address <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a> or by phone at <a href=\"tel:+37378555333\">+373 78 555 333</a>." }
+        ]
+      }
+    ]
+  },
+  "ro": {
+    "navTitle": "Termeni și condiții",
+    "meta": {
+      "title": "Termeni și condiții de utilizare — PixToon",
+      "description": "Condițiile de acces și utilizare a pixtoon.com, proprietatea intelectuală, materialele transmise de utilizatori, solicitările de ofertă și cadrul general al serviciilor de animație."
+    },
+    "title": {
+      "a": "Termeni și",
+      "outline": "condiții"
+    },
+    "subtitle": "www.pixtoon.com",
+    "version": "Versiunea 1.0",
+    "effectiveLabel": "Data intrării în vigoare / ultimei actualizări",
+    "effectiveDate": "01.09.2026",
+    "intro": "Prezentul document („Termenii și Condițiile” sau „Termenii”) stabilește condițiile de acces și utilizare a site-ului web www.pixtoon.com (denumit în continuare „Site-ul”), precum și cadrul contractual general dintre PIXTOON ANIMATION SRL, în calitate de proprietar și administrator al Site-ului, și orice persoană care accesează sau utilizează Site-ul. Vă rugăm să citiți cu atenție acești Termeni înainte de a utiliza Site-ul.",
+    "sections": [
+      {
+        "id": "dispozitii-generale",
+        "title": "Dispoziții generale și identificarea operatorului",
+        "clauses": [
+          {
+            "n": "1.1",
+            "text": "Site-ul www.pixtoon.com este deținut și administrat de:",
+            "facts": [
+              { "label": "Denumire", "value": "Societatea cu Răspundere Limitată PIXTOON ANIMATION" },
+              { "label": "Formă juridică", "value": "Societate cu răspundere limitată (SRL)" },
+              { "label": "IDNO / Cod fiscal", "value": "1019600005543" },
+              { "label": "Data înregistrării", "value": "11 februarie 2019" },
+              { "label": "Domeniu de activitate", "value": "Activități de consultanță în tehnologia informației" },
+              { "label": "Sediu / adresă juridică", "value": "MD-2023, mun. Chișinău, sectorul Ciocana, str. Podul Înalt 8/1, ap. (of.) 3, Republica Moldova" },
+              { "label": "E-mail de contact", "value": "<a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>" },
+              { "label": "Telefon", "value": "<a href=\"tel:+37378555333\">+373 78 555 333</a>" }
+            ]
+          },
+          { "n": "1.2", "text": "În cuprinsul prezentului document, PIXTOON ANIMATION SRL este denumită în continuare, în mod interschimbabil, „Pixtoon”, „Operatorul”, „Prestatorul”, „noi” sau „Societatea”." },
+          { "n": "1.3", "text": "Prezentul document reglementează accesul și utilizarea Site-ului, drepturile de proprietate intelectuală asupra conținutului acestuia, transmiterea de materiale de către utilizatori, abonarea la comunicări comerciale, precum și condițiile generale aplicabile solicitărilor de ofertă și prestării serviciilor de animație oferite de Pixtoon." },
+          { "n": "1.4", "text": "Acești Termeni se aplică în conformitate cu legislația Republicii Moldova, inclusiv, fără a se limita la: Codul civil al Republicii Moldova (Legea nr. 1107/2002), Legea nr. 195/2024 privind protecția datelor cu caracter personal, Legea nr. 139/2010 privind dreptul de autor și drepturile conexe." }
+        ]
+      },
+      {
+        "id": "definitii",
+        "title": "Definiții",
+        "clauses": [
+          {
+            "n": "2.1",
+            "text": "În sensul prezentului document, termenii de mai jos au următorul înțeles:",
+            "defs": [
+              { "term": "Site", "text": "înseamnă site-ul web accesibil la adresa www.pixtoon.com, împreună cu toate subdomeniile, paginile și funcționalitățile acestuia;" },
+              { "term": "Utilizator", "text": "înseamnă orice persoană fizică sau juridică ce accesează sau utilizează Site-ul, indiferent de scop;" },
+              { "term": "Vizitator", "text": "înseamnă Utilizatorul care navighează pe Site fără a transmite date prin formulare;" },
+              { "term": "Client", "text": "înseamnă persoana fizică sau juridică ce solicită sau contractează servicii de la Pixtoon;" },
+              { "term": "Conținut", "text": "înseamnă totalitatea elementelor de pe Site, inclusiv texte, imagini, materiale grafice și video, animații, portofoliu, mărci, sigle, cod-sursă și design;" },
+              { "term": "Servicii", "text": "înseamnă serviciile de producție de animație și conexe oferite de Pixtoon, descrise la art. 4;" },
+              { "term": "Ofertă", "text": "înseamnă propunerea comercială transmisă de Pixtoon ca urmare a unei solicitări;" },
+              { "term": "Livrabil", "text": "înseamnă rezultatul serviciilor predat Clientului conform contractului;" },
+              { "term": "Date cu caracter personal", "text": "înseamnă orice informație referitoare la o persoană fizică identificată sau identificabilă, în sensul Legii nr. 195/2024." }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "acceptarea-termenilor",
+        "title": "Acceptarea Termenilor",
+        "clauses": [
+          { "n": "3.1", "text": "Accesarea și/sau utilizarea Site-ului constituie acceptarea integrală și necondiționată a prezentului document. Dacă nu sunteți de acord cu oricare dintre prevederile acestuia, vă rugăm să nu accesați și să nu utilizați Site-ul." },
+          { "n": "3.2", "text": "Prin utilizarea Site-ului, Utilizatorul declară că are capacitatea juridică de a accepta acești Termeni și că, în cazul în care acționează în numele unei persoane juridice, este împuternicit să o reprezinte." },
+          { "n": "3.3", "text": "Pixtoon își rezervă dreptul de a modifica prezentul document în condițiile art. 16. Continuarea utilizării Site-ului după publicarea modificărilor echivalează cu acceptarea versiunii actualizate." }
+        ]
+      },
+      {
+        "id": "obiectul-site-ului",
+        "title": "Obiectul Site-ului și descrierea Serviciilor",
+        "clauses": [
+          { "n": "4.1", "text": "Site-ul are caracter de prezentare și promovare a activității Pixtoon, studio specializat în producția de conținut de animație 2D și 3D. Site-ul pune la dispoziția Utilizatorilor informații despre servicii, portofoliu de lucrări, articole și mijloace de contact." },
+          { "n": "4.2", "text": "Serviciile oferite de Pixtoon includ, fără a se limita la: animație comercială și video de prezentare (explainer), motion graphics, animație și video 3D, efecte vizuale (VFX), design de personaje și mascote de brand, precum și alte servicii creative conexe." },
+          { "n": "4.3", "text": "Site-ul nu constituie un magazin online și nu permite achiziționarea directă de servicii sau produse. Nicio informație de pe Site nu reprezintă o ofertă fermă în sensul legii; contractarea serviciilor se realizează în condițiile art. 9." }
+        ]
+      },
+      {
+        "id": "accesul-si-utilizarea",
+        "title": "Accesul și utilizarea Site-ului",
+        "clauses": [
+          { "n": "5.1", "text": "Accesul la Site este, în principiu, gratuit. Costurile aferente conexiunii la internet și echipamentelor necesare accesării Site-ului sunt suportate exclusiv de Utilizator." },
+          { "n": "5.2", "text": "Utilizatorul se obligă să utilizeze Site-ul cu bună-credință, în scopuri legitime și în conformitate cu legislația aplicabilă, cu prezentul document și cu bunele moravuri." },
+          {
+            "n": "5.3",
+            "text": "Este interzisă, printre altele:",
+            "list": [
+              "utilizarea Site-ului în scopuri ilegale, frauduloase sau care pot prejudicia Pixtoon ori terții;",
+              "accesarea neautorizată a Site-ului, a serverelor sau a sistemelor conexe, precum și orice tentativă de a submina securitatea acestora;",
+              "transmiterea de viruși, coduri malițioase sau materiale care pot afecta funcționarea Site-ului;",
+              "extragerea sistematică, automatizată sau în masă a Conținutului (scraping, data mining) fără acordul prealabil scris al Pixtoon;",
+              "reproducerea, distribuirea sau exploatarea Conținutului cu încălcarea art. 6;",
+              "transmiterea de informații false, defăimătoare sau care încalcă drepturile terților."
+            ]
+          },
+          { "n": "5.4", "text": "Pixtoon își rezervă dreptul de a restricționa sau suspenda, fără notificare prealabilă, accesul oricărui Utilizator care încalcă prezentul document, fără a aduce atingere altor remedii legale." }
+        ]
+      },
+      {
+        "id": "proprietatea-intelectuala",
+        "title": "Proprietatea intelectuală",
+        "clauses": [
+          { "n": "6.1", "text": "Întregul Conținut al Site-ului, inclusiv, dar fără a se limita la texte, materiale grafice, ilustrații, animații, materiale video, fotografii, design, structură, cod-sursă, denumirea „Pixtoon”, siglele și mărcile aferente, este proprietatea Pixtoon sau este utilizat în temeiul unor drepturi ori licențe valabile și este protejat de Legea nr. 139/2010 privind dreptul de autor și drepturile conexe și de legislația privind proprietatea industrială." },
+          { "n": "6.2", "text": "Utilizatorului nu i se acordă niciun drept de proprietate intelectuală asupra Conținutului. Este interzisă copierea, reproducerea, publicarea, distribuirea, modificarea, comunicarea publică sau exploatarea sub orice formă a Conținutului, integral sau parțial, fără acordul prealabil scris al Pixtoon, cu excepția utilizării personale și necomerciale permise de lege." },
+          { "n": "6.3", "text": "Denumirea comercială, marca și elementele de identitate vizuală ale Pixtoon nu pot fi utilizate de terți fără autorizarea scrisă a Pixtoon." },
+          { "n": "6.4", "text": "Unele lucrări prezentate în portofoliul de pe Site pot include elemente asupra cărora drepturile aparțin clienților sau terților și sunt afișate în scop de prezentare a experienței Pixtoon. Afișarea acestora nu conferă Utilizatorului niciun drept de utilizare." }
+        ]
+      },
+      {
+        "id": "continut-transmis-de-utilizatori",
+        "title": "Conținut transmis de utilizatori",
+        "clauses": [
+          { "n": "7.1", "text": "Prin intermediul formularului de contact sau al altor mijloace puse la dispoziție pe Site, Utilizatorul poate transmite mesaje, fișiere atașate, materiale, sugestii ori alte informații („Materiale transmise”)." },
+          { "n": "7.2", "text": "Utilizatorul garantează că deține toate drepturile asupra Materialelor transmise, că acestea nu încalcă drepturi ale terților și nu au caracter ilegal, ofensator sau prejudiciabil." },
+          { "n": "7.3", "text": "Prin transmiterea de Materiale, Utilizatorul acordă Pixtoon dreptul de a le stoca și prelucra în scopul soluționării solicitării și al comunicării cu Utilizatorul. Prelucrarea datelor cu caracter personal se realizează conform art. 11 și <a href=\"{privacy}\">Politicii de confidențialitate</a>." },
+          { "n": "7.4", "text": "Pixtoon își rezervă dreptul de a nu prelua, de a refuza sau de a șterge orice Materiale transmise care contravin prezentului document sau legislației aplicabile, fără obligația de a motiva decizia." }
+        ]
+      },
+      {
+        "id": "newsletter-si-comunicari-comerciale",
+        "title": "Newsletter și comunicări comerciale",
+        "clauses": [
+          { "n": "8.1", "text": "Site-ul poate oferi posibilitatea abonării la un buletin informativ (newsletter). Abonarea este voluntară și se realizează pe baza consimțământului expres al Utilizatorului, exprimat prin bifarea căsuței corespunzătoare." },
+          { "n": "8.2", "text": "Utilizatorul se poate dezabona în orice moment, gratuit, prin accesarea linkului de dezabonare inclus în fiecare comunicare sau prin transmiterea unei cereri la adresa <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>." },
+          { "n": "8.3", "text": "Transmiterea comunicărilor comerciale se realizează cu respectarea Legii nr. 284/2004 privind comerțul electronic și a Legii nr. 195/2024 privind protecția datelor cu caracter personal." }
+        ]
+      },
+      {
+        "id": "solicitari-de-oferta-si-prestarea-serviciilor",
+        "title": "Solicitări de ofertă și condiții de prestare a Serviciilor",
+        "clauses": [
+          { "n": "9.1", "text": "Solicitările de servicii transmise prin Site (formular de contact, e-mail sau telefon) au caracter de invitație la ofertă și nu constituie o comandă fermă ori un contract. Niciun element de pe Site nu reprezintă o ofertă obligatorie din partea Pixtoon." },
+          { "n": "9.2", "text": "Prestarea serviciilor urmează, de regulă, următorul proces: (a) primirea solicitării Clientului; (b) clarificarea cerințelor; (c) transmiterea de către Pixtoon a unei Oferte; (d) încheierea, după caz, a unui contract de prestări servicii separat, care detaliază obiectul, prețul, termenele și condițiile specifice." },
+          { "n": "9.3", "text": "Ofertele transmise de Pixtoon au valabilitatea indicată în cuprinsul lor și nu obligă Pixtoon până la acceptarea lor și, după caz, până la încheierea contractului specific." },
+          { "n": "9.4", "text": "Prețurile, moneda, modalitățile și termenele de plată se stabilesc individual în Ofertă și/sau în contractul de prestări servicii. Regimul fiscal aplicabil (inclusiv, dacă este cazul, TVA) se indică în documentele respective." },
+          { "n": "9.5", "text": "Livrabilele, specificațiile tehnice, termenele de execuție și numărul de revizuiri incluse se stabilesc în Ofertă și/sau în contractul specific. Solicitările care depășesc obiectul convenit pot face obiectul unei tarifări suplimentare." },
+          { "n": "9.6", "text": "Drepturile de proprietate intelectuală asupra Livrabilelor se transferă Clientului, în condițiile și în limitele convenite prin contractul specific, numai după achitarea integrală a prețului. Până la achitarea integrală, toate drepturile asupra Livrabilelor și materialelor intermediare rămân la Pixtoon." },
+          { "n": "9.7", "text": "Cu excepția cazului în care s-a convenit altfel în scris (de exemplu, printr-un acord de confidențialitate), Pixtoon are dreptul de a include lucrările realizate în portofoliul propriu și în materialele de promovare." },
+          { "n": "9.8", "text": "În caz de neconcordanță între prezentul document și contractul de prestări servicii încheiat cu un Client, prevederile contractului specific prevalează." }
+        ]
+      },
+      {
+        "id": "linkuri-catre-site-uri-terte",
+        "title": "Linkuri către site-uri terțe",
+        "clauses": [
+          { "n": "10.1", "text": "Site-ul poate conține linkuri către site-uri sau resurse aparținând terților, inclusiv rețele sociale. Aceste linkuri sunt furnizate exclusiv pentru comoditatea Utilizatorului." },
+          { "n": "10.2", "text": "Pixtoon nu controlează și nu răspunde pentru conținutul, politicile ori practicile site-urilor terțe. Accesarea acestora se face pe riscul Utilizatorului, sub rezerva termenilor și politicilor aplicabile respectivelor site-uri." }
+        ]
+      },
+      {
+        "id": "protectia-datelor-cu-caracter-personal",
+        "title": "Protecția datelor cu caracter personal",
+        "clauses": [
+          { "n": "11.1", "text": "Pixtoon prelucrează datele cu caracter personal ale Utilizatorilor cu respectarea Legii nr. 195/2024 privind protecția datelor cu caracter personal și a principiilor legalității, transparenței, limitării scopului, minimizării datelor, exactității, limitării stocării, integrității și confidențialității." },
+          { "n": "11.2", "text": "Informațiile detaliate privind categoriile de date prelucrate, scopurile, temeiurile legale, destinatarii, perioadele de stocare, transferurile și drepturile persoanelor vizate (inclusiv dreptul de a depune plângere la Centrul Național pentru Protecția Datelor cu Caracter Personal) sunt prezentate în <a href=\"{privacy}\">Politica de confidențialitate</a>, disponibilă pe Site, care face parte integrantă din prezentul document." }
+        ]
+      },
+      {
+        "id": "fisiere-cookie",
+        "title": "Fișiere cookie",
+        "clauses": [
+          { "n": "12.1", "text": "Site-ul utilizează fișiere de tip cookie și tehnologii similare pentru funcționarea sa și pentru analiză. Cookie-urile care nu sunt strict necesare sunt utilizate numai pe baza consimțământului Utilizatorului." },
+          { "n": "12.2", "text": "Detaliile privind cookie-urile utilizate, scopul și durata acestora, precum și modalitatea de gestionare a preferințelor, sunt prezentate în <a href=\"{cookies}\">Politica privind cookie-urile</a>, disponibilă pe Site." }
+        ]
+      },
+      {
+        "id": "disponibilitatea-site-ului",
+        "title": "Disponibilitatea Site-ului",
+        "clauses": [
+          { "n": "13.1", "text": "Site-ul este pus la dispoziție „ca atare” și „în limita disponibilității”. Pixtoon depune eforturi rezonabile pentru funcționarea corespunzătoare a Site-ului, însă nu garantează accesul neîntrerupt, lipsit de erori sau permanent la acesta." },
+          { "n": "13.2", "text": "Pixtoon poate suspenda, restricționa sau întrerupe temporar accesul la Site pentru lucrări de mentenanță, actualizări sau din motive tehnice ori de securitate, fără notificare prealabilă și fără a răspunde pentru eventuale inconveniente." }
+        ]
+      },
+      {
+        "id": "limitarea-raspunderii",
+        "title": "Limitarea răspunderii și garanții",
+        "clauses": [
+          { "n": "14.1", "text": "Informațiile publicate pe Site au caracter general și informativ și nu constituie o obligație contractuală, o garanție sau o consultanță de specialitate." },
+          { "n": "14.2", "text": "În limitele permise de lege, Pixtoon nu oferă garanții privind acuratețea, actualitatea, exhaustivitatea sau disponibilitatea Conținutului și nu răspunde pentru deciziile luate de Utilizator pe baza informațiilor de pe Site." },
+          { "n": "14.3", "text": "În măsura permisă de legislația aplicabilă, Pixtoon nu răspunde pentru prejudicii indirecte, incidentale sau consecvente rezultate din accesarea ori utilizarea Site-ului, din imposibilitatea utilizării acestuia sau din utilizarea site-urilor terțe accesate prin linkuri." },
+          { "n": "14.4", "text": "Nicio prevedere a prezentului document nu limitează sau exclude răspunderea care nu poate fi limitată ori exclusă potrivit legislației imperative a Republicii Moldova, inclusiv în raporturile cu consumatorii." }
+        ]
+      },
+      {
+        "id": "justificarea-datorita-impedimentului",
+        "title": "Justificarea datorită impedimentului",
+        "clauses": [
+          { "n": "15.1", "text": "Pixtoon nu răspunde pentru neexecutarea sau executarea necorespunzătoare a obligațiilor sale atunci când aceasta se datorează unui impediment, în sensul legislației Republicii Moldova." }
+        ]
+      },
+      {
+        "id": "modificarea-termenilor",
+        "title": "Modificarea Termenilor",
+        "clauses": [
+          { "n": "16.1", "text": "Pixtoon își rezervă dreptul de a modifica oricând prezentul document, în tot sau în parte. Versiunea actualizată se publică pe Site, cu indicarea datei ultimei actualizări, și produce efecte de la data publicării." },
+          { "n": "16.2", "text": "Este responsabilitatea Utilizatorului de a consulta periodic prezentul document. Utilizarea Site-ului după publicarea modificărilor constituie acceptarea acestora." }
+        ]
+      },
+      {
+        "id": "legea-aplicabila-si-solutionarea-litigiilor",
+        "title": "Legea aplicabilă și soluționarea litigiilor",
+        "clauses": [
+          { "n": "17.1", "text": "Prezentul document este guvernat și interpretat în conformitate cu legislația Republicii Moldova." },
+          { "n": "17.2", "text": "Părțile vor depune eforturi pentru soluționarea pe cale amiabilă a oricăror neînțelegeri decurgând din utilizarea Site-ului sau din prestarea Serviciilor, inclusiv, după caz, prin mediere." },
+          { "n": "17.3", "text": "În lipsa unei soluționări amiabile, litigiile se soluționează de instanțele judecătorești competente de la sediul Pixtoon, mun. Chișinău, Republica Moldova, fără a aduce atingere drepturilor imperative ale consumatorilor privind instanța competentă." },
+          { "n": "17.4", "text": "Consumatorii beneficiază de drepturile prevăzute de legislația conexă și de celelalte dispoziții legale aplicabile." }
+        ]
+      },
+      {
+        "id": "dispozitii-finale",
+        "title": "Dispoziții finale",
+        "clauses": [
+          { "n": "18.1", "text": "Dacă o prevedere a prezentului document este declarată nulă sau inaplicabilă, celelalte prevederi rămân valabile și pe deplin aplicabile." },
+          { "n": "18.2", "text": "Neexercitarea de către Pixtoon a unui drept prevăzut în prezentul document nu constituie o renunțare la acel drept." },
+          { "n": "18.3", "text": "Prezentul document, împreună cu <a href=\"{privacy}\">Politica de confidențialitate</a> și <a href=\"{cookies}\">Politica privind cookie-urile</a>, constituie acordul complet dintre Pixtoon și Utilizator cu privire la utilizarea Site-ului." },
+          { "n": "18.4", "text": "Pentru orice întrebări privind prezentul document, ne puteți contacta la adresa de e-mail <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a> sau la telefon <a href=\"tel:+37378555333\">+373 78 555 333</a>." }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,509 @@
+/* ==========================================================================
+   Юридические страницы: условия, конфиденциальность, cookie.
+
+   Шесть страниц из одного шаблона pages/legal.njk. Задача модуля — сделать
+   длинный нумерованный текст читаемым и при этом оставить его в дизайне
+   сайта: те же шрифты, те же токены, тот же ритм. Никаких новых цветов.
+
+   Раскладка на десктопе — оглавление слева, документ справа; оглавление
+   липкое, маркер в нём едет за текущим разделом. На телефоне оглавление
+   сворачивается в <details> над документом.
+   ========================================================================== */
+
+/* --- Шапка страницы ------------------------------------------------------ */
+
+/* Плашки версии и даты — под лидом. Обводка, а не заливка: это метаданные,
+   а не призыв, и пилюля-эйброу над заголовком уже кремовая. */
+.hyb-legal__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--hyb-s-3);
+}
+
+.hyb-legal__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--hyb-line);
+  border-radius: var(--hyb-r-pill);
+  background: var(--hyb-bg);
+  font-size: var(--hyb-t-small);
+  font-weight: 600;
+  color: var(--hyb-ink);
+}
+.hyb-legal__pill svg {
+  flex-shrink: 0;
+  color: var(--hyb-accent-text);
+}
+.hyb-legal__pill span {
+  font-weight: 500;
+  color: var(--hyb-ink-muted);
+}
+
+/* --- Полоса прочитанного -------------------------------------------------- */
+
+/*
+  Три пикселя по верхнему краю окна: растут от нуля до полной ширины, пока
+  читается документ. Лежит выше шапки — та прозрачная либо стеклянная, и
+  полоса на ней читается как её часть. Ниже плашки демо: та сдвигает всё,
+  и полоса встаёт под ней по той же переменной.
+
+  Масштаб через transform: ширина перерисовывала бы полосу на каждый кадр
+  прокрутки, transform — композитный.
+*/
+.hyb-progress {
+  position: fixed;
+  top: var(--hyb-demobar-h, 0px);
+  left: 0;
+  right: 0;
+  z-index: 55;
+  height: 3px;
+  pointer-events: none;
+}
+
+.hyb-progress__bar {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--hyb-accent), var(--hyb-gold));
+  transform-origin: 0 50%;
+  transform: scaleX(var(--hyb-progress, 0));
+  transition: transform 120ms linear;
+}
+
+/* --- Раскладка ----------------------------------------------------------- */
+
+/* Верхний отступ съедает шапка страницы (64 снизу), здесь остаётся линия и
+   48 под ней: без линии шапка и документ сливались в один белый лист. */
+.hyb-legal {
+  padding-top: 0;
+}
+
+.hyb-legal__grid {
+  display: grid;
+  gap: var(--hyb-s-5);
+  grid-template-columns: minmax(0, 1fr);
+  padding-top: var(--hyb-s-5);
+  border-top: 1px solid var(--hyb-line);
+}
+
+@media (min-width: 62rem) {
+  .hyb-legal__grid {
+    grid-template-columns: 17.5rem minmax(0, 1fr);
+    gap: clamp(3rem, 1rem + 5vw, 6rem);
+    align-items: start;
+  }
+
+  /* 96px сверху — под сжатую шапку (64) и воздух; демо-плашка добавляет
+     свою высоту той же переменной, что и у самой шапки. */
+  .hyb-legal__side {
+    position: sticky;
+    top: calc(6rem + var(--hyb-demobar-h, 0px));
+  }
+}
+
+/* 46rem — около 75 знаков в строке при 16px: длиннее глаз теряет строку,
+   короче — юридический абзац рассыпается на десяток строк. */
+.hyb-legal__doc {
+  max-width: 46rem;
+}
+
+/* --- Оглавление ---------------------------------------------------------- */
+
+.hyb-toc__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  list-style: none;
+  cursor: pointer;
+}
+.hyb-toc__summary::-webkit-details-marker {
+  display: none;
+}
+.hyb-toc__summary .hyb-label {
+  margin: 0;
+}
+
+.hyb-toc__chev {
+  color: var(--hyb-ink-muted);
+  transition: transform var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-toc[open] .hyb-toc__chev {
+  transform: rotate(180deg);
+}
+
+/* На десктопе список раскрыт всегда: summary не кликается и шеврона нет.
+   Открытое состояние держит скрипт — закрытый details не рисует содержимое
+   независимо от стилей. */
+@media (min-width: 62rem) {
+  .hyb-toc__summary {
+    pointer-events: none;
+  }
+  .hyb-toc__chev {
+    display: none;
+  }
+}
+
+/*
+  Список на линии. Маркер текущего раздела — псевдоэлемент на этой линии,
+  который едет по двум переменным: скрипт отдаёт ему смещение и высоту
+  активной ссылки, а переход делает из прыжка движение. Пока раздел не
+  определён, маркер прозрачен — иначе он висел бы у первого пункта ещё до
+  того, как читатель дошёл до документа.
+*/
+.hyb-toc__list {
+  position: relative;
+  display: grid;
+  gap: 0.125rem;
+  margin-top: var(--hyb-s-2);
+  padding-left: 0.875rem;
+  border-left: 1px solid var(--hyb-line);
+}
+
+.hyb-toc__list::before {
+  content: "";
+  position: absolute;
+  left: -1.5px;
+  top: var(--hyb-toc-y, 0);
+  width: 2px;
+  height: var(--hyb-toc-h, 0);
+  border-radius: 2px;
+  background: var(--hyb-accent);
+  opacity: var(--hyb-toc-on, 0);
+  transition: top 360ms var(--hyb-ease-out), height 360ms var(--hyb-ease-out),
+    opacity var(--hyb-dur) var(--hyb-ease);
+}
+
+.hyb-toc__link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: 10px;
+  font-size: var(--hyb-t-small);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--hyb-ink-muted);
+  transition: color var(--hyb-dur) var(--hyb-ease),
+    background-color var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-toc__link:hover {
+  color: var(--hyb-ink);
+  background: var(--hyb-accent-wash);
+}
+.hyb-toc__link.is-current {
+  color: var(--hyb-ink);
+}
+
+.hyb-toc__n {
+  flex-shrink: 0;
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--hyb-accent-text);
+}
+.hyb-toc__link.is-current .hyb-toc__n {
+  color: var(--hyb-accent);
+}
+
+/* --- Документ ------------------------------------------------------------ */
+
+/* Преамбула — на акцентной линии слева, крупнее основного набора: это
+   единственный абзац документа без номера, и ему нужен свой вес. */
+.hyb-legal__intro {
+  margin-bottom: var(--hyb-s-5);
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--hyb-accent);
+  font-size: var(--hyb-t-lead);
+  line-height: var(--hyb-lh-relaxed);
+  color: var(--hyb-ink);
+}
+
+/* Между разделами линия и 40px с каждой стороны. Своего scroll-margin у
+   раздела нет: глобальный scroll-padding-top в 96px уже держит цель перехода
+   ниже шапки, а второй отступ складывался с ним и уводил заголовок к
+   середине экрана. */
+.hyb-legal__sec {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--hyb-line);
+}
+.hyb-legal__sec:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.hyb-legal__h {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: var(--hyb-s-3);
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h3);
+  line-height: var(--hyb-lh-tight);
+  letter-spacing: -0.01em;
+  color: var(--hyb-ink);
+  text-wrap: pretty;
+}
+
+/* Номер раздела — плашка на лавандовой подложке, как иконка карточки
+   возможностей, только с цифрой. Совпадает с номером в оглавлении. */
+.hyb-legal__num {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding-inline: 0.5rem;
+  border-radius: 12px;
+  background: var(--hyb-accent-wash);
+  font-size: var(--hyb-t-small);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--hyb-accent-text);
+}
+
+/* Пункт: номер в узкой колонке, текст рядом. Колонка в 3rem вмещает «18.4»
+   и не даёт номерам разной длины сдвигать текст. */
+.hyb-legal__clause {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 0 0.5rem;
+  margin-top: var(--hyb-s-2);
+}
+
+.hyb-legal__cn {
+  padding-top: 0.2em;
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--hyb-accent-text);
+}
+
+.hyb-legal__body p {
+  line-height: var(--hyb-lh-relaxed);
+  color: var(--hyb-ink);
+}
+
+/* Ссылки внутри текста подчёркнуты: в абзаце без подчёркивания ссылка
+   неотличима от выделения, а на юридической странице их надо находить. */
+.hyb-legal__body a {
+  font-weight: 600;
+  color: var(--hyb-accent-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, var(--hyb-accent) 45%, transparent);
+  transition: text-decoration-color var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-legal__body a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Подпункты a), b), c): буква из счётчика, а не из текста — так она
+   набирается тем же шрифтом и цветом, что номера пунктов, и не съезжает
+   при переносе строки. */
+.hyb-legal__list,
+.hyb-legal__defs {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.hyb-legal__list {
+  counter-reset: hyb-legal-item;
+}
+
+.hyb-legal__list li,
+.hyb-legal__defs li {
+  position: relative;
+  padding-left: 2rem;
+  line-height: var(--hyb-lh-relaxed);
+  color: var(--hyb-ink);
+}
+
+.hyb-legal__list li::before {
+  counter-increment: hyb-legal-item;
+  content: counter(hyb-legal-item, lower-alpha) ")";
+  position: absolute;
+  left: 0.25rem;
+  top: 0;
+  font-family: var(--hyb-font-display);
+  font-weight: 700;
+  font-size: var(--hyb-t-small);
+  line-height: inherit;
+  color: var(--hyb-accent-text);
+}
+
+/* Определения: короткая черта вместо буквы — в документе они идут с тире */
+.hyb-legal__defs li::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.85em;
+  width: 0.75rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--hyb-accent-soft);
+}
+
+.hyb-legal__term {
+  font-weight: 700;
+  color: var(--hyb-ink);
+}
+
+/* Реквизиты компании — карточка на лавандовом, подписи капителью слева.
+   Сброс полей у dl/dd свой: базовый сброс их не знает. */
+.hyb-legal__facts {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--hyb-line);
+  border-radius: var(--hyb-r-sm);
+  background: var(--hyb-bg-alt);
+}
+
+.hyb-legal__fact {
+  display: grid;
+  gap: 0.25rem 1rem;
+}
+@media (min-width: 40rem) {
+  .hyb-legal__fact {
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  }
+}
+
+.hyb-legal__fact dt {
+  padding-top: 0.15em;
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 700;
+  letter-spacing: var(--hyb-ls-label);
+  text-transform: uppercase;
+  color: var(--hyb-ink-muted);
+}
+
+.hyb-legal__fact dd {
+  margin: 0;
+  font-weight: 600;
+  line-height: var(--hyb-lh-body);
+  color: var(--hyb-ink);
+}
+
+/* --- Управление cookie и документы рядом ---------------------------------- */
+
+.hyb-legal__manage {
+  display: grid;
+  gap: var(--hyb-s-3);
+  align-items: center;
+  margin-bottom: var(--hyb-s-6);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  border: 1px solid var(--hyb-line);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-bg);
+}
+@media (min-width: 48rem) {
+  .hyb-legal__manage {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--hyb-s-5);
+  }
+}
+
+.hyb-legal__manage .hyb-eyebrow {
+  margin-bottom: 0.5rem;
+}
+
+.hyb-legal__manage-text {
+  max-width: 52ch;
+  margin-top: 0.5rem;
+  font-size: var(--hyb-t-small);
+  line-height: var(--hyb-lh-relaxed);
+  color: var(--hyb-ink-muted);
+}
+
+.hyb-legal__related {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 48rem) {
+  .hyb-legal__related {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Карточка документа — .hyb-card из витрины возможностей, только ссылкой и
+   с ходом стрелки в углу; иконка и заголовок те же. */
+.hyb-legal__rel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-right: 4.5rem;
+}
+.hyb-legal__rel .hyb-card__icon {
+  margin-bottom: var(--hyb-s-3);
+}
+.hyb-legal__rel .hyb-card__title {
+  display: block;
+}
+.hyb-legal__rel .hyb-card__text {
+  display: block;
+}
+
+.hyb-legal__rel-go {
+  position: absolute;
+  top: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  right: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--hyb-accent-wash);
+  color: var(--hyb-accent-text);
+  transition: transform var(--hyb-dur) var(--hyb-ease),
+    background-color var(--hyb-dur) var(--hyb-ease),
+    color var(--hyb-dur) var(--hyb-ease);
+}
+.hyb-legal__rel:hover .hyb-legal__rel-go {
+  transform: translate(2px, -2px);
+  background: var(--hyb-accent);
+  color: var(--hyb-on-dark);
+}
+
+/* --- Печать -------------------------------------------------------------- */
+
+/* Юридический документ печатают. На бумаге не нужны оболочка, оглавление,
+   баннер и полоса чтения; блоки появления — видимы сразу. */
+@media print {
+  .hyb-header,
+  .hyb-footer,
+  .hyb-consent,
+  .hyb-progress,
+  .hyb-legal__side,
+  .hyb-legal-more {
+    display: none !important;
+  }
+  .hyb-pagehead {
+    padding-top: 1rem;
+  }
+  .hyb-legal__grid {
+    display: block;
+    border-top: 0;
+  }
+  .hyb-legal__doc {
+    max-width: none;
+  }
+  .hyb-js .hyb-reveal {
+    opacity: 1;
+    animation: none;
+  }
+  .hyb-legal__sec {
+    break-inside: avoid-page;
+  }
+}

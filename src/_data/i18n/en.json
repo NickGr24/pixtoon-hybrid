@@ -577,5 +577,57 @@
       "outline": "original."
     },
     "ctaPrimary": "Start a project"
+  },
+  "_legal_comment": "legal — shared labels of the legal pages (document texts live in _data/legal/). cookies — consent banner: title, text and the three buttons follow the annex of the client's cookie policy; category panel follows its section 3.1. {cookies} and {privacy} placeholders become links in the partial.",
+  "legal": {
+    "eyebrow": "Legal",
+    "contents": "Contents",
+    "relatedEyebrow": "Related documents",
+    "relatedTitle": "Read alongside",
+    "manage": {
+      "eyebrow": "Your preferences",
+      "title": "Manage your cookie preferences",
+      "text": "You can review or change your choices at any time. Strictly necessary cookies stay on — they remember this very choice.",
+      "button": "Open preferences"
+    },
+    "footerLabel": "Legal"
+  },
+  "cookies": {
+    "title": "This website uses cookies",
+    "text": "We use strictly necessary cookies for the website to work and, with your consent, analytics and marketing cookies to improve your experience and understand how the site is used. You can accept all cookies, refuse the non-essential ones or customise your options. Details in the {cookies} and the {privacy}.",
+    "acceptAll": "Accept all",
+    "reject": "Refuse",
+    "settings": "Settings",
+    "close": "Close",
+    "panel": {
+      "title": "Cookie preferences",
+      "text": "Choose which categories you allow. You can change this later from the “Cookie settings” link in the footer.",
+      "always": "Always active",
+      "save": "Save preferences",
+      "back": "Back"
+    },
+    "categories": [
+      {
+        "key": "necessary",
+        "title": "Strictly necessary",
+        "text": "Ensure the basic operation of the site and remember your cookie preferences; they cannot be switched off."
+      },
+      {
+        "key": "analytics",
+        "title": "Analytics / performance",
+        "text": "Help us understand how the site is used (pages visited, length of visit) in order to improve it."
+      },
+      {
+        "key": "marketing",
+        "title": "Marketing / advertising",
+        "text": "Used to measure the effectiveness of campaigns and, where applicable, to display relevant content."
+      },
+      {
+        "key": "functional",
+        "title": "Functional",
+        "text": "Remember your preferences (for example, language) for a personalised experience."
+      }
+    ],
+    "footerButton": "Cookie settings"
   }
 }

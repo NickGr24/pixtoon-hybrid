@@ -1,0 +1,185 @@
+{
+  "_comment": "Политика cookie. RO — дословно из «PIXTOON - Politica Cookies + Banner.docx» (01.09.2026), EN переведён нами, юристом не читан. Приложение документа — текст баннера — живёт не здесь, а в i18n под ключом cookies: это интерфейс, а не страница. Плейсхолдеры {privacy}, {cookies}, {terms} в тексте подменяются адресами страниц в legalPages.js.",
+  "key": "cookies",
+  "order": 3,
+  "paths": {
+    "en": "cookie-policy/",
+    "ro": "politica-cookie/"
+  },
+  "en": {
+    "navTitle": "Cookie Policy",
+    "meta": {
+      "title": "Cookie Policy — PixToon",
+      "description": "What cookies are, which ones pixtoon.com uses, on what legal basis, and how to manage your preferences."
+    },
+    "title": {
+      "a": "Cookie",
+      "outline": "policy"
+    },
+    "subtitle": "www.pixtoon.com",
+    "version": "Version 1.0",
+    "effectiveLabel": "Effective / last updated",
+    "effectiveDate": "01.09.2026",
+    "intro": "This Cookie Policy explains what cookies are, which types of cookies we use on the website www.pixtoon.com (hereinafter “the Site”), for what purposes, on what legal basis, and how you can manage your preferences. The Policy supplements the <a href=\"{privacy}\">Privacy Policy</a> of PIXTOON ANIMATION SRL and applies in accordance with Law no. 195/2024 on the protection of personal data and related legislation.",
+    "sections": [
+      {
+        "id": "what-cookies-are",
+        "title": "What cookies are",
+        "clauses": [
+          { "n": "1.1", "text": "Cookies are small text files stored on your device (computer, phone, tablet) when you visit a website. They allow the device to be recognised and retain certain information about your preferences or actions." },
+          { "n": "1.2", "text": "We also use similar technologies (for example pixels, tags and scripts such as Google Tag Manager). In this Policy, all of these are referred to generically as “cookies”." }
+        ]
+      },
+      {
+        "id": "legal-basis-and-consent",
+        "title": "Legal basis and consent",
+        "clauses": [
+          { "n": "2.1", "text": "Cookies strictly necessary for the operation of the Site are used on the basis of our legitimate interest in ensuring the provision and security of the Site and do not require consent." },
+          { "n": "2.2", "text": "The other categories of cookies (analytics, marketing and functional) are used only on the basis of your consent, given through the cookie banner displayed on your first visit to the Site. You may withdraw your consent at any time through the preferences panel or through your browser settings." }
+        ]
+      },
+      {
+        "id": "categories-of-cookies",
+        "title": "Categories of cookies we use",
+        "clauses": [
+          {
+            "n": "3.1",
+            "text": "Depending on their purpose, we use the following categories of cookies:",
+            "list": [
+              "<b>Strictly necessary cookies</b> – ensure the basic operation of the Site and remember your cookie preferences; they cannot be switched off in our systems.",
+              "<b>Analytics / performance cookies</b> – help us understand how the Site is used (pages visited, length of visit) in order to improve it; they are used on the basis of consent.",
+              "<b>Marketing / advertising cookies</b> – used to measure the effectiveness of campaigns and, where applicable, to display relevant content; they are used on the basis of consent.",
+              "<b>Functional cookies</b> – remember your preferences (for example, language) for a personalised experience; they are used on the basis of consent."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "third-party-cookies",
+        "title": "Third-party cookies and services",
+        "clauses": [
+          { "n": "4.1", "text": "The Site uses third-party services that may place cookies, in particular Google Analytics and Google Tag Manager, provided by Google. These services may process data, including your IP address, for analytics purposes." },
+          { "n": "4.2", "text": "The use of Google services may involve the transfer of data outside the Republic of Moldova, including to the United States of America, subject to the safeguards provided by law, as described in the <a href=\"{privacy}\">Privacy Policy</a>." },
+          { "n": "4.3", "text": "You can learn more about how Google processes data and use the <a href=\"https://tools.google.com/dlpage/gaoptout\" rel=\"noopener\" target=\"_blank\">opt-out module for Google Analytics</a> by visiting <a href=\"https://policies.google.com/technologies/cookies\" rel=\"noopener\" target=\"_blank\">Google’s dedicated pages</a>." }
+        ]
+      },
+      {
+        "id": "duration-of-cookies",
+        "title": "Duration of cookies",
+        "clauses": [
+          { "n": "5.1", "text": "Depending on their lifetime, cookies can be: (a) session cookies – deleted automatically when the browser is closed; and (b) persistent cookies – remain on the device for the period indicated in the tables above or until you delete them." }
+        ]
+      },
+      {
+        "id": "managing-preferences",
+        "title": "How to manage your preferences",
+        "clauses": [
+          { "n": "6.1", "text": "On your first visit to the Site, you can accept or refuse the non-essential categories of cookies through the cookie banner. You can change your choices at any time through the preferences panel available on the Site." },
+          { "n": "6.2", "text": "You can also manage or delete cookies from your browser settings. Disabling certain cookies may affect the operation of the Site." }
+        ]
+      },
+      {
+        "id": "changes-to-this-policy",
+        "title": "Changes to this Policy",
+        "clauses": [
+          { "n": "7.1", "text": "We may update this Cookie Policy from time to time. The updated version is published on the Site, indicating the date of the last update." }
+        ]
+      },
+      {
+        "id": "contact",
+        "title": "Contact",
+        "clauses": [
+          { "n": "8.1", "text": "For any questions about the use of cookies, you can contact us at: e-mail <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>, phone <a href=\"tel:+37378555333\">+373 78 555 333</a>. Controller: PIXTOON ANIMATION SRL, IDNO 1019600005543, MD-2023, Chișinău, str. Podul Înalt 8/1, ap. (of.) 3." }
+        ]
+      }
+    ]
+  },
+  "ro": {
+    "navTitle": "Politica cookie",
+    "meta": {
+      "title": "Politica privind fișierele cookie — PixToon",
+      "description": "Ce sunt cookie-urile, ce tipuri folosește pixtoon.com, pe ce temei juridic și cum vă gestionați preferințele."
+    },
+    "title": {
+      "a": "Politica privind",
+      "outline": "fișierele cookie"
+    },
+    "subtitle": "www.pixtoon.com",
+    "version": "Versiunea 1.0",
+    "effectiveLabel": "Data intrării în vigoare / ultimei actualizări",
+    "effectiveDate": "01.09.2026",
+    "intro": "Prezenta Politică privind fișierele cookie explică ce sunt cookie-urile, ce tipuri de cookie-uri utilizăm pe site-ul www.pixtoon.com (denumit în continuare „Site-ul”), în ce scopuri, pe ce temei juridic și cum vă puteți gestiona preferințele. Politica se completează cu <a href=\"{privacy}\">Politica de confidențialitate</a> a PIXTOON ANIMATION SRL și se aplică în conformitate cu Legea nr. 195/2024 privind protecția datelor cu caracter personal și cu Legislația conexă.",
+    "sections": [
+      {
+        "id": "ce-sunt-fisierele-cookie",
+        "title": "Ce sunt fișierele cookie",
+        "clauses": [
+          { "n": "1.1", "text": "Cookie-urile sunt fișiere text de mici dimensiuni care sunt stocate pe dispozitivul dumneavoastră (calculator, telefon, tabletă) atunci când vizitați un site web. Ele permit recunoașterea dispozitivului și rețin anumite informații despre preferințele sau acțiunile dumneavoastră." },
+          { "n": "1.2", "text": "Utilizăm, de asemenea, tehnologii similare (de exemplu, pixeli, etichete și scripturi, precum Google Tag Manager). În prezenta Politică, toate acestea sunt denumite generic „cookie-uri”." }
+        ]
+      },
+      {
+        "id": "temeiul-juridic-si-consimtamantul",
+        "title": "Temeiul juridic și consimțământul",
+        "clauses": [
+          { "n": "2.1", "text": "Cookie-urile strict necesare pentru funcționarea Site-ului sunt utilizate în temeiul interesului legitim de a asigura furnizarea și securitatea Site-ului și nu necesită consimțământ." },
+          { "n": "2.2", "text": "Celelalte categorii de cookie-uri (de analiză, de marketing și funcționale) sunt utilizate numai pe baza consimțământului dumneavoastră, exprimat prin intermediul bannerului de cookie-uri afișat la prima accesare a Site-ului. Vă puteți retrage consimțământul oricând, prin panoul de preferințe sau prin setările browserului." }
+        ]
+      },
+      {
+        "id": "categoriile-de-cookie-uri",
+        "title": "Categoriile de cookie-uri pe care le utilizăm",
+        "clauses": [
+          {
+            "n": "3.1",
+            "text": "În funcție de scop, utilizăm următoarele categorii de cookie-uri:",
+            "list": [
+              "<b>Cookie-uri strict necesare</b> – asigură funcționarea de bază a Site-ului și memorarea preferințelor privind cookie-urile; nu pot fi dezactivate din sistemele noastre.",
+              "<b>Cookie-uri de analiză / performanță</b> – ne ajută să înțelegem cum este utilizat Site-ul (pagini vizitate, durata vizitei), pentru a-l îmbunătăți; sunt utilizate pe bază de consimțământ.",
+              "<b>Cookie-uri de marketing / publicitate</b> – utilizate pentru a măsura eficiența campaniilor și, eventual, pentru afișarea de conținut relevant; sunt utilizate pe bază de consimțământ.",
+              "<b>Cookie-uri funcționale</b> – rețin preferințele dumneavoastră (de exemplu, limba) pentru o experiență personalizată; sunt utilizate pe bază de consimțământ."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cookie-uri-si-servicii-ale-tertilor",
+        "title": "Cookie-uri și servicii ale terților",
+        "clauses": [
+          { "n": "4.1", "text": "Site-ul utilizează servicii ale terților care pot plasa cookie-uri, în special Google Analytics și Google Tag Manager, furnizate de Google. Aceste servicii pot prelucra date, inclusiv adresa IP, în scop de analiză." },
+          { "n": "4.2", "text": "Utilizarea serviciilor Google poate implica transferul de date în afara Republicii Moldova, inclusiv în Statele Unite ale Americii, cu respectarea garanțiilor prevăzute de lege, astfel cum se arată în <a href=\"{privacy}\">Politica de confidențialitate</a>." },
+          { "n": "4.3", "text": "Puteți afla mai multe despre modul în care Google prelucrează datele și puteți utiliza <a href=\"https://tools.google.com/dlpage/gaoptout\" rel=\"noopener\" target=\"_blank\">modulul de renunțare (opt-out) pentru Google Analytics</a> accesând <a href=\"https://policies.google.com/technologies/cookies\" rel=\"noopener\" target=\"_blank\">paginile dedicate ale Google</a>." }
+        ]
+      },
+      {
+        "id": "durata-cookie-urilor",
+        "title": "Durata cookie-urilor",
+        "clauses": [
+          { "n": "5.1", "text": "În funcție de durata de viață, cookie-urile pot fi: (a) de sesiune – se șterg automat la închiderea browserului; și (b) persistente – rămân pe dispozitiv pentru perioada indicată în tabelele de mai sus sau până la ștergerea lor de către dumneavoastră." }
+        ]
+      },
+      {
+        "id": "cum-va-gestionati-preferintele",
+        "title": "Cum vă gestionați preferințele",
+        "clauses": [
+          { "n": "6.1", "text": "La prima accesare a Site-ului, puteți accepta sau refuza categoriile de cookie-uri neesențiale prin intermediul bannerului de cookie-uri. Vă puteți modifica opțiunile oricând prin panoul de preferințe disponibil pe Site." },
+          { "n": "6.2", "text": "De asemenea, puteți gestiona sau șterge cookie-urile din setările browserului dumneavoastră. Dezactivarea anumitor cookie-uri poate afecta funcționarea Site-ului." }
+        ]
+      },
+      {
+        "id": "modificari-ale-prezentei-politici",
+        "title": "Modificări ale prezentei Politici",
+        "clauses": [
+          { "n": "7.1", "text": "Putem actualiza periodic prezenta Politică privind fișierele cookie. Versiunea actualizată se publică pe Site, cu indicarea datei ultimei actualizări." }
+        ]
+      },
+      {
+        "id": "contact",
+        "title": "Contact",
+        "clauses": [
+          { "n": "8.1", "text": "Pentru orice întrebări privind utilizarea cookie-urilor, ne puteți contacta la: e-mail <a href=\"mailto:hello@pixtoon.com\">hello@pixtoon.com</a>, telefon <a href=\"tel:+37378555333\">+373 78 555 333</a>. Operator: PIXTOON ANIMATION SRL, IDNO 1019600005543, MD-2023, mun. Chișinău, str. Podul Înalt 8/1, ap. (of.) 3." }
+        ]
+      }
+    ]
+  }
+}

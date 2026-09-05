@@ -23,6 +23,7 @@ const modules = [
   "sections-site.css",
   "sections-landing.css",
   "sections-case.css",
+  "sections-legal.css",
 ];
 
 mkdirSync(OUT, { recursive: true });
