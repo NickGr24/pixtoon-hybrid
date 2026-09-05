@@ -13,6 +13,8 @@ eleventyComputed:
   altUrl: "{{ t.otherLocale.dir }}{{ site.hybridPath }}/{{ t.slug }}/"
 ---
 
+{% import "partials/player.njk" as player %}
+
 {% set p = t %}
 {% set c = t.content %}
 {% set cs = t.caseStudy %}
@@ -81,12 +83,6 @@ eleventyComputed:
 {%- endif -%}
 {% endmacro %}
 
-{# Иконки плеера заливкой: в панели они 16–18px, и контур там осыпается. #}
-{%- macro playerIcon(name, state) -%}
-<svg class="hyb-player__ico hyb-player__ico--{{ state }}" width="18" height="18" viewBox="0 0 24 24"
-     fill="currentColor" aria-hidden="true">{{ icons.player[name] | safe }}</svg>
-{%- endmacro %}
-
 {# Список с галочками. Живёт в трёх секциях — панели сравнения, итоге и
    перечнях, — и разошёлся бы между ними при первой же правке разметки. #}
 {% macro checks(items, cls) %}
@@ -141,52 +137,7 @@ eleventyComputed:
     браузер к тому же тянул несуществующий mp4 и получал 404.
   #}
   {% if p.case.media.hasVideo %}
-  {#
-    Свои органы управления вместо controls. Нативная панель браузера рисуется
-    внутри самого видео, а кадр здесь кадрируется по контейнеру (object-fit),
-    и панель уезжала за границу фигуры — перемотать ролик было нечем.
-    preload="none" сохранён: страница не должна тянуть мастер, пока его не
-    попросили.
-  #}
-  <video class="hyb-cs__video" data-src="{{ p.case.media.video | url }}"
-         poster="{{ shots.hero }}" playsinline preload="none"></video>
-
-  <button class="hyb-cs__play" type="button" data-hyb-play
-          aria-label="{{ cs.player.play }}" data-label-play="{{ cs.player.play }}"
-          data-label-pause="{{ cs.player.pause }}">
-    <svg width="22" height="22" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7-4.5z"/></svg>
-  </button>
-
-  <div class="hyb-player" data-hyb-controls hidden>
-    {#
-      В каждой кнопке лежат оба состояния, а нужное показывает CSS. Так
-      скрипт переключает только классы и подпись: собирать svg строками в JS
-      значило бы держать те же контуры во втором месте, мимо icons.js.
-    #}
-    <button class="hyb-player__btn" type="button" data-act="toggle" aria-label="{{ cs.player.pause }}">
-      {{ playerIcon("pause", "on-play") }}{{ playerIcon("play", "on-pause") }}
-    </button>
-
-    {#
-      Ползунок — нативный input[type=range]: он бесплатно даёт перемотку с
-      клавиатуры, роль slider для скринридера и перетаскивание на тач-экране.
-      Свой div из этого не умеет ничего без сотни строк.
-    #}
-    <input class="hyb-player__seek" type="range" min="0" max="1000" value="0" step="1"
-           data-act="seek" aria-label="{{ cs.player.seek }}" />
-
-    <span class="hyb-player__time" data-hyb-time aria-hidden="true">0:00 / 0:00</span>
-
-    <button class="hyb-player__btn" type="button" data-act="mute"
-            aria-label="{{ cs.player.mute }}" data-label-on="{{ cs.player.mute }}"
-            data-label-off="{{ cs.player.unmute }}">
-      {{ playerIcon("sound", "on-loud") }}{{ playerIcon("muted", "on-muted") }}
-    </button>
-
-    <button class="hyb-player__btn" type="button" data-act="full" aria-label="{{ cs.player.fullscreen }}">
-      {{ playerIcon("full", "on-window") }}{{ playerIcon("exit", "on-full") }}
-    </button>
-  </div>
+  {{ player.overlay(icons, cs.player, p.case.media.video | url, shots.hero) }}
   {% endif %}
 </figure>
 {% endmacro %}

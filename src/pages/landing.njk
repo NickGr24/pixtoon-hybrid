@@ -16,6 +16,8 @@ eleventyComputed:
   altUrl: "{{ t.otherLocale.dir }}{{ site.hybridPath }}/"
 ---
 
+{% import "partials/player.njk" as player %}
+
 {% set cs = cases.featured %}
 
 {# ============================ 1. HERO ============================ #}
@@ -50,11 +52,35 @@ eleventyComputed:
       <div class="hyb-hero__visual">
         <div class="hyb-collage">
           {% set collageSlugs = ["bere-chisinau", "coccolino", "medpark-mafa-girafa", "drive-gas", "microinvest-family"] %}
+          {#
+            Ширина ячейки на телефоне не совпадает с шириной на широком
+            экране, и наоборот: крупная ячейка макета на узком экране —
+            вертикаль в половину ширины, а Coccolino, наоборот, растягивается
+            на обе колонки. Один общий `sizes` на все пять врал бы браузеру
+            в обе стороны, поэтому набор перечислен по позициям.
+          #}
+          {% set collageSizes = [
+            "(min-width: 40rem) 390px, 170px",
+            "(min-width: 40rem) 190px, 350px",
+            "(min-width: 40rem) 190px, 170px",
+            "(min-width: 40rem) 190px, 170px",
+            "(min-width: 40rem) 190px, 170px"
+          ] %}
           {% for slug in collageSlugs %}
           {% set pos = loop.index %}
           {% for c in cs %}{% if c.slug == slug %}
           {% set cl = c | loc(t.locale) %}
-          <figure class="hyb-collage__item hyb-collage__item--{{ pos }}">
+          {#
+            Ячейка коллажа — ссылка на страницу кейса, а не просто кадр.
+            Доступное имя даёт aria-label: alt картинки и подпись под ней
+            повторяют одно и то же название, и без него скринридер читал бы
+            его дважды подряд.
+          #}
+          <a
+            class="hyb-collage__item hyb-collage__item--{{ pos }}"
+            href="{{ (site.hybridPath + '/' + c.slug + '/') | localeUrl(t) }}"
+            aria-label="{{ cl.title }} — {{ cl.tags }}"
+          >
             {#
               Ячейки коллажа — от 169 до 389px, а исходники кадров до 1600.
               Без srcset первый экран тянул три четверти мегабайта ради
@@ -65,24 +91,17 @@ eleventyComputed:
               class="hyb-collage__media"
               src="{{ c.media.poster }}"
               srcset="{{ c.media.poster | replace('.jpg', '-400.jpg') }} 400w, {{ c.media.poster | replace('.jpg', '-800.jpg') }} 800w"
-              sizes="{% if pos == 1 %}(min-width: 40rem) 390px, 350px{% else %}(min-width: 40rem) 190px, 170px{% endif %}"
-              alt="{{ cl.title }} — {{ cl.tags }}"
+              sizes="{{ collageSizes[pos - 1] }}"
+              alt=""
               {{ c.media.poster | dims | safe }}
               style="object-position: {{ c.media.focal }}"
               loading="{{ 'eager' if pos == 1 else 'lazy' }}"
               {% if pos == 1 %}fetchpriority="high"{% endif %}
             />
-            <figcaption class="hyb-tag hyb-tag--gold">{{ cl.title }}</figcaption>
-          </figure>
+            <span class="hyb-tag hyb-tag--gold">{{ cl.title }}</span>
+          </a>
           {% endif %}{% endfor %}
           {% endfor %}
-
-          <button class="hyb-showreel" type="button" data-hyb-showreel>
-            <span class="hyb-showreel__icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>
-            </span>
-            {{ t.hero.showreel }}
-          </button>
         </div>
       </div>
     </div>
@@ -175,14 +194,23 @@ eleventyComputed:
           формулой featured[index+1] — связи с содержанием пакета не было
           вообще, и Coccolino оказывался в пакете «2 video AI/3D» без причин.
         #}
-        <div class="hyb-package__media" data-hyb-hover-video>
+        {#
+          Кадр запускает ролик кейса по нажатию, а не по наведению. Ролик со
+          звуком и весит мегабайты: браузер не даст ему стартовать без жеста,
+          да и качать его из-за случайного пролёта курсора незачем.
+        #}
+        <div class="hyb-package__media" data-hyb-player>
           <img class="hyb-case__media" src="{{ p.mediaSrc }}" alt="{{ p.mediaLabel }}" {{ p.mediaSrc | dims | safe }} loading="lazy" />
           <span class="hyb-tag hyb-tag--gold hyb-package__tag">
             <span aria-hidden="true">✦</span> {{ p.mediaLabel }}
           </span>
-          <span class="hyb-play" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>
-          </span>
+          {#
+            Путь к ролику берётся из кейса, а не переписывается в локаль: там
+            же считается, лежит ли файл на диске. Пакет называет только слаг.
+          #}
+          {% for c in cs %}{% if c.slug == p.caseSlug and c.media.hasVideo %}
+          {{ player.overlay(icons, t.caseStudy.player, c.media.video | url, p.mediaSrc, "hyb-play hyb-play--btn") }}
+          {% endif %}{% endfor %}
         </div>
 
         <div class="hyb-package__cols">
@@ -208,10 +236,20 @@ eleventyComputed:
       {% endfor %}
     </div>
 
-    {# Кастомный пакет: тёмная карточка, расколотая пополам кадром #}
+    {#
+      Кастомный пакет: тёмная карточка, расколотая пополам кадром.
+
+      Кадр почти квадратный и снят из ролика Drive Gas: высоту его колонки
+      задаёт текст рядом, то есть пропорция плавает около единицы. Прежний
+      кадр был горизонтальный 16:10 с надписью — в такую колонку он влезал
+      средней третью и разрезал разом и надпись, и лицо маскота.
+    #}
     <div class="hyb-custom hyb-invert hyb-reveal">
+      {% set customShot = "/assets/img/drive-gas/mascot.jpg" %}
       <div class="hyb-custom__media">
-        <img src="/assets/img/cases/drive-gas.jpg" alt="" {{ "/assets/img/cases/drive-gas.jpg" | dims | safe }} loading="lazy" />
+        <img src="{{ customShot }}" srcset="{{ customShot | srcset }}"
+             sizes="(min-width: 56rem) 547px, 100vw"
+             alt="" {{ customShot | dims | safe }} loading="lazy" />
       </div>
       <div class="hyb-custom__body">
         <p class="hyb-eyebrow hyb-eyebrow--gold">{{ t.monthly.custom.label }}</p>
@@ -249,24 +287,40 @@ eleventyComputed:
       <p class="hyb-lead">{{ t.microinvest.lead }}</p>
     </div>
 
+    {#
+      Триптих: слева сам ролик, справа два кадра из него. Все три колонки в
+      пропорции материала — рил вертикальный 1080×1916, и горизонтальная
+      плитка, которая стояла здесь раньше, срезала персонажам головы.
+
+      Кадры взяты из того же mp4 скриптом tools/microinvest-frames.mjs, а не
+      подобраны отдельными файлами: иначе связь «что на плитке» с «что в
+      ролике» держалась бы только на памяти.
+    #}
     <div class="hyb-mi__top hyb-reveal">
-      <figure class="hyb-mi__hero">
-        <img src="/assets/img/cases/microinvest-family.jpg" alt="{{ t.microinvest.heroCaption }}" {{ "/assets/img/cases/microinvest-family.jpg" | dims | safe }} loading="lazy" />
+      {% set miPoster = "/assets/img/cases/microinvest-family.jpg" %}
+      <figure class="hyb-mi__hero" data-hyb-player>
+        <img src="{{ miPoster }}" srcset="{{ miPoster | srcset }}"
+             sizes="(min-width: 56rem) 392px, 92vw"
+             alt="{{ t.microinvest.heroCaption }}" {{ miPoster | dims | safe }} loading="lazy" />
         <figcaption>
           <span class="hyb-tag hyb-tag--gold"><span aria-hidden="true">✦</span> {{ t.microinvest.heroLabel }}</span>
           <span class="hyb-mi__caption">{{ t.microinvest.heroCaption }}</span>
         </figcaption>
+        {% for c in cs %}{% if c.slug == "microinvest-family" and c.media.hasVideo %}
+        {{ player.overlay(icons, t.caseStudy.player, c.media.video | url, miPoster) }}
+        {% endif %}{% endfor %}
       </figure>
-      <div class="hyb-mi__side">
-        <figure class="hyb-mi__tile">
-          <img src="/assets/img/microinvest/branding.jpg" alt="{{ t.microinvest.sideLabels[0] }}" {{ "/assets/img/microinvest/branding.jpg" | dims | safe }} loading="lazy" />
-          <figcaption class="hyb-tag hyb-tag--light">{{ t.microinvest.sideLabels[0] }}</figcaption>
-        </figure>
-        <figure class="hyb-mi__tile">
-          <img src="/assets/img/microinvest/app-ui.jpg" alt="{{ t.microinvest.sideLabels[1] }}" {{ "/assets/img/microinvest/app-ui.jpg" | dims | safe }} loading="lazy" />
-          <figcaption class="hyb-tag hyb-tag--light">{{ t.microinvest.sideLabels[1] }}</figcaption>
-        </figure>
-      </div>
+
+      {% set miTiles = ["reel-scene", "reel-closeup"] %}
+      {% for slot in miTiles %}
+      {% set src = "/assets/img/microinvest/" + slot + ".jpg" %}
+      <figure class="hyb-mi__tile">
+        <img src="{{ src }}" srcset="{{ src | srcset }}"
+             sizes="(min-width: 56rem) 392px, 44vw"
+             alt="{{ t.microinvest.sideLabels[loop.index0] }}" {{ src | dims | safe }} loading="lazy" />
+        <figcaption class="hyb-tag hyb-tag--light">{{ t.microinvest.sideLabels[loop.index0] }}</figcaption>
+      </figure>
+      {% endfor %}
     </div>
 
     {#
@@ -275,10 +329,18 @@ eleventyComputed:
       страховкой служит тень глифа, а не заливка поверх изображения.
     #}
     <div class="hyb-mi__portraits hyb-reveal">
-      {% set files = ["mama", "fiica", "tatal", "mama-bucatarie"] %}
+      {#
+        Отец идёт под своим именем `tatal-portret`: файл `tatal.jpg` в той же
+        папке служит исходником для шага процесса на странице кейса, и
+        перерезать его под этот ряд значило бы менять заодно и тот шаг.
+      #}
+      {% set files = ["mama", "fiica", "tatal-portret", "pisica"] %}
       {% for name in t.microinvest.portraits %}
+      {% set portrait = "/assets/img/microinvest/" + files[loop.index0] + ".jpg" %}
       <figure class="hyb-mi__portrait">
-        <img src="/assets/img/microinvest/{{ files[loop.index0] }}.jpg" alt="{{ name }}" {{ ("/assets/img/microinvest/" + files[loop.index0] + ".jpg") | dims | safe }} loading="lazy" />
+        <img src="{{ portrait }}" srcset="{{ portrait | srcset }}"
+             sizes="(min-width: 56rem) 289px, 45vw"
+             alt="{{ name }}" {{ portrait | dims | safe }} loading="lazy" />
         <figcaption>{{ name }}</figcaption>
       </figure>
       {% endfor %}
@@ -420,12 +482,75 @@ eleventyComputed:
       {% title t.finalCta.title, "h2", "hyb-title--xl" %}
     </div>
     <p class="hyb-lead hyb-reveal">{{ t.finalCta.lead }}</p>
-    <div class="hyb-actions hyb-reveal">
-      <a href="mailto:{{ site.contacts.email }}" class="hyb-btn hyb-btn--primary">
-        {{ t.finalCta.ctaPrimary }}
-        <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
-      </a>
-      <a href="mailto:{{ site.contacts.email }}" class="hyb-btn hyb-btn--ghost">{{ t.finalCta.ctaSecondary }}</a>
-    </div>
+    {#
+      Форма брифа.
+
+      Данные пока никуда не уходят: обработчика на стороне сервера нет, и
+      вместо него скрипт показывает благодарность. Действие оставлено на
+      `mailto:` в action, а не пустым — без JS форма всё равно откроет письмо
+      на тот же адрес, что и кнопки выше, а не перезагрузит страницу впустую.
+
+      Точка подключения к бэкенду — сам элемент `form`: на живом сайте его
+      подхватывает AjaxForm, ему нужен лишь адрес обработчика в action.
+
+      Кнопок «Start a project» и «Book a free call» над формой больше нет:
+      обе вели на тот же `mailto:`, что и форма, и стояли ровно там, где у
+      посетителя уже есть поле ввода. Все ссылки `#start` со страницы ведут
+      в эту секцию, и первое, что в ней есть после заголовка, — форма.
+
+      Поля обёрнуты в label целиком, поэтому им не нужен ни id, ни for: в
+      MODX разметка будет дублироваться на других страницах, и совпадение
+      идентификаторов там — вопрос времени.
+    #}
+    {% set f = t.finalCta.form %}
+    <form class="hyb-form hyb-reveal" data-hyb-form method="post"
+          action="mailto:{{ site.contacts.email }}" enctype="text/plain">
+      <div class="hyb-form__head">
+        <span class="hyb-eyebrow">{{ f.eyebrow }}</span>
+        <h3 class="hyb-form__title">{{ f.title }}</h3>
+      </div>
+
+      <div class="hyb-form__grid">
+        <label class="hyb-field">
+          <span class="hyb-field__label">{{ f.name.label }}</span>
+          <input class="hyb-field__control" type="text" name="name" required
+                 autocomplete="name" placeholder="{{ f.name.placeholder }}" />
+        </label>
+
+        <label class="hyb-field">
+          <span class="hyb-field__label">{{ f.email.label }}</span>
+          <input class="hyb-field__control" type="email" name="email" required
+                 autocomplete="email" placeholder="{{ f.email.placeholder }}" />
+        </label>
+
+        <label class="hyb-field hyb-field--wide">
+          <span class="hyb-field__label">
+            {{ f.company.label }}
+            <span class="hyb-field__hint">{{ f.optional }}</span>
+          </span>
+          <input class="hyb-field__control" type="text" name="company"
+                 autocomplete="organization" placeholder="{{ f.company.placeholder }}" />
+        </label>
+
+        <label class="hyb-field hyb-field--wide">
+          <span class="hyb-field__label">{{ f.message.label }}</span>
+          <textarea class="hyb-field__control hyb-field__control--area" name="message"
+                    rows="4" required placeholder="{{ f.message.placeholder }}"></textarea>
+        </label>
+      </div>
+
+      <div class="hyb-form__foot">
+        <button class="hyb-btn hyb-btn--primary" type="submit">
+          {{ f.submit }}
+          <span class="hyb-btn__arrow" aria-hidden="true">↗</span>
+        </button>
+      </div>
+
+      {#
+        Ответ формы читается вслух: role="status" сообщает скринридеру об
+        изменении, не уводя фокус с кнопки.
+      #}
+      <p class="hyb-form__status" data-hyb-form-status role="status" hidden>{{ f.success }}</p>
+    </form>
   </div>
 </section>

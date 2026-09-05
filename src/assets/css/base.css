@@ -456,6 +456,18 @@
   transform: translate(-50%, -50%) scale(1.08);
 }
 
+/* Тот же кружок, но кнопкой: в карточке абонемента он запускает ролик, а не
+   украшает кадр. Собственного вида у кнопки нет — только сброс браузерного. */
+.hyb-play--btn {
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+[data-hyb-player].is-playing .hyb-play--btn {
+  display: none;
+}
+
 
 .hyb-play--inline {
   position: static;

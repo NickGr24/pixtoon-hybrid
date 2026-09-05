@@ -747,7 +747,7 @@
   pointer-events: none;
 }
 
-.hyb-cs__shot.is-playing .hyb-cs__video {
+[data-hyb-player].is-playing .hyb-cs__video {
   opacity: 1;
   pointer-events: auto;
   /* contain, а не cover: при запуске скрипт подгоняет пропорцию фигуры под
@@ -781,7 +781,7 @@
   box-shadow: var(--hyb-shadow-lift);
 }
 
-.hyb-cs__shot.is-playing .hyb-cs__play {
+[data-hyb-player].is-playing .hyb-cs__play {
   display: none;
 }
 
@@ -837,19 +837,19 @@
   display: none;
 }
 
-.hyb-cs__shot.is-running .hyb-player__ico--on-play {
+[data-hyb-player].is-running .hyb-player__ico--on-play {
   display: block;
 }
 
-.hyb-cs__shot.is-running .hyb-player__ico--on-pause {
+[data-hyb-player].is-running .hyb-player__ico--on-pause {
   display: none;
 }
 
-.hyb-cs__shot.is-muted .hyb-player__ico--on-muted {
+[data-hyb-player].is-muted .hyb-player__ico--on-muted {
   display: block;
 }
 
-.hyb-cs__shot.is-muted .hyb-player__ico--on-loud {
+[data-hyb-player].is-muted .hyb-player__ico--on-loud {
   display: none;
 }
 

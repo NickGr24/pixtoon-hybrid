@@ -37,8 +37,7 @@
     "lead": "AI + animation + filmmaking, directed by people.",
     "highlight": "A commercial in just 3 days. From €1,000 for 20 seconds.",
     "ctaPrimary": "Start a project",
-    "ctaSecondary": "How it works",
-    "showreel": "Hybrid showreel"
+    "ctaSecondary": "How it works"
   },
   "work": {
     "eyebrow": "Selected hybrid work",
@@ -127,6 +126,7 @@
         "label": "Monthly package 01",
         "title": "2 hybrid AI / 3D videos per month",
         "mediaSrc": "/assets/img/cases/coccolino/pack.jpg",
+        "caseSlug": "coccolino",
         "price": "€1,500",
         "mediaLabel": "Coccolino — character content",
         "idealFor": [
@@ -153,6 +153,7 @@
         "label": "Monthly package 02",
         "title": "3 hybrid / animated videos per month",
         "mediaSrc": "/assets/img/cases/medpark-mafa-girafa/pack.jpg",
+        "caseSlug": "medpark-mafa-girafa",
         "price": "€2,000",
         "mediaLabel": "Medpark — animation + AI",
         "idealFor": [
@@ -228,8 +229,29 @@
       "break": true
     },
     "lead": "Tell us what you want to promote. We’ll recommend the smartest way to produce it.",
-    "ctaPrimary": "Start a project",
-    "ctaSecondary": "Book a free call"
+    "form": {
+      "eyebrow": "Or write to us right here",
+      "title": "Tell us about the project",
+      "name": {
+        "label": "Your name",
+        "placeholder": "Ana Popescu"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "ana@brand.md"
+      },
+      "company": {
+        "label": "Company",
+        "placeholder": "Brand or agency"
+      },
+      "message": {
+        "label": "What do you want to promote?",
+        "placeholder": "A product, a campaign, a mascot — a couple of sentences is enough."
+      },
+      "optional": "optional",
+      "submit": "Send the brief",
+      "success": "Thank you — the brief has reached us. We will come back to you shortly."
+    }
   },
   "caseStudy": {
     "backToHybrid": "All hybrid work",
@@ -308,14 +330,14 @@
     "heroLabel": "Hand-built character + trained AI",
     "heroCaption": "A brand universe, alive",
     "sideLabels": [
-      "Branding",
-      "App UI"
+      "New scenes",
+      "Close-up"
     ],
     "portraits": [
       "Mother",
       "Daughter",
       "Father",
-      "Mother — kitchen"
+      "The cat"
     ],
     "features": [
       {

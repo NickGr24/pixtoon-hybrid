@@ -1,0 +1,72 @@
+{#
+  Плеер ролика: слой видео, крупная кнопка запуска и панель управления.
+
+  Живёт отдельным файлом, потому что нужен в двух местах — в герое страницы
+  кейса и в карточках абонементов на лендинге. Пока разметка стояла внутри
+  case.njk, второе место пришлось бы либо копировать, либо звать нативный
+  controls, а он рисуется внутри самого видео и уезжает за границу рамки,
+  когда кадр кадрируется по контейнеру.
+
+  Разметка держит контракт со скриптом: [data-hyb-player] на рамке,
+  [data-hyb-play] на кнопке, [data-hyb-controls] на панели. Классы оформления
+  скрипт не трогает вовсе.
+#}
+
+{# Иконки плеера заливкой: в панели они 16–18px, и контур там осыпается. #}
+{%- macro icon(icons, name, state) -%}
+<svg class="hyb-player__ico hyb-player__ico--{{ state }}" width="18" height="18" viewBox="0 0 24 24"
+     fill="currentColor" aria-hidden="true">{{ icons.player[name] | safe }}</svg>
+{%- endmacro -%}
+
+{#
+  Слой воспроизведения поверх кадра.
+
+  Ставится только когда файл действительно лежит на диске: кнопка, которая
+  ничего не запускает, хуже её отсутствия, а браузер к тому же тянул
+  несуществующий mp4 и получал 404. Проверку делает вызывающая сторона —
+  здесь макрос уже знает, что ролик есть.
+
+  preload="none" и data-src, а не src: страница не должна тянуть мастер в
+  8–16 МБ, пока его не попросили. До нажатия виден постер.
+#}
+{% macro overlay(icons, labels, videoSrc, poster, playClass) %}
+<video class="hyb-cs__video" data-src="{{ videoSrc }}"
+       poster="{{ poster }}" playsinline preload="none"></video>
+
+<button class="{{ playClass or 'hyb-cs__play' }}" type="button" data-hyb-play
+        aria-label="{{ labels.play }}" data-label-play="{{ labels.play }}"
+        data-label-pause="{{ labels.pause }}">
+  <svg width="22" height="22" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7-4.5z"/></svg>
+</button>
+
+<div class="hyb-player" data-hyb-controls hidden>
+  {#
+    В каждой кнопке лежат оба состояния, а нужное показывает CSS. Так
+    скрипт переключает только классы и подпись: собирать svg строками в JS
+    значило бы держать те же контуры во втором месте, мимо icons.js.
+  #}
+  <button class="hyb-player__btn" type="button" data-act="toggle" aria-label="{{ labels.pause }}">
+    {{ icon(icons, "pause", "on-play") }}{{ icon(icons, "play", "on-pause") }}
+  </button>
+
+  {#
+    Ползунок — нативный input[type=range]: он бесплатно даёт перемотку с
+    клавиатуры, роль slider для скринридера и перетаскивание на тач-экране.
+    Свой div из этого не умеет ничего без сотни строк.
+  #}
+  <input class="hyb-player__seek" type="range" min="0" max="1000" value="0" step="1"
+         data-act="seek" aria-label="{{ labels.seek }}" />
+
+  <span class="hyb-player__time" data-hyb-time aria-hidden="true">0:00 / 0:00</span>
+
+  <button class="hyb-player__btn" type="button" data-act="mute"
+          aria-label="{{ labels.mute }}" data-label-on="{{ labels.mute }}"
+          data-label-off="{{ labels.unmute }}">
+    {{ icon(icons, "sound", "on-loud") }}{{ icon(icons, "muted", "on-muted") }}
+  </button>
+
+  <button class="hyb-player__btn" type="button" data-act="full" aria-label="{{ labels.fullscreen }}">
+    {{ icon(icons, "full", "on-window") }}{{ icon(icons, "exit", "on-full") }}
+  </button>
+</div>
+{% endmacro %}

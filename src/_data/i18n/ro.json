@@ -37,8 +37,7 @@
     "lead": "AI + animație + filmmaking, regizat de oameni.",
     "highlight": "Video comercial în doar 3 zile. Începând de la €1.000 pentru 20 sec.",
     "ctaPrimary": "Pornește un proiect",
-    "ctaSecondary": "Cum funcționează",
-    "showreel": "Showreel hibrid"
+    "ctaSecondary": "Cum funcționează"
   },
   "work": {
     "eyebrow": "Lucrări hibride selectate",
@@ -127,6 +126,7 @@
         "label": "Pachet lunar 01",
         "title": "2 videoclipuri hibride AI / 3D pe lună",
         "mediaSrc": "/assets/img/cases/coccolino/pack.jpg",
+        "caseSlug": "coccolino",
         "price": "€1.500",
         "mediaLabel": "Coccolino — conținut cu personaj",
         "idealFor": [
@@ -153,6 +153,7 @@
         "label": "Pachet lunar 02",
         "title": "3 videoclipuri hibride / animație pe lună",
         "mediaSrc": "/assets/img/cases/medpark-mafa-girafa/pack.jpg",
+        "caseSlug": "medpark-mafa-girafa",
         "price": "€2.000",
         "mediaLabel": "Medpark — animație + AI",
         "idealFor": [
@@ -228,8 +229,29 @@
       "break": true
     },
     "lead": "Spune-ne ce vrei să promovezi. Îți recomandăm cea mai deșteaptă metodă de a produce.",
-    "ctaPrimary": "Pornește un proiect",
-    "ctaSecondary": "Programează un apel gratuit"
+    "form": {
+      "eyebrow": "Sau scrie-ne chiar aici",
+      "title": "Spune-ne despre proiect",
+      "name": {
+        "label": "Numele tău",
+        "placeholder": "Ana Popescu"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "ana@brand.md"
+      },
+      "company": {
+        "label": "Compania",
+        "placeholder": "Brand sau agenție"
+      },
+      "message": {
+        "label": "Ce vrei să promovezi?",
+        "placeholder": "Un produs, o campanie, o mascotă — două propoziții sunt de ajuns."
+      },
+      "optional": "opțional",
+      "submit": "Trimite brieful",
+      "success": "Mulțumim — brieful a ajuns la noi. Revenim în scurt timp."
+    }
   },
   "caseStudy": {
     "backToHybrid": "Toate lucrările hibride",
@@ -308,14 +330,14 @@
     "heroLabel": "Personaj dezvoltat manual + AI antrenat",
     "heroCaption": "Un univers de brand, viu",
     "sideLabels": [
-      "Branding",
-      "App UI"
+      "Scene noi",
+      "Prim-plan"
     ],
     "portraits": [
       "Mama",
       "Fiica",
       "Tatăl",
-      "Mama — bucătărie"
+      "Pisica"
     ],
     "features": [
       {

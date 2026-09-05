@@ -26,7 +26,7 @@
     initCarousel();
     initCasePlayer();
     initBurger();
-    initShowreel();
+    initForm();
     initStickyHeader();
   });
 
@@ -339,14 +339,44 @@
         paintTime();
       });
 
-      seek.addEventListener("input", function () {
+      function applySeek() {
         scrubbing = true;
         if (video.duration) video.currentTime = (seek.value / 1000) * video.duration;
         paintTrack();
         paintTime();
+      }
+
+      seek.addEventListener("input", applySeek);
+
+      /*
+        Прыжок к точке нажатия считается вручную.
+
+        Нативно это делают не все браузеры: у range с appearance: none Safari
+        отдаёт нажатие по дорожке ползунку только после перетаскивания, и
+        перемотка одним кликом там не работала вовсе. Chrome прыгает сам, и
+        значение у него получается то же — обработчик ничего не ломает.
+
+        Перетаскивание остаётся нативным: пока указатель зажат, браузер сам
+        шлёт input, и его же слушает applySeek.
+      */
+      seek.addEventListener("pointerdown", function (e) {
+        var box = seek.getBoundingClientRect();
+        if (!box.width) return;
+        var ratio = (e.clientX - box.left) / box.width;
+        seek.value = String(Math.round(Math.min(1, Math.max(0, ratio)) * 1000));
+        applySeek();
       });
 
       seek.addEventListener("change", function () {
+        scrubbing = false;
+      });
+
+      /* Отпустили указатель — снова слушаем ролик. Слушаем окно, а не сам
+         ползунок: указатель часто уводят за пределы дорожки и отпускают уже
+         вне её. change тут не страховка — если значение не изменилось,
+         браузер его не шлёт, и ползунок навсегда остался бы в режиме
+         перетаскивания. */
+      window.addEventListener("pointerup", function () {
         scrubbing = false;
       });
 
@@ -385,6 +415,61 @@
     });
   }
 
+  /* --- Форма брифа ------------------------------------------------------- */
+
+  /**
+   * Форма финального призыва.
+   *
+   * Обработчика на стороне сервера пока нет, поэтому отправка гасится, а
+   * вместо неё показывается благодарность. Это не заглушка ради заглушки:
+   * без перехвата браузер ушёл бы на `mailto:` из action и открыл почтовый
+   * клиент прямо посреди страницы. Без JS такой уход как раз и остаётся
+   * запасным путём — письмо уйдёт на тот же адрес, что и по кнопкам выше.
+   *
+   * Когда придёт адрес обработчика, снимать отсюда ничего не нужно: AjaxForm
+   * на живом сайте вешается на сам элемент form.
+   *
+   * Проверка полей — нативная. checkValidity даёт разбор типа email и
+   * обязательности бесплатно и на языке браузера; свои сообщения пришлось бы
+   * держать в двух локалях ради того же результата.
+   */
+  function initForm() {
+    document.querySelectorAll("[data-hyb-form]").forEach(function (form) {
+      var status = form.querySelector("[data-hyb-form-status]");
+      var message = status ? status.textContent : "";
+
+      /* novalidate ставится скриптом, а не в разметке. Без него браузер
+         отбивает пустую форму сам и до обработчика дело не доходит — тогда
+         подсветка полей ниже не включилась бы никогда. А без JS проверка
+         остаётся браузерной: атрибута в разметке нет. */
+      form.setAttribute("novalidate", "");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        /* Класс включает подсветку незаполненных полей. До первой попытки
+           отправки её нет: пустое поле не ошибка, пока его не отправили. */
+        form.classList.add("is-checked");
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        form.reset();
+        form.classList.remove("is-checked");
+
+        if (status) {
+          status.hidden = false;
+          /* Скринридер читает role="status" по изменению содержимого. Снятие
+             hidden таким изменением не считается, поэтому текст ставится
+             заново — из строки, снятой с разметки при инициализации. */
+          status.textContent = message;
+        }
+      });
+    });
+  }
+
   /* --- Мобильное меню ---------------------------------------------------- */
 
   function initBurger() {
@@ -408,27 +493,6 @@
       burger.setAttribute("aria-expanded", "false");
       nav.classList.remove("is-open");
       burger.focus();
-    });
-  }
-
-  /* --- Showreel ---------------------------------------------------------- */
-
-  /**
-   * Пока файла шоурила нет, кнопка ведёт к секции работ — вместо кнопки,
-   * которая ничего не делает. Когда придёт видео, сюда встанет модалка.
-   */
-  function initShowreel() {
-    var btn = document.querySelector("[data-hyb-showreel]");
-    if (!btn) return;
-
-    btn.addEventListener("click", function () {
-      var target = document.getElementById("work");
-      if (target) {
-        target.scrollIntoView({
-          behavior: reduced ? "auto" : "smooth",
-          block: "start",
-        });
-      }
     });
   }
 })();
