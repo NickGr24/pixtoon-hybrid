@@ -62,12 +62,17 @@
     иначе находит только после разбора HTML и CSS. Предзагрузка ставит его в
     очередь сразу; imagesrcset повторяет набор из разметки, иначе браузер
     скачал бы один файл по preload и другой по srcset.
+
+    href идёт без фильтра url: href у link переписывает сам HtmlBasePlugin, и
+    фильтр добавлял префикс вторым — на GitHub Pages предзагрузка уходила по
+    /pixtoon-hybrid/pixtoon-hybrid/... и получала 404. У imagesrcset ниже
+    обратный случай: про него плагин не знает, и префикс там наш.
   #}
   {% if preloadImage %}
   <link
     rel="preload"
     as="image"
-    href="{{ preloadImage | url }}"
+    href="{{ preloadImage }}"
     {% if preloadSrcset %}imagesrcset="{{ preloadSrcset | srcsetUrl }}" imagesizes="{{ preloadSizes }}"{% endif %}
     fetchpriority="high"
   />
