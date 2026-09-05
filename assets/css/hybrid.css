@@ -105,6 +105,11 @@
   --hyb-line-active: #c7b6d3; /* обводка активного пункта меню */
   --hyb-line-dark: #3c3644;
 
+  /* Обводка незаполненного поля формы. Красный приглушён до бордового: на
+     лавандовой карточке чистый #d00 звенит громче самой ошибки, а контраст
+     к белому полю остаётся 5.1:1. */
+  --hyb-error: #a83246;
+
   /* --- Типографика ---------------------------------------------------- */
 
   /*
@@ -695,6 +700,18 @@
 }
 .hyb-package__media:hover .hyb-play {
   transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* Тот же кружок, но кнопкой: в карточке абонемента он запускает ролик, а не
+   украшает кадр. Собственного вида у кнопки нет — только сброс браузерного. */
+.hyb-play--btn {
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+[data-hyb-player].is-playing .hyb-play--btn {
+  display: none;
 }
 
 
@@ -1739,7 +1756,6 @@ html {
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: 140px;
   gap: 0.75rem;
 }
 
@@ -1751,27 +1767,49 @@ html {
   }
 }
 
+/* Ячейка коллажа — ссылка на кейс: отсюда block, снятое подчёркивание и
+   унаследованный цвет. Гриду блокификация досталась бы и так, но правило
+   читают глазами, и полагаться на неявное поведение здесь незачем. */
 .hyb-collage__item {
   position: relative;
+  display: block;
   overflow: hidden;
   border-radius: var(--hyb-r-media);
   background: var(--hyb-accent-wash);
   margin: 0;
+  color: inherit;
+  text-decoration: none;
 }
 
-/* Узкий экран: два крупных кадра во всю ширину, пара мелких в один ряд */
-.hyb-collage__item--3,
-.hyb-collage__item--4 { grid-column: span 1; }
-.hyb-collage__item--1,
-.hyb-collage__item--2,
-.hyb-collage__item--5 { grid-column: span 2; }
+/*
+  Узкий экран: сверху рядом две вертикали, под ними широкие кадры.
 
+  Раскладка идёт от материала, а не от позиции в макете. Постеры Berea
+  Chișinău (800×1437) и Microinvest (1080×1916) вертикальные, остальные три —
+  ровно 16:9. Прежняя сетка гнала все пять через ряды по 140px во всю ширину,
+  и обе вертикали превращались в поперечную полоску: от бутылки оставался
+  поясок, от семьи — стол.
+
+  Пропорции проставлены точные, поэтому на телефоне не режется ни один кадр.
+  Место в ряду задано явно — Microinvest поднимается к Berea Chișinău, — и
+  порядок на экране расходится с порядком в разметке на один элемент. Это
+  осознанно: пятерым равноправным ссылкам такой сдвиг ничего не стоит, а
+  вертикали рядом дают ряд одной высоты.
+*/
+.hyb-collage__item--1 { grid-column: 1; grid-row: 1; aspect-ratio: 9 / 16; }
+.hyb-collage__item--5 { grid-column: 2; grid-row: 1; aspect-ratio: 9 / 16; }
+.hyb-collage__item--2 { grid-column: 1 / -1; grid-row: 2; aspect-ratio: 16 / 9; }
+.hyb-collage__item--3 { grid-column: 1; grid-row: 3; aspect-ratio: 16 / 9; }
+.hyb-collage__item--4 { grid-column: 2; grid-row: 3; aspect-ratio: 16 / 9; }
+
+/* Широкий экран: раскладка макета, высоту держат ряды сетки */
 @media (min-width: 40rem) {
+  .hyb-collage__item { aspect-ratio: auto; }
   .hyb-collage__item--1 { grid-column: span 4; grid-row: span 2; }
   .hyb-collage__item--2 { grid-column: span 2; grid-row: span 2; }
   .hyb-collage__item--3,
   .hyb-collage__item--4,
-  .hyb-collage__item--5 { grid-column: span 2; }
+  .hyb-collage__item--5 { grid-column: span 2; grid-row: auto; }
 }
 
 .hyb-collage__media {
@@ -1784,42 +1822,6 @@ html {
 /* Кадр наезжает на 5% при наведении — приём макета */
 .hyb-collage__item:hover .hyb-collage__media {
   transform: scale(1.05);
-}
-
-/* Кнопка showreel выходит за нижний левый угол коллажа на 16px по обеим осям
-   — в макете `-bottom-4 -left-4`. Раньше она висела по центру в пустоте. */
-.hyb-showreel {
-  position: absolute;
-  left: -1rem;
-  bottom: -1rem;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 1.25rem 0.5rem 0.5rem;
-  border: 0;
-  border-radius: var(--hyb-r-pill);
-  background: var(--hyb-bg);
-  box-shadow: 0 4px 16px rgba(35, 30, 41, 0.14);
-  font-family: var(--hyb-font-body);
-  font-size: var(--hyb-t-small);
-  font-weight: 600;
-  color: var(--hyb-ink);
-  cursor: pointer;
-  transition: box-shadow var(--hyb-dur) var(--hyb-ease);
-}
-.hyb-showreel:hover {
-  box-shadow: 0 8px 24px rgba(35, 30, 41, 0.2);
-}
-
-.hyb-showreel__icon {
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: var(--hyb-dark);
-  color: var(--hyb-on-dark);
 }
 
 /* --- Метки на кадрах ----------------------------------------------------- */
@@ -2164,11 +2166,15 @@ html {
   line-height: var(--hyb-lh-tight);
 }
 
+/* Пропорция ролика, а не кадра: при запуске скрипт подгоняет рамку под
+   видео, и с прежними 16/10 карточка подрастала на тридцать пикселей прямо
+   под курсором, уводя списки ниже относительно соседней. Постер при этом
+   теряет по десятой части сверху и снизу — на кадре с продуктом незаметно. */
 .hyb-package__media {
   position: relative;
   overflow: hidden;
   border-radius: var(--hyb-r-sm);
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   background: var(--hyb-accent-wash);
 }
 
@@ -2309,14 +2315,29 @@ html {
 
 /* --- 4. Case study — Microinvest ----------------------------------------- */
 
+/*
+  Триптих: ролик и два кадра из него в один ряд. Пропорция у всех трёх — та
+  же, что у самого материала (вертикальный рил 1080×1916), поэтому кадры не
+  режутся вовсе. Прежняя раскладка 2fr/1fr держала горизонтальные плитки, и
+  вертикальный кадр в них терял и макушку, и подпись.
+
+  На узком экране ролик занимает всю ширину, кадры встают парой под ним: три
+  вертикали в столбик дали бы экран с лишним на один блок.
+*/
 .hyb-mi__top {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.hyb-mi__hero {
+  grid-column: span 2;
 }
 @media (min-width: 56rem) {
   .hyb-mi__top {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .hyb-mi__hero {
+    grid-column: auto;
   }
 }
 
@@ -2325,12 +2346,18 @@ html {
   margin: 0;
   overflow: hidden;
   border-radius: var(--hyb-r-card);
-  aspect-ratio: 804 / 503;
+  aspect-ratio: 1080 / 1916;
 }
 .hyb-mi__hero img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Подпись уезжает на время показа: под ней встаёт панель плеера, а ролик
+   и так называет себя первым же кадром. */
+.hyb-mi__hero.is-playing figcaption {
+  display: none;
 }
 
 /* Подпись на кадре — без градиента, как и на карточках работ */
@@ -2356,18 +2383,12 @@ html {
   color: var(--hyb-on-dark);
 }
 
-.hyb-mi__side {
-  display: grid;
-  gap: 1.25rem;
-  grid-auto-rows: 1fr;
-}
-
 .hyb-mi__tile {
   position: relative;
   margin: 0;
   overflow: hidden;
   border-radius: var(--hyb-r-card);
-  aspect-ratio: 392 / 294;
+  aspect-ratio: 1080 / 1916;
 }
 .hyb-mi__tile img {
   width: 100%;
@@ -2480,11 +2501,14 @@ html {
 /* --- 6. Cifrele vorbesc -------------------------------------------------- */
 
 
+/* Белая заливка, как у плиток статистики над ним: блок стоит на лавандовой
+   секции, и без фона он читался как подпись к ним, а не как своя карточка. */
 .hyb-techniques {
   margin-top: 1.25rem;
   padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
   border: 1px solid var(--hyb-line);
   border-radius: var(--hyb-r-card);
+  background: var(--hyb-bg);
 }
 
 .hyb-techniques__kicker {
@@ -2632,8 +2656,152 @@ html {
    потомка: у раздела Hybrid он 72px, у страниц сайта — 115px, и правило
    `.hyb-final .hyb-title` перебивало бы оба своей специфичностью. */
 
+/*
+  Финальный призыв набран по центру: правая половина полосы под заголовком в
+  1216 оставалась пустой, а под ним теперь стоит форма — она и задаёт ось.
+  Центрируется контейнер целиком, поэтому эйброу, лид и кнопки встают по той
+  же оси без отдельных правил каждому.
+*/
+.hyb-final .hyb-wrap {
+  text-align: center;
+}
+
 .hyb-final .hyb-lead {
   max-width: 48ch;
+  margin-inline: auto;
+}
+
+/* --- Форма брифа --------------------------------------------------------- */
+
+/*
+  Карточка на лавандовой заливке: секция белая, и без фона поля висели бы в
+  пустоте. Ширина ограничена не колонкой макета, а читаемостью строки ввода —
+  поле в 1216 пикселей выглядит как поиск, а не как строка имени.
+*/
+.hyb-form {
+  max-width: 720px;
+  margin: var(--hyb-s-5) auto 0;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  border-radius: var(--hyb-r-card);
+  background: var(--hyb-accent-wash);
+  /* Подписи полей читаются слева, даже когда секция набрана по центру */
+  text-align: left;
+}
+
+.hyb-form__head {
+  text-align: center;
+}
+
+.hyb-form__title {
+  margin-top: var(--hyb-s-1);
+  font-family: var(--hyb-font-display);
+  font-weight: 800;
+  font-size: var(--hyb-t-h3);
+  line-height: var(--hyb-lh-tight);
+}
+
+.hyb-form__grid {
+  display: grid;
+  gap: var(--hyb-s-3);
+  margin-top: var(--hyb-s-4);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 40rem) {
+  .hyb-form__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hyb-field--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Поле обёрнуто в label целиком: подпись и контрол связаны вложением, и
+   разметке не нужны идентификаторы, которые в MODX пришлось бы держать
+   уникальными по всему сайту. */
+.hyb-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.hyb-field__label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: var(--hyb-t-small);
+  font-weight: 600;
+  color: var(--hyb-ink);
+}
+
+.hyb-field__hint {
+  font-size: var(--hyb-t-eyebrow);
+  font-weight: 500;
+  color: var(--hyb-ink-faint);
+}
+
+.hyb-field__control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--hyb-line);
+  border-radius: var(--hyb-r-sm);
+  background: var(--hyb-bg);
+  /* Шрифт у полей не наследуется от страницы — браузер ставит свой */
+  font-family: var(--hyb-font-body);
+  font-size: var(--hyb-t-body);
+  color: var(--hyb-ink);
+  transition: border-color var(--hyb-dur) var(--hyb-ease);
+}
+
+.hyb-field__control::placeholder {
+  color: var(--hyb-ink-faint);
+}
+
+.hyb-field__control:hover {
+  border-color: var(--hyb-line-active);
+}
+
+.hyb-field__control:focus-visible {
+  outline: 3px solid var(--hyb-accent);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+/* Ручка растягивания только по вертикали: горизонтально поле упирается в
+   колонку сетки, и тянуть его вбок значит вылезти за карточку. */
+.hyb-field__control--area {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+/*
+  Подсветка ошибки — только после попытки отправки. `:invalid` без этого
+  красит пустое поле красным ещё до того, как в него что-то ввели.
+*/
+.hyb-form.is-checked .hyb-field__control:invalid {
+  border-color: var(--hyb-error);
+}
+
+/* Кнопка по центру карточки: подписи полей читаются слева, но единственное
+   действие формы стоит на той же оси, что и её шапка и вся секция. */
+.hyb-form__foot {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--hyb-s-4);
+}
+
+/* Ответ формы: тот же зелёный, что у галочек в перечнях «что входит» */
+.hyb-form__status {
+  margin-top: var(--hyb-s-3);
+  padding: 0.75rem 1rem;
+  border-radius: var(--hyb-r-sm);
+  background: var(--hyb-bg);
+  font-size: var(--hyb-t-small);
+  font-weight: 600;
+  color: var(--hyb-ink);
+}
+
+.hyb-form__status[hidden] {
+  display: none;
 }
 
 
@@ -3387,7 +3555,7 @@ html {
   pointer-events: none;
 }
 
-.hyb-cs__shot.is-playing .hyb-cs__video {
+[data-hyb-player].is-playing .hyb-cs__video {
   opacity: 1;
   pointer-events: auto;
   /* contain, а не cover: при запуске скрипт подгоняет пропорцию фигуры под
@@ -3421,7 +3589,7 @@ html {
   box-shadow: var(--hyb-shadow-lift);
 }
 
-.hyb-cs__shot.is-playing .hyb-cs__play {
+[data-hyb-player].is-playing .hyb-cs__play {
   display: none;
 }
 
@@ -3477,19 +3645,19 @@ html {
   display: none;
 }
 
-.hyb-cs__shot.is-running .hyb-player__ico--on-play {
+[data-hyb-player].is-running .hyb-player__ico--on-play {
   display: block;
 }
 
-.hyb-cs__shot.is-running .hyb-player__ico--on-pause {
+[data-hyb-player].is-running .hyb-player__ico--on-pause {
   display: none;
 }
 
-.hyb-cs__shot.is-muted .hyb-player__ico--on-muted {
+[data-hyb-player].is-muted .hyb-player__ico--on-muted {
   display: block;
 }
 
-.hyb-cs__shot.is-muted .hyb-player__ico--on-loud {
+[data-hyb-player].is-muted .hyb-player__ico--on-loud {
   display: none;
 }
 

@@ -206,31 +206,32 @@
   
   
   
-  <video class="hyb-cs__video" data-src="/pixtoon-hybrid/assets/img/cases/drive-gas.mp4" poster="/pixtoon-hybrid/assets/img/cases/drive-gas/hero.jpg" playsinline="" preload="none"></video>
+<video class="hyb-cs__video" data-src="/pixtoon-hybrid/assets/img/cases/drive-gas.mp4" poster="/pixtoon-hybrid/assets/img/cases/drive-gas/hero.jpg" playsinline="" preload="none"></video>
 
-  <button class="hyb-cs__play" type="button" data-hyb-play="" aria-label="Play" data-label-play="Play" data-label-pause="Pause">
-    <svg width="22" height="22" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7-4.5z"></path></svg>
+<button class="hyb-cs__play" type="button" data-hyb-play="" aria-label="Play" data-label-play="Play" data-label-pause="Pause">
+  <svg width="22" height="22" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7-4.5z"></path></svg>
+</button>
+
+<div class="hyb-player" data-hyb-controls="" hidden="">
+  
+  <button class="hyb-player__btn" type="button" data-act="toggle" aria-label="Pause">
+    <svg class="hyb-player__ico hyb-player__ico--on-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.2"></rect><rect x="14" y="4" width="4" height="16" rx="1.2"></rect></svg><svg class="hyb-player__ico hyb-player__ico--on-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z"></path></svg>
   </button>
 
-  <div class="hyb-player" data-hyb-controls="" hidden="">
-    
-    <button class="hyb-player__btn" type="button" data-act="toggle" aria-label="Pause">
-      <svg class="hyb-player__ico hyb-player__ico--on-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.2"></rect><rect x="14" y="4" width="4" height="16" rx="1.2"></rect></svg><svg class="hyb-player__ico hyb-player__ico--on-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z"></path></svg>
-    </button>
+  
+  <input class="hyb-player__seek" type="range" min="0" max="1000" value="0" step="1" data-act="seek" aria-label="Seek">
 
-    
-    <input class="hyb-player__seek" type="range" min="0" max="1000" value="0" step="1" data-act="seek" aria-label="Seek">
+  <span class="hyb-player__time" data-hyb-time="" aria-hidden="true">0:00 / 0:00</span>
 
-    <span class="hyb-player__time" data-hyb-time="" aria-hidden="true">0:00 / 0:00</span>
+  <button class="hyb-player__btn" type="button" data-act="mute" aria-label="Mute" data-label-on="Mute" data-label-off="Unmute">
+    <svg class="hyb-player__ico hyb-player__ico--on-loud" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 4.7v14.6a1 1 0 0 1-1.66.75L5.4 16.5H3a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h2.4l3.94-3.55A1 1 0 0 1 11 4.7z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><svg class="hyb-player__ico hyb-player__ico--on-muted" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 4.7v14.6a1 1 0 0 1-1.66.75L5.4 16.5H3a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h2.4l3.94-3.55A1 1 0 0 1 11 4.7z"></path><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+  </button>
 
-    <button class="hyb-player__btn" type="button" data-act="mute" aria-label="Mute" data-label-on="Mute" data-label-off="Unmute">
-      <svg class="hyb-player__ico hyb-player__ico--on-loud" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 4.7v14.6a1 1 0 0 1-1.66.75L5.4 16.5H3a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h2.4l3.94-3.55A1 1 0 0 1 11 4.7z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><svg class="hyb-player__ico hyb-player__ico--on-muted" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 4.7v14.6a1 1 0 0 1-1.66.75L5.4 16.5H3a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h2.4l3.94-3.55A1 1 0 0 1 11 4.7z"></path><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
-    </button>
+  <button class="hyb-player__btn" type="button" data-act="full" aria-label="Full screen">
+    <svg class="hyb-player__ico hyb-player__ico--on-window" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9V5.6A1.6 1.6 0 0 1 5.6 4H9M15 4h3.4A1.6 1.6 0 0 1 20 5.6V9M20 15v3.4a1.6 1.6 0 0 1-1.6 1.6H15M9 20H5.6A1.6 1.6 0 0 1 4 18.4V15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><svg class="hyb-player__ico hyb-player__ico--on-full" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 4v3.4A1.6 1.6 0 0 1 7.4 9H4M20 9h-3.4A1.6 1.6 0 0 1 15 7.4V4M15 20v-3.4a1.6 1.6 0 0 1 1.6-1.6H20M4 15h3.4A1.6 1.6 0 0 1 9 16.6V20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+  </button>
+</div>
 
-    <button class="hyb-player__btn" type="button" data-act="full" aria-label="Full screen">
-      <svg class="hyb-player__ico hyb-player__ico--on-window" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9V5.6A1.6 1.6 0 0 1 5.6 4H9M15 4h3.4A1.6 1.6 0 0 1 20 5.6V9M20 15v3.4a1.6 1.6 0 0 1-1.6 1.6H15M9 20H5.6A1.6 1.6 0 0 1 4 18.4V15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><svg class="hyb-player__ico hyb-player__ico--on-full" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 4v3.4A1.6 1.6 0 0 1 7.4 9H4M20 9h-3.4A1.6 1.6 0 0 1 15 7.4V4M15 20v-3.4a1.6 1.6 0 0 1 1.6-1.6H20M4 15h3.4A1.6 1.6 0 0 1 9 16.6V20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
-    </button>
-  </div>
   
 </figure>
 
@@ -640,7 +641,7 @@
           
           <li class="hyb-cs__tile">
             
-<img src="/pixtoon-hybrid/assets/img/cases/drive-gas/card-1.jpg" srcset="/pixtoon-hybrid/assets/img/cases/drive-gas/card-1-400.jpg 400w, /pixtoon-hybrid/assets/img/cases/drive-gas/card-1-800.jpg 800w, /pixtoon-hybrid/assets/img/cases/drive-gas/card-1.jpg 840w" sizes="(max-width: 700px) 90vw, 413px" alt="The campaign character" width="840" height="1120" loading="lazy" decoding="async">
+<img src="/pixtoon-hybrid/assets/img/cases/drive-gas/card-1.jpg" srcset="/pixtoon-hybrid/assets/img/cases/drive-gas/card-1-400.jpg 400w, /pixtoon-hybrid/assets/img/cases/drive-gas/card-1-800.jpg 800w, /pixtoon-hybrid/assets/img/cases/drive-gas/card-1.jpg 810w" sizes="(max-width: 700px) 90vw, 413px" alt="The campaign character" width="810" height="1080" loading="lazy" decoding="async">
 
             <span class="hyb-cs__badge">The campaign character</span>
           </li>
